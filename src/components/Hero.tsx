@@ -18,7 +18,7 @@ export const Hero: React.FC<HeroProps> = ({
   const [activeColor, setActiveColor] = useState('#EA552B');
 
   return (
-    <section className="relative overflow-hidden pt-12 pb-24 border-b border-black/10 bg-gradient-to-b from-[#FAF4EC] via-scribble-paper to-[#F5ECE1]">
+    <section className="relative overflow-hidden pt-6 pb-24 border-b border-black/10 bg-transparent">
       {/* ========================================================= */}
       {/* DECORATIVE FLOATING FUNKY SCRIBBLLES (MATCHING SCREENSHOT) */}
       {/* ========================================================= */}
