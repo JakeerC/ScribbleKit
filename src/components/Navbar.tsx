@@ -17,8 +17,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   assetCount,
 }) => {
   return (
-    <header className="relative z-40 bg-transparent pt-6 pb-4 sm:pt-8 sm:pb-6">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+    <header className="relative z-40 bg-transparent w-full pt-4 pb-2 sm:pt-6 sm:pb-3">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between w-full">
         {/* Brand */}
         <div className="flex items-center gap-3">
           <a href="#" className="flex items-center gap-3 group">

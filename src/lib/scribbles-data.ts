@@ -337,7 +337,7 @@ export const SCRIBBLES_ASSETS: ScribbleAsset[] = [
     "type": "mixed",
     "defaultColor": "#141416",
     "description": "Crisp hand-drawn 4-point diamond sparkle star with tapered curved flares in rich ink black.",
-    "rawSvg": "<path d=\"M55 5 C56 32 68 44 95 45 C68 46 56 58 55 85 C54 58 42 46 15 45 C42 44 54 32 55 5 Z\" fill=\"currentColor\" />\n  <circle cx=\"85\" cy=\"20\" r=\"3.5\" fill=\"currentColor\" />\n  <circle cx=\"25\" cy=\"72\" r=\"2.5\" fill=\"currentColor\" />"
+    "rawSvg": "<path d=\"M55 8 C56 32 67 43 92 45 C67 47 56 58 55 82 C54 58 43 47 18 45 C43 43 54 32 55 8 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n  <circle cx=\"84\" cy=\"22\" r=\"3\" fill=\"currentColor\" />\n  <circle cx=\"26\" cy=\"68\" r=\"2.5\" fill=\"currentColor\" />"
   },
   {
     "id": "funky-striped-globe-ball",

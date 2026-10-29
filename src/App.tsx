@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { HeroFeatures } from './components/HeroFeatures';
 import { HeadlineStudio } from './components/HeadlineStudio';
 import { AssetCatalog } from './components/AssetCatalog';
 import { AssetDetailModal } from './components/AssetDetailModal';
@@ -53,23 +53,18 @@ export function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-scribble-paper selection:bg-scribble-yellow selection:text-black">
-      {/* Top Navbar */}
-      <Navbar
-        onOpenGuide={() => setIsGuideOpen(true)}
-        onScrollToStudio={scrollToStudio}
-        onScrollToCatalog={scrollToCatalog}
-        onDownloadAll={handleDownloadAll}
-        assetCount={SCRIBBLES_ASSETS.length}
-      />
-
       <main className="flex-1">
-        {/* Hero Banner */}
+        {/* Full-Screen Hero & Navbar Screen */}
         <Hero
           onScrollToCatalog={scrollToCatalog}
           onScrollToStudio={scrollToStudio}
           onOpenGuide={() => setIsGuideOpen(true)}
+          onDownloadAll={handleDownloadAll}
           assetCount={SCRIBBLES_ASSETS.length}
         />
+
+        {/* Feature Cards below Hero Section */}
+        <HeroFeatures />
 
         {/* Headline & CTA Studio */}
         <HeadlineStudio />
