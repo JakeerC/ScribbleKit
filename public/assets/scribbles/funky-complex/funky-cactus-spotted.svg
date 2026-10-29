@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 220" fill="none">
+  <path d="M68 215 C54 215 46 202 46 182 C46 156 48 126 48 112 C48 108 42 108 38 108 C26 108 17 99 15 86 C13 72 14 55 16 42 C18 30 28 22 40 23 C52 24 59 34 59 47 C59 63 58 80 59 86 C60 90 65 90 69 90 C70 78 71 48 72 26 C73 12 82 2 97 2 C112 2 121 12 121 26 C121 58 120 88 122 96 C126 96 130 92 131 86 C133 74 135 60 137 48 C139 36 149 28 159 30 C169 32 175 42 174 54 C172 74 168 101 156 118 C146 132 132 138 118 138 C114 138 112 142 112 148 C112 166 112 182 108 196 C104 210 88 215 68 215 Z" fill="currentColor" stroke="#141416" stroke-width="2.5" stroke-linejoin="round" />
+  <ellipse cx="88" cy="38" rx="3.5" ry="6" transform="rotate(-10 88 38)" fill="#141416" />
+  <ellipse cx="94" cy="70" rx="3" ry="5.5" transform="rotate(12 94 70)" fill="#141416" />
+  <ellipse cx="82" cy="104" rx="3.5" ry="6" transform="rotate(-5 82 104)" fill="#141416" />
+  <ellipse cx="95" cy="138" rx="3.5" ry="6.5" transform="rotate(8 95 138)" fill="#141416" />
+  <ellipse cx="78" cy="172" rx="3" ry="5.5" transform="rotate(-15 78 172)" fill="#141416" />
+  <ellipse cx="90" cy="195" rx="3" ry="5" transform="rotate(5 90 195)" fill="#141416" />
+  <ellipse cx="36" cy="46" rx="3" ry="5" transform="rotate(15 36 46)" fill="#141416" />
+  <ellipse cx="38" cy="74" rx="3.2" ry="5.8" transform="rotate(-8 38 74)" fill="#141416" />
+  <ellipse cx="50" cy="98" rx="2.8" ry="5" transform="rotate(20 50 98)" fill="#141416" />
+  <ellipse cx="152" cy="56" rx="3" ry="5.5" transform="rotate(-12 152 56)" fill="#141416" />
+  <ellipse cx="146" cy="85" rx="3.2" ry="5.8" transform="rotate(10 146 85)" fill="#141416" />
+  <ellipse cx="132" cy="115" rx="3" ry="5" transform="rotate(-20 132 115)" fill="#141416" />
+</svg>

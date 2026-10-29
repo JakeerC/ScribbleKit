@@ -11,7 +11,9 @@ export type HighlightStyle =
   | 'circle-capsule'
   | 'box-rough'
   | 'arrow-curved'
-  | 'star-sparkle';
+  | 'star-sparkle'
+  | 'funky-yellow-oval'
+  | 'funky-comic-bolt';
 
 export interface ScribbleHighlightProps {
   children: React.ReactNode;
@@ -127,6 +129,26 @@ export const ScribbleHighlight: React.FC<ScribbleHighlightProps> = ({
           <span className="relative z-10">{children}</span>
           <span className={`absolute -right-5 -top-4 w-6 h-6 pointer-events-none ${scribbleClassName}`}>
             <Scribble name="star-4-point-sparkle" color={color} animate={animate} />
+          </span>
+        </span>
+      );
+
+    case 'funky-yellow-oval':
+      return (
+        <span className={`relative inline-block px-4 py-1 ${className}`}>
+          <span className={`absolute -inset-x-4 -inset-y-2 pointer-events-none flex items-center justify-center opacity-80 ${scribbleClassName}`}>
+            <Scribble name="funky-yellow-spring-oval" color={color} className="w-full h-full" />
+          </span>
+          <span className="relative z-10">{children}</span>
+        </span>
+      );
+
+    case 'funky-comic-bolt':
+      return (
+        <span className={`relative inline-block ${className}`}>
+          <span className="relative z-10">{children}</span>
+          <span className={`absolute -right-7 -top-7 w-8 h-10 pointer-events-none ${scribbleClassName}`}>
+            <Scribble name="funky-bolt-comic-3d" color={color} />
           </span>
         </span>
       );

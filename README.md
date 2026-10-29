@@ -1,5 +1,5 @@
 # ScribbleKit 🎨
-> **116+ Hand-Drawn Vector Assets & Interactive Studio**
+> **140+ Hand-Drawn Vector Assets, Funky Scribbles & Interactive Studio**
 
 [![Vite](https://img.shields.io/badge/Vite-6.0-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)](https://react.dev/)
@@ -11,12 +11,21 @@
 
 ## ⚡ Features
 
-* **116 Clean Vector SVGs**: 100% resolution-independent, hand-crafted vector graphics organized across 8 categories.
-* **Signature Shapes & Flourishes**: Includes starburst stamp badges, organic contour curves, multi-pass marker scribbles, and editorial headline swooshes.
+* **140 Clean Vector SVGs**: 100% resolution-independent, hand-crafted vector graphics organized across 9 categories.
+* **Funky & Colorful Multi-Layer Collection (24 items)**:
+  * **Cactus Spotted Hand**: Green 3-pronged organic shape with black freckle thorns.
+  * **Blue Wireframe Scribble Blob**: Asymmetric sky-blue pebble with chaotic, energetic loopy wire scribbles.
+  * **Sunny Spring Oval**: Tilted yellow oval pill with continuous black coil loops.
+  * **Bubblegum Seed Pebble**: Soft pink pebble with dark berry-pink watermelon seed droplets.
+  * **Retro Comic 3D Lightning**: Warm coral bolt with bold solid black 3D block extrusion shadow.
+  * **Curly Telephone Spring**: Cascading vertical spiral doodle with expanding overlapping rings.
+  * **Carved Striped Pebble**: Deep ink black pebble with carved negative space contour stripes.
+  * **Retro 'New' Starburst Stamp**: Terracotta 24-point sticker seal with bold 'New' typography.
+  * **Groovy Retro Daisy, Wavy Rainbow Arch, Confetti Blast, Warped Checkers**, and more!
 * **React Component System**: Includes `<Scribble name="..." />` and `<ScribbleHighlight styleType="..." />` for effortless inline headline wrapping.
 * **Live Interactive Studio**:
-  * **Headline & CTA Studio**: Test hand-drawn highlights over your own custom copy in real-time.
-  * **Color Switcher**: Live re-theming with the retro-pop palette (`#EA552B`, `#F7D046`, `#4CA96D`, `#EE8DB9`, `#55BBDA`, `#0BDC85`, etc.).
+  * **Headline & CTA Studio**: Test hand-drawn highlights and funky spring oval backdrops over live copy.
+  * **Color Switcher**: Toggle between "Original" authentic multi-colors or live re-theming with any palette.
   * **Animated Draw-On Effect**: Built-in SVG path stroke-dasharray animation mimicking live hand-drawing.
   * **1-Click Copy & Download**: Copy raw SVG, copy React JSX, or download standalone `.svg` files instantly.
 * **Zero Runtime Overhead**: SVGs adapt dynamically to CSS `currentColor` and require no heavy external graphics libraries.
@@ -47,6 +56,7 @@ All raw vector SVGs are accessible in `public/assets/scribbles/`:
 
 ```
 public/assets/scribbles/
+├── funky-complex/       # 24 items (cactus spotted hand, blue wire blob, spring oval, 3D bolt, rainbow)
 ├── underlines/          # 16 items (waves, calligraphic swooshes, rough marker, swash drop)
 ├── circles/             # 15 items (double loop, oval capsule, rough single, halos, cloud)
 ├── arrows/              # 18 items (hero CTA pointers, loop-the-loop, U-turn, zigzags)

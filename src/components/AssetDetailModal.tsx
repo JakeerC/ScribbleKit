@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Copy, Check, Download, Code, Sparkles, Sliders, ExternalLink } from 'lucide-react';
+import { X, Copy, Check, Download } from 'lucide-react';
 import { ScribbleAsset } from '../lib/scribbles-data';
 import { Scribble } from './Scribble';
 
@@ -16,7 +16,9 @@ export const AssetDetailModal: React.FC<AssetDetailModalProps> = ({
 }) => {
   if (!asset) return null;
 
-  const [color, setColor] = useState(currentColor || asset.defaultColor || '#EA552B');
+  const [color, setColor] = useState(
+    currentColor === 'original' ? (asset.defaultColor || '#EA552B') : (currentColor || asset.defaultColor || '#EA552B')
+  );
   const [copiedSvg, setCopiedSvg] = useState(false);
   const [copiedJsx, setCopiedJsx] = useState(false);
   const [activeTab, setActiveTab] = useState<'svg' | 'jsx' | 'datauri'>('svg');

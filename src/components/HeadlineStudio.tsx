@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, Copy, Check, RefreshCw, Type, Eye } from 'lucide-react';
+import { Sparkles, Copy, Check } from 'lucide-react';
 import { ScribbleHighlight, HighlightStyle } from './ScribbleHighlight';
 import { Scribble } from './Scribble';
 
@@ -14,6 +14,14 @@ export const HeadlineStudio: React.FC = () => {
   const [animate, setAnimate] = useState(true);
 
   const presets = [
+    {
+      label: 'Funky Scribbles',
+      prefix: 'Spice up your design with',
+      highlight: 'funky scribbles',
+      suffix: 'that pop.',
+      style: 'funky-yellow-oval' as HighlightStyle,
+      color: '#F7D046',
+    },
     {
       label: 'SaaS Launch Hero',
       prefix: 'Scale your revenue to',
@@ -153,6 +161,8 @@ export const HeadlineStudio: React.FC = () => {
                   { id: 'underline-swoosh', label: 'Brush Swoosh' },
                   { id: 'underline-swash', label: 'Signature Swash' },
                   { id: 'circle-double', label: 'Double Loop Circle' },
+                  { id: 'funky-yellow-oval', label: 'Funky Spring Oval' },
+                  { id: 'funky-comic-bolt', label: 'Comic 3D Bolt' },
                   { id: 'circle-capsule', label: 'Capsule Pill' },
                   { id: 'box-rough', label: 'Rough Box' },
                   { id: 'arrow-curved', label: 'Pointing Arrow' },
