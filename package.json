@@ -27,6 +27,7 @@
   "author": "ScribbleKit",
   "license": "MIT",
   "dependencies": {
+    "@vercel/speed-insights": "^2.0.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.468.0",
     "react": "^18.3.1",
