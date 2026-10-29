@@ -85,7 +85,18 @@ To animate a scribble as if being sketched live on page load or on hover:
 
 ---
 
-## 5. UI Placement Guidelines
+## 5. Funky & Multi-Layer Vector Compositing
+
+The **Funky Scribbles** collection introduces complex multi-layered vectors inspired by mid-century pop-art, Memphis design, and expressive editorial doodles:
+
+* **Colored Base + Ink Lineart Overlay**: Organic fluid pebbles in bright retro pastel tones (Kelly Green `#4CA96D`, Sky Blue `#55BBDA`, Sunny Yellow `#F7D046`, Bubblegum Pink `#EE8DB9`) overlaid with energetic continuous ink black doodles (`#141416`).
+* **Comic 3D Isometric Drop Shadows**: High-energy elements (like `funky-bolt-comic-3d` and `funky-arrow-comic-3d`) feature an offset solid black extrusion base giving them tangible pop-art sticker depth.
+* **Surface Texture Patterns**: Doodles feature hand-placed surface textures including cactus thorn freckles, watermelon droplet seeds, warped checkerboards, and carved contour stripes.
+* **Spring Coils & Gestures**: Cascading vertical telephone springs and loopy coils (`funky-curly-spring-coil`, `funky-yellow-spring-oval`) that loop around content and lead user focus.
+
+---
+
+## 6. UI Placement Guidelines
 
 1. **One Focal Element per Viewport**: Limit hand-drawn highlights to the single most important message per screen fold (e.g., one highlighted word in the hero headline, or an arrow pointing to the primary CTA).
 2. **Complementary Contrast**: Use warm tones (Persimmon Orange `#EA552B`, Sunny Goldenrod `#F7D046`) over dark text, and cool tones (Sky Blue `#55BBDA`, ScribbleKit Mint `#0BDC85`) over dark surfaces.

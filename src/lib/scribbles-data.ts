@@ -70,7 +70,13 @@ export const CATEGORIES = [
     "id": "all",
     "name": "All Scribbles",
     "icon": "Sparkles",
-    "count": 116
+    "count": 140
+  },
+  {
+    "id": "funky-complex",
+    "name": "Funky & Colorful",
+    "icon": "Palette",
+    "count": 24
   },
   {
     "id": "underlines",
@@ -123,6 +129,457 @@ export const CATEGORIES = [
 ];
 
 export const SCRIBBLES_ASSETS: ScribbleAsset[] = [
+  {
+    "id": "funky-cactus-spotted",
+    "name": "Cactus Spotted Hand",
+    "category": "funky-complex",
+    "tags": [
+      "cactus",
+      "hand",
+      "green",
+      "dots",
+      "spotted",
+      "funky",
+      "organic",
+      "botanical"
+    ],
+    "viewBox": "0 0 160 220",
+    "type": "mixed",
+    "defaultColor": "#4CA96D",
+    "description": "Funky hand-drawn 3-pronged cactus shape in kelly green dotted with organic ink freckles.",
+    "rawSvg": "<path d=\"M68 215 C54 215 46 202 46 182 C46 156 48 126 48 112 C48 108 42 108 38 108 C26 108 17 99 15 86 C13 72 14 55 16 42 C18 30 28 22 40 23 C52 24 59 34 59 47 C59 63 58 80 59 86 C60 90 65 90 69 90 C70 78 71 48 72 26 C73 12 82 2 97 2 C112 2 121 12 121 26 C121 58 120 88 122 96 C126 96 130 92 131 86 C133 74 135 60 137 48 C139 36 149 28 159 30 C169 32 175 42 174 54 C172 74 168 101 156 118 C146 132 132 138 118 138 C114 138 112 142 112 148 C112 166 112 182 108 196 C104 210 88 215 68 215 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n  <ellipse cx=\"88\" cy=\"38\" rx=\"3.5\" ry=\"6\" transform=\"rotate(-10 88 38)\" fill=\"#141416\" />\n  <ellipse cx=\"94\" cy=\"70\" rx=\"3\" ry=\"5.5\" transform=\"rotate(12 94 70)\" fill=\"#141416\" />\n  <ellipse cx=\"82\" cy=\"104\" rx=\"3.5\" ry=\"6\" transform=\"rotate(-5 82 104)\" fill=\"#141416\" />\n  <ellipse cx=\"95\" cy=\"138\" rx=\"3.5\" ry=\"6.5\" transform=\"rotate(8 95 138)\" fill=\"#141416\" />\n  <ellipse cx=\"78\" cy=\"172\" rx=\"3\" ry=\"5.5\" transform=\"rotate(-15 78 172)\" fill=\"#141416\" />\n  <ellipse cx=\"90\" cy=\"195\" rx=\"3\" ry=\"5\" transform=\"rotate(5 90 195)\" fill=\"#141416\" />\n  <ellipse cx=\"36\" cy=\"46\" rx=\"3\" ry=\"5\" transform=\"rotate(15 36 46)\" fill=\"#141416\" />\n  <ellipse cx=\"38\" cy=\"74\" rx=\"3.2\" ry=\"5.8\" transform=\"rotate(-8 38 74)\" fill=\"#141416\" />\n  <ellipse cx=\"50\" cy=\"98\" rx=\"2.8\" ry=\"5\" transform=\"rotate(20 50 98)\" fill=\"#141416\" />\n  <ellipse cx=\"152\" cy=\"56\" rx=\"3\" ry=\"5.5\" transform=\"rotate(-12 152 56)\" fill=\"#141416\" />\n  <ellipse cx=\"146\" cy=\"85\" rx=\"3.2\" ry=\"5.8\" transform=\"rotate(10 146 85)\" fill=\"#141416\" />\n  <ellipse cx=\"132\" cy=\"115\" rx=\"3\" ry=\"5\" transform=\"rotate(-20 132 115)\" fill=\"#141416\" />"
+  },
+  {
+    "id": "funky-blue-wire-scribble",
+    "name": "Blue Wireframe Scribble Blob",
+    "category": "funky-complex",
+    "tags": [
+      "blob",
+      "scribble",
+      "wire",
+      "blue",
+      "organic",
+      "pebble",
+      "loopy"
+    ],
+    "viewBox": "0 0 240 220",
+    "type": "mixed",
+    "defaultColor": "#55BBDA",
+    "description": "Large asymmetric sky blue organic stone blob with chaotic, energetic loopy black scribble wire running over it.",
+    "rawSvg": "<path d=\"M42 188 C10 162 4 112 18 68 C32 24 82 8 132 12 C182 16 226 50 234 100 C242 150 218 192 172 210 C128 226 76 214 42 188 Z\" fill=\"currentColor\" />\n  <path d=\"M38 160 C55 90 85 45 140 50 C195 55 210 110 165 145 C120 180 65 190 75 125 C85 60 170 30 210 85 C240 125 180 205 120 200 C60 195 40 130 90 90 C140 50 205 70 215 130 C225 190 145 215 105 180 C65 145 95 95 135 85 C175 75 195 115 175 155 C155 195 110 190 85 170 C48 140 70 70 120 62 C168 54 212 95 190 160 C175 200 130 212 95 195\" fill=\"none\" stroke=\"#141416\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />"
+  },
+  {
+    "id": "funky-yellow-spring-oval",
+    "name": "Sunny Spring Oval",
+    "category": "funky-complex",
+    "tags": [
+      "oval",
+      "spring",
+      "coil",
+      "yellow",
+      "telephone",
+      "pill",
+      "banner"
+    ],
+    "viewBox": "0 0 260 130",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Sunny yellow pill oval with hand-drawn continuous black spring coils looping across.",
+    "rawSvg": "<ellipse cx=\"130\" cy=\"65\" rx=\"118\" ry=\"46\" transform=\"rotate(-2 130 65)\" fill=\"currentColor\" />\n  <path d=\"M18 78 C35 60 54 50 68 36 C78 24 64 14 52 28 C38 44 42 76 60 88 C78 98 100 85 114 68 C128 50 118 32 104 40 C90 50 92 84 110 94 C128 104 152 86 166 66 C180 46 170 28 156 36 C140 46 142 82 160 92 C178 102 202 82 216 62 C230 42 218 26 206 34 C192 44 196 80 214 90 C228 98 244 86 252 70\" fill=\"none\" stroke=\"#141416\" stroke-width=\"4.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />"
+  },
+  {
+    "id": "funky-pink-speckled-pebble",
+    "name": "Bubblegum Seed Pebble",
+    "category": "funky-complex",
+    "tags": [
+      "pink",
+      "pebble",
+      "watermelon",
+      "seeds",
+      "speckled",
+      "polka",
+      "organic"
+    ],
+    "viewBox": "0 0 220 200",
+    "type": "mixed",
+    "defaultColor": "#EE8DB9",
+    "description": "Organic bubblegum pink pebble decorated with scattered dark berry-pink watermelon seed droplets.",
+    "rawSvg": "<path d=\"M35 145 C15 90 42 28 105 16 C168 6 208 52 214 112 C220 172 168 202 108 196 C48 190 52 196 35 145 Z\" fill=\"currentColor\" />\n  <path d=\"M72 82 C72 76 77 68 80 62 C83 68 88 76 88 82 C88 87 84 91 80 91 C76 91 72 87 72 82 Z\" fill=\"#D14881\" transform=\"rotate(-15 80 82)\" />\n  <path d=\"M120 54 C120 48 125 40 128 34 C131 40 136 48 136 54 C136 59 132 63 128 63 C124 63 120 59 120 54 Z\" fill=\"#D14881\" transform=\"rotate(10 128 54)\" />\n  <path d=\"M165 78 C165 72 170 64 173 58 C176 64 181 72 181 78 C181 83 177 87 173 87 C169 87 165 83 165 78 Z\" fill=\"#D14881\" transform=\"rotate(-8 173 78)\" />\n  <path d=\"M52 130 C52 124 57 116 60 110 C63 116 68 124 68 130 C68 135 64 139 60 139 C56 139 52 135 52 130 Z\" fill=\"#D14881\" transform=\"rotate(22 60 130)\" />\n  <path d=\"M102 118 C102 112 107 104 110 98 C113 104 118 112 118 118 C118 123 114 127 110 127 C106 127 102 123 102 118 Z\" fill=\"#D14881\" transform=\"rotate(-5 110 118)\" />\n  <path d=\"M148 124 C148 118 153 110 156 104 C159 110 164 118 164 124 C164 129 160 133 156 133 C152 133 148 129 148 124 Z\" fill=\"#D14881\" transform=\"rotate(18 156 124)\" />\n  <path d=\"M86 162 C86 156 91 148 94 142 C97 148 102 156 102 162 C102 167 98 171 94 171 C90 171 86 167 86 162 Z\" fill=\"#D14881\" transform=\"rotate(-12 94 162)\" />\n  <path d=\"M136 168 C136 162 141 154 144 148 C147 154 152 162 152 168 C152 173 148 177 144 177 C140 177 136 173 136 168 Z\" fill=\"#D14881\" transform=\"rotate(6 144 168)\" />\n  <path d=\"M178 138 C178 132 183 124 186 118 C189 124 194 132 194 138 C194 143 190 147 186 147 C182 147 178 143 178 138 Z\" fill=\"#D14881\" transform=\"rotate(-16 186 138)\" />"
+  },
+  {
+    "id": "funky-bolt-comic-3d",
+    "name": "Retro Comic 3D Lightning",
+    "category": "funky-complex",
+    "tags": [
+      "lightning",
+      "bolt",
+      "comic",
+      "3d",
+      "retro",
+      "shadow",
+      "orange",
+      "pop"
+    ],
+    "viewBox": "0 0 150 210",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Retro warm coral lightning bolt with bold black 3D block extrusion shadow.",
+    "rawSvg": "<path d=\"M68 18 L122 18 L86 88 L128 88 L42 206 L48 116 L10 116 Z\" fill=\"#141416\" />\n  <path d=\"M58 8 L112 8 L76 78 L118 78 L32 196 L38 106 L0 106 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />"
+  },
+  {
+    "id": "funky-curly-spring-coil",
+    "name": "Curly Telephone Spring",
+    "category": "funky-complex",
+    "tags": [
+      "spring",
+      "coil",
+      "telephone",
+      "curly",
+      "spiral",
+      "wire",
+      "black"
+    ],
+    "viewBox": "0 0 180 260",
+    "type": "mixed",
+    "defaultColor": "#141416",
+    "description": "Continuous, cascading vertical hand-drawn telephone spring coil with expanding overlapping rings.",
+    "rawSvg": "<path d=\"M42 22 C72 8 138 6 156 28 C172 48 148 76 112 82 C74 88 56 64 68 46 C80 28 148 26 166 52 C182 76 152 110 110 118 C64 126 48 98 64 76 C80 54 154 52 172 82 C188 110 154 150 104 158 C52 166 36 134 56 108 C76 82 158 80 176 114 C192 148 150 192 94 200 C38 208 20 172 46 142 C72 112 162 112 178 152 C192 190 144 234 82 242 C44 248 24 230 32 210 C42 186 86 194 98 226 C104 244 92 256 82 258\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />"
+  },
+  {
+    "id": "funky-black-pebble-stripes",
+    "name": "Carved Striped Pebble",
+    "category": "funky-complex",
+    "tags": [
+      "pebble",
+      "stripes",
+      "hatch",
+      "black",
+      "retro",
+      "abstract",
+      "contour"
+    ],
+    "viewBox": "0 0 180 200",
+    "type": "mixed",
+    "defaultColor": "#141416",
+    "description": "Bold ink black pebble carved with clean curved negative space contour stripes.",
+    "rawSvg": "<path d=\"M22 170 C-4 130 0 70 30 35 C60 0 120 -6 155 20 C190 46 195 105 178 150 C160 195 110 215 65 205 C42 200 32 186 22 170 Z\" fill=\"currentColor\" />\n  <path d=\"M15 85 C55 60 120 50 178 72\" fill=\"none\" stroke=\"#FAF6F0\" stroke-width=\"6.5\" stroke-linecap=\"round\" />\n  <path d=\"M12 122 C56 96 126 88 184 112\" fill=\"none\" stroke=\"#FAF6F0\" stroke-width=\"6.5\" stroke-linecap=\"round\" />\n  <path d=\"M24 158 C68 134 128 128 174 150\" fill=\"none\" stroke=\"#FAF6F0\" stroke-width=\"6.5\" stroke-linecap=\"round\" />\n  <path d=\"M46 186 C82 170 124 166 155 180\" fill=\"none\" stroke=\"#FAF6F0\" stroke-width=\"6.5\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "funky-coral-polka-blob",
+    "name": "Coral Polka-Dot Cloud",
+    "category": "funky-complex",
+    "tags": [
+      "coral",
+      "polka",
+      "dots",
+      "cloud",
+      "blob",
+      "organic",
+      "retro"
+    ],
+    "viewBox": "0 0 190 120",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Curving organic coral blob decorated with bold ink-black polka dots.",
+    "rawSvg": "<path d=\"M20 70 C8 55 12 30 32 20 C52 10 75 22 95 16 C115 10 138 2 158 12 C178 22 188 45 182 68 C176 90 155 108 132 105 C110 102 92 88 72 92 C52 96 32 110 18 95 C6 84 8 78 20 70 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <circle cx=\"42\" cy=\"38\" r=\"6\" fill=\"#141416\" />\n  <circle cx=\"85\" cy=\"32\" r=\"5\" fill=\"#141416\" />\n  <circle cx=\"132\" cy=\"30\" r=\"6.5\" fill=\"#141416\" />\n  <circle cx=\"162\" cy=\"50\" r=\"5.5\" fill=\"#141416\" />\n  <circle cx=\"140\" cy=\"78\" r=\"6\" fill=\"#141416\" />\n  <circle cx=\"98\" cy=\"68\" r=\"5.5\" fill=\"#141416\" />\n  <circle cx=\"56\" cy=\"74\" r=\"6\" fill=\"#141416\" />\n  <circle cx=\"30\" cy=\"60\" r=\"4.5\" fill=\"#141416\" />"
+  },
+  {
+    "id": "funky-badge-starburst-new",
+    "name": "Retro 'New' Starburst Sticker",
+    "category": "funky-complex",
+    "tags": [
+      "badge",
+      "starburst",
+      "new",
+      "sticker",
+      "seal",
+      "stamp",
+      "retro"
+    ],
+    "viewBox": "0 0 140 140",
+    "type": "mixed",
+    "defaultColor": "#D9532F",
+    "description": "24-point retro starburst badge seal stamped with handwritten 'New' text.",
+    "rawSvg": "<g transform=\"rotate(-6 70 70)\">\n  <path d=\"M70 4 L76 18 L91 10 L93 25 L108 20 L107 36 L122 35 L116 49 L130 52 L121 66 L133 73 L121 82 L130 92 L116 97 L122 110 L107 111 L108 126 L93 123 L91 137 L76 130 L70 144 L64 130 L49 137 L47 123 L32 126 L33 111 L18 110 L24 97 L10 92 L19 82 L7 73 L19 66 L10 52 L24 49 L18 35 L33 36 L32 20 L47 25 L49 10 L64 18 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n  <text x=\"70\" y=\"78\" font-family=\"system-ui, -apple-system, sans-serif\" font-weight=\"900\" font-size=\"28\" fill=\"#141416\" text-anchor=\"middle\" letter-spacing=\"-1\">New</text>\n</g>"
+  },
+  {
+    "id": "funky-triple-speed-slash",
+    "name": "Triple Speed Slashes",
+    "category": "funky-complex",
+    "tags": [
+      "slash",
+      "speed",
+      "emphasis",
+      "lines",
+      "strokes",
+      "triple",
+      "accent"
+    ],
+    "viewBox": "0 0 120 100",
+    "type": "mixed",
+    "defaultColor": "#141416",
+    "description": "Three slanted, energetic hand-drawn brush lines with tapered tips for emphasis and dynamic speed.",
+    "rawSvg": "<path d=\"M22 16 C38 34 52 56 68 84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"5.5\" stroke-linecap=\"round\" />\n  <path d=\"M12 36 C28 54 42 76 56 100\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"5\" stroke-linecap=\"round\" />\n  <path d=\"M36 4 C48 20 60 40 76 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"5\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "funky-star-diamond-sparkle",
+    "name": "Tapered Diamond Sparkle",
+    "category": "funky-complex",
+    "tags": [
+      "star",
+      "sparkle",
+      "diamond",
+      "glimmer",
+      "magic",
+      "funky"
+    ],
+    "viewBox": "0 0 110 110",
+    "type": "mixed",
+    "defaultColor": "#141416",
+    "description": "Crisp hand-drawn 4-point diamond sparkle star with tapered curved flares in rich ink black.",
+    "rawSvg": "<path d=\"M55 5 C56 32 68 44 95 45 C68 46 56 58 55 85 C54 58 42 46 15 45 C42 44 54 32 55 5 Z\" fill=\"currentColor\" />\n  <circle cx=\"85\" cy=\"20\" r=\"3.5\" fill=\"currentColor\" />\n  <circle cx=\"25\" cy=\"72\" r=\"2.5\" fill=\"currentColor\" />"
+  },
+  {
+    "id": "funky-striped-globe-ball",
+    "name": "Pop Horizon Striped Ball",
+    "category": "funky-complex",
+    "tags": [
+      "globe",
+      "ball",
+      "stripes",
+      "basketball",
+      "contour",
+      "orange",
+      "retro"
+    ],
+    "viewBox": "0 0 160 160",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Warm retro orange sphere decorated with curved black contour stripes like a pop-art globe.",
+    "rawSvg": "<circle cx=\"80\" cy=\"80\" r=\"72\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"4\" />\n  <path d=\"M12 60 C42 46 118 46 148 60\" fill=\"none\" stroke=\"#141416\" stroke-width=\"4.5\" stroke-linecap=\"round\" />\n  <path d=\"M8 82 C46 72 114 72 152 82\" fill=\"none\" stroke=\"#141416\" stroke-width=\"5\" stroke-linecap=\"round\" />\n  <path d=\"M14 104 C44 116 116 116 146 104\" fill=\"none\" stroke=\"#141416\" stroke-width=\"4.5\" stroke-linecap=\"round\" />\n  <path d=\"M36 128 C60 138 100 138 124 128\" fill=\"none\" stroke=\"#141416\" stroke-width=\"4.5\" stroke-linecap=\"round\" />\n  <path d=\"M80 8 C68 42 68 118 80 152\" fill=\"none\" stroke=\"#141416\" stroke-width=\"4\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "funky-retro-groovy-flower",
+    "name": "Groovy Retro 5-Petal Daisy",
+    "category": "funky-complex",
+    "tags": [
+      "flower",
+      "daisy",
+      "groovy",
+      "retro",
+      "70s",
+      "pop",
+      "petal"
+    ],
+    "viewBox": "0 0 180 180",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "70s retro flower with sunny yellow bubbly petals, ink black borders, and a warm coral center.",
+    "rawSvg": "<g stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\">\n  <circle cx=\"90\" cy=\"40\" r=\"28\" fill=\"currentColor\" />\n  <circle cx=\"138\" cy=\"74\" r=\"28\" fill=\"currentColor\" />\n  <circle cx=\"120\" cy=\"132\" r=\"28\" fill=\"currentColor\" />\n  <circle cx=\"60\" cy=\"132\" r=\"28\" fill=\"currentColor\" />\n  <circle cx=\"42\" cy=\"74\" r=\"28\" fill=\"currentColor\" />\n  <circle cx=\"90\" cy=\"90\" r=\"24\" fill=\"#EA552B\" />\n</g>\n<circle cx=\"83\" cy=\"83\" r=\"5\" fill=\"#FAF6F0\" />"
+  },
+  {
+    "id": "funky-rainbow-ribbon-wave",
+    "name": "Retro Wavy Rainbow Arch",
+    "category": "funky-complex",
+    "tags": [
+      "rainbow",
+      "wave",
+      "ribbon",
+      "arch",
+      "retro",
+      "stripes",
+      "colorful"
+    ],
+    "viewBox": "0 0 250 140",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Three cascading parallel undulating wave ribbons in coral, sunny yellow, and sky blue.",
+    "rawSvg": "<path d=\"M10 115 C45 65 95 30 150 45 C195 56 220 100 240 115 L240 95 C220 78 190 38 145 28 C90 14 40 50 10 95 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M10 95 C40 50 90 14 145 28 C190 38 220 78 240 95 L240 75 C220 58 185 20 140 10 C85 -2 35 32 10 75 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M10 75 C35 32 85 -2 140 10 C185 20 220 58 240 75 L240 55 C215 38 180 2 135 -6 C80 -16 30 16 10 55 Z\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />"
+  },
+  {
+    "id": "funky-confetti-party-burst",
+    "name": "Confetti Blast Doodles",
+    "category": "funky-complex",
+    "tags": [
+      "confetti",
+      "party",
+      "burst",
+      "sprinkles",
+      "squiggles",
+      "celebration"
+    ],
+    "viewBox": "0 0 220 200",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Multi-colored explosion of playful hand-drawn squiggles, triangles, dots, and starburst accents.",
+    "rawSvg": "<path d=\"M25 45 C40 35 55 50 70 40\" fill=\"none\" stroke=\"#EA552B\" stroke-width=\"4.5\" stroke-linecap=\"round\" />\n  <path d=\"M150 25 C165 40 180 25 195 35\" fill=\"none\" stroke=\"#4CA96D\" stroke-width=\"4\" stroke-linecap=\"round\" />\n  <path d=\"M85 170 C105 155 125 175 145 160\" fill=\"none\" stroke=\"#55BBDA\" stroke-width=\"4.5\" stroke-linecap=\"round\" />\n  <polygon points=\"110,30 122,50 98,50\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2\" />\n  <polygon points=\"35,140 52,148 40,165\" fill=\"#EE8DB9\" stroke=\"#141416\" stroke-width=\"2\" />\n  <polygon points=\"180,130 195,145 175,155\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2\" />\n  <circle cx=\"95\" cy=\"85\" r=\"7\" fill=\"#4CA96D\" />\n  <circle cx=\"165\" cy=\"95\" r=\"6\" fill=\"#F7D046\" />\n  <circle cx=\"45\" cy=\"95\" r=\"5\" fill=\"#55BBDA\" />\n  <circle cx=\"135\" cy=\"135\" r=\"6\" fill=\"#EE8DB9\" />\n  <path d=\"M125 75 L125 95 M115 85 L135 85\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <path d=\"M65 125 L65 141 M57 133 L73 133\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <path d=\"M175 55 L175 71 M167 63 L183 63\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "funky-duo-geometric-spark",
+    "name": "Memphis Geometric Duo",
+    "category": "funky-complex",
+    "tags": [
+      "memphis",
+      "geometric",
+      "duo",
+      "half-circle",
+      "squiggle",
+      "80s"
+    ],
+    "viewBox": "0 0 200 180",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Coral semicircle with ink polka dots paired with an undulating kelly green ribbon and star spark.",
+    "rawSvg": "<path d=\"M18 105 C18 52 60 12 115 12 C170 12 170 105 170 105 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <circle cx=\"65\" cy=\"50\" r=\"5\" fill=\"#141416\" />\n  <circle cx=\"115\" cy=\"42\" r=\"5.5\" fill=\"#141416\" />\n  <circle cx=\"85\" cy=\"80\" r=\"5\" fill=\"#141416\" />\n  <circle cx=\"140\" cy=\"75\" r=\"5\" fill=\"#141416\" />\n  <path d=\"M10 145 C40 120 70 165 100 135 C130 105 160 150 190 125\" fill=\"none\" stroke=\"#4CA96D\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n  <path d=\"M155 18 C156 32 165 38 180 39 C165 40 156 46 155 60 C154 46 145 40 130 39 C145 38 154 32 155 18 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2\" />"
+  },
+  {
+    "id": "funky-checkerboard-pebble",
+    "name": "Warped Checkerboard Pebble",
+    "category": "funky-complex",
+    "tags": [
+      "checkerboard",
+      "pebble",
+      "warped",
+      "checkers",
+      "pattern",
+      "funky"
+    ],
+    "viewBox": "0 0 180 180",
+    "type": "mixed",
+    "defaultColor": "#141416",
+    "description": "Hand-drawn organic stone silhouette filled with distorted retro checkerboard tiles.",
+    "rawSvg": "<clipPath id=\"pebble-clip\">\n  <path d=\"M30 150 C5 110 8 50 40 22 C72 -6 130 0 158 35 C186 70 180 130 152 160 C124 190 55 190 30 150 Z\" />\n</clipPath>\n<g clip-path=\"url(#pebble-clip)\">\n  <rect width=\"180\" height=\"180\" fill=\"#F7D046\" />\n  <path d=\"M0 0 L45 0 L45 45 L0 45 Z M90 0 L135 0 L135 45 L90 45 Z M45 45 L90 45 L90 90 L45 90 Z M135 45 L180 45 L180 90 L135 90 Z M0 90 L45 90 L45 135 L0 135 Z M90 90 L135 90 L135 135 L90 135 Z M45 135 L90 135 L90 180 L45 180 Z M135 135 L180 135 L180 180 L135 180 Z\" fill=\"currentColor\" />\n</g>\n<path d=\"M30 150 C5 110 8 50 40 22 C72 -6 130 0 158 35 C186 70 180 130 152 160 C124 190 55 190 30 150 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4.5\" stroke-linejoin=\"round\" />"
+  },
+  {
+    "id": "funky-target-concentric-doodle",
+    "name": "Hand-Drawn Target Bullseye",
+    "category": "funky-complex",
+    "tags": [
+      "target",
+      "bullseye",
+      "concentric",
+      "rings",
+      "focus",
+      "doodle"
+    ],
+    "viewBox": "0 0 180 180",
+    "type": "mixed",
+    "defaultColor": "#EE8DB9",
+    "description": "Multi-ring organic target doodle with concentric pink, blue, and yellow halos around an ink black bullseye.",
+    "rawSvg": "<circle cx=\"90\" cy=\"90\" r=\"82\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3\" />\n  <circle cx=\"90\" cy=\"90\" r=\"58\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3\" />\n  <circle cx=\"90\" cy=\"90\" r=\"36\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" />\n  <circle cx=\"90\" cy=\"90\" r=\"16\" fill=\"#141416\" />"
+  },
+  {
+    "id": "funky-double-wave-dots",
+    "name": "Funky Undulating Ribbon & Dots",
+    "category": "funky-complex",
+    "tags": [
+      "underline",
+      "wave",
+      "ribbon",
+      "dots",
+      "mint",
+      "accent"
+    ],
+    "viewBox": "0 0 260 70",
+    "type": "mixed",
+    "defaultColor": "#0BDC85",
+    "description": "Mint green wavy accent ribbon paired with an energetic black doodle squiggle and trailing coral dots.",
+    "rawSvg": "<path d=\"M8 35 C42 12 88 52 128 30 C168 8 212 48 248 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"12\" stroke-linecap=\"round\" />\n  <path d=\"M12 36 C45 15 90 54 130 32 C170 10 215 50 246 26\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n  <circle cx=\"68\" cy=\"54\" r=\"5\" fill=\"#EA552B\" />\n  <circle cx=\"188\" cy=\"52\" r=\"5\" fill=\"#EA552B\" />\n  <circle cx=\"252\" cy=\"46\" r=\"4\" fill=\"#EA552B\" />"
+  },
+  {
+    "id": "funky-comic-bubble-doodle",
+    "name": "Retro Comic Speech Bubble",
+    "category": "funky-complex",
+    "tags": [
+      "comic",
+      "speech",
+      "bubble",
+      "pop",
+      "retro",
+      "shadow",
+      "dialogue"
+    ],
+    "viewBox": "0 0 220 180",
+    "type": "mixed",
+    "defaultColor": "#FAF6F0",
+    "description": "Cream comic dialogue bubble with thick black 3D shadow extrusion and sky-blue doodle hatchings.",
+    "rawSvg": "<path d=\"M38 18 L198 18 C208 18 216 26 216 36 L216 126 C216 136 208 144 198 144 L88 144 L48 178 L54 144 L38 144 C28 144 20 136 20 126 L20 36 C20 26 28 18 38 18 Z\" fill=\"#141416\" transform=\"translate(6 6)\" />\n  <path d=\"M38 18 L198 18 C208 18 216 26 216 36 L216 126 C216 136 208 144 198 144 L88 144 L48 178 L54 144 L38 144 C28 144 20 136 20 126 L20 36 C20 26 28 18 38 18 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <path d=\"M50 48 L175 48 M50 68 L150 68 M50 88 L120 88\" stroke=\"#55BBDA\" stroke-width=\"4\" stroke-linecap=\"round\" />\n  <path d=\"M172 88 C173 98 180 102 190 103 C180 104 173 108 172 118 C171 108 164 104 154 103 C164 102 171 98 172 88 Z\" fill=\"#EA552B\" />"
+  },
+  {
+    "id": "funky-smiley-wink-pebble",
+    "name": "Winking Smiley Pebble",
+    "category": "funky-complex",
+    "tags": [
+      "smiley",
+      "face",
+      "wink",
+      "happy",
+      "pebble",
+      "funky",
+      "yellow"
+    ],
+    "viewBox": "0 0 180 180",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Sunny yellow pebble with hand-drawn winking star eye, cheerful open smile, and rosy cheeks.",
+    "rawSvg": "<path d=\"M32 145 C8 105 12 45 48 20 C84 -5 142 4 165 42 C188 80 178 135 146 162 C114 189 56 185 32 145 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <ellipse cx=\"62\" cy=\"74\" rx=\"6\" ry=\"8\" fill=\"#141416\" />\n  <path d=\"M120 62 C121 70 126 74 135 75 C126 76 121 80 120 88 C119 80 114 76 105 75 C114 74 119 70 120 62 Z\" fill=\"#141416\" />\n  <path d=\"M58 112 C72 136 112 136 126 112\" fill=\"none\" stroke=\"#141416\" stroke-width=\"4.5\" stroke-linecap=\"round\" />\n  <circle cx=\"46\" cy=\"98\" r=\"9\" fill=\"#EE8DB9\" opacity=\"0.8\" />\n  <circle cx=\"138\" cy=\"98\" r=\"9\" fill=\"#EE8DB9\" opacity=\"0.8\" />"
+  },
+  {
+    "id": "funky-arrow-comic-3d",
+    "name": "3D Comic Chunky Arrow",
+    "category": "funky-complex",
+    "tags": [
+      "arrow",
+      "comic",
+      "3d",
+      "chunky",
+      "shadow",
+      "pointer",
+      "green"
+    ],
+    "viewBox": "0 0 190 160",
+    "type": "mixed",
+    "defaultColor": "#4CA96D",
+    "description": "Chunky hand-drawn pointer arrow in kelly green with thick solid black 3D block extrusion.",
+    "rawSvg": "<path d=\"M26 92 L76 92 L76 138 L168 76 L76 14 L76 60 L26 60 Z\" fill=\"#141416\" transform=\"translate(8 8)\" />\n  <path d=\"M26 92 L76 92 L76 138 L168 76 L76 14 L76 60 L26 60 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <circle cx=\"50\" cy=\"76\" r=\"4.5\" fill=\"#FAF6F0\" />"
+  },
+  {
+    "id": "funky-memphis-squiggle-cluster",
+    "name": "Memphis Squiggle Cluster",
+    "category": "funky-complex",
+    "tags": [
+      "memphis",
+      "cluster",
+      "squiggle",
+      "pop",
+      "shapes",
+      "accent"
+    ],
+    "viewBox": "0 0 200 170",
+    "type": "mixed",
+    "defaultColor": "#EE8DB9",
+    "description": "Playful pop-art composition of a pink squiggle, yellow dot, mint triangle, and black cross hatchings.",
+    "rawSvg": "<path d=\"M20 50 C45 20 65 75 95 45 C125 15 145 70 175 40\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"9\" stroke-linecap=\"round\" />\n  <circle cx=\"155\" cy=\"115\" r=\"22\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" />\n  <polygon points=\"40,105 75,105 58,150\" fill=\"#0BDC85\" stroke=\"#141416\" stroke-width=\"3\" />\n  <path d=\"M105 105 L125 125 M125 105 L105 125\" stroke=\"#141416\" stroke-width=\"4\" stroke-linecap=\"round\" />\n  <path d=\"M115 140 L135 160 M135 140 L115 160\" stroke=\"#141416\" stroke-width=\"4\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "funky-lava-blob-stack",
+    "name": "Interlocking Lava Blobs",
+    "category": "funky-complex",
+    "tags": [
+      "lava",
+      "blobs",
+      "stack",
+      "interlocking",
+      "duo",
+      "organic",
+      "fluid"
+    ],
+    "viewBox": "0 0 220 190",
+    "type": "mixed",
+    "defaultColor": "#55BBDA",
+    "description": "Two interlocking fluid organic blobs in sky blue and sunny yellow connected by a hand-drawn black seam.",
+    "rawSvg": "<path d=\"M22 135 C2 95 18 35 68 18 C118 1 155 35 142 85 C132 125 72 165 42 165 C28 165 24 150 22 135 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M115 165 C85 165 95 120 115 95 C135 70 185 65 205 98 C225 130 205 178 162 185 C138 188 128 178 115 165 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M92 68 C108 85 118 118 114 148\" fill=\"none\" stroke=\"#141416\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-dasharray=\"2 8\" />\n  <circle cx=\"55\" cy=\"72\" r=\"5\" fill=\"#FAF6F0\" />\n  <circle cx=\"168\" cy=\"130\" r=\"5\" fill=\"#FAF6F0\" />"
+  },
   {
     "id": "underline-wave-single",
     "name": "Playful Wave",

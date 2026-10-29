@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140" fill="none">
+  <g transform="rotate(-6 70 70)">
+  <path d="M70 4 L76 18 L91 10 L93 25 L108 20 L107 36 L122 35 L116 49 L130 52 L121 66 L133 73 L121 82 L130 92 L116 97 L122 110 L107 111 L108 126 L93 123 L91 137 L76 130 L70 144 L64 130 L49 137 L47 123 L32 126 L33 111 L18 110 L24 97 L10 92 L19 82 L7 73 L19 66 L10 52 L24 49 L18 35 L33 36 L32 20 L47 25 L49 10 L64 18 Z" fill="currentColor" stroke="#141416" stroke-width="2.5" stroke-linejoin="round" />
+  <text x="70" y="78" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="28" fill="#141416" text-anchor="middle" letter-spacing="-1">New</text>
+</g>
+</svg>

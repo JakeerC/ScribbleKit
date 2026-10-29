@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { X, BookOpen, Layers, Palette, Code, CheckCircle, Sparkles } from 'lucide-react';
-import { Scribble } from './Scribble';
 
 interface DesignGuideModalProps {
   isOpen: boolean;

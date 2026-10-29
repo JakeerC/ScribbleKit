@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" fill="none">
+  <clipPath id="pebble-clip">
+  <path d="M30 150 C5 110 8 50 40 22 C72 -6 130 0 158 35 C186 70 180 130 152 160 C124 190 55 190 30 150 Z" />
+</clipPath>
+<g clip-path="url(#pebble-clip)">
+  <rect width="180" height="180" fill="#F7D046" />
+  <path d="M0 0 L45 0 L45 45 L0 45 Z M90 0 L135 0 L135 45 L90 45 Z M45 45 L90 45 L90 90 L45 90 Z M135 45 L180 45 L180 90 L135 90 Z M0 90 L45 90 L45 135 L0 135 Z M90 90 L135 90 L135 135 L90 135 Z M45 135 L90 135 L90 180 L45 180 Z M135 135 L180 135 L180 180 L135 180 Z" fill="currentColor" />
+</g>
+<path d="M30 150 C5 110 8 50 40 22 C72 -6 130 0 158 35 C186 70 180 130 152 160 C124 190 55 190 30 150 Z" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linejoin="round" />
+</svg>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { getScribbleById, ScribbleAsset } from '../lib/scribbles-data';
+import { getScribbleById } from '../lib/scribbles-data';
 
 export interface ScribbleProps extends React.SVGProps<SVGSVGElement> {
   name: string;
@@ -35,9 +35,6 @@ export const Scribble: React.FC<ScribbleProps> = ({
   const effectiveColor = color || asset.defaultColor || 'currentColor';
   const effectiveWidth = size || width || '100%';
   const effectiveHeight = size || height || 'auto';
-
-  // Extract inner SVG markup
-  let innerContent: React.ReactNode = null;
 
   if (asset.rawSvg) {
     return (

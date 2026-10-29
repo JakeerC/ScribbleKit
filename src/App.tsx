@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { HeadlineStudio } from './components/HeadlineStudio';
@@ -8,7 +8,7 @@ import { DesignGuideModal } from './components/DesignGuideModal';
 import { SCRIBBLES_ASSETS, ScribbleAsset } from './lib/scribbles-data';
 
 export function App() {
-  const [currentColor, setCurrentColor] = useState('#EA552B');
+  const [currentColor, setCurrentColor] = useState('original');
   const [selectedAsset, setSelectedAsset] = useState<ScribbleAsset | null>(null);
   const [isGuideOpen, setIsGuideOpen] = useState(false);
 

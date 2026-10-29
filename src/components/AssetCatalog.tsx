@@ -1,21 +1,10 @@
 import React, { useState, useMemo } from 'react';
 import {
   Search,
-  SlidersHorizontal,
   Copy,
   Check,
   Download,
-  Eye,
   Sparkles,
-  ArrowUpRight,
-  Circle,
-  Minus,
-  Star,
-  BadgePercent,
-  Zap,
-  Crown,
-  Grid,
-  Filter,
 } from 'lucide-react';
 import { ScribbleAsset, CATEGORIES, COLOR_PRESETS } from '../lib/scribbles-data';
 import { Scribble } from './Scribble';
@@ -57,18 +46,19 @@ export const AssetCatalog: React.FC<AssetCatalogProps> = ({
 
   const handleCopySvg = (item: ScribbleAsset, e: React.MouseEvent) => {
     e.stopPropagation();
+    const activeColor = currentColor === 'original' ? (item.defaultColor || '#EA552B') : currentColor;
     let svgContent = '';
     if (item.rawSvg) {
-      svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  ${item.rawSvg.replace(/currentColor/g, currentColor)}\n</svg>`;
+      svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  ${item.rawSvg.replace(/currentColor/g, activeColor)}\n</svg>`;
     } else if (item.path) {
       if (item.type === 'stroke') {
         const dMatch = item.path.match(/d="([^"]+)"/);
         const d = dMatch ? dMatch[1] : '';
-        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  <path d="${d}" fill="none" stroke="${currentColor}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />\n</svg>`;
+        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  <path d="${d}" fill="none" stroke="${activeColor}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />\n</svg>`;
       } else {
         const dMatch = item.path.match(/d="([^"]+)"/);
         const d = dMatch ? dMatch[1] : '';
-        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  <path d="${d}" fill="${currentColor}" />\n</svg>`;
+        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  <path d="${d}" fill="${activeColor}" />\n</svg>`;
       }
     }
 
@@ -79,18 +69,19 @@ export const AssetCatalog: React.FC<AssetCatalogProps> = ({
 
   const handleDownloadSvg = (item: ScribbleAsset, e: React.MouseEvent) => {
     e.stopPropagation();
+    const activeColor = currentColor === 'original' ? (item.defaultColor || '#EA552B') : currentColor;
     let svgContent = '';
     if (item.rawSvg) {
-      svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  ${item.rawSvg.replace(/currentColor/g, currentColor)}\n</svg>`;
+      svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  ${item.rawSvg.replace(/currentColor/g, activeColor)}\n</svg>`;
     } else if (item.path) {
       if (item.type === 'stroke') {
         const dMatch = item.path.match(/d="([^"]+)"/);
         const d = dMatch ? dMatch[1] : '';
-        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  <path d="${d}" fill="none" stroke="${currentColor}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />\n</svg>`;
+        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  <path d="${d}" fill="none" stroke="${activeColor}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />\n</svg>`;
       } else {
         const dMatch = item.path.match(/d="([^"]+)"/);
         const d = dMatch ? dMatch[1] : '';
-        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  <path d="${d}" fill="${currentColor}" />\n</svg>`;
+        svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  <path d="${d}" fill="${activeColor}" />\n</svg>`;
       }
     }
 
@@ -157,6 +148,18 @@ export const AssetCatalog: React.FC<AssetCatalogProps> = ({
           {/* Color Switcher Bar */}
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-xs font-bold uppercase tracking-wider text-black/60 mr-1">Global Color:</span>
+            <button
+              onClick={() => onColorChange('original')}
+              title="Original Authentic Multi-Colors"
+              className={`px-3 py-1 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
+                currentColor === 'original'
+                  ? 'bg-black text-white shadow-sm'
+                  : 'bg-black/5 hover:bg-black/10 text-black/70'
+              }`}
+            >
+              <span className="w-2.5 h-2.5 rounded-full bg-gradient-to-tr from-scribble-orange via-scribble-yellow to-scribble-blue" />
+              <span>Original</span>
+            </button>
             {COLOR_PRESETS.map((p) => (
               <button
                 key={p.value}
@@ -170,7 +173,7 @@ export const AssetCatalog: React.FC<AssetCatalogProps> = ({
             ))}
             <input
               type="color"
-              value={currentColor}
+              value={currentColor === 'original' ? '#EA552B' : currentColor}
               onChange={(e) => onColorChange(e.target.value)}
               className="w-7 h-7 rounded-full cursor-pointer border border-black/20"
               title="Custom Color"
@@ -298,7 +301,7 @@ export const AssetCatalog: React.FC<AssetCatalogProps> = ({
               <div className="h-28 flex items-center justify-center p-2 overflow-hidden">
                 <Scribble
                   name={item.id}
-                  color={currentColor}
+                  color={currentColor === 'original' ? undefined : currentColor}
                   size={scale}
                   animate={animate}
                   key={`${item.id}-${currentColor}-${animate}`}
