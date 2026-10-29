@@ -1,0 +1,47 @@
+{
+  "name": "scribblekit",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Comprehensive hand-drawn vector scribbles asset library and interactive studio by ScribbleKit",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "scribbles",
+    "svg",
+    "hand-drawn",
+    "doodles",
+    "design-assets",
+    "figma",
+    "vector",
+    "arrows",
+    "underlines",
+    "badges",
+    "scribblekit"
+  ],
+  "author": "ScribbleKit",
+  "license": "MIT",
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.5.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.16",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.1"
+  }
+}

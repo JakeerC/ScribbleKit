@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 56" width="250" height="56" fill="none">
+  <!-- Brand Emblem -->
+  <g transform="translate(4, 4)">
+    <rect x="0" y="0" width="48" height="48" rx="14" fill="#141416" />
+    <!-- Dynamic Scribble 'S' -->
+    <path d="M 34 16 C 30 12 23 12 19 14.5 C 14.5 17 14 22.5 21 25.5 C 29 29 30 32.5 28.5 36.5 C 27 40.5 20.5 41 15 38.5" stroke="#0BDC85" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Accent sparks -->
+    <circle cx="34" cy="15" r="2.5" fill="#F7D046" />
+    <circle cx="14" cy="39" r="2" fill="#EA552B" />
+  </g>
+  <!-- Brand Wordmark -->
+  <g transform="translate(62, 37)">
+    <text font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="27" font-weight="900" letter-spacing="-0.5" fill="#141416">
+      Scribble<tspan fill="#0BDC85">Kit</tspan>
+    </text>
+    <!-- Hand-drawn flourish stroke accent below 'Kit' -->
+    <path d="M 108 5 C 118 9 130 3 140 6" stroke="#EA552B" stroke-width="3" stroke-linecap="round" fill="none" />
+  </g>
+</svg>
