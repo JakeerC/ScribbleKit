@@ -6,12 +6,20 @@ import { HeadlineStudio } from './components/HeadlineStudio';
 import { AssetCatalog } from './components/AssetCatalog';
 import { AssetDetailModal } from './components/AssetDetailModal';
 import { DesignGuideModal } from './components/DesignGuideModal';
+import { SvgEditor } from './components/SvgEditor';
 import { SCRIBBLES_ASSETS, ScribbleAsset } from './lib/scribbles-data';
 
 export function App() {
   const [currentColor, setCurrentColor] = useState('original');
   const [selectedAsset, setSelectedAsset] = useState<ScribbleAsset | null>(null);
   const [isGuideOpen, setIsGuideOpen] = useState(false);
+  const [isEditorOpen, setIsEditorOpen] = useState(false);
+  const [editorAsset, setEditorAsset] = useState<ScribbleAsset | null>(null);
+
+  const handleOpenEditor = (asset?: ScribbleAsset) => {
+    setEditorAsset(asset || null);
+    setIsEditorOpen(true);
+  };
 
   const scrollToCatalog = () => {
     const el = document.getElementById('asset-catalog');
@@ -61,6 +69,7 @@ export function App() {
           onScrollToCatalog={scrollToCatalog}
           onScrollToStudio={scrollToStudio}
           onOpenGuide={() => setIsGuideOpen(true)}
+          onOpenEditor={() => handleOpenEditor()}
           onDownloadAll={handleDownloadAll}
           assetCount={SCRIBBLES_ASSETS.length}
         />
@@ -75,6 +84,7 @@ export function App() {
         <AssetCatalog
           assets={SCRIBBLES_ASSETS}
           onSelectAsset={(item) => setSelectedAsset(item)}
+          onEditAsset={(item) => handleOpenEditor(item)}
           currentColor={currentColor}
           onColorChange={(c) => setCurrentColor(c)}
         />
@@ -85,12 +95,23 @@ export function App() {
         asset={selectedAsset}
         onClose={() => setSelectedAsset(null)}
         currentColor={currentColor}
+        onOpenInEditor={(item) => handleOpenEditor(item)}
       />
 
       {/* Vector Design Guide & System Modal */}
       <DesignGuideModal
         isOpen={isGuideOpen}
         onClose={() => setIsGuideOpen(false)}
+      />
+
+      {/* Interactive SVG Studio & Vector Editor */}
+      <SvgEditor
+        isOpen={isEditorOpen}
+        onClose={() => {
+          setIsEditorOpen(false);
+          setEditorAsset(null);
+        }}
+        initialAsset={editorAsset}
       />
 
       {/* Footer */}
@@ -104,6 +125,13 @@ export function App() {
           </div>
 
           <div className="flex items-center gap-4 text-xs font-semibold text-black/70">
+            <button
+              onClick={() => handleOpenEditor()}
+              className="hover:text-black font-bold text-scribble-orange underline underline-offset-2"
+            >
+              SVG Editor
+            </button>
+            <span>•</span>
             <button
               onClick={() => setIsGuideOpen(true)}
               className="hover:text-black underline underline-offset-2"

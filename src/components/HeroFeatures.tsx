@@ -20,7 +20,7 @@ export const HeroFeatures: React.FC = () => {
             <div className="w-12 h-12 rounded-2xl bg-scribble-yellow/25 text-scribble-yellow flex items-center justify-center font-bold mb-4">
               <Scribble name="funky-yellow-spring-oval" size={32} />
             </div>
-            <h3 className="font-extrabold text-lg text-black mb-1.5 font-display">Complex & Funky</h3>
+            <h3 className="font-extrabold text-lg text-black mb-1.5 font-display">Funky</h3>
             <p className="text-sm text-black/60 leading-relaxed">
               Multi-colored organic blobs, hand-drawn wire scribbles, comic 3D drop shadows, and spring coils.
             </p>
