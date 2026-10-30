@@ -30,7 +30,7 @@ import { CodeEditor } from './CodeEditor';
 import { LeftAssetsDrawer } from './LeftAssetsDrawer';
 import { AssetStampDrawer } from './AssetStampDrawer';
 import { ExportModal } from './ExportModal';
-import { parseSvgStringToElements, generateId } from './svg-utils';
+import { parseSvgStringToElements, generateId, serializeElementsToSvg } from './svg-utils';
 import { ScribbleAsset, getScribbleById } from '../../lib/scribbles-data';
 
 interface SvgEditorProps {
@@ -58,7 +58,8 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
     viewBox: '0 0 600 400',
   });
   const [elements, setElements] = useState<SvgElementData[]>([]);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const selectedId = selectedIds.length > 0 ? selectedIds[selectedIds.length - 1] : null;
   const [activeTool, setActiveTool] = useState<EditorTool>('select');
   const [background, setBackground] = useState<CanvasBackground>('paper');
   const [viewMode, setViewMode] = useState<EditorViewMode>('canvas');
@@ -70,6 +71,29 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
 
   // Togglable Left Assets Drawer state
   const [isAssetsDrawerOpen, setIsAssetsDrawerOpen] = useState(true);
+
+  // Selection handlers
+  const handleSelectElement = useCallback((id: string | null, isMultiToggle = false) => {
+    if (!id) {
+      setSelectedIds([]);
+      return;
+    }
+    if (isMultiToggle) {
+      setSelectedIds((prev) =>
+        prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+      );
+    } else {
+      setSelectedIds([id]);
+    }
+  }, []);
+
+  const handleSelectMultiple = useCallback((ids: string[], isAdditive = false) => {
+    if (isAdditive) {
+      setSelectedIds((prev) => Array.from(new Set([...prev, ...ids])));
+    } else {
+      setSelectedIds(ids);
+    }
+  }, []);
 
   // Modals state
   const [isAssetStampOpen, setIsAssetStampOpen] = useState(false);
@@ -121,7 +145,7 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
       );
       setElements(parsed);
       setDimensions(dims);
-      setSelectedId(parsed[0]?.id || null);
+      setSelectedIds(parsed[0]?.id ? [parsed[0].id] : []);
       const initialSnap: HistorySnapshot = { elements: parsed, dimensions: dims };
       setHistory([initialSnap]);
       setHistoryIndex(0);
@@ -132,7 +156,7 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
       const { elements: parsed, dimensions: dims } = parseSvgStringToElements(initialSvgCode);
       setElements(parsed);
       setDimensions(dims);
-      setSelectedId(parsed[0]?.id || null);
+      setSelectedIds(parsed[0]?.id ? [parsed[0].id] : []);
       const initialSnap: HistorySnapshot = { elements: parsed, dimensions: dims };
       setHistory([initialSnap]);
       setHistoryIndex(0);
@@ -149,7 +173,7 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
         const { elements: parsed, dimensions: dims } = parseSvgStringToElements(svgStr);
         setElements(parsed);
         setDimensions(dims);
-        setSelectedId(parsed[0]?.id || null);
+        setSelectedIds(parsed[0]?.id ? [parsed[0].id] : []);
         const initialSnap: HistorySnapshot = { elements: parsed, dimensions: dims };
         setHistory([initialSnap]);
         setHistoryIndex(0);
@@ -192,46 +216,132 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
   const handleAddElement = (newEl: SvgElementData) => {
     const updated = [...elements, newEl];
     setElements(updated);
+    setSelectedIds([newEl.id]);
     commitHistory(updated);
   };
 
-  // Update Element
+  // Update Element (supports batch styling updates for multi-selection)
   const handleUpdateElement = (
     id: string,
     updates: Partial<SvgElementData>,
     pushHistory = true
   ) => {
-    const updated = elements.map((el) => (el.id === id ? { ...el, ...updates } : el));
-    setElements(updated);
-    if (pushHistory) {
-      commitHistory(updated);
-    }
+    setElements((prev) => {
+      const isBatchStyling =
+        'stroke' in updates ||
+        'strokeWidth' in updates ||
+        'strokeOpacity' in updates ||
+        'strokeLinecap' in updates ||
+        'strokeDasharray' in updates ||
+        'fill' in updates ||
+        'fillOpacity' in updates ||
+        'opacity' in updates;
+
+      const targetIds =
+        isBatchStyling && selectedIds.length > 1 && selectedIds.includes(id)
+          ? selectedIds
+          : [id];
+
+      const updated = prev.map((el) =>
+        targetIds.includes(el.id) ? { ...el, ...updates } : el
+      );
+      if (pushHistory) {
+        commitHistory(updated);
+      }
+      return updated;
+    });
   };
 
-  // Delete Element
-  const handleDeleteElement = (id: string) => {
-    const updated = elements.filter((el) => el.id !== id);
+  // Update Multiple Elements in a single atomic batch
+  const handleUpdateMultipleElements = useCallback(
+    (updatesList: { id: string; updates: Partial<SvgElementData> }[], pushHistory = false) => {
+      setElements((prev) => {
+        const updateMap = new Map(updatesList.map((u) => [u.id, u.updates]));
+        const updated = prev.map((el) => {
+          const u = updateMap.get(el.id);
+          return u ? { ...el, ...u } : el;
+        });
+        if (pushHistory) {
+          commitHistory(updated);
+        }
+        return updated;
+      });
+    },
+    [commitHistory]
+  );
+
+  // Delete Element (supports single or multi-delete)
+  const handleDeleteElement = (id?: string) => {
+    const idsToDelete = id ? [id] : selectedIds;
+    if (idsToDelete.length === 0) return;
+    const updated = elements.filter((el) => !idsToDelete.includes(el.id));
     setElements(updated);
     commitHistory(updated);
-    if (selectedId === id) setSelectedId(null);
+    setSelectedIds([]);
   };
 
-  // Duplicate Element
-  const handleDuplicateElement = (id: string) => {
-    const target = elements.find((el) => el.id === id);
-    if (!target) return;
-    const duplicated: SvgElementData = {
+  // Duplicate Element (supports single or multi-duplicate)
+  const handleDuplicateElement = (id?: string) => {
+    const idsToDuplicate = id ? [id] : selectedIds;
+    if (idsToDuplicate.length === 0) return;
+    const targets = elements.filter((el) => idsToDuplicate.includes(el.id));
+    if (targets.length === 0) return;
+
+    const duplicatedList: SvgElementData[] = targets.map((target) => ({
       ...JSON.parse(JSON.stringify(target)),
       id: generateId(`${target.type}-copy`),
       name: `${target.name} (Copy)`,
       x: target.x + 20,
       y: target.y + 20,
-    };
-    const updated = [...elements, duplicated];
+    }));
+
+    const updated = [...elements, ...duplicatedList];
     setElements(updated);
-    setSelectedId(duplicated.id);
+    setSelectedIds(duplicatedList.map((d) => d.id));
     commitHistory(updated);
   };
+
+  // In-memory Clipboard for copy/paste
+  const clipboardRef = useRef<SvgElementData[]>([]);
+  const [canPaste, setCanPaste] = useState(false);
+
+  // Copy selected elements (supports multi-element copy & clipboard serialization)
+  const handleCopySelected = useCallback(() => {
+    const targets = elements.filter((el) => selectedIds.includes(el.id));
+    if (targets.length === 0) return;
+    clipboardRef.current = JSON.parse(JSON.stringify(targets));
+    setCanPaste(true);
+
+    try {
+      const svgText = serializeElementsToSvg(targets, dimensions);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(svgText).catch(() => {});
+      }
+    } catch {
+      // silent fallback
+    }
+  }, [elements, selectedIds, dimensions]);
+
+  // Paste elements from clipboard
+  const handlePasteClipboard = useCallback(() => {
+    if (clipboardRef.current.length === 0) return;
+    const pastedElements: SvgElementData[] = clipboardRef.current.map((item) => ({
+      ...JSON.parse(JSON.stringify(item)),
+      id: generateId(`${item.type}-paste`),
+      name: `${item.name} (Copy)`,
+      x: item.x + 24,
+      y: item.y + 24,
+    }));
+
+    const updated = [...elements, ...pastedElements];
+    setElements(updated);
+    const newIds = pastedElements.map((p) => p.id);
+    setSelectedIds(newIds);
+    commitHistory(updated);
+
+    // Increment offset for consecutive pastes
+    clipboardRef.current = pastedElements;
+  }, [elements, commitHistory]);
 
   // Reorder Elements
   const handleReorderElements = (newElements: SvgElementData[]) => {
@@ -243,7 +353,7 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
   const handleClearCanvas = () => {
     if (confirm('Are you sure you want to clear the canvas?')) {
       setElements([]);
-      setSelectedId(null);
+      setSelectedIds([]);
       commitHistory([]);
     }
   };
@@ -266,7 +376,7 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
       setTitle(asset.name);
       setElements(parsed);
       setDimensions(assetDims);
-      setSelectedId(parsed[0]?.id || null);
+      setSelectedIds(parsed[0]?.id ? [parsed[0].id] : []);
       commitHistory(parsed, assetDims);
     } else {
       setElements((prev) => {
@@ -274,7 +384,7 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
         commitHistory(updated);
         return updated;
       });
-      setSelectedId(parsed[0]?.id || null);
+      setSelectedIds(parsed.map((p) => p.id));
     }
   };
 
@@ -293,7 +403,7 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
           setTitle(file.name.replace(/\.svg$/i, ''));
           setElements(parsed);
           setDimensions(dims);
-          setSelectedId(parsed[0]?.id || null);
+          setSelectedIds(parsed[0]?.id ? [parsed[0].id] : []);
           commitHistory(parsed, dims);
         } else {
           alert('Could not find valid SVG graphic paths in this file.');
@@ -326,21 +436,34 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
       } else if (cmdOrCtrl && e.key.toLowerCase() === 'y') {
         e.preventDefault();
         handleRedo();
-      } else if (e.key === 'Delete' || e.key === 'Backspace') {
-        if (selectedId) {
+      } else if (cmdOrCtrl && e.key.toLowerCase() === 'a') {
+        e.preventDefault();
+        setSelectedIds(elements.map((el) => el.id));
+      } else if (cmdOrCtrl && e.key.toLowerCase() === 'c') {
+        if (selectedIds.length > 0) {
           e.preventDefault();
-          handleDeleteElement(selectedId);
+          handleCopySelected();
+        }
+      } else if (cmdOrCtrl && e.key.toLowerCase() === 'v') {
+        if (canPaste || clipboardRef.current.length > 0) {
+          e.preventDefault();
+          handlePasteClipboard();
+        }
+      } else if (e.key === 'Delete' || e.key === 'Backspace') {
+        if (selectedIds.length > 0) {
+          e.preventDefault();
+          handleDeleteElement();
         }
       } else if (cmdOrCtrl && e.key.toLowerCase() === 'd') {
-        if (selectedId) {
+        if (selectedIds.length > 0) {
           e.preventDefault();
-          handleDuplicateElement(selectedId);
+          handleDuplicateElement();
         }
       } else if (cmdOrCtrl && e.key.toLowerCase() === 'b') {
         e.preventDefault();
         setIsAssetsDrawerOpen((prev) => !prev);
       } else if (e.key === 'Escape') {
-        setSelectedId(null);
+        setSelectedIds([]);
         setActiveTool('select');
       } else if (e.key.toLowerCase() === 'v') {
         setActiveTool('select');
@@ -355,7 +478,18 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, selectedId, historyIndex, history]);
+  }, [
+    isOpen,
+    elements,
+    selectedIds,
+    canPaste,
+    handleCopySelected,
+    handlePasteClipboard,
+    handleDuplicateElement,
+    handleDeleteElement,
+    handleUndo,
+    handleRedo,
+  ]);
 
   if (!isOpen) return null;
 
@@ -542,6 +676,12 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
         onOpenAssetStamp={() => setIsAssetsDrawerOpen(true)}
         isAssetsDrawerOpen={isAssetsDrawerOpen}
         onToggleAssetsDrawer={() => setIsAssetsDrawerOpen(!isAssetsDrawerOpen)}
+        selectedCount={selectedIds.length}
+        canPaste={canPaste || clipboardRef.current.length > 0}
+        onCopy={handleCopySelected}
+        onPaste={handlePasteClipboard}
+        onDuplicate={() => handleDuplicateElement()}
+        onDelete={() => handleDeleteElement()}
       />
 
       {/* ========================================================= */}
@@ -568,6 +708,7 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
               <Canvas
                 elements={elements}
                 selectedId={selectedId}
+                selectedIds={selectedIds}
                 dimensions={dimensions}
                 activeTool={activeTool}
                 background={background}
@@ -576,8 +717,10 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
                 showGrid={true}
                 penColor={penColor}
                 penStrokeWidth={penStrokeWidth}
-                onSelectElement={setSelectedId}
+                onSelectElement={handleSelectElement}
+                onSelectMultiple={handleSelectMultiple}
                 onUpdateElement={handleUpdateElement}
+                onUpdateMultipleElements={handleUpdateMultipleElements}
                 onAddElement={handleAddElement}
                 onCommitHistory={() => commitHistory(elements, dimensions)}
                 onPanChange={setPan}
@@ -606,13 +749,15 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
         {/* Right Properties & Layers Inspector */}
         <PropertyInspector
           selectedElement={selectedElement}
+          selectedIds={selectedIds}
           elements={elements}
           dimensions={dimensions}
           canvasBackground={background}
           onUpdateElement={handleUpdateElement}
+          onUpdateMultipleElements={handleUpdateMultipleElements}
           onDeleteElement={handleDeleteElement}
           onDuplicateElement={handleDuplicateElement}
-          onSelectElement={setSelectedId}
+          onSelectElement={handleSelectElement}
           onReorderElements={handleReorderElements}
           onUpdateDimensions={(newDims) => {
             setDimensions(newDims);

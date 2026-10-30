@@ -25,17 +25,23 @@ import {
   ArrowUp,
   ArrowDown,
   Wand2,
+  AlignLeft,
+  AlignCenter,
+  AlignRight,
 } from 'lucide-react';
+import { getCombinedBoundingBox } from './svg-utils';
 
 interface PropertyInspectorProps {
   selectedElement: SvgElementData | null;
+  selectedIds?: string[];
   elements: SvgElementData[];
   dimensions: CanvasDimensions;
   canvasBackground: CanvasBackground;
   onUpdateElement: (id: string, updates: Partial<SvgElementData>) => void;
-  onDeleteElement: (id: string) => void;
-  onDuplicateElement: (id: string) => void;
-  onSelectElement: (id: string | null) => void;
+  onUpdateMultipleElements?: (updatesList: { id: string; updates: Partial<SvgElementData> }[], pushHistory?: boolean) => void;
+  onDeleteElement: (id?: string) => void;
+  onDuplicateElement: (id?: string) => void;
+  onSelectElement: (id: string | null, isMultiToggle?: boolean) => void;
   onReorderElements: (newElements: SvgElementData[]) => void;
   onUpdateDimensions: (dimensions: CanvasDimensions) => void;
   onUpdateBackground: (bg: CanvasBackground) => void;
@@ -43,10 +49,12 @@ interface PropertyInspectorProps {
 
 export const PropertyInspector: React.FC<PropertyInspectorProps> = ({
   selectedElement,
+  selectedIds,
   elements,
   dimensions,
   canvasBackground,
   onUpdateElement,
+  onUpdateMultipleElements,
   onDeleteElement,
   onDuplicateElement,
   onSelectElement,
@@ -80,6 +88,97 @@ export const PropertyInspector: React.FC<PropertyInspectorProps> = ({
       updates.y = Math.round((dimensions.height - selectedElement.height) / 2);
     }
     onUpdateElement(selectedElement.id, updates);
+  };
+
+  const selectedElements = elements.filter((el) => selectedIds?.includes(el.id));
+  const isMultiSelect = selectedElements.length > 1;
+  const combinedBox = isMultiSelect ? getCombinedBoundingBox(selectedElements) : null;
+
+  // Handle Multi-Selection Dimension Resizing (Proportional or Direct)
+  const handleGroupDimensionChange = (axis: 'width' | 'height', newSize: number) => {
+    if (!combinedBox || newSize <= 0) return;
+    const scaleX = axis === 'width' ? newSize / combinedBox.width : 1;
+    const scaleY = axis === 'height' ? newSize / combinedBox.height : 1;
+
+    const updates = selectedElements.map((el) => {
+      const relX = el.x - combinedBox.x;
+      const relY = el.y - combinedBox.y;
+      const newX = Math.round(combinedBox.x + relX * scaleX);
+      const newY = Math.round(combinedBox.y + relY * scaleY);
+      const newW = Math.max(4, Math.round(el.width * scaleX));
+      const newH = Math.max(4, Math.round(el.height * scaleY));
+      const u: Partial<SvgElementData> = { x: newX, y: newY, width: newW, height: newH };
+      if (el.fontSize) {
+        u.fontSize = Math.max(8, Math.round(el.fontSize * (axis === 'height' ? scaleY : scaleX)));
+      }
+      return { id: el.id, updates: u };
+    });
+
+    if (onUpdateMultipleElements) {
+      onUpdateMultipleElements(updates, true);
+    }
+  };
+
+  // Quick scale multiplier (+25%, -25%, etc.)
+  const handleGroupScaleProportional = (factor: number) => {
+    if (!combinedBox) return;
+    const updates = selectedElements.map((el) => {
+      const relX = el.x - combinedBox.x;
+      const relY = el.y - combinedBox.y;
+      const newX = Math.round(combinedBox.x + relX * factor);
+      const newY = Math.round(combinedBox.y + relY * factor);
+      const newW = Math.max(4, Math.round(el.width * factor));
+      const newH = Math.max(4, Math.round(el.height * factor));
+      const u: Partial<SvgElementData> = { x: newX, y: newY, width: newW, height: newH };
+      if (el.fontSize) {
+        u.fontSize = Math.max(8, Math.round(el.fontSize * factor));
+      }
+      return { id: el.id, updates: u };
+    });
+    if (onUpdateMultipleElements) {
+      onUpdateMultipleElements(updates, true);
+    }
+  };
+
+  // Group Alignments
+  const handleAlignGroup = (alignment: 'left' | 'center' | 'right' | 'top' | 'middle' | 'bottom') => {
+    if (!combinedBox || !onUpdateMultipleElements) return;
+    const updates = selectedElements.map((el) => {
+      const u: Partial<SvgElementData> = {};
+      if (alignment === 'left') {
+        u.x = combinedBox.x;
+      } else if (alignment === 'center') {
+        u.x = Math.round(combinedBox.x + (combinedBox.width - el.width) / 2);
+      } else if (alignment === 'right') {
+        u.x = Math.round(combinedBox.x + combinedBox.width - el.width);
+      } else if (alignment === 'top') {
+        u.y = combinedBox.y;
+      } else if (alignment === 'middle') {
+        u.y = Math.round(combinedBox.y + (combinedBox.height - el.height) / 2);
+      } else if (alignment === 'bottom') {
+        u.y = Math.round(combinedBox.y + combinedBox.height - el.height);
+      }
+      return { id: el.id, updates: u };
+    });
+    onUpdateMultipleElements(updates, true);
+  };
+
+  // Center Group in Canvas
+  const handleCenterGroup = (axis: 'both' | 'h' | 'v') => {
+    if (!combinedBox || !onUpdateMultipleElements) return;
+    const targetX = Math.round((dimensions.width - combinedBox.width) / 2);
+    const targetY = Math.round((dimensions.height - combinedBox.height) / 2);
+    const dx = axis === 'both' || axis === 'h' ? targetX - combinedBox.x : 0;
+    const dy = axis === 'both' || axis === 'v' ? targetY - combinedBox.y : 0;
+
+    const updates = selectedElements.map((el) => ({
+      id: el.id,
+      updates: {
+        x: el.x + dx,
+        y: el.y + dy,
+      },
+    }));
+    onUpdateMultipleElements(updates, true);
   };
 
   return (
@@ -127,6 +226,162 @@ export const PropertyInspector: React.FC<PropertyInspectorProps> = ({
       <div className="flex-1 overflow-y-auto p-4 space-y-6">
         {activeTab === 'style' && (
           <>
+            {isMultiSelect && combinedBox && (
+              <div className="bg-[#FAF7F2] p-3.5 rounded-2xl border border-black/15 shadow-sm space-y-3 mb-4">
+                {/* Header */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-scribble-orange animate-pulse" />
+                    <span className="text-xs font-extrabold uppercase tracking-wider text-black">
+                      {selectedElements.length} Elements Selected
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <button
+                      onClick={() => onDuplicateElement()}
+                      className="p-1.5 rounded-lg border border-black/10 bg-white hover:bg-black/5 text-black/70 hover:text-black"
+                      title="Duplicate All Selected (Cmd+D)"
+                    >
+                      <Copy className="w-3.5 h-3.5" />
+                    </button>
+                    <button
+                      onClick={() => onDeleteElement()}
+                      className="p-1.5 rounded-lg border border-red-200 bg-white text-red-500 hover:bg-red-50"
+                      title="Delete All Selected (Backspace/Del)"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Group Resizing: Width & Height */}
+                <div className="space-y-1.5 bg-white p-2.5 rounded-xl border border-black/10">
+                  <div className="flex items-center justify-between text-[11px] font-bold text-black/70">
+                    <span>Group Dimensions</span>
+                    <span className="font-mono text-[10px] text-black/40">
+                      {combinedBox.width} × {combinedBox.height}px
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="flex items-center gap-1.5 bg-[#FAF7F2] px-2 py-1 rounded-lg border border-black/10">
+                      <span className="text-[10px] font-bold text-black/40">W</span>
+                      <input
+                        type="number"
+                        min="10"
+                        max="2000"
+                        value={combinedBox.width}
+                        onChange={(e) => handleGroupDimensionChange('width', Math.max(10, Number(e.target.value)))}
+                        className="w-full bg-transparent text-xs font-mono font-bold focus:outline-none"
+                      />
+                    </div>
+                    <div className="flex items-center gap-1.5 bg-[#FAF7F2] px-2 py-1 rounded-lg border border-black/10">
+                      <span className="text-[10px] font-bold text-black/40">H</span>
+                      <input
+                        type="number"
+                        min="10"
+                        max="2000"
+                        value={combinedBox.height}
+                        onChange={(e) => handleGroupDimensionChange('height', Math.max(10, Number(e.target.value)))}
+                        className="w-full bg-transparent text-xs font-mono font-bold focus:outline-none"
+                      />
+                    </div>
+                  </div>
+                  {/* Quick proportional scale buttons */}
+                  <div className="flex items-center justify-between gap-1 pt-1">
+                    <span className="text-[10px] font-semibold text-black/50">Scale:</span>
+                    <div className="flex items-center gap-1">
+                      {[-25, -10, 10, 25].map((pct) => (
+                        <button
+                          key={pct}
+                          onClick={() => handleGroupScaleProportional(1 + pct / 100)}
+                          className="px-1.5 py-0.5 rounded bg-[#FAF7F2] hover:bg-black/10 border border-black/10 text-[10px] font-mono font-bold text-black/70"
+                          title={`Scale ${pct > 0 ? '+' : ''}${pct}%`}
+                        >
+                          {pct > 0 ? `+${pct}%` : `${pct}%`}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Batch Alignment Tools */}
+                <div className="space-y-1.5 bg-white p-2.5 rounded-xl border border-black/10">
+                  <div className="text-[11px] font-bold text-black/70">Align Group Elements</div>
+                  <div className="grid grid-cols-6 gap-1">
+                    <button
+                      onClick={() => handleAlignGroup('left')}
+                      className="p-1.5 rounded-lg bg-[#FAF7F2] hover:bg-black/10 flex items-center justify-center text-black/70 hover:text-black"
+                      title="Align Left"
+                    >
+                      <AlignLeft className="w-3.5 h-3.5" />
+                    </button>
+                    <button
+                      onClick={() => handleAlignGroup('center')}
+                      className="p-1.5 rounded-lg bg-[#FAF7F2] hover:bg-black/10 flex items-center justify-center text-black/70 hover:text-black"
+                      title="Align Center"
+                    >
+                      <AlignCenter className="w-3.5 h-3.5" />
+                    </button>
+                    <button
+                      onClick={() => handleAlignGroup('right')}
+                      className="p-1.5 rounded-lg bg-[#FAF7F2] hover:bg-black/10 flex items-center justify-center text-black/70 hover:text-black"
+                      title="Align Right"
+                    >
+                      <AlignRight className="w-3.5 h-3.5" />
+                    </button>
+                    <button
+                      onClick={() => handleAlignGroup('top')}
+                      className="p-1.5 rounded-lg bg-[#FAF7F2] hover:bg-black/10 flex items-center justify-center text-black/70 hover:text-black"
+                      title="Align Top"
+                    >
+                      <ArrowUp className="w-3.5 h-3.5" />
+                    </button>
+                    <button
+                      onClick={() => handleAlignGroup('middle')}
+                      className="p-1.5 rounded-lg bg-[#FAF7F2] hover:bg-black/10 flex items-center justify-center text-black/70 hover:text-black"
+                      title="Align Middle"
+                    >
+                      <AlignVerticalJustifyCenter className="w-3.5 h-3.5" />
+                    </button>
+                    <button
+                      onClick={() => handleAlignGroup('bottom')}
+                      className="p-1.5 rounded-lg bg-[#FAF7F2] hover:bg-black/10 flex items-center justify-center text-black/70 hover:text-black"
+                      title="Align Bottom"
+                    >
+                      <ArrowDown className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                  {/* Center in Canvas */}
+                  <div className="flex items-center gap-1 pt-1">
+                    <button
+                      onClick={() => handleCenterGroup('both')}
+                      className="flex-1 py-1 rounded-lg bg-[#FAF7F2] hover:bg-black/10 text-[10px] font-bold text-black/70 text-center"
+                    >
+                      Center on Canvas
+                    </button>
+                    <button
+                      onClick={() => handleCenterGroup('h')}
+                      className="px-2 py-1 rounded-lg bg-[#FAF7F2] hover:bg-black/10 text-[10px] font-bold text-black/70"
+                      title="Center Horizontally"
+                    >
+                      H
+                    </button>
+                    <button
+                      onClick={() => handleCenterGroup('v')}
+                      className="px-2 py-1 rounded-lg bg-[#FAF7F2] hover:bg-black/10 text-[10px] font-bold text-black/70"
+                      title="Center Vertically"
+                    >
+                      V
+                    </button>
+                  </div>
+                </div>
+
+                <p className="text-[11px] text-black/60 leading-relaxed">
+                  Batch styling active: stroke, color, and opacity changes apply to all {selectedElements.length} elements.
+                </p>
+              </div>
+            )}
+
             {selectedElement ? (
               <div className="space-y-5">
                 {/* Header with Title & Quick Actions */}
@@ -816,11 +1071,11 @@ export const PropertyInspector: React.FC<PropertyInspectorProps> = ({
             {/* List of Layers */}
             <div className="space-y-1.5">
               {[...elements].reverse().map((el) => {
-                const isSelected = el.id === selectedElement?.id;
+                const isSelected = selectedIds ? selectedIds.includes(el.id) : el.id === selectedElement?.id;
                 return (
                   <div
                     key={el.id}
-                    onClick={() => onSelectElement(el.id)}
+                    onClick={(e) => onSelectElement(el.id, e.ctrlKey || e.metaKey)}
                     className={`flex items-center justify-between p-2.5 rounded-xl border transition-all cursor-pointer ${
                       isSelected
                         ? 'bg-black text-white border-black shadow'
