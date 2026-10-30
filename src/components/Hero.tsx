@@ -1,22 +1,27 @@
 import React, { useState } from "react";
-import { Sparkles, BookOpen, Pencil } from "lucide-react";
 import { Scribble } from "./Scribble";
 import { Navbar } from "./Navbar";
 
 interface HeroProps {
-  onScrollToCatalog: () => void;
-  onScrollToStudio: () => void;
+  onScrollToCatalog?: () => void;
+  onNavigateToLibrary?: () => void;
+  onNavigateToSvgStudio?: () => void;
+  onNavigateToHeadlineStudio?: () => void;
   onOpenGuide: () => void;
-  onOpenEditor: () => void;
+  onOpenEditor?: () => void;
+  onScrollToStudio?: () => void;
   onDownloadAll?: () => void;
   assetCount: number;
 }
 
 export const Hero: React.FC<HeroProps> = ({
   onScrollToCatalog,
-  onScrollToStudio,
+  onNavigateToLibrary,
+  onNavigateToSvgStudio,
+  onNavigateToHeadlineStudio,
   onOpenGuide,
   onOpenEditor,
+  onScrollToStudio,
   onDownloadAll = () => {},
   assetCount,
 }) => {
@@ -26,11 +31,12 @@ export const Hero: React.FC<HeroProps> = ({
     <section className="relative min-h-screen flex flex-col justify-between overflow-hidden border-b border-black/10 bg-gradient-to-b from-[#FAF4EC] via-scribble-paper to-[#F5ECE1]">
       {/* Top Navbar sharing the exact same Hero background */}
       <Navbar
+        currentPage="library"
+        onNavigateToLibrary={onNavigateToLibrary || onScrollToCatalog}
+        onNavigateToSvgStudio={onNavigateToSvgStudio || onOpenEditor}
+        onNavigateToHeadlineStudio={onNavigateToHeadlineStudio || onScrollToStudio}
         onOpenGuide={onOpenGuide}
-        onScrollToStudio={onScrollToStudio}
-        onScrollToCatalog={onScrollToCatalog}
         onDownloadAll={onDownloadAll}
-        onOpenEditor={onOpenEditor}
         assetCount={assetCount}
       />
 
@@ -158,13 +164,7 @@ export const Hero: React.FC<HeroProps> = ({
               ))}
             </div>
 
-            <button
-              onClick={onOpenGuide}
-              className="px-4 py-2 rounded-xl bg-scribble-yellow/30 hover:bg-scribble-yellow/50 text-black font-semibold text-xs border border-scribble-yellow/60 shadow-sm transition-all flex items-center gap-1.5"
-            >
-              <BookOpen className="w-3.5 h-3.5 text-scribble-orange" />
-              <span>Design Guide</span>
-            </button>
+            
           </div>
         </div>
       </div>
