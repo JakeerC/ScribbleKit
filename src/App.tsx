@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useState } from 'react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Hero } from './components/Hero';
 import { HeroFeatures } from './components/HeroFeatures';
@@ -115,6 +114,7 @@ export function App() {
   if (isEditorPage) {
     return (
       <div className="w-screen h-screen overflow-hidden bg-white">
+        <SpeedInsights />
         <SvgEditor
           isOpen={true}
           mode="page"
