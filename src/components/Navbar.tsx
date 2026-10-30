@@ -1,11 +1,12 @@
 import React from 'react';
-import { Sparkles, BookOpen, Download } from 'lucide-react';
+import { Sparkles, BookOpen, Download, Pencil } from 'lucide-react';
 
 interface NavbarProps {
   onOpenGuide: () => void;
   onScrollToStudio: () => void;
   onScrollToCatalog: () => void;
   onDownloadAll: () => void;
+  onOpenEditor: () => void;
   assetCount: number;
 }
 
@@ -14,6 +15,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onScrollToStudio,
   onScrollToCatalog,
   onDownloadAll,
+  onOpenEditor,
   assetCount,
 }) => {
   return (
@@ -43,6 +45,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             Library
           </button>
           <button
+            onClick={onOpenEditor}
+            className="px-4 py-1.5 text-sm font-bold rounded-full bg-white text-scribble-dark shadow-sm hover:shadow flex items-center gap-1.5 border border-black/5"
+          >
+            <Pencil className="w-3.5 h-3.5 text-scribble-orange" />
+            <span>SVG Editor</span>
+            <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.2 rounded-full bg-scribble-yellow/40 text-black font-extrabold">
+              Studio
+            </span>
+          </button>
+          <button
             onClick={onScrollToStudio}
             className="px-4 py-1.5 text-sm font-medium rounded-full hover:bg-white text-black/80 hover:text-black transition-all shadow-sm hover:shadow flex items-center gap-1.5"
           >
@@ -60,6 +72,13 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Actions */}
         <div className="flex items-center gap-2.5">
+          <button
+            onClick={onOpenEditor}
+            className="flex sm:hidden items-center gap-1.5 text-xs font-bold uppercase tracking-wider px-3 py-2 rounded-xl border border-black/20 bg-white text-black"
+          >
+            <Pencil className="w-3.5 h-3.5 text-scribble-orange" />
+            <span>Editor</span>
+          </button>
           <button
             onClick={onOpenGuide}
             className="hidden sm:flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider px-3.5 py-2 rounded-xl border border-black/20 hover:border-black bg-white hover:bg-black/5 text-black transition-all"

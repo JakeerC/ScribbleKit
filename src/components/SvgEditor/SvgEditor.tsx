@@ -1,0 +1,574 @@
+// src/components/SvgEditor/SvgEditor.tsx
+// Master SVG Editor Studio: Orchestrating Canvas, Toolbar, Inspector, Code View, and Modals
+
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import {
+  X,
+  Maximize2,
+  Minimize2,
+  Download,
+  Code,
+  Layout,
+  FileUp,
+} from 'lucide-react';
+import {
+  SvgElementData,
+  CanvasDimensions,
+  EditorTool,
+  CanvasBackground,
+  EditorViewMode,
+  HistorySnapshot,
+  Point,
+} from './types';
+import { Canvas } from './Canvas';
+import { Toolbar } from './Toolbar';
+import { PropertyInspector } from './PropertyInspector';
+import { CodeEditor } from './CodeEditor';
+import { AssetStampDrawer } from './AssetStampDrawer';
+import { ExportModal } from './ExportModal';
+import { parseSvgStringToElements, generateId } from './svg-utils';
+import { ScribbleAsset, getScribbleById } from '../../lib/scribbles-data';
+
+interface SvgEditorProps {
+  isOpen: boolean;
+  onClose: () => void;
+  initialAsset?: ScribbleAsset | null;
+  initialSvgCode?: string;
+}
+
+export const SvgEditor: React.FC<SvgEditorProps> = ({
+  isOpen,
+  onClose,
+  initialAsset,
+  initialSvgCode,
+}) => {
+  // Master Editor State
+  const [title, setTitle] = useState('New Scribble');
+  const [dimensions, setDimensions] = useState<CanvasDimensions>({
+    width: 600,
+    height: 400,
+    viewBox: '0 0 600 400',
+  });
+  const [elements, setElements] = useState<SvgElementData[]>([]);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [activeTool, setActiveTool] = useState<EditorTool>('select');
+  const [background, setBackground] = useState<CanvasBackground>('paper');
+  const [viewMode, setViewMode] = useState<EditorViewMode>('canvas');
+  const [zoom, setZoom] = useState(1);
+  const [pan, setPan] = useState<Point>({ x: 0, y: 0 });
+  const [penColor, setPenColor] = useState('#EA552B');
+  const [penStrokeWidth, setPenStrokeWidth] = useState(4.5);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  // Modals state
+  const [isAssetStampOpen, setIsAssetStampOpen] = useState(false);
+  const [isExportOpen, setIsExportOpen] = useState(false);
+
+  // Undo / Redo History Stack with refs for instant, race-free state tracking
+  const [history, setHistory] = useState<HistorySnapshot[]>([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
+  const historyRef = useRef<HistorySnapshot[]>([]);
+  const historyIndexRef = useRef<number>(-1);
+  historyRef.current = history;
+  historyIndexRef.current = historyIndex;
+
+  // Commit state snapshot to history (only on interaction completion)
+  const commitHistory = useCallback(
+    (currentElements: SvgElementData[], currentDims: CanvasDimensions = dimensions) => {
+      const idx = historyIndexRef.current;
+      const snapshot: HistorySnapshot = {
+        elements: JSON.parse(JSON.stringify(currentElements)),
+        dimensions: { ...currentDims },
+      };
+      const sliced = historyRef.current.slice(0, idx + 1);
+      const nextHistory = [...sliced, snapshot];
+      const nextIdx = nextHistory.length - 1;
+      historyRef.current = nextHistory;
+      historyIndexRef.current = nextIdx;
+      setHistory(nextHistory);
+      setHistoryIndex(nextIdx);
+    },
+    [dimensions]
+  );
+
+  // Load initial asset or SVG when opened or changed
+  useEffect(() => {
+    if (!isOpen) return;
+
+    if (initialAsset) {
+      setTitle(initialAsset.name || 'Edited Scribble');
+      let svgToParse = '';
+      if (initialAsset.rawSvg) {
+        svgToParse = `<svg viewBox="${initialAsset.viewBox}">${initialAsset.rawSvg}</svg>`;
+      } else if (initialAsset.path) {
+        svgToParse = `<svg viewBox="${initialAsset.viewBox}"><path ${initialAsset.path} /></svg>`;
+      }
+
+      const { elements: parsed, dimensions: dims } = parseSvgStringToElements(
+        svgToParse,
+        initialAsset.defaultColor || '#EA552B'
+      );
+      setElements(parsed);
+      setDimensions(dims);
+      setSelectedId(parsed[0]?.id || null);
+      const initialSnap: HistorySnapshot = { elements: parsed, dimensions: dims };
+      setHistory([initialSnap]);
+      setHistoryIndex(0);
+      historyRef.current = [initialSnap];
+      historyIndexRef.current = 0;
+    } else if (initialSvgCode) {
+      setTitle('Imported Vector');
+      const { elements: parsed, dimensions: dims } = parseSvgStringToElements(initialSvgCode);
+      setElements(parsed);
+      setDimensions(dims);
+      setSelectedId(parsed[0]?.id || null);
+      const initialSnap: HistorySnapshot = { elements: parsed, dimensions: dims };
+      setHistory([initialSnap]);
+      setHistoryIndex(0);
+      historyRef.current = [initialSnap];
+      historyIndexRef.current = 0;
+    } else if (elements.length === 0) {
+      // Default initial starter canvas with a welcoming funky scribble
+      const defaultAsset = getScribbleById('funky-coral-polka-blob') || getScribbleById('circle-double-loop');
+      if (defaultAsset) {
+        setTitle(defaultAsset.name);
+        const svgStr = defaultAsset.rawSvg
+          ? `<svg viewBox="${defaultAsset.viewBox}">${defaultAsset.rawSvg}</svg>`
+          : `<svg viewBox="${defaultAsset.viewBox}"><path ${defaultAsset.path} /></svg>`;
+        const { elements: parsed, dimensions: dims } = parseSvgStringToElements(svgStr);
+        setElements(parsed);
+        setDimensions(dims);
+        setSelectedId(parsed[0]?.id || null);
+        const initialSnap: HistorySnapshot = { elements: parsed, dimensions: dims };
+        setHistory([initialSnap]);
+        setHistoryIndex(0);
+        historyRef.current = [initialSnap];
+        historyIndexRef.current = 0;
+      }
+    }
+  }, [isOpen, initialAsset, initialSvgCode]);
+
+  // Undo / Redo handlers
+  const handleUndo = useCallback(() => {
+    const idx = historyIndexRef.current;
+    if (idx > 0) {
+      const nextIdx = idx - 1;
+      const target = historyRef.current[nextIdx];
+      if (target) {
+        setElements(JSON.parse(JSON.stringify(target.elements)));
+        setDimensions({ ...target.dimensions });
+        historyIndexRef.current = nextIdx;
+        setHistoryIndex(nextIdx);
+      }
+    }
+  }, []);
+
+  const handleRedo = useCallback(() => {
+    const idx = historyIndexRef.current;
+    if (idx < historyRef.current.length - 1) {
+      const nextIdx = idx + 1;
+      const target = historyRef.current[nextIdx];
+      if (target) {
+        setElements(JSON.parse(JSON.stringify(target.elements)));
+        setDimensions({ ...target.dimensions });
+        historyIndexRef.current = nextIdx;
+        setHistoryIndex(nextIdx);
+      }
+    }
+  }, []);
+
+  // Add Element
+  const handleAddElement = (newEl: SvgElementData) => {
+    const updated = [...elements, newEl];
+    setElements(updated);
+    commitHistory(updated);
+  };
+
+  // Update Element
+  const handleUpdateElement = (
+    id: string,
+    updates: Partial<SvgElementData>,
+    pushHistory = true
+  ) => {
+    const updated = elements.map((el) => (el.id === id ? { ...el, ...updates } : el));
+    setElements(updated);
+    if (pushHistory) {
+      commitHistory(updated);
+    }
+  };
+
+  // Delete Element
+  const handleDeleteElement = (id: string) => {
+    const updated = elements.filter((el) => el.id !== id);
+    setElements(updated);
+    commitHistory(updated);
+    if (selectedId === id) setSelectedId(null);
+  };
+
+  // Duplicate Element
+  const handleDuplicateElement = (id: string) => {
+    const target = elements.find((el) => el.id === id);
+    if (!target) return;
+    const duplicated: SvgElementData = {
+      ...JSON.parse(JSON.stringify(target)),
+      id: generateId(`${target.type}-copy`),
+      name: `${target.name} (Copy)`,
+      x: target.x + 20,
+      y: target.y + 20,
+    };
+    const updated = [...elements, duplicated];
+    setElements(updated);
+    setSelectedId(duplicated.id);
+    commitHistory(updated);
+  };
+
+  // Reorder Elements
+  const handleReorderElements = (newElements: SvgElementData[]) => {
+    setElements(newElements);
+    commitHistory(newElements);
+  };
+
+  // Clear Canvas
+  const handleClearCanvas = () => {
+    if (confirm('Are you sure you want to clear the canvas?')) {
+      setElements([]);
+      setSelectedId(null);
+      commitHistory([]);
+    }
+  };
+
+  // Stamp Asset
+  const handleStampAsset = (asset: ScribbleAsset, mode: 'layer' | 'replace') => {
+    let svgMarkup = '';
+    if (asset.rawSvg) {
+      svgMarkup = `<svg viewBox="${asset.viewBox}">${asset.rawSvg}</svg>`;
+    } else if (asset.path) {
+      svgMarkup = `<svg viewBox="${asset.viewBox}"><path ${asset.path} /></svg>`;
+    }
+
+    const { elements: parsed, dimensions: assetDims } = parseSvgStringToElements(
+      svgMarkup,
+      asset.defaultColor || penColor
+    );
+
+    if (mode === 'replace') {
+      setTitle(asset.name);
+      setElements(parsed);
+      setDimensions(assetDims);
+      setSelectedId(parsed[0]?.id || null);
+      commitHistory(parsed, assetDims);
+    } else {
+      setElements((prev) => {
+        const updated = [...prev, ...parsed];
+        commitHistory(updated);
+        return updated;
+      });
+      setSelectedId(parsed[0]?.id || null);
+    }
+  };
+
+  // Upload SVG File
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const content = event.target?.result as string;
+      if (content) {
+        const { elements: parsed, dimensions: dims } = parseSvgStringToElements(content);
+        if (parsed.length > 0) {
+          setTitle(file.name.replace(/\.svg$/i, ''));
+          setElements(parsed);
+          setDimensions(dims);
+          setSelectedId(parsed[0]?.id || null);
+          commitHistory(parsed, dims);
+        } else {
+          alert('Could not find valid SVG graphic paths in this file.');
+        }
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  };
+
+  // Keyboard Shortcuts Listener
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Do not intercept if user is typing in input or textarea
+      const target = e.target as HTMLElement;
+      if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') return;
+
+      const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+      const cmdOrCtrl = isMac ? e.metaKey : e.ctrlKey;
+
+      if (cmdOrCtrl && e.key.toLowerCase() === 'z') {
+        e.preventDefault();
+        if (e.shiftKey) {
+          handleRedo();
+        } else {
+          handleUndo();
+        }
+      } else if (cmdOrCtrl && e.key.toLowerCase() === 'y') {
+        e.preventDefault();
+        handleRedo();
+      } else if (e.key === 'Delete' || e.key === 'Backspace') {
+        if (selectedId) {
+          e.preventDefault();
+          handleDeleteElement(selectedId);
+        }
+      } else if (cmdOrCtrl && e.key.toLowerCase() === 'd') {
+        if (selectedId) {
+          e.preventDefault();
+          handleDuplicateElement(selectedId);
+        }
+      } else if (e.key === 'Escape') {
+        setSelectedId(null);
+        setActiveTool('select');
+      } else if (e.key.toLowerCase() === 'v') {
+        setActiveTool('select');
+      } else if (e.key.toLowerCase() === 'p') {
+        setActiveTool('pen');
+      } else if (e.key.toLowerCase() === 't') {
+        setActiveTool('text');
+      } else if (e.key.toLowerCase() === 'h') {
+        setActiveTool('pan');
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, selectedId, historyIndex, history]);
+
+  if (!isOpen) return null;
+
+  const selectedElement = elements.find((el) => el.id === selectedId) || null;
+
+  return (
+    <div
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md transition-all select-none ${
+        isFullscreen ? 'p-0' : 'p-2 sm:p-4'
+      }`}
+    >
+      <div
+        className={`relative w-full bg-white flex flex-col overflow-hidden shadow-2xl transition-all ${
+          isFullscreen
+            ? 'h-full rounded-none'
+            : 'h-[95vh] max-w-[96vw] rounded-3xl border border-black/20'
+        }`}
+      >
+        {/* ========================================================= */}
+        {/* Top Header Bar */}
+        {/* ========================================================= */}
+        <header className="px-5 py-3 border-b border-black/10 flex items-center justify-between bg-scribble-paper shrink-0">
+          {/* Left Title & Status */}
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-scribble-orange animate-pulse" />
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="text-base font-extrabold text-scribble-dark font-display bg-transparent border-b border-transparent hover:border-black/30 focus:border-black focus:outline-none px-1"
+                title="Click to rename"
+              />
+            </div>
+            <span className="text-[11px] font-mono text-black/50 hidden sm:inline">
+              ({dimensions.width}×{dimensions.height})
+            </span>
+          </div>
+
+          {/* Center View Mode Switcher */}
+          <div className="hidden md:flex items-center gap-1 bg-black/5 p-1 rounded-2xl border border-black/10">
+            <button
+              onClick={() => setViewMode('canvas')}
+              className={`px-3 py-1 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+                viewMode === 'canvas' ? 'bg-white text-black shadow-sm' : 'text-black/60 hover:text-black'
+              }`}
+            >
+              <Layout className="w-3.5 h-3.5" />
+              <span>Canvas</span>
+            </button>
+            <button
+              onClick={() => setViewMode('split')}
+              className={`px-3 py-1 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+                viewMode === 'split' ? 'bg-white text-black shadow-sm' : 'text-black/60 hover:text-black'
+              }`}
+            >
+              <Code className="w-3.5 h-3.5 text-scribble-orange" />
+              <span>Split View</span>
+            </button>
+            <button
+              onClick={() => setViewMode('code')}
+              className={`px-3 py-1 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+                viewMode === 'code' ? 'bg-white text-black shadow-sm' : 'text-black/60 hover:text-black'
+              }`}
+            >
+              <Code className="w-3.5 h-3.5" />
+              <span>SVG Code</span>
+            </button>
+          </div>
+
+          {/* Right Action Buttons */}
+          <div className="flex items-center gap-2">
+            {/* Hidden File Input for Upload */}
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".svg,image/svg+xml"
+              className="hidden"
+              onChange={handleFileUpload}
+            />
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              className="p-2 rounded-xl border border-black/15 hover:bg-black/5 text-black/70 hover:text-black text-xs font-bold transition-colors flex items-center gap-1.5"
+              title="Upload External SVG File"
+            >
+              <FileUp className="w-4 h-4" />
+              <span className="hidden lg:inline">Import</span>
+            </button>
+
+            {/* Export Menu Button */}
+            <button
+              onClick={() => setIsExportOpen(true)}
+              className="px-3.5 py-1.5 rounded-xl bg-black hover:bg-scribble-orange text-white text-xs font-bold transition-all shadow flex items-center gap-1.5 hover:-translate-y-0.5"
+            >
+              <Download className="w-4 h-4" />
+              <span>Export</span>
+            </button>
+
+            <span className="h-5 w-px bg-black/10 mx-1" />
+
+            {/* Fullscreen Toggle */}
+            <button
+              onClick={() => setIsFullscreen(!isFullscreen)}
+              className="p-2 rounded-xl hover:bg-black/10 text-black/60 hover:text-black transition-colors"
+              title={isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
+            >
+              {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
+            </button>
+
+            {/* Close Button */}
+            <button
+              onClick={onClose}
+              aria-label="Close SVG Studio"
+              className="p-2 rounded-full hover:bg-black/10 text-black/70 hover:text-black transition-colors"
+              title="Close SVG Studio (Esc)"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+        </header>
+
+        {/* ========================================================= */}
+        {/* Top Interactive Toolbar */}
+        {/* ========================================================= */}
+        <Toolbar
+          activeTool={activeTool}
+          onSelectTool={setActiveTool}
+          penColor={penColor}
+          onPenColorChange={setPenColor}
+          penStrokeWidth={penStrokeWidth}
+          onPenStrokeWidthChange={setPenStrokeWidth}
+          canUndo={historyIndex > 0}
+          canRedo={historyIndex < history.length - 1}
+          onUndo={handleUndo}
+          onRedo={handleRedo}
+          onClearCanvas={handleClearCanvas}
+          onOpenAssetStamp={() => setIsAssetStampOpen(true)}
+        />
+
+        {/* ========================================================= */}
+        {/* Main Work Area (Canvas / Code / Inspector) */}
+        {/* ========================================================= */}
+        <div className="flex-1 flex overflow-hidden relative">
+          {/* Left/Main Canvas & Code Area */}
+          <div className="flex-1 flex overflow-hidden">
+            {/* Visual Canvas */}
+            {(viewMode === 'canvas' || viewMode === 'split') && (
+              <div className={`h-full flex flex-col ${viewMode === 'split' ? 'w-1/2 border-r border-black/10' : 'w-full'}`}>
+                <Canvas
+                  elements={elements}
+                  selectedId={selectedId}
+                  dimensions={dimensions}
+                  activeTool={activeTool}
+                  background={background}
+                  zoom={zoom}
+                  pan={pan}
+                  showGrid={true}
+                  penColor={penColor}
+                  penStrokeWidth={penStrokeWidth}
+                  onSelectElement={setSelectedId}
+                  onUpdateElement={handleUpdateElement}
+                  onAddElement={handleAddElement}
+                  onCommitHistory={() => commitHistory(elements, dimensions)}
+                  onPanChange={setPan}
+                  onZoomChange={setZoom}
+                  onToolChange={setActiveTool}
+                />
+              </div>
+            )}
+
+            {/* SVG Code View */}
+            {(viewMode === 'code' || viewMode === 'split') && (
+              <div className={`h-full flex flex-col ${viewMode === 'split' ? 'w-1/2' : 'w-full'}`}>
+                <CodeEditor
+                  elements={elements}
+                  dimensions={dimensions}
+                  onApplyCode={(newEls, newDims) => {
+                    setElements(newEls);
+                    setDimensions(newDims);
+                    commitHistory(newEls, newDims);
+                  }}
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Right Properties & Layers Inspector */}
+          <PropertyInspector
+            selectedElement={selectedElement}
+            elements={elements}
+            dimensions={dimensions}
+            canvasBackground={background}
+            onUpdateElement={handleUpdateElement}
+            onDeleteElement={handleDeleteElement}
+            onDuplicateElement={handleDuplicateElement}
+            onSelectElement={setSelectedId}
+            onReorderElements={handleReorderElements}
+            onUpdateDimensions={(newDims) => {
+              setDimensions(newDims);
+              commitHistory(elements, newDims);
+            }}
+            onUpdateBackground={setBackground}
+          />
+        </div>
+
+        {/* ========================================================= */}
+        {/* Asset Stamp Drawer Modal */}
+        {/* ========================================================= */}
+        <AssetStampDrawer
+          isOpen={isAssetStampOpen}
+          onClose={() => setIsAssetStampOpen(false)}
+          onStampAsset={handleStampAsset}
+        />
+
+        {/* ========================================================= */}
+        {/* Export Suite Modal */}
+        {/* ========================================================= */}
+        <ExportModal
+          isOpen={isExportOpen}
+          onClose={() => setIsExportOpen(false)}
+          elements={elements}
+          dimensions={dimensions}
+          title={title}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default SvgEditor;

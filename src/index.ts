@@ -15,3 +15,6 @@ export {
   getScribblesByCategory,
   type ScribbleAsset,
 } from './lib/scribbles-data';
+
+export { SvgEditor } from './components/SvgEditor';
+export * from './components/SvgEditor/types';

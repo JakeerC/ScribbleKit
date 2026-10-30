@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, BookOpen } from 'lucide-react';
+import { Sparkles, BookOpen, Pencil } from 'lucide-react';
 import { Scribble } from './Scribble';
 import { Navbar } from './Navbar';
 
@@ -7,6 +7,7 @@ interface HeroProps {
   onScrollToCatalog: () => void;
   onScrollToStudio: () => void;
   onOpenGuide: () => void;
+  onOpenEditor: () => void;
   onDownloadAll?: () => void;
   assetCount: number;
 }
@@ -15,6 +16,7 @@ export const Hero: React.FC<HeroProps> = ({
   onScrollToCatalog,
   onScrollToStudio,
   onOpenGuide,
+  onOpenEditor,
   onDownloadAll = () => {},
   assetCount,
 }) => {
@@ -28,6 +30,7 @@ export const Hero: React.FC<HeroProps> = ({
         onScrollToStudio={onScrollToStudio}
         onScrollToCatalog={onScrollToCatalog}
         onDownloadAll={onDownloadAll}
+        onOpenEditor={onOpenEditor}
         assetCount={assetCount}
       />
 
@@ -161,6 +164,14 @@ export const Hero: React.FC<HeroProps> = ({
             </div>
 
             {/* Secondary Quick Action Pill Links */}
+            <button
+              onClick={onOpenEditor}
+              className="px-4 py-2 rounded-xl bg-black hover:bg-scribble-orange text-white font-bold text-xs shadow-md transition-all flex items-center gap-1.5 hover:-translate-y-0.5"
+            >
+              <Pencil className="w-3.5 h-3.5 text-scribble-yellow" />
+              <span>SVG Editor Studio</span>
+            </button>
+
             <button
               onClick={onScrollToStudio}
               className="px-4 py-2 rounded-xl bg-white hover:bg-black/5 text-black font-semibold text-xs border border-black/15 shadow-sm transition-all flex items-center gap-1.5"

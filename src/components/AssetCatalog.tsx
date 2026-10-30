@@ -5,6 +5,7 @@ import {
   Check,
   Download,
   Sparkles,
+  Pencil,
 } from 'lucide-react';
 import { ScribbleAsset, CATEGORIES, COLOR_PRESETS } from '../lib/scribbles-data';
 import { Scribble } from './Scribble';
@@ -12,6 +13,7 @@ import { Scribble } from './Scribble';
 interface AssetCatalogProps {
   assets: ScribbleAsset[];
   onSelectAsset: (asset: ScribbleAsset) => void;
+  onEditAsset?: (asset: ScribbleAsset) => void;
   currentColor: string;
   onColorChange: (color: string) => void;
 }
@@ -19,6 +21,7 @@ interface AssetCatalogProps {
 export const AssetCatalog: React.FC<AssetCatalogProps> = ({
   assets,
   onSelectAsset,
+  onEditAsset,
   currentColor,
   onColorChange,
 }) => {
@@ -322,6 +325,18 @@ export const AssetCatalog: React.FC<AssetCatalogProps> = ({
 
                 {/* Quick Action Buttons */}
                 <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  {onEditAsset && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onEditAsset(item);
+                      }}
+                      title="Edit in SVG Editor"
+                      className="p-1 rounded-lg bg-scribble-orange text-white hover:bg-black transition-colors shadow-sm"
+                    >
+                      <Pencil className="w-3 h-3" />
+                    </button>
+                  )}
                   <button
                     onClick={(e) => handleCopySvg(item, e)}
                     title="Copy Standalone SVG"

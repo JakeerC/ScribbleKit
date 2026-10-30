@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Copy, Check, Download } from 'lucide-react';
+import { X, Copy, Check, Download, Pencil } from 'lucide-react';
 import { ScribbleAsset } from '../lib/scribbles-data';
 import { Scribble } from './Scribble';
 
@@ -7,12 +7,14 @@ interface AssetDetailModalProps {
   asset: ScribbleAsset | null;
   onClose: () => void;
   currentColor: string;
+  onOpenInEditor?: (asset: ScribbleAsset) => void;
 }
 
 export const AssetDetailModal: React.FC<AssetDetailModalProps> = ({
   asset,
   onClose,
   currentColor,
+  onOpenInEditor,
 }) => {
   if (!asset) return null;
 
@@ -283,6 +285,19 @@ export const AssetDetailModal: React.FC<AssetDetailModalProps> = ({
 
             {/* Action Buttons */}
             <div className="pt-2 border-t border-black/10 space-y-2">
+              {onOpenInEditor && (
+                <button
+                  onClick={() => {
+                    onOpenInEditor({ ...asset, defaultColor: color });
+                    onClose();
+                  }}
+                  className="w-full py-2.5 px-4 rounded-xl bg-scribble-yellow hover:bg-scribble-yellow/80 border border-scribble-yellow/80 text-scribble-dark font-extrabold text-xs transition-all flex items-center justify-center gap-2 shadow-sm hover:scale-[1.01]"
+                >
+                  <Pencil className="w-4 h-4 text-scribble-orange" />
+                  <span>Open & Customize in SVG Editor</span>
+                </button>
+              )}
+
               <button
                 onClick={handleDownload}
                 className="w-full py-3 px-4 rounded-xl bg-black hover:bg-scribble-orange text-white font-bold text-sm shadow hover:shadow-md transition-all flex items-center justify-center gap-2"
