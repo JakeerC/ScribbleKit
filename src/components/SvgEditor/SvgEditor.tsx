@@ -10,6 +10,9 @@ import {
   Code,
   Layout,
   FileUp,
+  ArrowLeft,
+  PanelLeftClose,
+  PanelLeftOpen,
 } from 'lucide-react';
 import {
   SvgElementData,
@@ -24,23 +27,28 @@ import { Canvas } from './Canvas';
 import { Toolbar } from './Toolbar';
 import { PropertyInspector } from './PropertyInspector';
 import { CodeEditor } from './CodeEditor';
+import { LeftAssetsDrawer } from './LeftAssetsDrawer';
 import { AssetStampDrawer } from './AssetStampDrawer';
 import { ExportModal } from './ExportModal';
 import { parseSvgStringToElements, generateId } from './svg-utils';
 import { ScribbleAsset, getScribbleById } from '../../lib/scribbles-data';
 
 interface SvgEditorProps {
-  isOpen: boolean;
-  onClose: () => void;
+  isOpen?: boolean;
+  onClose?: () => void;
   initialAsset?: ScribbleAsset | null;
   initialSvgCode?: string;
+  mode?: 'page' | 'modal';
+  onNavigateHome?: () => void;
 }
 
 export const SvgEditor: React.FC<SvgEditorProps> = ({
-  isOpen,
+  isOpen = true,
   onClose,
   initialAsset,
   initialSvgCode,
+  mode = 'modal',
+  onNavigateHome,
 }) => {
   // Master Editor State
   const [title, setTitle] = useState('New Scribble');
@@ -59,6 +67,9 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
   const [penColor, setPenColor] = useState('#EA552B');
   const [penStrokeWidth, setPenStrokeWidth] = useState(4.5);
   const [isFullscreen, setIsFullscreen] = useState(false);
+
+  // Togglable Left Assets Drawer state
+  const [isAssetsDrawerOpen, setIsAssetsDrawerOpen] = useState(true);
 
   // Modals state
   const [isAssetStampOpen, setIsAssetStampOpen] = useState(false);
@@ -325,6 +336,9 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
           e.preventDefault();
           handleDuplicateElement(selectedId);
         }
+      } else if (cmdOrCtrl && e.key.toLowerCase() === 'b') {
+        e.preventDefault();
+        setIsAssetsDrawerOpen((prev) => !prev);
       } else if (e.key === 'Escape') {
         setSelectedId(null);
         setActiveTool('select');
@@ -347,111 +361,148 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
 
   const selectedElement = elements.find((el) => el.id === selectedId) || null;
 
-  return (
+  const editorContent = (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md transition-all select-none ${
-        isFullscreen ? 'p-0' : 'p-2 sm:p-4'
+      className={`relative w-full bg-white flex flex-col overflow-hidden transition-all ${
+        mode === 'page'
+          ? 'w-full h-full rounded-none'
+          : isFullscreen
+          ? 'h-full rounded-none'
+          : 'h-[95vh] max-w-[96vw] rounded-3xl border border-black/20 shadow-2xl'
       }`}
     >
-      <div
-        className={`relative w-full bg-white flex flex-col overflow-hidden shadow-2xl transition-all ${
-          isFullscreen
-            ? 'h-full rounded-none'
-            : 'h-[95vh] max-w-[96vw] rounded-3xl border border-black/20'
-        }`}
-      >
-        {/* ========================================================= */}
-        {/* Top Header Bar */}
-        {/* ========================================================= */}
-        <header className="px-5 py-3 border-b border-black/10 flex items-center justify-between bg-scribble-paper shrink-0">
-          {/* Left Title & Status */}
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-scribble-orange animate-pulse" />
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="text-base font-extrabold text-scribble-dark font-display bg-transparent border-b border-transparent hover:border-black/30 focus:border-black focus:outline-none px-1"
-                title="Click to rename"
-              />
-            </div>
-            <span className="text-[11px] font-mono text-black/50 hidden sm:inline">
-              ({dimensions.width}×{dimensions.height})
+      {/* ========================================================= */}
+      {/* Top Header Bar */}
+      {/* ========================================================= */}
+      <header className="px-4 sm:px-5 py-2.5 border-b border-black/10 flex items-center justify-between bg-scribble-paper shrink-0 gap-3 flex-wrap">
+        {/* Left Section: Back button (if page) + Title & Status */}
+        <div className="flex items-center gap-2.5">
+          {mode === 'page' && (
+            <button
+              onClick={onNavigateHome || onClose}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-black/15 bg-white hover:bg-black/5 text-xs font-bold text-scribble-dark transition-all shadow-sm hover:-translate-x-0.5"
+              title="Return to ScribbleKit Library"
+            >
+              <ArrowLeft className="w-4 h-4 text-scribble-orange" />
+              <span className="hidden sm:inline">Back to Library</span>
+            </button>
+          )}
+
+          {/* Toggle Left Assets Drawer Button */}
+          <button
+            onClick={() => setIsAssetsDrawerOpen(!isAssetsDrawerOpen)}
+            className={`px-2.5 py-1.5 rounded-xl border text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm ${
+              isAssetsDrawerOpen
+                ? 'bg-black text-white border-black'
+                : 'bg-white hover:bg-black/5 text-black/70 border-black/15'
+            }`}
+            title="Toggle Left Assets Drawer (Ctrl+B)"
+          >
+            {isAssetsDrawerOpen ? (
+              <PanelLeftClose className="w-3.5 h-3.5" />
+            ) : (
+              <PanelLeftOpen className="w-3.5 h-3.5 text-scribble-orange" />
+            )}
+            <span className="hidden md:inline">Assets</span>
+            <span
+              className={`text-[10px] font-extrabold px-1.5 py-0.2 rounded-full ${
+                isAssetsDrawerOpen ? 'bg-white/20 text-white' : 'bg-black/10 text-scribble-dark'
+              }`}
+            >
+              140
             </span>
-          </div>
+          </button>
 
-          {/* Center View Mode Switcher */}
-          <div className="hidden md:flex items-center gap-1 bg-black/5 p-1 rounded-2xl border border-black/10">
-            <button
-              onClick={() => setViewMode('canvas')}
-              className={`px-3 py-1 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-                viewMode === 'canvas' ? 'bg-white text-black shadow-sm' : 'text-black/60 hover:text-black'
-              }`}
-            >
-              <Layout className="w-3.5 h-3.5" />
-              <span>Canvas</span>
-            </button>
-            <button
-              onClick={() => setViewMode('split')}
-              className={`px-3 py-1 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-                viewMode === 'split' ? 'bg-white text-black shadow-sm' : 'text-black/60 hover:text-black'
-              }`}
-            >
-              <Code className="w-3.5 h-3.5 text-scribble-orange" />
-              <span>Split View</span>
-            </button>
-            <button
-              onClick={() => setViewMode('code')}
-              className={`px-3 py-1 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-                viewMode === 'code' ? 'bg-white text-black shadow-sm' : 'text-black/60 hover:text-black'
-              }`}
-            >
-              <Code className="w-3.5 h-3.5" />
-              <span>SVG Code</span>
-            </button>
-          </div>
+          <span className="h-5 w-px bg-black/10 hidden sm:inline" />
 
-          {/* Right Action Buttons */}
+          {/* Title and Dimension Indicator */}
           <div className="flex items-center gap-2">
-            {/* Hidden File Input for Upload */}
+            <span className="w-2.5 h-2.5 rounded-full bg-scribble-orange animate-pulse" />
             <input
-              ref={fileInputRef}
-              type="file"
-              accept=".svg,image/svg+xml"
-              className="hidden"
-              onChange={handleFileUpload}
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="text-sm sm:text-base font-extrabold text-scribble-dark font-display bg-transparent border-b border-transparent hover:border-black/30 focus:border-black focus:outline-none px-1 max-w-[150px] sm:max-w-[220px] truncate"
+              title="Click to rename"
             />
-            <button
-              onClick={() => fileInputRef.current?.click()}
-              className="p-2 rounded-xl border border-black/15 hover:bg-black/5 text-black/70 hover:text-black text-xs font-bold transition-colors flex items-center gap-1.5"
-              title="Upload External SVG File"
-            >
-              <FileUp className="w-4 h-4" />
-              <span className="hidden lg:inline">Import</span>
-            </button>
+          </div>
+          <span className="text-[10px] sm:text-[11px] font-mono text-black/50 hidden md:inline">
+            ({dimensions.width}×{dimensions.height})
+          </span>
+        </div>
 
-            {/* Export Menu Button */}
-            <button
-              onClick={() => setIsExportOpen(true)}
-              className="px-3.5 py-1.5 rounded-xl bg-black hover:bg-scribble-orange text-white text-xs font-bold transition-all shadow flex items-center gap-1.5 hover:-translate-y-0.5"
-            >
-              <Download className="w-4 h-4" />
-              <span>Export</span>
-            </button>
+        {/* Center View Mode Switcher */}
+        <div className="hidden md:flex items-center gap-1 bg-black/5 p-1 rounded-2xl border border-black/10">
+          <button
+            onClick={() => setViewMode('canvas')}
+            className={`px-3 py-1 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+              viewMode === 'canvas' ? 'bg-white text-black shadow-sm' : 'text-black/60 hover:text-black'
+            }`}
+          >
+            <Layout className="w-3.5 h-3.5" />
+            <span>Canvas</span>
+          </button>
+          <button
+            onClick={() => setViewMode('split')}
+            className={`px-3 py-1 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+              viewMode === 'split' ? 'bg-white text-black shadow-sm' : 'text-black/60 hover:text-black'
+            }`}
+          >
+            <Code className="w-3.5 h-3.5 text-scribble-orange" />
+            <span>Split View</span>
+          </button>
+          <button
+            onClick={() => setViewMode('code')}
+            className={`px-3 py-1 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+              viewMode === 'code' ? 'bg-white text-black shadow-sm' : 'text-black/60 hover:text-black'
+            }`}
+          >
+            <Code className="w-3.5 h-3.5" />
+            <span>SVG Code</span>
+          </button>
+        </div>
 
-            <span className="h-5 w-px bg-black/10 mx-1" />
+        {/* Right Action Buttons */}
+        <div className="flex items-center gap-2">
+          {/* Hidden File Input for Upload */}
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".svg,image/svg+xml"
+            className="hidden"
+            onChange={handleFileUpload}
+          />
+          <button
+            onClick={() => fileInputRef.current?.click()}
+            className="p-2 rounded-xl border border-black/15 hover:bg-black/5 text-black/70 hover:text-black text-xs font-bold transition-colors flex items-center gap-1.5"
+            title="Upload External SVG File"
+          >
+            <FileUp className="w-4 h-4" />
+            <span className="hidden lg:inline">Import</span>
+          </button>
 
-            {/* Fullscreen Toggle */}
-            <button
-              onClick={() => setIsFullscreen(!isFullscreen)}
-              className="p-2 rounded-xl hover:bg-black/10 text-black/60 hover:text-black transition-colors"
-              title={isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
-            >
-              {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
-            </button>
+          {/* Export Menu Button */}
+          <button
+            onClick={() => setIsExportOpen(true)}
+            className="px-3.5 py-1.5 rounded-xl bg-black hover:bg-scribble-orange text-white text-xs font-bold transition-all shadow flex items-center gap-1.5 hover:-translate-y-0.5"
+          >
+            <Download className="w-4 h-4" />
+            <span>Export</span>
+          </button>
 
-            {/* Close Button */}
+          <span className="h-5 w-px bg-black/10 mx-1" />
+
+          {/* Fullscreen Toggle */}
+          <button
+            onClick={() => setIsFullscreen(!isFullscreen)}
+            className="p-2 rounded-xl hover:bg-black/10 text-black/60 hover:text-black transition-colors"
+            title={isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
+          >
+            {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
+          </button>
+
+          {/* Close Button */}
+          {mode === 'modal' ? (
             <button
               onClick={onClose}
               aria-label="Close SVG Studio"
@@ -460,113 +511,154 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
             >
               <X className="w-5 h-5" />
             </button>
-          </div>
-        </header>
+          ) : (
+            <button
+              onClick={onNavigateHome || onClose}
+              aria-label="Exit SVG Studio"
+              className="p-2 rounded-full hover:bg-black/10 text-black/70 hover:text-black transition-colors sm:hidden"
+              title="Back to Library"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          )}
+        </div>
+      </header>
 
-        {/* ========================================================= */}
-        {/* Top Interactive Toolbar */}
-        {/* ========================================================= */}
-        <Toolbar
-          activeTool={activeTool}
-          onSelectTool={setActiveTool}
-          penColor={penColor}
-          onPenColorChange={setPenColor}
-          penStrokeWidth={penStrokeWidth}
-          onPenStrokeWidthChange={setPenStrokeWidth}
-          canUndo={historyIndex > 0}
-          canRedo={historyIndex < history.length - 1}
-          onUndo={handleUndo}
-          onRedo={handleRedo}
-          onClearCanvas={handleClearCanvas}
-          onOpenAssetStamp={() => setIsAssetStampOpen(true)}
+      {/* ========================================================= */}
+      {/* Top Interactive Toolbar */}
+      {/* ========================================================= */}
+      <Toolbar
+        activeTool={activeTool}
+        onSelectTool={setActiveTool}
+        penColor={penColor}
+        onPenColorChange={setPenColor}
+        penStrokeWidth={penStrokeWidth}
+        onPenStrokeWidthChange={setPenStrokeWidth}
+        canUndo={historyIndex > 0}
+        canRedo={historyIndex < history.length - 1}
+        onUndo={handleUndo}
+        onRedo={handleRedo}
+        onClearCanvas={handleClearCanvas}
+        onOpenAssetStamp={() => setIsAssetsDrawerOpen(true)}
+        isAssetsDrawerOpen={isAssetsDrawerOpen}
+        onToggleAssetsDrawer={() => setIsAssetsDrawerOpen(!isAssetsDrawerOpen)}
+      />
+
+      {/* ========================================================= */}
+      {/* Main Work Area: Left Drawer + Center Canvas + Right Inspector */}
+      {/* ========================================================= */}
+      <div className="flex-1 flex overflow-hidden relative">
+        {/* Togglable Left Assets Drawer */}
+        <LeftAssetsDrawer
+          isOpen={isAssetsDrawerOpen}
+          onToggle={() => setIsAssetsDrawerOpen(!isAssetsDrawerOpen)}
+          onStampAsset={handleStampAsset}
+          activePenColor={penColor}
         />
 
-        {/* ========================================================= */}
-        {/* Main Work Area (Canvas / Code / Inspector) */}
-        {/* ========================================================= */}
-        <div className="flex-1 flex overflow-hidden relative">
-          {/* Left/Main Canvas & Code Area */}
-          <div className="flex-1 flex overflow-hidden">
-            {/* Visual Canvas */}
-            {(viewMode === 'canvas' || viewMode === 'split') && (
-              <div className={`h-full flex flex-col ${viewMode === 'split' ? 'w-1/2 border-r border-black/10' : 'w-full'}`}>
-                <Canvas
-                  elements={elements}
-                  selectedId={selectedId}
-                  dimensions={dimensions}
-                  activeTool={activeTool}
-                  background={background}
-                  zoom={zoom}
-                  pan={pan}
-                  showGrid={true}
-                  penColor={penColor}
-                  penStrokeWidth={penStrokeWidth}
-                  onSelectElement={setSelectedId}
-                  onUpdateElement={handleUpdateElement}
-                  onAddElement={handleAddElement}
-                  onCommitHistory={() => commitHistory(elements, dimensions)}
-                  onPanChange={setPan}
-                  onZoomChange={setZoom}
-                  onToolChange={setActiveTool}
-                />
-              </div>
-            )}
+        {/* Center Canvas & Code Area */}
+        <div className="flex-1 flex overflow-hidden">
+          {/* Visual Canvas */}
+          {(viewMode === 'canvas' || viewMode === 'split') && (
+            <div
+              className={`h-full flex flex-col ${
+                viewMode === 'split' ? 'w-1/2 border-r border-black/10' : 'w-full'
+              }`}
+            >
+              <Canvas
+                elements={elements}
+                selectedId={selectedId}
+                dimensions={dimensions}
+                activeTool={activeTool}
+                background={background}
+                zoom={zoom}
+                pan={pan}
+                showGrid={true}
+                penColor={penColor}
+                penStrokeWidth={penStrokeWidth}
+                onSelectElement={setSelectedId}
+                onUpdateElement={handleUpdateElement}
+                onAddElement={handleAddElement}
+                onCommitHistory={() => commitHistory(elements, dimensions)}
+                onPanChange={setPan}
+                onZoomChange={setZoom}
+                onToolChange={setActiveTool}
+              />
+            </div>
+          )}
 
-            {/* SVG Code View */}
-            {(viewMode === 'code' || viewMode === 'split') && (
-              <div className={`h-full flex flex-col ${viewMode === 'split' ? 'w-1/2' : 'w-full'}`}>
-                <CodeEditor
-                  elements={elements}
-                  dimensions={dimensions}
-                  onApplyCode={(newEls, newDims) => {
-                    setElements(newEls);
-                    setDimensions(newDims);
-                    commitHistory(newEls, newDims);
-                  }}
-                />
-              </div>
-            )}
-          </div>
-
-          {/* Right Properties & Layers Inspector */}
-          <PropertyInspector
-            selectedElement={selectedElement}
-            elements={elements}
-            dimensions={dimensions}
-            canvasBackground={background}
-            onUpdateElement={handleUpdateElement}
-            onDeleteElement={handleDeleteElement}
-            onDuplicateElement={handleDuplicateElement}
-            onSelectElement={setSelectedId}
-            onReorderElements={handleReorderElements}
-            onUpdateDimensions={(newDims) => {
-              setDimensions(newDims);
-              commitHistory(elements, newDims);
-            }}
-            onUpdateBackground={setBackground}
-          />
+          {/* SVG Code View */}
+          {(viewMode === 'code' || viewMode === 'split') && (
+            <div className={`h-full flex flex-col ${viewMode === 'split' ? 'w-1/2' : 'w-full'}`}>
+              <CodeEditor
+                elements={elements}
+                dimensions={dimensions}
+                onApplyCode={(newEls, newDims) => {
+                  setElements(newEls);
+                  setDimensions(newDims);
+                  commitHistory(newEls, newDims);
+                }}
+              />
+            </div>
+          )}
         </div>
 
-        {/* ========================================================= */}
-        {/* Asset Stamp Drawer Modal */}
-        {/* ========================================================= */}
-        <AssetStampDrawer
-          isOpen={isAssetStampOpen}
-          onClose={() => setIsAssetStampOpen(false)}
-          onStampAsset={handleStampAsset}
-        />
-
-        {/* ========================================================= */}
-        {/* Export Suite Modal */}
-        {/* ========================================================= */}
-        <ExportModal
-          isOpen={isExportOpen}
-          onClose={() => setIsExportOpen(false)}
+        {/* Right Properties & Layers Inspector */}
+        <PropertyInspector
+          selectedElement={selectedElement}
           elements={elements}
           dimensions={dimensions}
-          title={title}
+          canvasBackground={background}
+          onUpdateElement={handleUpdateElement}
+          onDeleteElement={handleDeleteElement}
+          onDuplicateElement={handleDuplicateElement}
+          onSelectElement={setSelectedId}
+          onReorderElements={handleReorderElements}
+          onUpdateDimensions={(newDims) => {
+            setDimensions(newDims);
+            commitHistory(elements, newDims);
+          }}
+          onUpdateBackground={setBackground}
         />
       </div>
+
+      {/* ========================================================= */}
+      {/* Asset Stamp Modal (Fallback / Drawer Stamp) */}
+      {/* ========================================================= */}
+      <AssetStampDrawer
+        isOpen={isAssetStampOpen}
+        onClose={() => setIsAssetStampOpen(false)}
+        onStampAsset={handleStampAsset}
+      />
+
+      {/* ========================================================= */}
+      {/* Export Suite Modal */}
+      {/* ========================================================= */}
+      <ExportModal
+        isOpen={isExportOpen}
+        onClose={() => setIsExportOpen(false)}
+        elements={elements}
+        dimensions={dimensions}
+        title={title}
+      />
+    </div>
+  );
+
+  if (mode === 'page') {
+    return (
+      <div className="w-screen h-screen flex flex-col bg-white overflow-hidden select-none">
+        {editorContent}
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md transition-all select-none ${
+        isFullscreen ? 'p-0' : 'p-2 sm:p-4'
+      }`}
+    >
+      {editorContent}
     </div>
   );
 };

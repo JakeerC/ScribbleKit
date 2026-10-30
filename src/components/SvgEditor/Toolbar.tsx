@@ -16,7 +16,6 @@ import {
   Undo2,
   Redo2,
   Trash2,
-  Plus,
   ChevronDown,
 } from 'lucide-react';
 import { EditorTool } from './types';
@@ -35,6 +34,8 @@ interface ToolbarProps {
   onRedo: () => void;
   onClearCanvas: () => void;
   onOpenAssetStamp: () => void;
+  isAssetsDrawerOpen?: boolean;
+  onToggleAssetsDrawer?: () => void;
 }
 
 export const Toolbar: React.FC<ToolbarProps> = ({
@@ -50,6 +51,8 @@ export const Toolbar: React.FC<ToolbarProps> = ({
   onRedo,
   onClearCanvas,
   onOpenAssetStamp,
+  isAssetsDrawerOpen,
+  onToggleAssetsDrawer,
 }) => {
   const [shapesOpen, setShapesOpen] = useState(false);
 
@@ -173,14 +176,21 @@ export const Toolbar: React.FC<ToolbarProps> = ({
           <Hand className="w-4 h-4" />
         </button>
 
-        {/* Stamp ScribbleKit Asset */}
+        {/* Toggle Left Assets Drawer */}
         <button
-          onClick={onOpenAssetStamp}
-          className="p-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 bg-scribble-yellow hover:bg-scribble-yellow/80 text-scribble-dark shadow-sm hover:scale-[1.02]"
-          title="Stamp Any ScribbleKit Doodle onto Canvas"
+          onClick={onToggleAssetsDrawer || onOpenAssetStamp}
+          className={`p-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+            isAssetsDrawerOpen
+              ? 'bg-scribble-orange text-white shadow-sm ring-2 ring-scribble-orange/30'
+              : 'bg-scribble-yellow hover:bg-scribble-yellow/80 text-scribble-dark shadow-sm hover:scale-[1.02]'
+          }`}
+          title="Toggle Left Assets Library Drawer (Ctrl+B)"
         >
-          <Plus className="w-3.5 h-3.5" />
-          <span>Stamp Scribble</span>
+          <Sparkles className="w-3.5 h-3.5" />
+          <span>Assets</span>
+          <span className={`text-[10px] font-extrabold px-1.5 py-0.2 rounded-full ${isAssetsDrawerOpen ? 'bg-white/20 text-white' : 'bg-black/10 text-scribble-dark'}`}>
+            140
+          </span>
         </button>
       </div>
 

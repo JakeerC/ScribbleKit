@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Hero } from './components/Hero';
 import { HeroFeatures } from './components/HeroFeatures';
 import { HeadlineStudio } from './components/HeadlineStudio';
@@ -6,18 +6,68 @@ import { AssetCatalog } from './components/AssetCatalog';
 import { AssetDetailModal } from './components/AssetDetailModal';
 import { DesignGuideModal } from './components/DesignGuideModal';
 import { SvgEditor } from './components/SvgEditor';
-import { SCRIBBLES_ASSETS, ScribbleAsset } from './lib/scribbles-data';
+import { SCRIBBLES_ASSETS, ScribbleAsset, getScribbleById } from './lib/scribbles-data';
 
 export function App() {
   const [currentColor, setCurrentColor] = useState('original');
   const [selectedAsset, setSelectedAsset] = useState<ScribbleAsset | null>(null);
   const [isGuideOpen, setIsGuideOpen] = useState(false);
-  const [isEditorOpen, setIsEditorOpen] = useState(false);
-  const [editorAsset, setEditorAsset] = useState<ScribbleAsset | null>(null);
 
-  const handleOpenEditor = (asset?: ScribbleAsset) => {
+  // Helper to determine if current URL is the dedicated editor page
+  const checkIsEditorPath = () => {
+    const path = window.location.pathname;
+    const hash = window.location.hash;
+    const search = new URLSearchParams(window.location.search);
+    return (
+      path === '/editor' ||
+      path.startsWith('/editor/') ||
+      hash === '#editor' ||
+      search.get('page') === 'editor'
+    );
+  };
+
+  // Dedicated Editor Page Route state
+  const [isEditorPage, setIsEditorPage] = useState<boolean>(() => checkIsEditorPath());
+  const [editorAsset, setEditorAsset] = useState<ScribbleAsset | null>(() => {
+    const search = new URLSearchParams(window.location.search);
+    const assetId = search.get('asset');
+    return assetId ? getScribbleById(assetId) || null : null;
+  });
+
+  // Handle browser back / forward navigation
+  useEffect(() => {
+    const handlePopState = () => {
+      const onEditor = checkIsEditorPath();
+      setIsEditorPage(onEditor);
+      const search = new URLSearchParams(window.location.search);
+      const assetId = search.get('asset');
+      if (assetId) {
+        setEditorAsset(getScribbleById(assetId) || null);
+      } else if (!onEditor) {
+        setEditorAsset(null);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  // Navigation handlers
+  const navigateToEditor = (asset?: ScribbleAsset) => {
     setEditorAsset(asset || null);
-    setIsEditorOpen(true);
+    setIsEditorPage(true);
+    const newUrl = asset ? `/editor?asset=${encodeURIComponent(asset.id)}` : '/editor';
+    if (window.location.pathname !== '/editor' || window.location.search !== (asset ? `?asset=${asset.id}` : '')) {
+      window.history.pushState(null, '', newUrl);
+    }
+  };
+
+  const navigateToHome = () => {
+    setIsEditorPage(false);
+    setEditorAsset(null);
+    if (window.location.pathname !== '/') {
+      window.history.pushState(null, '', '/');
+    }
   };
 
   const scrollToCatalog = () => {
@@ -31,7 +81,7 @@ export function App() {
   };
 
   const handleDownloadAll = () => {
-    // Generate a single consolidated JSON bundle containing all 116 SVGs
+    // Generate a single consolidated JSON bundle containing all 140 SVGs
     const bundle = {
       name: 'ScribbleKit Vector Kit',
       version: '1.0.0',
@@ -59,6 +109,22 @@ export function App() {
     URL.revokeObjectURL(url);
   };
 
+  // Dedicated Editor Page View
+  if (isEditorPage) {
+    return (
+      <div className="w-screen h-screen overflow-hidden bg-white">
+        <SvgEditor
+          isOpen={true}
+          mode="page"
+          onClose={navigateToHome}
+          onNavigateHome={navigateToHome}
+          initialAsset={editorAsset}
+        />
+      </div>
+    );
+  }
+
+  // Home / Library View
   return (
     <div className="min-h-screen flex flex-col bg-scribble-paper selection:bg-scribble-yellow selection:text-black">
       <main className="flex-1">
@@ -67,7 +133,7 @@ export function App() {
           onScrollToCatalog={scrollToCatalog}
           onScrollToStudio={scrollToStudio}
           onOpenGuide={() => setIsGuideOpen(true)}
-          onOpenEditor={() => handleOpenEditor()}
+          onOpenEditor={() => navigateToEditor()}
           onDownloadAll={handleDownloadAll}
           assetCount={SCRIBBLES_ASSETS.length}
         />
@@ -82,7 +148,7 @@ export function App() {
         <AssetCatalog
           assets={SCRIBBLES_ASSETS}
           onSelectAsset={(item) => setSelectedAsset(item)}
-          onEditAsset={(item) => handleOpenEditor(item)}
+          onEditAsset={(item) => navigateToEditor(item)}
           currentColor={currentColor}
           onColorChange={(c) => setCurrentColor(c)}
         />
@@ -93,23 +159,13 @@ export function App() {
         asset={selectedAsset}
         onClose={() => setSelectedAsset(null)}
         currentColor={currentColor}
-        onOpenInEditor={(item) => handleOpenEditor(item)}
+        onOpenInEditor={(item) => navigateToEditor(item)}
       />
 
       {/* Vector Design Guide & System Modal */}
       <DesignGuideModal
         isOpen={isGuideOpen}
         onClose={() => setIsGuideOpen(false)}
-      />
-
-      {/* Interactive SVG Studio & Vector Editor */}
-      <SvgEditor
-        isOpen={isEditorOpen}
-        onClose={() => {
-          setIsEditorOpen(false);
-          setEditorAsset(null);
-        }}
-        initialAsset={editorAsset}
       />
 
       {/* Footer */}
@@ -124,7 +180,7 @@ export function App() {
 
           <div className="flex items-center gap-4 text-xs font-semibold text-black/70">
             <button
-              onClick={() => handleOpenEditor()}
+              onClick={() => navigateToEditor()}
               className="hover:text-black font-bold text-scribble-orange underline underline-offset-2"
             >
               SVG Editor
