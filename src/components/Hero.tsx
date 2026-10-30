@@ -1,36 +1,42 @@
-import React, { useState } from 'react';
-import { Sparkles, BookOpen, Pencil } from 'lucide-react';
-import { Scribble } from './Scribble';
-import { Navbar } from './Navbar';
+import React, { useState } from "react";
+import { Scribble } from "./Scribble";
+import { Navbar } from "./Navbar";
 
 interface HeroProps {
-  onScrollToCatalog: () => void;
-  onScrollToStudio: () => void;
+  onScrollToCatalog?: () => void;
+  onNavigateToLibrary?: () => void;
+  onNavigateToSvgStudio?: () => void;
+  onNavigateToHeadlineStudio?: () => void;
   onOpenGuide: () => void;
-  onOpenEditor: () => void;
+  onOpenEditor?: () => void;
+  onScrollToStudio?: () => void;
   onDownloadAll?: () => void;
   assetCount: number;
 }
 
 export const Hero: React.FC<HeroProps> = ({
   onScrollToCatalog,
-  onScrollToStudio,
+  onNavigateToLibrary,
+  onNavigateToSvgStudio,
+  onNavigateToHeadlineStudio,
   onOpenGuide,
   onOpenEditor,
+  onScrollToStudio,
   onDownloadAll = () => {},
   assetCount,
 }) => {
-  const [activeColor, setActiveColor] = useState('#EA552B');
+  const [activeColor, setActiveColor] = useState("#EA552B");
 
   return (
     <section className="relative min-h-screen flex flex-col justify-between overflow-hidden border-b border-black/10 bg-gradient-to-b from-[#FAF4EC] via-scribble-paper to-[#F5ECE1]">
       {/* Top Navbar sharing the exact same Hero background */}
       <Navbar
+        currentPage="library"
+        onNavigateToLibrary={onNavigateToLibrary || onScrollToCatalog}
+        onNavigateToSvgStudio={onNavigateToSvgStudio || onOpenEditor}
+        onNavigateToHeadlineStudio={onNavigateToHeadlineStudio || onScrollToStudio}
         onOpenGuide={onOpenGuide}
-        onScrollToStudio={onScrollToStudio}
-        onScrollToCatalog={onScrollToCatalog}
         onDownloadAll={onDownloadAll}
-        onOpenEditor={onOpenEditor}
         assetCount={assetCount}
       />
 
@@ -81,12 +87,14 @@ export const Hero: React.FC<HeroProps> = ({
           onClick={onOpenGuide}
         >
           <span className="w-2.5 h-2.5 rounded-full bg-scribble-orange animate-ping" />
-          <span className="text-xs font-bold uppercase tracking-wider text-black">
-            Funky Scribbbles Vector Kit
-          </span>
-          <span className="text-xs bg-scribble-yellow/40 text-black px-2 py-0.5 rounded-full font-bold">
-            {assetCount} Colorful Vectors
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-scribble-yellow/30 text-scribble-dark border border-scribble-yellow/60">
+              ScribbleKit
+            </span>
+            <span className="hidden sm:inline-block text-xs font-mono font-medium text-black/50">
+              v1.0.0 ({assetCount} assets)
+            </span>
+          </div>
         </div>
 
         {/* Hero Headline with Retro 'New' Starburst Stamp */}
@@ -102,7 +110,8 @@ export const Hero: React.FC<HeroProps> = ({
         </div>
 
         <p className="max-w-2xl sm:max-w-3xl mx-auto text-base sm:text-xl md:text-2xl text-black/75 mb-8 sm:mb-10 leading-relaxed font-sans font-medium">
-          A collection of funky vectorized scribbbles to spice up your design projects.
+          A collection of funky vectorized scribbbles to spice up your design
+          projects.
         </p>
 
         {/* Aesthetic Download & Centered Composition (Direct Match to Reference Image) */}
@@ -117,76 +126,45 @@ export const Hero: React.FC<HeroProps> = ({
             <Scribble name="funky-star-diamond-sparkle" size={54} />
           </div>
 
-          {/* The Button & Tucked Yellow Oval Stack */}
-          <div className="relative flex flex-col items-center">
-            {/* Clean, Aesthetic Black Download Button */}
-            <button
-              onClick={onScrollToCatalog}
-              className="relative z-20 px-9 sm:px-11 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl bg-black hover:bg-neutral-800 text-white font-bold text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105 active:scale-95 cursor-pointer tracking-wide flex items-center justify-center group"
-            >
-              <span>Download now</span>
-            </button>
-
-            {/* Sunny Spring Oval tucked underneath button - curves extend downward cleanly */}
-            <div className="relative -mt-6 sm:-mt-7 pointer-events-none select-none z-10 hover:scale-105 transition-transform">
-              <Scribble name="funky-yellow-spring-oval" width={290} height={104} />
-            </div>
-          </div>
-
           {/* Retro 3D Comic Lightning Bolt directly below yellow oval */}
           <div className="relative -mt-2 sm:-mt-3 pointer-events-none select-none hover:scale-110 transition-transform">
-            <Scribble name="funky-bolt-comic-3d" size={74} color={activeColor} />
+            <Scribble
+              name="funky-bolt-comic-3d"
+              size={98}
+              color={activeColor}
+            />
           </div>
 
           {/* Helper Tools: Palette & Quick Access Links */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mt-7 sm:mt-8">
+          <div className="flex flex-col flex-wrap items-center justify-center gap-3 mt-7 sm:mt-8">
             {/* Interactive Color Switcher */}
             <div className="inline-flex items-center gap-1.5 p-1.5 sm:p-2 bg-white/95 backdrop-blur-sm rounded-full border border-black/15 shadow-sm">
-              <span className="text-xs font-bold uppercase tracking-wider text-black/50 px-2">Palette:</span>
+              {/* <span className="text-xs font-bold uppercase tracking-wider text-black/50 px-2">
+                Palette:
+              </span> */}
               {[
-                { label: 'Retro Orange', color: '#EA552B' },
-                { label: 'Sunny Yellow', color: '#F7D046' },
-                { label: 'Kelly Green', color: '#4CA96D' },
-                { label: 'Bubblegum Pink', color: '#EE8DB9' },
-                { label: 'Sky Blue', color: '#55BBDA' },
-                { label: 'Scribble Mint', color: '#0BDC85' },
+                { label: "Retro Orange", color: "#EA552B" },
+                { label: "Sunny Yellow", color: "#F7D046" },
+                { label: "Kelly Green", color: "#4CA96D" },
+                { label: "Bubblegum Pink", color: "#EE8DB9" },
+                { label: "Sky Blue", color: "#55BBDA" },
+                { label: "Scribble Mint", color: "#0BDC85" },
               ].map((item) => (
                 <button
                   key={item.color}
                   onClick={() => setActiveColor(item.color)}
                   title={item.label}
                   className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full border-2 transition-all ${
-                    activeColor === item.color ? 'scale-110 border-black shadow-md' : 'border-transparent hover:scale-105'
+                    activeColor === item.color
+                      ? "scale-110 border-black shadow-md"
+                      : "border-transparent hover:scale-105"
                   }`}
                   style={{ backgroundColor: item.color }}
                 />
               ))}
             </div>
 
-            {/* Secondary Quick Action Pill Links */}
-            <button
-              onClick={onOpenEditor}
-              className="px-4 py-2 rounded-xl bg-black hover:bg-scribble-orange text-white font-bold text-xs shadow-md transition-all flex items-center gap-1.5 hover:-translate-y-0.5"
-            >
-              <Pencil className="w-3.5 h-3.5 text-scribble-yellow" />
-              <span>SVG Editor Studio</span>
-            </button>
-
-            <button
-              onClick={onScrollToStudio}
-              className="px-4 py-2 rounded-xl bg-white hover:bg-black/5 text-black font-semibold text-xs border border-black/15 shadow-sm transition-all flex items-center gap-1.5"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-scribble-orange" />
-              <span>Headline Studio</span>
-            </button>
-
-            <button
-              onClick={onOpenGuide}
-              className="px-4 py-2 rounded-xl bg-scribble-yellow/30 hover:bg-scribble-yellow/50 text-black font-semibold text-xs border border-scribble-yellow/60 shadow-sm transition-all flex items-center gap-1.5"
-            >
-              <BookOpen className="w-3.5 h-3.5 text-scribble-orange" />
-              <span>Design Guide</span>
-            </button>
+            
           </div>
         </div>
       </div>
