@@ -20,11 +20,14 @@ import {
   generateId,
   getPathBoundingBox,
   getElementTransform,
+  isBoxIntersecting,
+  getCombinedBoundingBox,
 } from './svg-utils';
 
 interface CanvasProps {
   elements: SvgElementData[];
   selectedId: string | null;
+  selectedIds?: string[];
   dimensions: CanvasDimensions;
   activeTool: EditorTool;
   background: CanvasBackground;
@@ -33,8 +36,10 @@ interface CanvasProps {
   showGrid: boolean;
   penColor: string;
   penStrokeWidth: number;
-  onSelectElement: (id: string | null) => void;
+  onSelectElement: (id: string | null, isMultiToggle?: boolean) => void;
+  onSelectMultiple?: (ids: string[], isAdditive?: boolean) => void;
   onUpdateElement: (id: string, updates: Partial<SvgElementData>, pushHistory?: boolean) => void;
+  onUpdateMultipleElements?: (updatesList: { id: string; updates: Partial<SvgElementData> }[], pushHistory?: boolean) => void;
   onAddElement: (element: SvgElementData) => void;
   onCommitHistory: () => void;
   onPanChange: (pan: Point) => void;
@@ -45,6 +50,7 @@ interface CanvasProps {
 export const Canvas: React.FC<CanvasProps> = ({
   elements,
   selectedId,
+  selectedIds,
   dimensions,
   activeTool,
   background,
@@ -54,7 +60,9 @@ export const Canvas: React.FC<CanvasProps> = ({
   penColor,
   penStrokeWidth,
   onSelectElement,
+  onSelectMultiple,
   onUpdateElement,
+  onUpdateMultipleElements,
   onAddElement,
   onCommitHistory,
   onPanChange,
@@ -71,12 +79,22 @@ export const Canvas: React.FC<CanvasProps> = ({
   const [shapeStart, setShapeStart] = useState<Point | null>(null);
   const [shapeCurrent, setShapeCurrent] = useState<Point | null>(null);
 
-  // Interaction / Dragging state
+  // Interaction / Dragging / Marquee state
   const [dragMode, setDragMode] = useState<
-    'none' | 'move' | 'rotate' | 'nw' | 'n' | 'ne' | 'e' | 'se' | 's' | 'sw' | 'w' | 'pan'
+    'none' | 'move' | 'rotate' | 'nw' | 'n' | 'ne' | 'e' | 'se' | 's' | 'sw' | 'w' | 'pan' | 'marquee'
   >('none');
+
+  const [marqueeBox, setMarqueeBox] = useState<{
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  } | null>(null);
+  const marqueeBoxRef = useRef(marqueeBox);
+  marqueeBoxRef.current = marqueeBox;
+
   const interactionRef = useRef<{
-    mode: 'none' | 'move' | 'rotate' | 'nw' | 'n' | 'ne' | 'e' | 'se' | 's' | 'sw' | 'w' | 'pan';
+    mode: 'none' | 'move' | 'rotate' | 'nw' | 'n' | 'ne' | 'e' | 'se' | 's' | 'sw' | 'w' | 'pan' | 'marquee';
     startMouse: Point;
     clientStart: Point;
     panStart: Point;
@@ -88,12 +106,28 @@ export const Canvas: React.FC<CanvasProps> = ({
       height: number;
       rotation: number;
     } | null;
+    elementsStart?: { id: string; x: number; y: number }[];
+    groupStart?: {
+      box: { x: number; y: number; width: number; height: number };
+      elements: {
+        id: string;
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+        fontSize?: number;
+      }[];
+    } | null;
+    isAdditiveMarquee?: boolean;
+    hasMoved?: boolean;
+    marqueeBox?: { x: number; y: number; width: number; height: number };
   }>({
     mode: 'none',
     startMouse: { x: 0, y: 0 },
     clientStart: { x: 0, y: 0 },
     panStart: { x: 0, y: 0 },
     elementStart: null,
+    groupStart: null,
   });
 
   // Spacebar pan toggle
@@ -120,7 +154,17 @@ export const Canvas: React.FC<CanvasProps> = ({
     };
   }, []);
 
-  const selectedElement = elements.find((el) => el.id === selectedId);
+  const activeSelectedIds = selectedIds !== undefined
+    ? selectedIds
+    : selectedId
+    ? [selectedId]
+    : [];
+
+  const selectedElements = elements.filter((el) => activeSelectedIds.includes(el.id));
+  const isMultiSelect = selectedElements.length > 1;
+  const combinedBox = isMultiSelect ? getCombinedBoundingBox(selectedElements) : null;
+  const singleSelectedElement = selectedElements.length === 1 ? selectedElements[0] : null;
+  const selectedElement = singleSelectedElement;
 
   // Convert screen coordinates to canvas SVG viewBox coordinates
   const getSvgCoordinates = useCallback(
@@ -154,17 +198,156 @@ export const Canvas: React.FC<CanvasProps> = ({
       }
 
       const pt = getSvgCoordinates(e.clientX, e.clientY);
-      const elStart = inter.elementStart;
-      if (!elStart) return;
+
+      // Handle Marquee Selection Drag (Right-click or background drag)
+      if (inter.mode === 'marquee') {
+        const x = Math.min(inter.startMouse.x, pt.x);
+        const y = Math.min(inter.startMouse.y, pt.y);
+        const width = Math.abs(pt.x - inter.startMouse.x);
+        const height = Math.abs(pt.y - inter.startMouse.y);
+        inter.hasMoved = true;
+        inter.marqueeBox = { x, y, width, height };
+        setMarqueeBox({ x, y, width, height });
+        return;
+      }
 
       const dx = pt.x - inter.startMouse.x;
       const dy = pt.y - inter.startMouse.y;
 
+      // Handle Multi-Selection Group Resizing (Proportional Scaling & Repositioning)
+      if (inter.groupStart) {
+        inter.hasMoved = true;
+        const orig = inter.groupStart.box;
+        let newX = orig.x;
+        let newY = orig.y;
+        let newW = orig.width;
+        let newH = orig.height;
+
+        if (inter.mode === 'se') {
+          newW = Math.max(20, orig.width + dx);
+          newH = Math.max(20, orig.height + dy);
+          if (e.shiftKey && orig.height > 0) {
+            newH = Math.round(orig.height * (newW / orig.width));
+          }
+        } else if (inter.mode === 'e') {
+          newW = Math.max(20, orig.width + dx);
+          if (e.shiftKey && orig.height > 0) {
+            newH = Math.round(orig.height * (newW / orig.width));
+          }
+        } else if (inter.mode === 's') {
+          newH = Math.max(20, orig.height + dy);
+          if (e.shiftKey && orig.width > 0) {
+            newW = Math.round(orig.width * (newH / orig.height));
+          }
+        } else if (inter.mode === 'ne') {
+          newW = Math.max(20, orig.width + dx);
+          newH = Math.max(20, orig.height - dy);
+          if (e.shiftKey && orig.height > 0) {
+            newH = Math.round(orig.height * (newW / orig.width));
+          }
+          newY = orig.y + (orig.height - newH);
+        } else if (inter.mode === 'sw') {
+          newW = Math.max(20, orig.width - dx);
+          newH = Math.max(20, orig.height + dy);
+          if (e.shiftKey && orig.height > 0) {
+            newH = Math.round(orig.height * (newW / orig.width));
+          }
+          newX = orig.x + (orig.width - newW);
+        } else if (inter.mode === 'nw') {
+          newW = Math.max(20, orig.width - dx);
+          newH = Math.max(20, orig.height - dy);
+          if (e.shiftKey && orig.height > 0) {
+            newH = Math.round(orig.height * (newW / orig.width));
+          }
+          newX = orig.x + (orig.width - newW);
+          newY = orig.y + (orig.height - newH);
+        } else if (inter.mode === 'w') {
+          newW = Math.max(20, orig.width - dx);
+          if (e.shiftKey && orig.height > 0) {
+            newH = Math.round(orig.height * (newW / orig.width));
+          }
+          newX = orig.x + (orig.width - newW);
+        } else if (inter.mode === 'n') {
+          newH = Math.max(20, orig.height - dy);
+          if (e.shiftKey && orig.width > 0) {
+            newW = Math.round(orig.width * (newH / orig.height));
+          }
+          newY = orig.y + (orig.height - newH);
+        }
+
+        const scaleX = orig.width > 0 ? newW / orig.width : 1;
+        const scaleY = orig.height > 0 ? newH / orig.height : 1;
+
+        const updatesList = inter.groupStart.elements.map((el) => {
+          const relX = el.x - orig.x;
+          const relY = el.y - orig.y;
+          const scaledX = Math.round(newX + relX * scaleX);
+          const scaledY = Math.round(newY + relY * scaleY);
+          const scaledW = Math.max(4, Math.round(el.width * scaleX));
+          const scaledH = Math.max(4, Math.round(el.height * scaleY));
+
+          const u: Partial<SvgElementData> = {
+            x: scaledX,
+            y: scaledY,
+            width: scaledW,
+            height: scaledH,
+          };
+          if (el.fontSize) {
+            u.fontSize = Math.max(8, Math.round(el.fontSize * scaleY));
+          }
+          return { id: el.id, updates: u };
+        });
+
+        if (onUpdateMultipleElements) {
+          onUpdateMultipleElements(updatesList, false);
+        } else {
+          for (const item of updatesList) {
+            onUpdateElement(item.id, item.updates, false);
+          }
+        }
+        return;
+      }
+
+      const elStart = inter.elementStart;
+      if (!elStart) return;
+
       if (inter.mode === 'move') {
-        onUpdateElement(elStart.id, {
-          x: Math.round(elStart.x + dx),
-          y: Math.round(elStart.y + dy),
-        }, false);
+        inter.hasMoved = true;
+        if (inter.elementsStart && inter.elementsStart.length > 1) {
+          // Multi-element synchronized atomic movement
+          if (onUpdateMultipleElements) {
+            onUpdateMultipleElements(
+              inter.elementsStart.map((item) => ({
+                id: item.id,
+                updates: {
+                  x: Math.round(item.x + dx),
+                  y: Math.round(item.y + dy),
+                },
+              })),
+              false
+            );
+          } else {
+            for (const item of inter.elementsStart) {
+              onUpdateElement(
+                item.id,
+                {
+                  x: Math.round(item.x + dx),
+                  y: Math.round(item.y + dy),
+                },
+                false
+              );
+            }
+          }
+        } else {
+          onUpdateElement(
+            elStart.id,
+            {
+              x: Math.round(elStart.x + dx),
+              y: Math.round(elStart.y + dy),
+            },
+            false
+          );
+        }
       } else if (inter.mode === 'rotate') {
         const cx = elStart.x + elStart.width / 2;
         const cy = elStart.y + elStart.height / 2;
@@ -228,19 +411,89 @@ export const Canvas: React.FC<CanvasProps> = ({
     };
 
     const handleWindowPointerUp = () => {
-      if (interactionRef.current.mode !== 'none') {
-        const wasTransforming = interactionRef.current.mode !== 'pan';
+      const inter = interactionRef.current;
+      if (inter.mode === 'none') return;
+
+      if (inter.mode === 'marquee') {
+        const box = inter.marqueeBox || marqueeBoxRef.current;
+        if (box && (box.width > 3 || box.height > 3)) {
+          const hits = elements
+            .filter((el) => el.visible && isBoxIntersecting(el, box))
+            .map((el) => el.id);
+
+          if (onSelectMultiple) {
+            onSelectMultiple(hits, inter.isAdditiveMarquee);
+          } else if (hits.length > 0) {
+            onSelectElement(hits[0]);
+          } else {
+            onSelectElement(null);
+          }
+        } else if (!inter.isAdditiveMarquee && !inter.hasMoved) {
+          onSelectElement(null);
+        }
+        setMarqueeBox(null);
+        setDragMode('none');
         interactionRef.current = {
           mode: 'none',
           startMouse: { x: 0, y: 0 },
           clientStart: { x: 0, y: 0 },
           panStart: { x: 0, y: 0 },
           elementStart: null,
+          groupStart: null,
+        };
+        return;
+      }
+
+      if (inter.groupStart) {
+        const hadMoved = inter.hasMoved;
+        interactionRef.current = {
+          mode: 'none',
+          startMouse: { x: 0, y: 0 },
+          clientStart: { x: 0, y: 0 },
+          panStart: { x: 0, y: 0 },
+          elementStart: null,
+          groupStart: null,
         };
         setDragMode('none');
-        if (wasTransforming) {
+        if (hadMoved) {
           onCommitHistory();
         }
+        return;
+      }
+
+      if (inter.mode === 'move') {
+        const hadMoved = inter.hasMoved;
+        const elStart = inter.elementStart;
+        interactionRef.current = {
+          mode: 'none',
+          startMouse: { x: 0, y: 0 },
+          clientStart: { x: 0, y: 0 },
+          panStart: { x: 0, y: 0 },
+          elementStart: null,
+          groupStart: null,
+        };
+        setDragMode('none');
+        if (hadMoved) {
+          onCommitHistory();
+        } else if (elStart && activeSelectedIds.length > 1) {
+          // If clicked inside a multi-selection without dragging, narrow down to that element
+          onSelectElement(elStart.id, false);
+        }
+        return;
+      }
+
+      const wasTransforming = inter.mode !== 'pan';
+      interactionRef.current = {
+        mode: 'none',
+        startMouse: { x: 0, y: 0 },
+        clientStart: { x: 0, y: 0 },
+        panStart: { x: 0, y: 0 },
+        elementStart: null,
+        groupStart: null,
+      };
+      setDragMode('none');
+      if (wasTransforming) {
+        onCommitHistory();
       }
     };
 
@@ -250,10 +503,39 @@ export const Canvas: React.FC<CanvasProps> = ({
       window.removeEventListener('pointermove', handleWindowPointerMove);
       window.removeEventListener('pointerup', handleWindowPointerUp);
     };
-  }, [getSvgCoordinates, onCommitHistory, onPanChange, onUpdateElement]);
+  }, [
+    activeSelectedIds.length,
+    elements,
+    getSvgCoordinates,
+    onCommitHistory,
+    onPanChange,
+    onSelectElement,
+    onSelectMultiple,
+    onUpdateElement,
+    onUpdateMultipleElements,
+  ]);
 
   // Handle pointer down on SVG
   const handlePointerDown = (e: React.PointerEvent<SVGSVGElement>) => {
+    // Right-click drag starts Marquee Selection anywhere on canvas
+    if (e.button === 2) {
+      e.preventDefault();
+      const pt = getSvgCoordinates(e.clientX, e.clientY);
+      const isAdditive = e.ctrlKey || e.metaKey;
+      interactionRef.current = {
+        mode: 'marquee',
+        startMouse: pt,
+        clientStart: { x: e.clientX, y: e.clientY },
+        panStart: { ...pan },
+        elementStart: null,
+        isAdditiveMarquee: isAdditive,
+        hasMoved: false,
+      };
+      setMarqueeBox({ x: pt.x, y: pt.y, width: 0, height: 0 });
+      setDragMode('marquee');
+      return;
+    }
+
     if (e.button !== 0 && e.button !== 1) return;
 
     if (e.button === 1 || activeTool === 'pan' || isSpacePressed) {
@@ -316,7 +598,22 @@ export const Canvas: React.FC<CanvasProps> = ({
     }
 
     if (activeTool === 'select' && (e.target as SVGElement).id === 'canvas-background-hitbox') {
-      onSelectElement(null);
+      const isAdditive = e.ctrlKey || e.metaKey;
+      if (!isAdditive) {
+        onSelectElement(null);
+      }
+      // Start Marquee drag on canvas background
+      interactionRef.current = {
+        mode: 'marquee',
+        startMouse: pt,
+        clientStart: { x: e.clientX, y: e.clientY },
+        panStart: { ...pan },
+        elementStart: null,
+        isAdditiveMarquee: isAdditive,
+        hasMoved: false,
+      };
+      setMarqueeBox({ x: pt.x, y: pt.y, width: 0, height: 0 });
+      setDragMode('marquee');
     }
   };
 
@@ -470,26 +767,82 @@ export const Canvas: React.FC<CanvasProps> = ({
 
   // Start element move
   const startElementMove = (e: React.PointerEvent, el: SvgElementData) => {
-    if (activeTool !== 'select' || el.locked || isSpacePressed) return;
+    // If right-clicked on an element, initiate marquee selection drag instead of element drag
+    if (e.button === 2) {
+      e.preventDefault();
+      e.stopPropagation();
+      const pt = getSvgCoordinates(e.clientX, e.clientY);
+      const isAdditive = e.ctrlKey || e.metaKey;
+      interactionRef.current = {
+        mode: 'marquee',
+        startMouse: pt,
+        clientStart: { x: e.clientX, y: e.clientY },
+        panStart: { ...pan },
+        elementStart: null,
+        isAdditiveMarquee: isAdditive,
+        hasMoved: false,
+      };
+      setMarqueeBox({ x: pt.x, y: pt.y, width: 0, height: 0 });
+      setDragMode('marquee');
+      return;
+    }
+
+    if (e.button !== 0 || activeTool !== 'select' || el.locked || isSpacePressed) return;
     e.stopPropagation();
-    onSelectElement(el.id);
+
+    const isCtrlOrCmd = e.ctrlKey || e.metaKey;
+    if (isCtrlOrCmd) {
+      // Ctrl/Cmd + Click: toggle element in multi-selection!
+      onSelectElement(el.id, true);
+      return;
+    }
+
     const pt = getSvgCoordinates(e.clientX, e.clientY);
 
-    interactionRef.current = {
-      mode: 'move',
-      startMouse: pt,
-      clientStart: { x: e.clientX, y: e.clientY },
-      panStart: { ...pan },
-      elementStart: {
-        id: el.id,
-        x: el.x,
-        y: el.y,
-        width: el.width,
-        height: el.height,
-        rotation: el.rotation,
-      },
-    };
-    setDragMode('move');
+    // If the clicked element is already in activeSelectedIds, move all selected elements together
+    if (activeSelectedIds.includes(el.id)) {
+      interactionRef.current = {
+        mode: 'move',
+        startMouse: pt,
+        clientStart: { x: e.clientX, y: e.clientY },
+        panStart: { ...pan },
+        elementStart: {
+          id: el.id,
+          x: el.x,
+          y: el.y,
+          width: el.width,
+          height: el.height,
+          rotation: el.rotation,
+        },
+        elementsStart: selectedElements.map((item) => ({
+          id: item.id,
+          x: item.x,
+          y: item.y,
+        })),
+        hasMoved: false,
+      };
+      setDragMode('move');
+    } else {
+      // Select solely and start move
+      onSelectElement(el.id, false);
+      interactionRef.current = {
+        mode: 'move',
+        startMouse: pt,
+        clientStart: { x: e.clientX, y: e.clientY },
+        panStart: { ...pan },
+        elementStart: {
+          id: el.id,
+          x: el.x,
+          y: el.y,
+          width: el.width,
+          height: el.height,
+          rotation: el.rotation,
+        },
+        elementsStart: [{ id: el.id, x: el.x, y: el.y }],
+        hasMoved: false,
+      };
+      setDragMode('move');
+    }
   };
 
   // Start handle transform
@@ -498,6 +851,7 @@ export const Canvas: React.FC<CanvasProps> = ({
     mode: 'nw' | 'n' | 'ne' | 'e' | 'se' | 's' | 'sw' | 'w' | 'rotate'
   ) => {
     e.stopPropagation();
+    e.preventDefault();
     if (!selectedElement) return;
     const pt = getSvgCoordinates(e.clientX, e.clientY);
 
@@ -514,6 +868,39 @@ export const Canvas: React.FC<CanvasProps> = ({
         height: selectedElement.height,
         rotation: selectedElement.rotation,
       },
+      groupStart: null,
+    };
+    setDragMode(mode);
+  };
+
+  // Start group handle transform (for multi-selection resizing)
+  const startGroupHandleTransform = (
+    e: React.PointerEvent,
+    mode: 'nw' | 'n' | 'ne' | 'e' | 'se' | 's' | 'sw' | 'w'
+  ) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if (!combinedBox || selectedElements.length < 2) return;
+    const pt = getSvgCoordinates(e.clientX, e.clientY);
+
+    interactionRef.current = {
+      mode,
+      startMouse: pt,
+      clientStart: { x: e.clientX, y: e.clientY },
+      panStart: { ...pan },
+      elementStart: null,
+      groupStart: {
+        box: { ...combinedBox },
+        elements: selectedElements.map((el) => ({
+          id: el.id,
+          x: el.x,
+          y: el.y,
+          width: el.width,
+          height: el.height,
+          fontSize: el.fontSize,
+        })),
+      },
+      hasMoved: false,
     };
     setDragMode(mode);
   };
@@ -539,6 +926,7 @@ export const Canvas: React.FC<CanvasProps> = ({
   // Compute stable cursor during dragging, hover, and tool usage
   const getCanvasCursor = () => {
     if (dragMode === 'pan' || isSpacePressed) return 'grabbing';
+    if (dragMode === 'marquee') return 'crosshair';
     if (dragMode === 'move') return 'move';
     if (dragMode === 'se' || dragMode === 'nw') return 'nwse-resize';
     if (dragMode === 'ne' || dragMode === 'sw') return 'nesw-resize';
@@ -559,12 +947,16 @@ export const Canvas: React.FC<CanvasProps> = ({
     cx: number,
     cy: number,
     cursor: string,
-    mode: 'nw' | 'n' | 'ne' | 'e' | 'se' | 's' | 'sw' | 'w'
+    mode: 'nw' | 'n' | 'ne' | 'e' | 'se' | 's' | 'sw' | 'w',
+    isGroup = false
   ) => (
     <g
-      key={mode}
+      key={isGroup ? `group-${mode}` : mode}
+      data-handle={isGroup ? `group-${mode}` : mode}
       style={{ cursor }}
-      onPointerDown={(e) => startHandleTransform(e, mode)}
+      onPointerDown={(e) =>
+        isGroup ? startGroupHandleTransform(e, mode) : startHandleTransform(e, mode)
+      }
       className="group pointer-events-auto"
     >
       {/* 20px transparent hitbox: ensures mouse never slips off handle boundary */}
@@ -596,6 +988,7 @@ export const Canvas: React.FC<CanvasProps> = ({
     <div
       ref={containerRef}
       onWheel={handleWheel}
+      onContextMenu={(e) => e.preventDefault()}
       className="relative flex-1 w-full h-full overflow-hidden flex items-center justify-center select-none bg-[#EFECE6]/50"
       style={{ cursor: getCanvasCursor() }}
     >
@@ -614,6 +1007,7 @@ export const Canvas: React.FC<CanvasProps> = ({
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
+          onContextMenu={(e) => e.preventDefault()}
           className={`rounded-2xl border border-black/15 shadow-xl overflow-visible ${getCanvasBackgroundClass()}`}
         >
           {/* Dynamic SVG Defs for Filters */}
@@ -646,7 +1040,7 @@ export const Canvas: React.FC<CanvasProps> = ({
           {elements.map((el) => {
             if (!el.visible) return null;
 
-            const isSelected = el.id === selectedId;
+            const isSelected = activeSelectedIds.includes(el.id);
             const filterAttr = el.wiggle?.enabled
               ? 'url(#canvas-wiggle)'
               : el.glow?.enabled
@@ -833,111 +1227,278 @@ export const Canvas: React.FC<CanvasProps> = ({
             );
           })}
 
-          {/* Interactive Bounding Box & 8 Handles for Selected Element */}
-          {selectedElement && activeTool === 'select' && (
-            <g
-              transform={
-                selectedElement.rotation !== 0
-                  ? `rotate(${selectedElement.rotation} ${selectedElement.x + selectedElement.width / 2} ${selectedElement.y + selectedElement.height / 2})`
-                  : undefined
-              }
-              className="pointer-events-auto"
-            >
-              {/* Outer Bounding Box Border */}
+          {/* Active Selection Highlights & Handles */}
+          {activeTool === 'select' && (
+            <>
+              {/* Case A: Single Element Selected (8 Handles & Rotation Stem) */}
+              {!isMultiSelect && singleSelectedElement && (
+                <g
+                  transform={
+                    singleSelectedElement.rotation !== 0
+                      ? `rotate(${singleSelectedElement.rotation} ${
+                          singleSelectedElement.x + singleSelectedElement.width / 2
+                        } ${singleSelectedElement.y + singleSelectedElement.height / 2})`
+                      : undefined
+                  }
+                  className="pointer-events-auto"
+                >
+                  {/* Outer Bounding Box Border */}
+                  <rect
+                    x={singleSelectedElement.x}
+                    y={singleSelectedElement.y}
+                    width={singleSelectedElement.width}
+                    height={singleSelectedElement.height}
+                    fill="none"
+                    stroke="#EA552B"
+                    strokeWidth={1.5}
+                    className="pointer-events-none"
+                  />
+
+                  {/* Rotation Handle with Generous Hitbox & Stable Position */}
+                  <g
+                    style={{ cursor: 'crosshair' }}
+                    onPointerDown={(e) => startHandleTransform(e, 'rotate')}
+                    className="group pointer-events-auto"
+                  >
+                    <line
+                      x1={singleSelectedElement.x + singleSelectedElement.width / 2}
+                      y1={singleSelectedElement.y}
+                      x2={singleSelectedElement.x + singleSelectedElement.width / 2}
+                      y2={singleSelectedElement.y - 24}
+                      stroke="#EA552B"
+                      strokeWidth={1.5}
+                      className="pointer-events-none"
+                    />
+                    {/* 24px transparent hit area so crosshair cursor never jitters/flickers */}
+                    <circle
+                      cx={singleSelectedElement.x + singleSelectedElement.width / 2}
+                      cy={singleSelectedElement.y - 24}
+                      r={12}
+                      fill="transparent"
+                      style={{ cursor: 'crosshair' }}
+                    />
+                    <circle
+                      cx={singleSelectedElement.x + singleSelectedElement.width / 2}
+                      cy={singleSelectedElement.y - 24}
+                      r={6}
+                      fill="#EA552B"
+                      stroke="#ffffff"
+                      strokeWidth={2}
+                      className="pointer-events-none group-hover:fill-black"
+                    />
+                  </g>
+
+                  {/* 8-Directional Stable Sizing Handles */}
+                  {renderResizeHandle(
+                    singleSelectedElement.x + singleSelectedElement.width,
+                    singleSelectedElement.y + singleSelectedElement.height,
+                    'nwse-resize',
+                    'se'
+                  )}
+                  {renderResizeHandle(
+                    singleSelectedElement.x + singleSelectedElement.width,
+                    singleSelectedElement.y + singleSelectedElement.height / 2,
+                    'ew-resize',
+                    'e'
+                  )}
+                  {renderResizeHandle(
+                    singleSelectedElement.x + singleSelectedElement.width / 2,
+                    singleSelectedElement.y + singleSelectedElement.height,
+                    'ns-resize',
+                    's'
+                  )}
+                  {renderResizeHandle(
+                    singleSelectedElement.x,
+                    singleSelectedElement.y,
+                    'nwse-resize',
+                    'nw'
+                  )}
+                  {renderResizeHandle(
+                    singleSelectedElement.x + singleSelectedElement.width,
+                    singleSelectedElement.y,
+                    'nesw-resize',
+                    'ne'
+                  )}
+                  {renderResizeHandle(
+                    singleSelectedElement.x,
+                    singleSelectedElement.y + singleSelectedElement.height,
+                    'nesw-resize',
+                    'sw'
+                  )}
+                  {renderResizeHandle(
+                    singleSelectedElement.x + singleSelectedElement.width / 2,
+                    singleSelectedElement.y,
+                    'ns-resize',
+                    'n'
+                  )}
+                  {renderResizeHandle(
+                    singleSelectedElement.x,
+                    singleSelectedElement.y + singleSelectedElement.height / 2,
+                    'ew-resize',
+                    'w'
+                  )}
+                </g>
+              )}
+
+              {/* Case B: Multiple Elements Selected (Outlines + Group Combined Box) */}
+              {isMultiSelect && (
+                <g className="pointer-events-auto">
+                  {/* Dashed outline for each element in multi-selection */}
+                  {selectedElements.map((el) => (
+                    <rect
+                      key={`multi-outline-${el.id}`}
+                      x={el.x}
+                      y={el.y}
+                      width={el.width}
+                      height={el.height}
+                      fill="none"
+                      stroke="#EA552B"
+                      strokeWidth={1.5}
+                      strokeDasharray="4 4"
+                      className="pointer-events-none opacity-80"
+                    />
+                  ))}
+
+                  {/* Combined bounding box surrounding the multi-selected elements */}
+                  {combinedBox && (
+                    <g className="pointer-events-auto">
+                      <rect
+                        x={combinedBox.x}
+                        y={combinedBox.y}
+                        width={combinedBox.width}
+                        height={combinedBox.height}
+                        fill="none"
+                        stroke="#EA552B"
+                        strokeWidth={2}
+                        className="pointer-events-none"
+                      />
+                      {/* Pill badge displaying multi-selected count */}
+                      <g
+                        transform={`translate(${combinedBox.x}, ${Math.max(0, combinedBox.y - 24)})`}
+                        className="pointer-events-none"
+                      >
+                        <rect
+                          width={116}
+                          height={20}
+                          rx={6}
+                          fill="#141416"
+                          className="shadow-md"
+                        />
+                        <text
+                          x={8}
+                          y={14}
+                          fill="#ffffff"
+                          fontSize={11}
+                          fontWeight="bold"
+                          fontFamily="Space Grotesk"
+                        >
+                          {selectedElements.length} items selected
+                        </text>
+                      </g>
+
+                      {/* 8-Directional Group Resizing Handles */}
+                      {renderResizeHandle(
+                        combinedBox.x + combinedBox.width,
+                        combinedBox.y + combinedBox.height,
+                        'nwse-resize',
+                        'se',
+                        true
+                      )}
+                      {renderResizeHandle(
+                        combinedBox.x + combinedBox.width,
+                        combinedBox.y + combinedBox.height / 2,
+                        'ew-resize',
+                        'e',
+                        true
+                      )}
+                      {renderResizeHandle(
+                        combinedBox.x + combinedBox.width / 2,
+                        combinedBox.y + combinedBox.height,
+                        'ns-resize',
+                        's',
+                        true
+                      )}
+                      {renderResizeHandle(
+                        combinedBox.x,
+                        combinedBox.y,
+                        'nwse-resize',
+                        'nw',
+                        true
+                      )}
+                      {renderResizeHandle(
+                        combinedBox.x + combinedBox.width,
+                        combinedBox.y,
+                        'nesw-resize',
+                        'ne',
+                        true
+                      )}
+                      {renderResizeHandle(
+                        combinedBox.x,
+                        combinedBox.y + combinedBox.height,
+                        'nesw-resize',
+                        'sw',
+                        true
+                      )}
+                      {renderResizeHandle(
+                        combinedBox.x + combinedBox.width / 2,
+                        combinedBox.y,
+                        'ns-resize',
+                        'n',
+                        true
+                      )}
+                      {renderResizeHandle(
+                        combinedBox.x,
+                        combinedBox.y + combinedBox.height / 2,
+                        'ew-resize',
+                        'w',
+                        true
+                      )}
+                    </g>
+                  )}
+                </g>
+              )}
+            </>
+          )}
+
+          {/* Active Marquee Selection Box (Drawn on Right-Click Drag or Background Drag) */}
+          {marqueeBox && (marqueeBox.width > 2 || marqueeBox.height > 2) && (
+            <g className="pointer-events-none">
               <rect
-                x={selectedElement.x}
-                y={selectedElement.y}
-                width={selectedElement.width}
-                height={selectedElement.height}
-                fill="none"
+                x={marqueeBox.x}
+                y={marqueeBox.y}
+                width={marqueeBox.width}
+                height={marqueeBox.height}
+                fill="rgba(234, 85, 43, 0.12)"
                 stroke="#EA552B"
                 strokeWidth={1.5}
-                className="pointer-events-none"
+                strokeDasharray="4 4"
+                rx={2}
               />
-
-              {/* Rotation Handle with Generous Hitbox & Stable Position */}
-              <g
-                style={{ cursor: 'crosshair' }}
-                onPointerDown={(e) => startHandleTransform(e, 'rotate')}
-                className="group pointer-events-auto"
-              >
-                <line
-                  x1={selectedElement.x + selectedElement.width / 2}
-                  y1={selectedElement.y}
-                  x2={selectedElement.x + selectedElement.width / 2}
-                  y2={selectedElement.y - 24}
-                  stroke="#EA552B"
-                  strokeWidth={1.5}
-                  className="pointer-events-none"
-                />
-                {/* 24px transparent hit area so crosshair cursor never jitters/flickers */}
-                <circle
-                  cx={selectedElement.x + selectedElement.width / 2}
-                  cy={selectedElement.y - 24}
-                  r={12}
-                  fill="transparent"
-                  style={{ cursor: 'crosshair' }}
-                />
-                <circle
-                  cx={selectedElement.x + selectedElement.width / 2}
-                  cy={selectedElement.y - 24}
-                  r={6}
-                  fill="#EA552B"
-                  stroke="#ffffff"
-                  strokeWidth={2}
-                  className="pointer-events-none group-hover:fill-black"
-                />
-              </g>
-
-              {/* 8-Directional Stable Sizing Handles */}
-              {renderResizeHandle(
-                selectedElement.x + selectedElement.width,
-                selectedElement.y + selectedElement.height,
-                'nwse-resize',
-                'se'
-              )}
-              {renderResizeHandle(
-                selectedElement.x + selectedElement.width,
-                selectedElement.y + selectedElement.height / 2,
-                'ew-resize',
-                'e'
-              )}
-              {renderResizeHandle(
-                selectedElement.x + selectedElement.width / 2,
-                selectedElement.y + selectedElement.height,
-                'ns-resize',
-                's'
-              )}
-              {renderResizeHandle(
-                selectedElement.x,
-                selectedElement.y,
-                'nwse-resize',
-                'nw'
-              )}
-              {renderResizeHandle(
-                selectedElement.x + selectedElement.width,
-                selectedElement.y,
-                'nesw-resize',
-                'ne'
-              )}
-              {renderResizeHandle(
-                selectedElement.x,
-                selectedElement.y + selectedElement.height,
-                'nesw-resize',
-                'sw'
-              )}
-              {renderResizeHandle(
-                selectedElement.x + selectedElement.width / 2,
-                selectedElement.y,
-                'ns-resize',
-                'n'
-              )}
-              {renderResizeHandle(
-                selectedElement.x,
-                selectedElement.y + selectedElement.height / 2,
-                'ew-resize',
-                'w'
-              )}
+              {(() => {
+                const hitCount = elements.filter(
+                  (el) => el.visible && isBoxIntersecting(el, marqueeBox)
+                ).length;
+                return (
+                  <g transform={`translate(${marqueeBox.x}, ${Math.max(0, marqueeBox.y - 20)})`}>
+                    <rect
+                      width={hitCount > 0 ? 84 : 74}
+                      height={18}
+                      rx={4}
+                      fill="#141416"
+                    />
+                    <text
+                      x={6}
+                      y={12}
+                      fill="#ffffff"
+                      fontSize={10}
+                      fontWeight="bold"
+                      fontFamily="Space Grotesk"
+                    >
+                      {hitCount > 0 ? `${hitCount} selected` : 'Drag to select'}
+                    </text>
+                  </g>
+                );
+              })()}
             </g>
           )}
 

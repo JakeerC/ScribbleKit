@@ -16,8 +16,10 @@ import {
   Undo2,
   Redo2,
   Trash2,
-  Plus,
   ChevronDown,
+  Copy,
+  ClipboardPaste,
+  Files,
 } from 'lucide-react';
 import { EditorTool } from './types';
 import { COLOR_PRESETS } from '../../lib/scribbles-data';
@@ -35,6 +37,14 @@ interface ToolbarProps {
   onRedo: () => void;
   onClearCanvas: () => void;
   onOpenAssetStamp: () => void;
+  isAssetsDrawerOpen?: boolean;
+  onToggleAssetsDrawer?: () => void;
+  selectedCount?: number;
+  canPaste?: boolean;
+  onCopy?: () => void;
+  onPaste?: () => void;
+  onDuplicate?: () => void;
+  onDelete?: () => void;
 }
 
 export const Toolbar: React.FC<ToolbarProps> = ({
@@ -50,6 +60,14 @@ export const Toolbar: React.FC<ToolbarProps> = ({
   onRedo,
   onClearCanvas,
   onOpenAssetStamp,
+  isAssetsDrawerOpen,
+  onToggleAssetsDrawer,
+  selectedCount = 0,
+  canPaste = false,
+  onCopy,
+  onPaste,
+  onDuplicate,
+  onDelete,
 }) => {
   const [shapesOpen, setShapesOpen] = useState(false);
 
@@ -173,14 +191,21 @@ export const Toolbar: React.FC<ToolbarProps> = ({
           <Hand className="w-4 h-4" />
         </button>
 
-        {/* Stamp ScribbleKit Asset */}
+        {/* Toggle Left Assets Drawer */}
         <button
-          onClick={onOpenAssetStamp}
-          className="p-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 bg-scribble-yellow hover:bg-scribble-yellow/80 text-scribble-dark shadow-sm hover:scale-[1.02]"
-          title="Stamp Any ScribbleKit Doodle onto Canvas"
+          onClick={onToggleAssetsDrawer || onOpenAssetStamp}
+          className={`p-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+            isAssetsDrawerOpen
+              ? 'bg-scribble-orange text-white shadow-sm ring-2 ring-scribble-orange/30'
+              : 'bg-scribble-yellow hover:bg-scribble-yellow/80 text-scribble-dark shadow-sm hover:scale-[1.02]'
+          }`}
+          title="Toggle Left Assets Library Drawer (Ctrl+B)"
         >
-          <Plus className="w-3.5 h-3.5" />
-          <span>Stamp Scribble</span>
+          <Sparkles className="w-3.5 h-3.5" />
+          <span>Assets</span>
+          <span className={`text-[10px] font-extrabold px-1.5 py-0.2 rounded-full ${isAssetsDrawerOpen ? 'bg-white/20 text-white' : 'bg-black/10 text-scribble-dark'}`}>
+            140
+          </span>
         </button>
       </div>
 
@@ -230,6 +255,53 @@ export const Toolbar: React.FC<ToolbarProps> = ({
 
       {/* Right: History & Actions */}
       <div className="flex items-center gap-1">
+        {/* Multi-Selection & Quick Actions Bar */}
+        {selectedCount > 0 && (
+          <div className="flex items-center gap-1 bg-[#FAF7F2] px-1.5 py-1 rounded-xl border border-black/15 mr-1">
+            <span className="text-[10px] font-extrabold text-scribble-orange uppercase px-1">
+              {selectedCount} {selectedCount === 1 ? 'item' : 'items'}
+            </span>
+            {onCopy && (
+              <button
+                onClick={onCopy}
+                className="p-1.5 rounded-lg bg-white hover:bg-orange-50 text-black/80 hover:text-scribble-orange border border-black/10 shadow-xs transition-transform active:scale-95"
+                title="Copy Selected (Cmd+C)"
+              >
+                <Copy className="w-3.5 h-3.5" />
+              </button>
+            )}
+            {onDuplicate && (
+              <button
+                onClick={onDuplicate}
+                className="p-1.5 rounded-lg bg-white hover:bg-orange-50 text-black/80 hover:text-scribble-orange border border-black/10 shadow-xs transition-transform active:scale-95"
+                title="Duplicate Selected (Cmd+D)"
+              >
+                <Files className="w-3.5 h-3.5" />
+              </button>
+            )}
+            {onDelete && (
+              <button
+                onClick={onDelete}
+                className="p-1.5 rounded-lg bg-white hover:bg-red-50 text-red-600 border border-red-200 shadow-xs transition-transform active:scale-95"
+                title="Delete Selected (Backspace / Delete)"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+              </button>
+            )}
+          </div>
+        )}
+
+        {canPaste && onPaste && (
+          <button
+            onClick={onPaste}
+            className="px-2 py-1.5 rounded-xl border border-scribble-orange/40 bg-scribble-orange/10 hover:bg-scribble-orange/20 text-scribble-orange text-xs font-bold transition-all shadow-xs flex items-center gap-1 mr-1"
+            title="Paste Clipboard (Cmd+V)"
+          >
+            <ClipboardPaste className="w-3.5 h-3.5" />
+            <span className="text-[11px] hidden sm:inline">Paste</span>
+          </button>
+        )}
+
         <button
           onClick={onUndo}
           disabled={!canUndo}

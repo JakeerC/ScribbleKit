@@ -48,6 +48,48 @@ export function getPathBoundingBox(d: string): { x: number; y: number; width: nu
 }
 
 /**
+ * Checks if two 2D axis-aligned bounding boxes intersect.
+ */
+export function isBoxIntersecting(
+  box1: { x: number; y: number; width: number; height: number },
+  box2: { x: number; y: number; width: number; height: number }
+): boolean {
+  return !(
+    box1.x + box1.width < box2.x ||
+    box2.x + box2.width < box1.x ||
+    box1.y + box1.height < box2.y ||
+    box2.y + box2.height < box1.y
+  );
+}
+
+/**
+ * Computes the unified bounding box that encloses multiple elements.
+ */
+export function getCombinedBoundingBox(
+  elements: { x: number; y: number; width: number; height: number }[]
+): { x: number; y: number; width: number; height: number } | null {
+  if (elements.length === 0) return null;
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+
+  for (const el of elements) {
+    if (el.x < minX) minX = el.x;
+    if (el.y < minY) minY = el.y;
+    if (el.x + el.width > maxX) maxX = el.x + el.width;
+    if (el.y + el.height > maxY) maxY = el.y + el.height;
+  }
+
+  return {
+    x: Math.round(minX),
+    y: Math.round(minY),
+    width: Math.round(maxX - minX),
+    height: Math.round(maxY - minY),
+  };
+}
+
+/**
  * Computes the unified SVG transform string for an element.
  */
 export function getElementTransform(el: SvgElementData): string {
