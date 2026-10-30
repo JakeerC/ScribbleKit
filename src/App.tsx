@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Hero } from './components/Hero';
 import { HeroFeatures } from './components/HeroFeatures';
 import { HeadlineStudio } from './components/HeadlineStudio';
@@ -127,6 +129,7 @@ export function App() {
   // Home / Library View
   return (
     <div className="min-h-screen flex flex-col bg-scribble-paper selection:bg-scribble-yellow selection:text-black">
+      <SpeedInsights />
       <main className="flex-1">
         {/* Full-Screen Hero & Navbar Screen */}
         <Hero

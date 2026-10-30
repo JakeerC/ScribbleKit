@@ -6,6 +6,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Vector Quality](https://img.shields.io/badge/Vectors-100%25%20SVG-EA552B)](https://github.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-0BDC85.svg)](LICENSE)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FJakeerC%2FScribbleKit)
 
 ---
 
@@ -47,6 +48,40 @@ npm run build
 ```
 
 Open [http://localhost:5173](http://localhost:5173) to launch the **ScribbleKit Studio**.
+
+---
+
+## 🚢 Deployment
+
+### Deploy to Vercel
+
+ScribbleKit is pre-configured for instant zero-configuration deployment on [Vercel](https://vercel.com):
+
+#### Option 1: 1-Click Deploy
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FJakeerC%2FScribbleKit)
+
+#### Option 2: Via Vercel Web Dashboard
+1. Go to [vercel.com/new](https://vercel.com/new).
+2. Connect and import your GitHub repository (`ScribbleKit`).
+3. Vercel automatically detects the **Vite** framework:
+   - **Framework Preset**: `Vite`
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+4. Click **Deploy**.
+
+#### Option 3: Via Vercel CLI
+```bash
+# Preview deployment (runs build & deploys preview environment)
+npx vercel
+
+# Production deployment
+npx vercel --prod
+```
+
+The repository includes a ready-to-use [`vercel.json`](./vercel.json) configured with:
+* **SPA Routing Fallback**: All client-side routes rewrite to `/index.html` preventing 404s on page refresh or deep linking.
+* **Security Headers**: HSTS-ready headers including `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, and `Permissions-Policy`.
+* **Optimized Caching**: Cache-Control headers tuned for hashed Vite assets (`max-age=31536000, immutable`) and static SVG scribble assets.
 
 ---
 
