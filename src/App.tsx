@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Analytics } from '@vercel/analytics/react';
 import { Hero } from './components/Hero';
 import { HeroFeatures } from './components/HeroFeatures';
 import { HeadlineStudio } from './components/HeadlineStudio';
@@ -115,6 +116,7 @@ export function App() {
     return (
       <div className="w-screen h-screen overflow-hidden bg-white">
         <SpeedInsights />
+        <Analytics />
         <SvgEditor
           isOpen={true}
           mode="page"
@@ -130,6 +132,7 @@ export function App() {
   return (
     <div className="min-h-screen flex flex-col bg-scribble-paper selection:bg-scribble-yellow selection:text-black">
       <SpeedInsights />
+      <Analytics />
       <main className="flex-1">
         {/* Full-Screen Hero & Navbar Screen */}
         <Hero
