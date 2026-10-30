@@ -81,12 +81,14 @@ export const Hero: React.FC<HeroProps> = ({
           onClick={onOpenGuide}
         >
           <span className="w-2.5 h-2.5 rounded-full bg-scribble-orange animate-ping" />
-          <span className="text-xs font-bold uppercase tracking-wider text-black">
-            Funky Scribbbles Vector Kit
-          </span>
-          <span className="text-xs bg-scribble-yellow/40 text-black px-2 py-0.5 rounded-full font-bold">
-            {assetCount} Colorful Vectors
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-scribble-yellow/30 text-scribble-dark border border-scribble-yellow/60">
+              ScribbleKit
+            </span>
+            <span className="hidden sm:inline-block text-xs font-mono font-medium text-black/50">
+              v1.0.0 ({assetCount} assets)
+            </span>
+          </div>
         </div>
 
         {/* Hero Headline with Retro 'New' Starburst Stamp */}
@@ -120,12 +122,7 @@ export const Hero: React.FC<HeroProps> = ({
           {/* The Button & Tucked Yellow Oval Stack */}
           <div className="relative flex flex-col items-center">
             {/* Clean, Aesthetic Black Download Button */}
-            <button
-              onClick={onScrollToCatalog}
-              className="relative z-20 px-9 sm:px-11 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl bg-black hover:bg-neutral-800 text-white font-bold text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105 active:scale-95 cursor-pointer tracking-wide flex items-center justify-center group"
-            >
-              <span>Download now</span>
-            </button>
+           
 
             {/* Sunny Spring Oval tucked underneath button - curves extend downward cleanly */}
             <div className="relative -mt-6 sm:-mt-7 pointer-events-none select-none z-10 hover:scale-105 transition-transform">
