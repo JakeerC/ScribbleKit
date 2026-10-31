@@ -94,18 +94,22 @@ export const Scribble: React.FC<ScribbleProps> = ({
     }
   };
 
+  const baseSvgStyle: React.CSSProperties = {
+    color: effectiveColor,
+    width: effectiveWidth,
+    height: effectiveHeight,
+    display: 'inline-block',
+    flexShrink: 0,
+    ...style,
+  };
+
   if (asset.rawSvg) {
     return (
       <svg
         viewBox={asset.viewBox}
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        style={{
-          color: effectiveColor,
-          width: effectiveWidth,
-          height: effectiveHeight,
-          ...style,
-        }}
+        style={baseSvgStyle}
         className={`inline-block shrink-0 ${getAnimationClass(animate, 'animate-scribble-draw')} ${className}`}
         dangerouslySetInnerHTML={{ __html: asset.rawSvg }}
         {...props}
@@ -127,12 +131,7 @@ export const Scribble: React.FC<ScribbleProps> = ({
           viewBox={asset.viewBox}
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          style={{
-            color: effectiveColor,
-            width: effectiveWidth,
-            height: effectiveHeight,
-            ...style,
-          }}
+          style={baseSvgStyle}
           className={`inline-block shrink-0 ${getAnimationClass(animate, 'animate-scribble-draw')} ${className}`}
           {...props}
         >
@@ -167,12 +166,7 @@ export const Scribble: React.FC<ScribbleProps> = ({
           viewBox={asset.viewBox}
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          style={{
-            color: effectiveColor,
-            width: effectiveWidth,
-            height: effectiveHeight,
-            ...style,
-          }}
+          style={baseSvgStyle}
           className={`inline-block shrink-0 ${getAnimationClass(animate, 'animate-scribble-pop')} ${className}`}
           {...props}
         >

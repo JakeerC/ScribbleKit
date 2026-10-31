@@ -1,0 +1,28 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "outDir": "./dist",
+    "rootDir": "./src"
+  },
+  "include": [
+    "src/index.ts",
+    "src/components/Scribble.tsx",
+    "src/components/ScribbleHighlight.tsx",
+    "src/components/SvgEditor/**/*",
+    "src/lib/scribbles-data.ts"
+  ],
+  "exclude": [
+    "src/main.tsx",
+    "src/App.tsx",
+    "src/components/Hero.tsx",
+    "src/components/HeroFeatures.tsx",
+    "src/components/Navbar.tsx",
+    "src/components/HeadlineStudio.tsx",
+    "src/components/AssetCatalog.tsx",
+    "src/components/AssetDetailModal.tsx",
+    "src/components/DesignGuideModal.tsx"
+  ]
+}

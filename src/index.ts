@@ -1,4 +1,5 @@
-// Public library exports for @scribblekit/core
+// Public library exports for ScribbleKit
+import './styles/scribblekit.css';
 
 export {
   Scribble,
@@ -6,6 +7,7 @@ export {
   type ScribbleAnimation,
   getOriginalAnimation,
 } from './components/Scribble';
+
 export {
   ScribbleHighlight,
   type ScribbleHighlightProps,
