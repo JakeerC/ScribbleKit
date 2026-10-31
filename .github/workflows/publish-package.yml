@@ -23,7 +23,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 26
           registry-url: 'https://npm.pkg.github.com'
           scope: '@jakeerc'
           cache: 'npm'
@@ -31,11 +31,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run consumer integration tests
-        run: npm test
-
       - name: Build library bundle
         run: npm run build:lib
+
+      - name: Run consumer integration tests
+        run: npm test
 
       - name: Publish to GitHub Packages
         run: npm publish
