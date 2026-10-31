@@ -22,7 +22,7 @@ import {
   Files,
 } from 'lucide-react';
 import { EditorTool } from './types';
-import { COLOR_PRESETS } from '../../lib/scribbles-data';
+import { COLOR_PRESETS, SCRIBBLES_ASSETS } from '../../lib/scribbles-data';
 
 interface ToolbarProps {
   activeTool: EditorTool;
@@ -204,7 +204,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
           <Sparkles className="w-3.5 h-3.5" />
           <span>Assets</span>
           <span className={`text-[10px] font-extrabold px-1.5 py-0.2 rounded-full ${isAssetsDrawerOpen ? 'bg-white/20 text-white' : 'bg-black/10 text-scribble-dark'}`}>
-            140
+            {SCRIBBLES_ASSETS.length}
           </span>
         </button>
       </div>

@@ -117,7 +117,7 @@ export function App() {
   };
 
   const handleDownloadAll = () => {
-    // Generate a single consolidated JSON bundle containing all 140 SVGs
+    // Generate a single consolidated JSON bundle containing all vector assets
     const bundle = {
       name: 'ScribbleKit Vector Kit',
       version: '1.0.0',

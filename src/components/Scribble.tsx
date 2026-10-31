@@ -1,12 +1,23 @@
 import React from 'react';
 import { getScribbleById } from '../lib/scribbles-data';
 
+export type ScribbleAnimation =
+  | boolean
+  | 'draw'
+  | 'float'
+  | 'wobble'
+  | 'sparkle'
+  | 'pulse'
+  | 'bounce'
+  | 'spin'
+  | 'pop';
+
 export interface ScribbleProps extends React.SVGProps<SVGSVGElement> {
   name: string;
   color?: string;
   size?: number | string;
   strokeWidth?: number;
-  animate?: boolean;
+  animate?: ScribbleAnimation;
   className?: string;
 }
 
@@ -36,6 +47,31 @@ export const Scribble: React.FC<ScribbleProps> = ({
   const effectiveWidth = size || width || '100%';
   const effectiveHeight = size || height || 'auto';
 
+  const getAnimationClass = (anim: ScribbleAnimation, fallback: string) => {
+    if (!anim) return '';
+    if (anim === true) return fallback;
+    switch (anim) {
+      case 'draw':
+        return 'animate-scribble-draw';
+      case 'float':
+        return 'animate-float-slow';
+      case 'wobble':
+        return 'animate-wobble-slow';
+      case 'sparkle':
+        return 'animate-sparkle';
+      case 'pulse':
+        return 'animate-pulse-glow';
+      case 'bounce':
+        return 'animate-bounce-subtle';
+      case 'spin':
+        return 'animate-spin-slow';
+      case 'pop':
+        return 'animate-scribble-pop';
+      default:
+        return fallback;
+    }
+  };
+
   if (asset.rawSvg) {
     return (
       <svg
@@ -48,7 +84,7 @@ export const Scribble: React.FC<ScribbleProps> = ({
           height: effectiveHeight,
           ...style,
         }}
-        className={`inline-block shrink-0 ${animate ? 'animate-scribble-draw' : ''} ${className}`}
+        className={`inline-block shrink-0 ${getAnimationClass(animate, 'animate-scribble-draw')} ${className}`}
         dangerouslySetInnerHTML={{ __html: asset.rawSvg }}
         {...props}
       />
@@ -75,7 +111,7 @@ export const Scribble: React.FC<ScribbleProps> = ({
             height: effectiveHeight,
             ...style,
           }}
-          className={`inline-block shrink-0 ${className}`}
+          className={`inline-block shrink-0 ${getAnimationClass(animate, 'animate-scribble-draw')} ${className}`}
           {...props}
         >
           <path
@@ -86,7 +122,7 @@ export const Scribble: React.FC<ScribbleProps> = ({
             strokeLinecap="round"
             strokeLinejoin="round"
             style={
-              animate
+              animate === true || animate === 'draw'
                 ? {
                     strokeDasharray: 1000,
                     strokeDashoffset: 1000,
@@ -113,7 +149,7 @@ export const Scribble: React.FC<ScribbleProps> = ({
             height: effectiveHeight,
             ...style,
           }}
-          className={`inline-block shrink-0 ${animate ? 'animate-scribble-pop' : ''} ${className}`}
+          className={`inline-block shrink-0 ${getAnimationClass(animate, 'animate-scribble-pop')} ${className}`}
           {...props}
         >
           <path d={d} fill={effectiveColor} />
