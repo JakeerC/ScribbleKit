@@ -1,11 +1,14 @@
 {
-  "name": "scribblekit",
-  "version": "1.0.0",
+  "name": "@jakeerc/scribblekit",
+  "version": "1.0.1",
   "type": "module",
   "description": "150+ hand-drawn vector scribbles, animated highlights, and interactive React SVG component library",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -82,9 +85,7 @@
       "optional": false
     }
   },
-  "dependencies": {
-    "lucide-react": "^0.468.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^22.10.1",
     "@types/react": "^18.3.12",
@@ -94,6 +95,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
     "clsx": "^2.1.1",
+    "lucide-react": "^0.468.0",
     "postcss": "^8.4.49",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
