@@ -70,13 +70,13 @@ export const CATEGORIES = [
     "id": "all",
     "name": "All Scribbles",
     "icon": "Sparkles",
-    "count": 140
+    "count": 155
   },
   {
     "id": "funky-complex",
     "name": "Funky & Colorful",
     "icon": "Palette",
-    "count": 24
+    "count": 39
   },
   {
     "id": "underlines",
@@ -579,6 +579,304 @@ export const SCRIBBLES_ASSETS: ScribbleAsset[] = [
     "defaultColor": "#55BBDA",
     "description": "Two interlocking fluid organic blobs in sky blue and sunny yellow connected by a hand-drawn black seam.",
     "rawSvg": "<path d=\"M22 135 C2 95 18 35 68 18 C118 1 155 35 142 85 C132 125 72 165 42 165 C28 165 24 150 22 135 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M115 165 C85 165 95 120 115 95 C135 70 185 65 205 98 C225 130 205 178 162 185 C138 188 128 178 115 165 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M92 68 C108 85 118 118 114 148\" fill=\"none\" stroke=\"#141416\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-dasharray=\"2 8\" />\n  <circle cx=\"55\" cy=\"72\" r=\"5\" fill=\"#FAF6F0\" />\n  <circle cx=\"168\" cy=\"130\" r=\"5\" fill=\"#FAF6F0\" />"
+  },
+  {
+    "id": "funky-retro-cassette-tape",
+    "name": "Retro 80s Cassette Tape",
+    "category": "funky-complex",
+    "tags": [
+      "cassette",
+      "tape",
+      "retro",
+      "80s",
+      "music",
+      "audio",
+      "vintage",
+      "funky"
+    ],
+    "viewBox": "0 0 220 145",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Detailed 80s boombox cassette tape with rounded body, center reel window, dual gear spools, magnetic tape path, and 3D shadow.",
+    "rawSvg": "<path d=\"M12 18 L208 18 C214 18 218 22 218 28 L218 132 C218 138 214 142 208 142 L12 142 C6 142 2 138 2 132 L2 28 C2 22 6 18 12 18 Z\" fill=\"#141416\" />\n  <rect x=\"0\" y=\"8\" width=\"206\" height=\"124\" rx=\"10\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" />\n  <rect x=\"22\" y=\"24\" width=\"162\" height=\"72\" rx=\"6\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <path d=\"M50 42 L156 42 C162 42 166 46 166 52 L166 76 C166 82 162 86 156 86 L50 86 C44 86 40 82 40 76 L40 52 C40 46 44 42 50 42 Z\" fill=\"#141416\" />\n  <rect x=\"76\" y=\"50\" width=\"54\" height=\"28\" rx=\"3\" fill=\"#FAF6F0\" />\n  <circle cx=\"62\" cy=\"64\" r=\"14\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2\" />\n  <circle cx=\"62\" cy=\"64\" r=\"5\" fill=\"#141416\" />\n  <circle cx=\"144\" cy=\"64\" r=\"14\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2\" />\n  <circle cx=\"144\" cy=\"64\" r=\"5\" fill=\"#141416\" />\n  <polygon points=\"46,132 160,132 174,106 32,106\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"58\" cy=\"119\" r=\"4.5\" fill=\"#141416\" />\n  <circle cx=\"148\" cy=\"119\" r=\"4.5\" fill=\"#141416\" />\n  <circle cx=\"103\" cy=\"119\" r=\"3.5\" fill=\"#141416\" />\n  <circle cx=\"12\" cy=\"20\" r=\"3\" fill=\"#141416\" />\n  <circle cx=\"194\" cy=\"20\" r=\"3\" fill=\"#141416\" />\n  <circle cx=\"12\" cy=\"120\" r=\"3\" fill=\"#141416\" />\n  <circle cx=\"194\" cy=\"120\" r=\"3\" fill=\"#141416\" />"
+  },
+  {
+    "id": "funky-hologram-starburst-stamp",
+    "name": "Holographic Starburst Seal",
+    "category": "funky-complex",
+    "tags": [
+      "seal",
+      "starburst",
+      "stamp",
+      "badge",
+      "verified",
+      "guarantee",
+      "retro"
+    ],
+    "viewBox": "0 0 160 160",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Layered 16-point starburst seal with inner concentric serrated ring, 3D offset extrusion shadow, and stamped star emblem.",
+    "rawSvg": "<g transform=\"translate(6, 6)\">\n  <path d=\"M80 0 L97 22 L124 14 L132 41 L158 48 L152 75 L172 93 L152 112 L158 138 L132 145 L124 172 L97 164 L80 186 L63 164 L36 172 L28 145 L2 138 L8 112 L-12 93 L8 75 L2 48 L28 41 L36 14 L63 22 Z\" transform=\"scale(0.85) translate(8, 0)\" fill=\"#141416\" />\n</g>\n<path d=\"M75 5 L90 26 L116 18 L124 43 L149 50 L143 75 L162 92 L143 110 L149 135 L124 142 L116 167 L90 159 L75 180 L60 159 L34 167 L26 142 L1 135 L7 110 L-12 92 L7 75 L1 50 L26 43 L34 18 L60 26 Z\" transform=\"scale(0.85) translate(8, 0)\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n<circle cx=\"76\" cy=\"80\" r=\"42\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-dasharray=\"4 3\" />\n<circle cx=\"76\" cy=\"80\" r=\"32\" fill=\"#EA552B\" />\n<path d=\"M76 56 L82 72 L98 72 L85 82 L90 98 L76 88 L62 98 L67 82 L54 72 L70 72 Z\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2\" />"
+  },
+  {
+    "id": "funky-sun-retro-shades",
+    "name": "Sunny Cool Shades Sun",
+    "category": "funky-complex",
+    "tags": [
+      "sun",
+      "shades",
+      "sunglasses",
+      "summer",
+      "cool",
+      "groovy",
+      "happy",
+      "face"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Groovy 12-ray organic sun wearing retro black wayfarer sunglasses with glossy white glare streaks and a cheerful smile.",
+    "rawSvg": "<g fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\">\n  <path d=\"M100 14 C104 28 108 34 100 48 C92 34 96 28 100 14 Z\" />\n  <path d=\"M142 25 C140 39 140 46 128 56 C124 42 128 37 142 25 Z\" />\n  <path d=\"M174 56 C164 66 160 72 146 74 C148 60 155 56 174 56 Z\" />\n  <path d=\"M186 98 C172 102 166 106 152 98 C166 90 172 94 186 98 Z\" />\n  <path d=\"M175 142 C161 140 154 140 144 128 C158 124 163 128 175 142 Z\" />\n  <path d=\"M144 174 C134 164 128 160 126 146 C140 148 144 155 144 174 Z\" />\n  <path d=\"M102 186 C98 172 94 166 102 152 C110 166 106 172 102 186 Z\" />\n  <path d=\"M60 175 C62 161 62 154 74 144 C78 158 74 163 60 175 Z\" />\n  <path d=\"M28 144 C38 134 42 128 56 126 C54 140 47 144 28 144 Z\" />\n  <path d=\"M16 102 C30 98 36 94 50 102 C36 110 30 106 16 102 Z\" />\n  <path d=\"M27 60 C41 62 48 62 58 74 C44 78 39 74 27 60 Z\" />\n  <path d=\"M58 28 C68 38 74 42 76 56 C62 54 58 47 58 28 Z\" />\n  <circle cx=\"100\" cy=\"100\" r=\"54\" />\n</g>\n<g fill=\"#141416\">\n  <path d=\"M54 78 L96 78 C98 88 94 104 76 105 C60 106 52 94 54 78 Z\" />\n  <path d=\"M104 78 L146 78 C148 94 140 106 124 105 C106 104 102 88 104 78 Z\" />\n  <rect x=\"92\" y=\"80\" width=\"16\" height=\"6\" rx=\"2\" />\n</g>\n<path d=\"M60 84 L72 84 M110 84 L122 84\" stroke=\"#FFFFFF\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n<path d=\"M84 122 C92 134 108 134 116 122\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n<circle cx=\"68\" cy=\"120\" r=\"4\" fill=\"#EE8DB9\" />\n<circle cx=\"132\" cy=\"120\" r=\"4\" fill=\"#EE8DB9\" />"
+  },
+  {
+    "id": "funky-peace-hand-sign",
+    "name": "Groovy Peace Hand",
+    "category": "funky-complex",
+    "tags": [
+      "peace",
+      "hand",
+      "victory",
+      "two",
+      "fingers",
+      "groovy",
+      "pop",
+      "comic"
+    ],
+    "viewBox": "0 0 160 220",
+    "type": "mixed",
+    "defaultColor": "#4CA96D",
+    "description": "Hand-drawn 2-finger victory/peace hand with comic 3D drop shadow, ink knuckle contours, and retro pop star sparkles.",
+    "rawSvg": "<path d=\"M54 22 L82 22 C88 22 92 28 90 38 L84 82 L106 46 C112 36 122 36 128 42 C134 48 132 58 124 72 L112 110 C122 108 130 114 132 124 C134 140 128 178 122 196 C118 206 106 214 90 214 L56 214 C38 214 26 202 24 186 L20 134 C18 114 28 102 44 98 L50 82 Z\" transform=\"translate(6, 6)\" fill=\"#141416\" />\n<path d=\"M50 18 L78 18 C84 18 88 24 86 34 L80 78 L102 42 C108 32 118 32 124 38 C130 44 128 54 120 68 L108 106 C118 104 126 110 128 120 C130 136 124 174 118 192 C114 202 102 210 86 210 L52 210 C34 210 22 198 20 182 L16 130 C14 110 24 98 40 94 L46 78 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n<path d=\"M78 86 C64 88 56 104 58 118 C60 132 72 142 88 140 C98 138 104 128 102 116\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n<path d=\"M60 48 L68 48 M106 72 L114 72\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n<path d=\"M6 56 C14 56 18 52 18 44 C18 52 22 56 30 56 C22 56 18 60 18 68 C18 60 14 56 6 56 Z\" fill=\"#F7D046\" />\n<path d=\"M136 160 C140 160 144 156 144 150 C144 156 148 160 154 160 C148 160 144 164 144 170 C144 164 140 160 136 160 Z\" fill=\"#EE8DB9\" />"
+  },
+  {
+    "id": "funky-checker-cylinder-3d",
+    "name": "Memphis 3D Checker Cylinder",
+    "category": "funky-complex",
+    "tags": [
+      "cylinder",
+      "checkerboard",
+      "memphis",
+      "3d",
+      "isometric",
+      "pattern",
+      "column"
+    ],
+    "viewBox": "0 0 160 200",
+    "type": "mixed",
+    "defaultColor": "#55BBDA",
+    "description": "Extruded 3D isometric cylinder pillar with curved perspective checkerboard grid pattern and pop drop shadow.",
+    "rawSvg": "<path d=\"M26 62 L26 156 C26 180 62 196 106 196 C150 196 186 180 186 156 L186 62 Z\" transform=\"scale(0.8) translate(14, 10)\" fill=\"#141416\" />\n<path d=\"M20 54 L20 148 C20 172 56 188 100 188 C144 188 180 172 180 148 L180 54 Z\" transform=\"scale(0.8) translate(10, 6)\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"3\" />\n<g transform=\"scale(0.8) translate(10, 6)\" fill=\"#141416\">\n  <path d=\"M20 54 L60 54 C56 78 30 82 20 84 Z\" />\n  <path d=\"M100 54 L140 54 C136 78 110 82 100 84 Z\" />\n  <path d=\"M60 84 L100 84 C96 112 70 116 60 118 Z\" />\n  <path d=\"M140 84 L180 84 C176 110 150 116 140 118 Z\" />\n  <path d=\"M20 118 L60 118 C56 148 30 152 20 154 Z\" />\n  <path d=\"M100 118 L140 118 C136 148 110 152 100 154 Z\" />\n</g>\n<ellipse cx=\"90\" cy=\"46\" rx=\"64\" ry=\"26\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3\" />\n<ellipse cx=\"90\" cy=\"46\" rx=\"38\" ry=\"14\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2\" stroke-dasharray=\"3 3\" />"
+  },
+  {
+    "id": "funky-yin-yang-doodle",
+    "name": "Funky Swirl Yin-Yang",
+    "category": "funky-complex",
+    "tags": [
+      "yinyang",
+      "balance",
+      "zen",
+      "swirl",
+      "wave",
+      "retro",
+      "peace",
+      "harmony"
+    ],
+    "viewBox": "0 0 180 180",
+    "type": "mixed",
+    "defaultColor": "#EE8DB9",
+    "description": "Organic hand-drawn wavy retro yin-yang doodle with contrasting teardrop eyes and radiant accent energy lines.",
+    "rawSvg": "<circle cx=\"94\" cy=\"94\" r=\"72\" fill=\"#141416\" />\n<circle cx=\"90\" cy=\"90\" r=\"72\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"3.5\" />\n<path d=\"M90 18 C50 18 18 50 18 90 C18 130 50 162 90 162 C70 144 70 108 90 90 C110 72 110 36 90 18 Z\" fill=\"currentColor\" />\n<circle cx=\"90\" cy=\"54\" r=\"10\" fill=\"#FAF6F0\" />\n<circle cx=\"90\" cy=\"126\" r=\"10\" fill=\"#141416\" />\n<path d=\"M90 90 C70 108 70 144 90 162 C130 162 162 130 162 90 C162 50 130 18 90 18 C110 36 110 72 90 90 Z\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3.5\" />\n<circle cx=\"90\" cy=\"54\" r=\"4\" fill=\"#141416\" />\n<circle cx=\"90\" cy=\"126\" r=\"4\" fill=\"#FAF6F0\" />"
+  },
+  {
+    "id": "funky-atomic-orbit-star",
+    "name": "Mid-Century Atomic Orbit",
+    "category": "funky-complex",
+    "tags": [
+      "atomic",
+      "orbit",
+      "midcentury",
+      "50s",
+      "space",
+      "science",
+      "retro",
+      "atom"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Classic 1950s space-age atomic doodle with 3 overlapping tilted elliptical orbits, orbiting planetary nuclei, and a central diamond star.",
+    "rawSvg": "<g fill=\"none\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\">\n  <ellipse cx=\"100\" cy=\"100\" rx=\"88\" ry=\"32\" transform=\"rotate(0 100 100)\" />\n  <ellipse cx=\"100\" cy=\"100\" rx=\"88\" ry=\"32\" transform=\"rotate(60 100 100)\" />\n  <ellipse cx=\"100\" cy=\"100\" rx=\"88\" ry=\"32\" transform=\"rotate(120 100 100)\" />\n</g>\n<circle cx=\"188\" cy=\"100\" r=\"8\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"2.5\" />\n<circle cx=\"56\" cy=\"138\" r=\"9\" fill=\"#EE8DB9\" stroke=\"#141416\" stroke-width=\"2.5\" />\n<circle cx=\"56\" cy=\"62\" r=\"7.5\" fill=\"#4CA96D\" stroke=\"#141416\" stroke-width=\"2.5\" />\n<path d=\"M100 68 C102 88 112 98 132 100 C112 102 102 112 100 132 C98 112 88 102 68 100 C88 98 98 88 100 68 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"2\" />\n<circle cx=\"100\" cy=\"100\" r=\"5\" fill=\"#F7D046\" />"
+  },
+  {
+    "id": "funky-comic-speech-boom",
+    "name": "Comic 3D Explosion Bubble",
+    "category": "funky-complex",
+    "tags": [
+      "comic",
+      "boom",
+      "explosion",
+      "bubble",
+      "speech",
+      "blast",
+      "popart",
+      "action"
+    ],
+    "viewBox": "0 0 210 170",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Explosive multi-point comic blast speech balloon with extruded 3D black shadow base and energy action lines.",
+    "rawSvg": "<path d=\"M105 18 L126 40 L160 26 L164 56 L196 58 L182 86 L206 106 L176 118 L184 150 L152 142 L138 170 L114 148 L90 170 L80 142 L48 152 L54 120 L24 108 L48 86 L32 58 L64 56 L68 26 L102 40 Z\" transform=\"translate(6, 6)\" fill=\"#141416\" />\n<path d=\"M100 12 L121 34 L155 20 L159 50 L191 52 L177 80 L201 100 L171 112 L179 144 L147 136 L133 164 L109 142 L85 164 L75 136 L43 146 L49 114 L19 102 L43 80 L27 52 L59 50 L63 20 L97 34 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n<path d=\"M100 36 L114 52 L138 42 L140 64 L164 66 L154 86 L172 102 L150 110 L156 132 L132 126 L122 146 L104 130 L88 146 L80 126 L56 132 L60 110 L38 102 L56 86 L44 66 L68 64 L72 42 L96 52 Z\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2\" />\n<circle cx=\"106\" cy=\"92\" r=\"16\" fill=\"#EA552B\" />\n<path d=\"M106 82 L109 90 L117 90 L110 95 L113 102 L106 97 L99 102 L102 95 L95 90 L103 90 Z\" fill=\"#FAF6F0\" />"
+  },
+  {
+    "id": "funky-coffee-cup-steam",
+    "name": "Aesthetic Mug & Spiral Steam",
+    "category": "funky-complex",
+    "tags": [
+      "coffee",
+      "cup",
+      "mug",
+      "tea",
+      "steam",
+      "morning",
+      "cafe",
+      "cozy"
+    ],
+    "viewBox": "0 0 170 210",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Charming ceramic coffee mug with hand-drawn looped ear handle, coffee fluid rim, and floating multi-layer spiral loop steam swirls.",
+    "rawSvg": "<path d=\"M48 24 C56 10 70 8 68 32 C66 52 48 46 52 68 C54 78 62 84 64 96\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n<path d=\"M84 14 C94 4 106 6 102 28 C98 46 82 44 86 64 C88 74 96 80 98 96\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n<path d=\"M120 28 C128 16 138 18 136 36 C134 52 120 50 124 70 C126 80 132 86 134 96\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n<path d=\"M116 122 C134 122 148 132 148 150 C148 168 134 178 116 178\" fill=\"none\" stroke=\"#141416\" stroke-width=\"12\" stroke-linecap=\"round\" />\n<path d=\"M116 122 C130 122 140 130 140 150 C140 170 130 178 116 178\" fill=\"none\" stroke=\"#FAF6F0\" stroke-width=\"6\" stroke-linecap=\"round\" />\n<path d=\"M26 106 L126 106 C126 156 116 196 76 196 C36 196 26 156 26 106 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n<ellipse cx=\"76\" cy=\"106\" rx=\"50\" ry=\"14\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"3\" />\n<ellipse cx=\"76\" cy=\"108\" rx=\"42\" ry=\"10\" fill=\"#141416\" />\n<ellipse cx=\"76\" cy=\"108\" rx=\"38\" ry=\"8\" fill=\"#F7D046\" />\n<circle cx=\"54\" cy=\"154\" r=\"5\" fill=\"#FAF6F0\" />"
+  },
+  {
+    "id": "funky-ribbon-banner-swag",
+    "name": "Folded 3D Ribbon Banner",
+    "category": "funky-complex",
+    "tags": [
+      "ribbon",
+      "banner",
+      "scroll",
+      "badge",
+      "heraldic",
+      "vintage",
+      "label",
+      "heading"
+    ],
+    "viewBox": "0 0 260 110",
+    "type": "mixed",
+    "defaultColor": "#0BDC85",
+    "description": "Vintage hand-drawn 3D banner scroll with curved front stage, folded under-creases, and bifurcated fishtail ribbon ends.",
+    "rawSvg": "<polygon points=\"44,52 44,78 12,90 26,68 12,48\" fill=\"#141416\" />\n<polygon points=\"40,48 40,74 8,86 22,64 8,44\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n<polygon points=\"216,52 216,78 248,90 234,68 248,48\" fill=\"#141416\" />\n<polygon points=\"220,48 220,74 252,86 238,64 252,44\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n<polygon points=\"40,74 60,74 40,88\" fill=\"#141416\" />\n<polygon points=\"220,74 200,74 220,88\" fill=\"#141416\" />\n<path d=\"M40 38 C90 26 170 26 220 38 L220 74 C170 62 90 62 40 74 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n<path d=\"M54 54 C94 44 166 44 206 54\" fill=\"none\" stroke=\"#FAF6F0\" stroke-width=\"2\" stroke-dasharray=\"4 4\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "funky-eye-cosmic-vision",
+    "name": "Third Eye Cosmic Iris",
+    "category": "funky-complex",
+    "tags": [
+      "eye",
+      "cosmic",
+      "vision",
+      "mystic",
+      "lashes",
+      "iris",
+      "pupil",
+      "look"
+    ],
+    "viewBox": "0 0 210 150",
+    "type": "mixed",
+    "defaultColor": "#55BBDA",
+    "description": "Mystical pop-art cosmic eye with curved eyelid arches, radiating flutter lashes, concentric iris rings, and a gleaming starburst pupil.",
+    "rawSvg": "<g stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\">\n  <path d=\"M105 14 L105 2 M75 22 L67 10 M135 22 L143 10 M45 38 L33 30 M165 38 L177 30 M25 64 L11 60 M185 64 L199 60\" />\n</g>\n<path d=\"M14 75 C45 32 165 32 196 75 C165 118 45 118 14 75 Z\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n<circle cx=\"105\" cy=\"75\" r=\"34\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3\" />\n<circle cx=\"105\" cy=\"75\" r=\"22\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2\" />\n<circle cx=\"105\" cy=\"75\" r=\"12\" fill=\"#141416\" />\n<circle cx=\"109\" cy=\"71\" r=\"3.5\" fill=\"#FFFFFF\" />\n<path d=\"M105 124 C100 134 94 142 105 148 C116 142 110 134 105 124 Z\" fill=\"#EE8DB9\" stroke=\"#141416\" stroke-width=\"2\" />"
+  },
+  {
+    "id": "funky-rocket-ship-blast",
+    "name": "Retro Space Rocket Doodle",
+    "category": "funky-complex",
+    "tags": [
+      "rocket",
+      "spaceship",
+      "launch",
+      "space",
+      "blast",
+      "start",
+      "retro",
+      "growth"
+    ],
+    "viewBox": "0 0 170 230",
+    "type": "mixed",
+    "defaultColor": "#FAF6F0",
+    "description": "1950s streamlined retro rocket spaceship with circular portal window, curved tail fins, and billowing 3-stage cloud flame exhaust.",
+    "rawSvg": "<path d=\"M65 170 C50 185 45 205 60 218 C75 230 95 230 110 218 C125 205 120 185 105 170 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2.5\" />\n<path d=\"M72 170 C62 180 62 194 72 204 C82 212 94 212 102 204 C112 194 112 180 102 170 Z\" fill=\"#EA552B\" />\n<path d=\"M46 128 L24 162 C20 168 28 174 38 170 L54 158 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n<path d=\"M124 128 L146 162 C150 168 142 174 132 170 L116 158 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n<path d=\"M85 18 C52 48 48 110 52 164 L118 164 C122 110 118 48 85 18 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n<path d=\"M85 18 C74 34 68 56 68 64 L102 64 C102 56 96 34 85 18 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2\" />\n<circle cx=\"85\" cy=\"106\" r=\"16\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3\" />\n<circle cx=\"85\" cy=\"106\" r=\"10\" fill=\"#FAF6F0\" />\n<path d=\"M88 100 A6 6 0 0 0 82 106\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "funky-magic-wand-spark",
+    "name": "Drawn Magic Wand & Spark Dust",
+    "category": "funky-complex",
+    "tags": [
+      "wand",
+      "magic",
+      "sparkle",
+      "stars",
+      "wizard",
+      "glimmer",
+      "miracle",
+      "feature"
+    ],
+    "viewBox": "0 0 180 180",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Diagonal hand-drawn magician wand with dual-tone shaft, rounded tip, and an explosive cascade of trailing diamond stars and stardust.",
+    "rawSvg": "<polygon points=\"18,172 28,162 136,54 126,44 18,152\" fill=\"#141416\" />\n<polygon points=\"126,44 136,54 156,34 146,24\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"2.5\" />\n<path d=\"M152 8 C153 20 158 25 170 26 C158 27 153 32 152 44 C151 32 146 27 134 26 C146 25 151 20 152 8 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"1.5\" />\n<path d=\"M120 4 C121 12 124 15 132 16 C124 17 121 20 120 28 C119 20 116 17 108 16 C116 15 119 12 120 4 Z\" fill=\"#EE8DB9\" />\n<path d=\"M166 52 C167 58 170 61 176 62 C170 63 167 66 166 72 C165 66 162 63 156 62 C162 61 165 58 166 52 Z\" fill=\"#0BDC85\" />\n<circle cx=\"106\" cy=\"40\" r=\"3\" fill=\"#141416\" />\n<circle cx=\"140\" cy=\"68\" r=\"2.5\" fill=\"#141416\" />\n<circle cx=\"168\" cy=\"40\" r=\"3\" fill=\"#141416\" />\n<circle cx=\"132\" cy=\"10\" r=\"2\" fill=\"#F7D046\" />"
+  },
+  {
+    "id": "funky-geo-prism-crystal",
+    "name": "Pop Art Faceted Gem Crystal",
+    "category": "funky-complex",
+    "tags": [
+      "gem",
+      "crystal",
+      "diamond",
+      "prism",
+      "facet",
+      "geometry",
+      "premium",
+      "luxury"
+    ],
+    "viewBox": "0 0 180 190",
+    "type": "mixed",
+    "defaultColor": "#55BBDA",
+    "description": "3D faceted isometric gemstone with 7 contrasting geometric facet planes, black ink outlines, and starburst sparkle glints.",
+    "rawSvg": "<polygon points=\"90,12 148,56 162,118 90,178 18,118 32,56\" fill=\"#141416\" transform=\"translate(6, 6)\" />\n<polygon points=\"90,8 148,52 162,114 90,174 18,114 32,52\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n<polygon points=\"90,8 148,52 90,86 32,52\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n<polygon points=\"32,52 90,86 90,174 18,114\" fill=\"#0BDC85\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" opacity=\"0.85\" />\n<polygon points=\"148,52 90,86 90,174 162,114\" fill=\"#EE8DB9\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" opacity=\"0.85\" />\n<polygon points=\"62,70 90,86 90,140 44,106\" fill=\"#FAF6F0\" opacity=\"0.6\" />\n<path d=\"M152 24 C153 32 156 35 164 36 C156 37 153 40 152 48 C151 40 148 37 140 36 C148 35 151 32 152 24 Z\" fill=\"#F7D046\" />"
+  },
+  {
+    "id": "funky-smile-flower-pop",
+    "name": "Murakami-Inspired Smile Bloom",
+    "category": "funky-complex",
+    "tags": [
+      "flower",
+      "smile",
+      "happy",
+      "daisy",
+      "pop",
+      "murakami",
+      "face",
+      "cheerful"
+    ],
+    "viewBox": "0 0 190 190",
+    "type": "mixed",
+    "defaultColor": "#EE8DB9",
+    "description": "12 vibrant rounded daisy petals radiating around a happy cartoon smiling face center with wink eye and ink outlines.",
+    "rawSvg": "<g stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\">\n  <circle cx=\"95\" cy=\"24\" r=\"18\" fill=\"#EA552B\" />\n  <circle cx=\"130\" cy=\"34\" r=\"18\" fill=\"#F7D046\" />\n  <circle cx=\"156\" cy=\"60\" r=\"18\" fill=\"#4CA96D\" />\n  <circle cx=\"166\" cy=\"95\" r=\"18\" fill=\"#55BBDA\" />\n  <circle cx=\"156\" cy=\"130\" r=\"18\" fill=\"#0BDC85\" />\n  <circle cx=\"130\" cy=\"156\" r=\"18\" fill=\"#EE8DB9\" />\n  <circle cx=\"95\" cy=\"166\" r=\"18\" fill=\"currentColor\" />\n  <circle cx=\"60\" cy=\"156\" r=\"18\" fill=\"#EA552B\" />\n  <circle cx=\"34\" cy=\"130\" r=\"18\" fill=\"#F7D046\" />\n  <circle cx=\"24\" cy=\"95\" r=\"18\" fill=\"#4CA96D\" />\n  <circle cx=\"34\" cy=\"60\" r=\"18\" fill=\"#55BBDA\" />\n  <circle cx=\"60\" cy=\"34\" r=\"18\" fill=\"#0BDC85\" />\n  <circle cx=\"95\" cy=\"95\" r=\"46\" fill=\"#F7D046\" />\n</g>\n<ellipse cx=\"78\" cy=\"86\" rx=\"4\" ry=\"7\" fill=\"#141416\" />\n<path d=\"M106 86 C112 80 118 86 120 90\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n<path d=\"M80 106 C86 122 104 122 112 106\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n<circle cx=\"68\" cy=\"100\" r=\"4\" fill=\"#EE8DB9\" />\n<circle cx=\"122\" cy=\"100\" r=\"4\" fill=\"#EE8DB9\" />"
   },
   {
     "id": "underline-wave-single",

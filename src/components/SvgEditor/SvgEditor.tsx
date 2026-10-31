@@ -31,7 +31,7 @@ import { LeftAssetsDrawer } from './LeftAssetsDrawer';
 import { AssetStampDrawer } from './AssetStampDrawer';
 import { ExportModal } from './ExportModal';
 import { parseSvgStringToElements, generateId, serializeElementsToSvg } from './svg-utils';
-import { ScribbleAsset, getScribbleById } from '../../lib/scribbles-data';
+import { ScribbleAsset, getScribbleById, SCRIBBLES_ASSETS } from '../../lib/scribbles-data';
 
 interface SvgEditorProps {
   isOpen?: boolean;
@@ -543,7 +543,7 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
                 isAssetsDrawerOpen ? 'bg-white/20 text-white' : 'bg-black/10 text-scribble-dark'
               }`}
             >
-              140
+              {SCRIBBLES_ASSETS.length}
             </span>
           </button>
 

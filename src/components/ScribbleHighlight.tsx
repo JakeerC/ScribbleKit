@@ -1,5 +1,5 @@
 import React from 'react';
-import { Scribble } from './Scribble';
+import { Scribble, ScribbleAnimation } from './Scribble';
 
 export type HighlightStyle =
   | 'underline-wave'
@@ -13,7 +13,13 @@ export type HighlightStyle =
   | 'arrow-curved'
   | 'star-sparkle'
   | 'funky-yellow-oval'
-  | 'funky-comic-bolt';
+  | 'funky-comic-bolt'
+  | 'funky-hologram-seal'
+  | 'funky-peace-sign'
+  | 'funky-comic-boom'
+  | 'funky-atomic-orbit'
+  | 'funky-ribbon-banner'
+  | 'funky-sun-shades';
 
 export interface ScribbleHighlightProps {
   children: React.ReactNode;
@@ -21,7 +27,7 @@ export interface ScribbleHighlightProps {
   color?: string;
   className?: string;
   scribbleClassName?: string;
-  animate?: boolean;
+  animate?: ScribbleAnimation;
 }
 
 export const ScribbleHighlight: React.FC<ScribbleHighlightProps> = ({
@@ -136,8 +142,8 @@ export const ScribbleHighlight: React.FC<ScribbleHighlightProps> = ({
     case 'funky-yellow-oval':
       return (
         <span className={`relative inline-block px-4 py-1 ${className}`}>
-          <span className={`absolute -inset-x-4 -inset-y-2 pointer-events-none flex items-center justify-center opacity-80 ${scribbleClassName}`}>
-            <Scribble name="funky-yellow-spring-oval" color={color} className="w-full h-full" />
+          <span className={`absolute -inset-x-4 -inset-y-2 pointer-events-none flex items-center justify-center opacity-85 ${scribbleClassName}`}>
+            <Scribble name="funky-yellow-spring-oval" color={color} animate={animate === true ? 'wobble' : animate} className="w-full h-full" />
           </span>
           <span className="relative z-10">{children}</span>
         </span>
@@ -148,7 +154,67 @@ export const ScribbleHighlight: React.FC<ScribbleHighlightProps> = ({
         <span className={`relative inline-block ${className}`}>
           <span className="relative z-10">{children}</span>
           <span className={`absolute -right-7 -top-7 w-8 h-10 pointer-events-none ${scribbleClassName}`}>
-            <Scribble name="funky-bolt-comic-3d" color={color} />
+            <Scribble name="funky-bolt-comic-3d" color={color} animate={animate === true ? 'bounce' : animate} />
+          </span>
+        </span>
+      );
+
+    case 'funky-hologram-seal':
+      return (
+        <span className={`relative inline-block px-3 py-1 ${className}`}>
+          <span className="relative z-10">{children}</span>
+          <span className={`absolute -right-8 -top-8 w-12 h-12 pointer-events-none ${scribbleClassName}`}>
+            <Scribble name="funky-hologram-starburst-stamp" color={color} animate={animate === true ? 'wobble' : animate} />
+          </span>
+        </span>
+      );
+
+    case 'funky-peace-sign':
+      return (
+        <span className={`relative inline-block ${className}`}>
+          <span className="relative z-10">{children}</span>
+          <span className={`absolute -right-9 -top-9 w-10 h-12 pointer-events-none ${scribbleClassName}`}>
+            <Scribble name="funky-peace-hand-sign" color={color} animate={animate === true ? 'bounce' : animate} />
+          </span>
+        </span>
+      );
+
+    case 'funky-comic-boom':
+      return (
+        <span className={`relative inline-block px-3 py-1 ${className}`}>
+          <span className={`absolute -inset-x-3.5 -inset-y-3 pointer-events-none flex items-center justify-center opacity-80 ${scribbleClassName}`}>
+            <Scribble name="funky-comic-speech-boom" color={color} animate={animate === true ? 'wobble' : animate} className="w-full h-full" />
+          </span>
+          <span className="relative z-10">{children}</span>
+        </span>
+      );
+
+    case 'funky-atomic-orbit':
+      return (
+        <span className={`relative inline-block px-2.5 py-0.5 ${className}`}>
+          <span className="relative z-10">{children}</span>
+          <span className={`absolute -right-8 -top-8 w-14 h-14 pointer-events-none opacity-90 ${scribbleClassName}`}>
+            <Scribble name="funky-atomic-orbit-star" color={color} animate={animate === true ? 'spin' : animate} />
+          </span>
+        </span>
+      );
+
+    case 'funky-ribbon-banner':
+      return (
+        <span className={`relative inline-block px-5 py-2 ${className}`}>
+          <span className={`absolute -inset-x-5 -inset-y-2 pointer-events-none flex items-center justify-center opacity-90 ${scribbleClassName}`}>
+            <Scribble name="funky-ribbon-banner-swag" color={color} animate={animate === true ? 'float' : animate} className="w-full h-full" />
+          </span>
+          <span className="relative z-10">{children}</span>
+        </span>
+      );
+
+    case 'funky-sun-shades':
+      return (
+        <span className={`relative inline-block ${className}`}>
+          <span className="relative z-10">{children}</span>
+          <span className={`absolute -right-10 -top-10 w-12 h-12 pointer-events-none ${scribbleClassName}`}>
+            <Scribble name="funky-sun-retro-shades" color={color} animate={animate === true ? 'wobble' : animate} />
           </span>
         </span>
       );

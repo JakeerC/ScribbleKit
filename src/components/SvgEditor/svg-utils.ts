@@ -1,7 +1,7 @@
 // src/components/SvgEditor/svg-utils.ts
 // Utility functions for SVG parsing, curve smoothing, shape generation, and serialization
 
-import { SvgElementData, CanvasDimensions, Point } from './types';
+import { SvgElementData, CanvasDimensions, Point, ElementAnimationType } from './types';
 
 export function generateId(prefix = 'el'): string {
   return `${prefix}-${Math.random().toString(36).substring(2, 9)}`;
@@ -325,6 +325,16 @@ export function parseSvgStringToElements(
         const strokeLinecap = (el.getAttribute('stroke-linecap') as any) || 'round';
         const strokeLinejoin = (el.getAttribute('stroke-linejoin') as any) || 'round';
         const opacityAttr = el.getAttribute('opacity');
+        const classAttr = el.getAttribute('class') || '';
+        let initialAnimation: ElementAnimationType = 'none';
+        if (classAttr.includes('animate-rotate')) initialAnimation = 'rotate';
+        else if (classAttr.includes('animate-sparkle')) initialAnimation = 'sparkle';
+        else if (classAttr.includes('animate-float')) initialAnimation = 'float';
+        else if (classAttr.includes('animate-wobble')) initialAnimation = 'wobble';
+        else if (classAttr.includes('animate-bounce')) initialAnimation = 'bounce';
+        else if (classAttr.includes('animate-pulse')) initialAnimation = 'pulse';
+        else if (classAttr.includes('animate-scribble-draw')) initialAnimation = 'draw';
+
         let initialX = 0;
         let initialY = 0;
         let initialRotation = 0;
@@ -383,6 +393,7 @@ export function parseSvgStringToElements(
               origWidth: bbox.width,
               origHeight: bbox.height,
               d,
+              animation: initialAnimation,
             });
           }
         } else if (tagName === 'text') {
@@ -417,6 +428,7 @@ export function parseSvgStringToElements(
             fontSize,
             fontFamily,
             fontWeight,
+            animation: initialAnimation,
           });
         } else if (tagName === 'rect') {
           const x = parseFloat(el.getAttribute('x') || '0');
@@ -444,6 +456,7 @@ export function parseSvgStringToElements(
             width: w,
             height: h,
             rotation: 0,
+            animation: initialAnimation,
           });
         } else if (tagName === 'circle') {
           const cx = parseFloat(el.getAttribute('cx') || '50');
@@ -470,6 +483,7 @@ export function parseSvgStringToElements(
             width: r * 2,
             height: r * 2,
             rotation: 0,
+            animation: initialAnimation,
           });
         }
       });
@@ -531,10 +545,29 @@ export function serializeElementsToSvg(
 
   const hasWiggle = elements.some((el) => el.wiggle?.enabled);
   const hasGlow = elements.some((el) => el.glow?.enabled);
+  const hasAnimation = elements.some((el) => el.animation && el.animation !== 'none');
 
   let defsMarkup = '';
-  if (includeFilters && (hasWiggle || hasGlow)) {
+  if (includeFilters && (hasWiggle || hasGlow || hasAnimation)) {
     defsMarkup += '  <defs>\n';
+    if (hasAnimation) {
+      defsMarkup += `    <style>
+      @keyframes scribbleRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      @keyframes scribbleSparkle { 0%, 100% { transform: scale(0.9) rotate(0deg); opacity: 0.85; } 50% { transform: scale(1.2) rotate(25deg); opacity: 1; filter: drop-shadow(0 0 6px rgba(247, 208, 70, 0.7)); } }
+      @keyframes scribbleFloat { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-12px) rotate(2.5deg); } }
+      @keyframes scribbleWobble { 0%, 100% { transform: rotate(0deg) scale(1); } 25% { transform: rotate(-2.5deg) scale(1.02); } 75% { transform: rotate(2.5deg) scale(0.98); } }
+      @keyframes scribbleBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+      @keyframes scribbleGlow { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); filter: drop-shadow(0 0 10px rgba(247, 208, 70, 0.75)); } }
+      @keyframes scribbleDraw { 0% { stroke-dashoffset: 1000; opacity: 0.2; } 100% { stroke-dashoffset: 0; opacity: 1; } }
+      .animate-rotate { animation: scribbleRotate 8s linear infinite; transform-box: fill-box; transform-origin: center; }
+      .animate-sparkle { animation: scribbleSparkle 2.2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+      .animate-float-slow { animation: scribbleFloat 7s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+      .animate-wobble-slow { animation: scribbleWobble 4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+      .animate-bounce-subtle { animation: scribbleBounce 3s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+      .animate-pulse-glow { animation: scribbleGlow 2.5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+      .animate-scribble-draw { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: scribbleDraw 1.2s cubic-bezier(0.65, 0, 0.35, 1) forwards; }
+    </style>\n`;
+    }
     if (hasWiggle) {
       defsMarkup += `    <filter id="scribble-wiggle" x="-10%" y="-10%" width="120%" height="120%">
       <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
@@ -607,17 +640,32 @@ export function serializeElementsToSvg(
     const fillProps = `fill="${el.fill}"${el.fillOpacity < 1 ? ` fill-opacity="${el.fillOpacity}"` : ''}`;
     const opacityProp = el.opacity < 1 ? ` opacity="${el.opacity}"` : '';
 
+    const getAnimClass = (anim?: string, elType?: string) => {
+      if (!anim || anim === 'none') return '';
+      if (anim === 'original') return elType === 'path' ? 'animate-scribble-draw' : 'animate-wobble-slow';
+      if (anim === 'rotate' || anim === 'spin') return 'animate-rotate';
+      if (anim === 'sparkle') return 'animate-sparkle';
+      if (anim === 'float') return 'animate-float-slow';
+      if (anim === 'wobble') return 'animate-wobble-slow';
+      if (anim === 'bounce') return 'animate-bounce-subtle';
+      if (anim === 'pulse') return 'animate-pulse-glow';
+      if (anim === 'draw') return 'animate-scribble-draw';
+      return '';
+    };
+    const animClass = getAnimClass(el.animation, el.type);
+    const classAttr = animClass ? ` class="${animClass}"` : '';
+
     if (el.type === 'path' && el.d) {
-      bodyMarkup += `  <path id="${el.id}" d="${el.d}" ${fillProps} ${strokeProps}${opacityProp}${filterAttr}${transformAttr} />\n`;
+      bodyMarkup += `  <path id="${el.id}" d="${el.d}" ${fillProps} ${strokeProps}${opacityProp}${filterAttr}${transformAttr}${classAttr} />\n`;
     } else if (el.type === 'rect') {
-      bodyMarkup += `  <rect id="${el.id}" x="${el.x}" y="${el.y}" width="${el.width}" height="${el.height}" rx="12" ${fillProps} ${strokeProps}${opacityProp}${filterAttr}${transformAttr} />\n`;
+      bodyMarkup += `  <rect id="${el.id}" x="${el.x}" y="${el.y}" width="${el.width}" height="${el.height}" rx="12" ${fillProps} ${strokeProps}${opacityProp}${filterAttr}${transformAttr}${classAttr} />\n`;
     } else if (el.type === 'circle') {
       const cx = el.x + el.width / 2;
       const cy = el.y + el.height / 2;
       const r = el.width / 2;
-      bodyMarkup += `  <circle id="${el.id}" cx="${cx}" cy="${cy}" r="${r}" ${fillProps} ${strokeProps}${opacityProp}${filterAttr}${transformAttr} />\n`;
+      bodyMarkup += `  <circle id="${el.id}" cx="${cx}" cy="${cy}" r="${r}" ${fillProps} ${strokeProps}${opacityProp}${filterAttr}${transformAttr}${classAttr} />\n`;
     } else if (el.type === 'text') {
-      bodyMarkup += `  <text id="${el.id}" x="${el.x}" y="${el.y + (el.fontSize || 32)}" font-family="${el.fontFamily || 'Space Grotesk'}" font-size="${el.fontSize || 28}" font-weight="${el.fontWeight || 'bold'}" ${fillProps} ${strokeProps}${opacityProp}${filterAttr}${transformAttr}>${el.text || ''}</text>\n`;
+      bodyMarkup += `  <text id="${el.id}" x="${el.x}" y="${el.y + (el.fontSize || 32)}" font-family="${el.fontFamily || 'Space Grotesk'}" font-size="${el.fontSize || 28}" font-weight="${el.fontWeight || 'bold'}" ${fillProps} ${strokeProps}${opacityProp}${filterAttr}${transformAttr}${classAttr}>${el.text || ''}</text>\n`;
     }
   });
 

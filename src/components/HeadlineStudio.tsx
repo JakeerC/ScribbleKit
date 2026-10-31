@@ -1,7 +1,17 @@
 import React, { useState } from 'react';
 import { Sparkles, Copy, Check } from 'lucide-react';
 import { ScribbleHighlight, HighlightStyle } from './ScribbleHighlight';
-import { Scribble } from './Scribble';
+import { Scribble, ScribbleAnimation } from './Scribble';
+
+type StudioAnimationMode =
+  | 'none'
+  | 'draw'
+  | 'rotate'
+  | 'sparkle'
+  | 'float'
+  | 'wobble'
+  | 'pulse'
+  | 'bounce';
 
 export const HeadlineStudio: React.FC = () => {
   const [headlinePrefix, setHeadlinePrefix] = useState('Build products people');
@@ -11,55 +21,99 @@ export const HeadlineStudio: React.FC = () => {
   const [color, setColor] = useState('#EA552B');
   const [studioTheme, setStudioTheme] = useState<'paper' | 'dark' | 'mint'>('paper');
   const [copied, setCopied] = useState(false);
-  const [animate, setAnimate] = useState(true);
+  const [animationMode, setAnimationMode] = useState<StudioAnimationMode>('draw');
 
-  const presets = [
+  const presets: Array<{
+    label: string;
+    prefix: string;
+    highlight: string;
+    suffix: string;
+    style: HighlightStyle;
+    color: string;
+    animation: StudioAnimationMode;
+  }> = [
     {
-      label: 'Funky Scribbles',
-      prefix: 'Spice up your design with',
-      highlight: 'funky scribbles',
-      suffix: 'that pop.',
-      style: 'funky-yellow-oval' as HighlightStyle,
+      label: '💥 Comic Boom',
+      prefix: 'Turn cold leads into',
+      highlight: 'EXPLOSIVE conversions',
+      suffix: 'with pop-art headlines.',
+      style: 'funky-comic-boom',
+      color: '#EA552B',
+      animation: 'wobble',
+    },
+    {
+      label: '🌟 Verified Seal',
+      prefix: 'Trusted by over',
+      highlight: '25,000+ creators',
+      suffix: 'around the globe.',
+      style: 'funky-hologram-seal',
       color: '#F7D046',
+      animation: 'pulse',
+    },
+    {
+      label: '✌️ Groovy Peace',
+      prefix: 'Ship fast and bring',
+      highlight: 'peace of mind',
+      suffix: 'to your engineering team.',
+      style: 'funky-peace-sign',
+      color: '#0BDC85',
+      animation: 'float',
+    },
+    {
+      label: '⚛️ Atomic Orbit',
+      prefix: 'Powered by next-gen',
+      highlight: 'ultra-reactive',
+      suffix: 'design components.',
+      style: 'funky-atomic-orbit',
+      color: '#55BBDA',
+      animation: 'float',
+    },
+    {
+      label: '🎗️ Ribbon Swag',
+      prefix: 'Winner of the coveted',
+      highlight: 'Product of the Year',
+      suffix: 'design award.',
+      style: 'funky-ribbon-banner',
+      color: '#EE8DB9',
+      animation: 'bounce',
+    },
+    {
+      label: '😎 Retro Shades',
+      prefix: 'Keep your aesthetic',
+      highlight: 'infinitely cool',
+      suffix: 'in every browser.',
+      style: 'funky-sun-shades',
+      color: '#F7D046',
+      animation: 'wobble',
     },
     {
       label: 'SaaS Launch Hero',
       prefix: 'Scale your revenue to',
       highlight: '$10M ARR',
       suffix: 'with autonomous AI agents.',
-      style: 'circle-double' as HighlightStyle,
+      style: 'circle-double',
       color: '#EA552B',
+      animation: 'draw',
     },
     {
       label: 'Hand-Crafted Appeal',
       prefix: 'Modern UI kits with a genuine',
       highlight: 'human touch',
       suffix: 'built into every pixel.',
-      style: 'underline-swash' as HighlightStyle,
+      style: 'underline-swash',
       color: '#F7D046',
-    },
-    {
-      label: 'Attention Grabber',
-      prefix: 'Guaranteed 24-hour turnaround or',
-      highlight: '100% free',
-      suffix: '— no questions asked.',
-      style: 'circle-capsule' as HighlightStyle,
-      color: '#0BDC85',
-    },
-    {
-      label: 'Editorial Quote',
-      prefix: 'ScribbleKit changed how we ship our',
-      highlight: 'product UI',
-      suffix: 'forever.',
-      style: 'underline-swoosh' as HighlightStyle,
-      color: '#EE8DB9',
+      animation: 'draw',
     },
   ];
 
+  const effectiveAnimation: ScribbleAnimation | undefined =
+    animationMode === 'none' ? false : (animationMode as ScribbleAnimation);
+
   const handleCopyCode = () => {
+    const animAttr = animationMode === 'draw' ? ' animate' : animationMode === 'none' ? ' animate={false}' : ` animate="${animationMode}"`;
     const code = `<h1 className="text-5xl font-extrabold text-black font-display">
   ${headlinePrefix}{' '}
-  <ScribbleHighlight styleType="${styleType}" color="${color}">
+  <ScribbleHighlight styleType="${styleType}" color="${color}"${animAttr}>
     ${highlightWord}
   </ScribbleHighlight>{' '}
   ${headlineSuffix}
@@ -99,6 +153,7 @@ export const HeadlineStudio: React.FC = () => {
                   setHeadlineSuffix(preset.suffix);
                   setStyleType(preset.style);
                   setColor(preset.color);
+                  setAnimationMode(preset.animation);
                 }}
                 className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-black/5 hover:bg-black hover:text-white transition-all text-black/80"
               >
@@ -152,15 +207,26 @@ export const HeadlineStudio: React.FC = () => {
 
             {/* Scribble Style Selection */}
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-black/70 mb-2">
-                Scribble Accent Style
-              </label>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="flex items-center justify-between mb-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-black/70">
+                  Scribble Accent Style
+                </label>
+                <span className="text-[10px] font-semibold text-scribble-orange uppercase tracking-wider">
+                  16 Styles
+                </span>
+              </div>
+              <div className="grid grid-cols-2 gap-2 max-h-56 overflow-y-auto pr-1">
                 {[
                   { id: 'underline-wave', label: 'Wavy Underline' },
                   { id: 'underline-swoosh', label: 'Brush Swoosh' },
                   { id: 'underline-swash', label: 'Signature Swash' },
                   { id: 'circle-double', label: 'Double Loop Circle' },
+                  { id: 'funky-comic-boom', label: '💥 Comic 3D Boom' },
+                  { id: 'funky-hologram-seal', label: '🌟 Hologram Seal' },
+                  { id: 'funky-peace-sign', label: '✌️ Groovy Peace' },
+                  { id: 'funky-atomic-orbit', label: '⚛️ Atomic Orbit' },
+                  { id: 'funky-ribbon-banner', label: '🎗️ Ribbon Banner' },
+                  { id: 'funky-sun-shades', label: '😎 Cool Sun Shades' },
                   { id: 'funky-yellow-oval', label: 'Funky Spring Oval' },
                   { id: 'funky-comic-bolt', label: 'Comic 3D Bolt' },
                   { id: 'circle-capsule', label: 'Capsule Pill' },
@@ -217,8 +283,42 @@ export const HeadlineStudio: React.FC = () => {
               </div>
             </div>
 
-            {/* Preview Environment & Toggles */}
+            {/* Animation Selector */}
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-wider text-black/70 mb-2">
+                Scribble Animation Mode
+              </label>
+              <div className="flex flex-wrap gap-1.5">
+                {[
+                  { id: 'draw', label: '✏️ Draw' },
+                  { id: 'rotate', label: '🔄 Rotate' },
+                  { id: 'sparkle', label: '✨ Sparkle' },
+                  { id: 'float', label: '🌊 Float' },
+                  { id: 'wobble', label: '〰️ Wobble' },
+                  { id: 'pulse', label: '💫 Pulse' },
+                  { id: 'bounce', label: '🏀 Bounce' },
+                  { id: 'none', label: 'Off' },
+                ].map((anim) => (
+                  <button
+                    key={anim.id}
+                    onClick={() => setAnimationMode(anim.id as StudioAnimationMode)}
+                    className={`px-2.5 py-1 text-xs font-semibold rounded-lg border transition-all ${
+                      animationMode === anim.id
+                        ? 'bg-black text-white border-black shadow-sm'
+                        : 'bg-white text-black/70 border-black/15 hover:border-black/30'
+                    }`}
+                  >
+                    {anim.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Preview Canvas Environment */}
             <div className="flex items-center justify-between pt-2 border-t border-black/10">
+              <span className="text-xs font-bold uppercase tracking-wider text-black/60">
+                Studio Canvas:
+              </span>
               <div className="flex items-center gap-1 bg-white p-1 rounded-xl border border-black/15">
                 <button
                   onClick={() => setStudioTheme('paper')}
@@ -245,15 +345,6 @@ export const HeadlineStudio: React.FC = () => {
                   Mint
                 </button>
               </div>
-
-              <button
-                onClick={() => setAnimate(!animate)}
-                className={`px-3 py-1.5 text-xs font-bold rounded-xl border transition-all ${
-                  animate ? 'bg-black/10 border-black/20 text-black' : 'bg-transparent text-black/50'
-                }`}
-              >
-                Animate: {animate ? 'ON' : 'OFF'}
-              </button>
             </div>
           </div>
 
@@ -268,14 +359,14 @@ export const HeadlineStudio: React.FC = () => {
                   : 'bg-[#EDFAF4] text-[#0A3D28]'
               }`}
             >
-              {/* Badge sticker in corner */}
-              <div className="absolute top-6 right-6 opacity-80 pointer-events-none">
+              {/* Badge sticker in corner with floating animation */}
+              <div className="absolute top-6 right-6 opacity-80 pointer-events-none animate-float-slow">
                 <Scribble name="badge-starburst-16" size={38} color={color} />
               </div>
 
               <div className="text-3xl sm:text-5xl font-extrabold font-display leading-[1.25] tracking-tight">
                 {headlinePrefix}{' '}
-                <ScribbleHighlight styleType={styleType} color={color} animate={animate}>
+                <ScribbleHighlight styleType={styleType} color={color} animate={effectiveAnimation}>
                   {highlightWord}
                 </ScribbleHighlight>{' '}
                 {headlineSuffix}
@@ -316,7 +407,13 @@ export const HeadlineStudio: React.FC = () => {
               <pre className="overflow-x-auto text-emerald-400 leading-relaxed">
 {`<h1 className="text-5xl font-extrabold text-black font-display">
   ${headlinePrefix}{' '}
-  <ScribbleHighlight styleType="${styleType}" color="${color}">
+  <ScribbleHighlight styleType="${styleType}" color="${color}"${
+    animationMode === 'draw'
+      ? ' animate'
+      : animationMode === 'none'
+      ? ' animate={false}'
+      : ` animate="${animationMode}"`
+  }>
     ${highlightWord}
   </ScribbleHighlight>{' '}
   ${headlineSuffix}

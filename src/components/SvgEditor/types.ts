@@ -17,6 +17,17 @@ export type CanvasBackground = 'paper' | 'grid' | 'dots' | 'dark' | 'transparent
 
 export type EditorViewMode = 'canvas' | 'split' | 'code';
 
+export type ElementAnimationType =
+  | 'none'
+  | 'original'
+  | 'draw'
+  | 'rotate'
+  | 'sparkle'
+  | 'float'
+  | 'wobble'
+  | 'bounce'
+  | 'pulse';
+
 export interface Point {
   x: number;
   y: number;
@@ -78,7 +89,8 @@ export interface SvgElementData {
   fontWeight?: string;
   rawContent?: string; // for arbitrary SVG element / imported SVG
 
-  // ScribbleKit Special Effects
+  // ScribbleKit Special Effects & Animation
+  animation?: ElementAnimationType;
   comicShadow?: ComicShadowConfig;
   wiggle?: WiggleEffectConfig;
   glow?: GlowEffectConfig;

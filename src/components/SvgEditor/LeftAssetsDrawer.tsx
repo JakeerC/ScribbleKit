@@ -134,7 +134,7 @@ export const LeftAssetsDrawer: React.FC<LeftAssetsDrawerProps> = ({
           <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-black/40" />
           <input
             type="text"
-            placeholder="Search 140+ scribbles..."
+            placeholder={`Search ${SCRIBBLES_ASSETS.length}+ scribbles...`}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-8 pr-7 py-1.5 bg-white rounded-xl border border-black/15 text-xs focus:outline-none focus:border-black font-medium transition-colors"
@@ -208,6 +208,7 @@ export const LeftAssetsDrawer: React.FC<LeftAssetsDrawerProps> = ({
                       name={asset.id}
                       color={displayColor}
                       size={52}
+                      animate="original"
                     />
 
                     {/* Just Added Feedback Badge */}

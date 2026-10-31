@@ -1,6 +1,11 @@
 // Public library exports for @scribblekit/core
 
-export { Scribble, type ScribbleProps } from './components/Scribble';
+export {
+  Scribble,
+  type ScribbleProps,
+  type ScribbleAnimation,
+  getOriginalAnimation,
+} from './components/Scribble';
 export {
   ScribbleHighlight,
   type ScribbleHighlightProps,

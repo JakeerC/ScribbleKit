@@ -1048,13 +1048,41 @@ export const Canvas: React.FC<CanvasProps> = ({
               : undefined;
 
             const transformString = getElementTransform(el);
+            const getAnimationClass = (anim?: string, elType?: string) => {
+              if (!anim || anim === 'none') return '';
+              if (anim === 'original') {
+                if (elType === 'path') return 'animate-scribble-draw';
+                return 'animate-wobble-slow';
+              }
+              switch (anim) {
+                case 'draw':
+                  return 'animate-scribble-draw';
+                case 'rotate':
+                case 'spin':
+                  return 'animate-rotate';
+                case 'sparkle':
+                  return 'animate-sparkle';
+                case 'float':
+                  return 'animate-float-slow';
+                case 'wobble':
+                  return 'animate-wobble-slow';
+                case 'bounce':
+                  return 'animate-bounce-subtle';
+                case 'pulse':
+                  return 'animate-pulse-glow';
+                default:
+                  return '';
+              }
+            };
+            const animClass = getAnimationClass(el.animation, el.type);
 
             return (
               <g
                 key={el.id}
                 id={el.id}
                 opacity={el.opacity}
-                className={`${
+                style={{ transformBox: 'fill-box', transformOrigin: 'center' }}
+                className={`${animClass} ${
                   activeTool === 'select' && dragMode === 'none'
                     ? 'cursor-pointer pointer-events-auto'
                     : 'pointer-events-none'
@@ -1142,6 +1170,15 @@ export const Canvas: React.FC<CanvasProps> = ({
                     strokeDasharray={el.strokeDasharray !== 'none' ? el.strokeDasharray : undefined}
                     transform={transformString || undefined}
                     filter={filterAttr}
+                    style={
+                      el.animation === 'draw' || el.animation === 'original'
+                        ? {
+                            strokeDasharray: 1000,
+                            strokeDashoffset: 1000,
+                            animation: 'scribbleDraw 1.2s cubic-bezier(0.65, 0, 0.35, 1) forwards',
+                          }
+                        : undefined
+                    }
                   />
                 )}
 
