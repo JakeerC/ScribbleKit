@@ -40,7 +40,7 @@
     "build:types": "tsc -p tsconfig.lib.json",
     "build:lib": "npm run build:types && vite build --config vite.config.lib.ts",
     "build": "npm run build:app && npm run build:lib",
-    "test": "node scripts/test-consumer.mjs",
+    "test": "npm run build:lib && node scripts/test-consumer.mjs",
     "prepack": "npm run build:lib",
     "preview": "vite preview"
   },
