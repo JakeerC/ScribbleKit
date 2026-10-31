@@ -2,13 +2,43 @@
   "name": "scribblekit",
   "version": "1.0.0",
   "type": "module",
-  "description": "Comprehensive hand-drawn vector scribbles asset library and interactive studio by ScribbleKit",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
+  "description": "150+ hand-drawn vector scribbles, animated highlights, and interactive React SVG component library",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./style.css": "./dist/style.css",
+    "./dist/style.css": "./dist/style.css",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist/index.js",
+    "dist/index.js.map",
+    "dist/index.cjs",
+    "dist/index.cjs.map",
+    "dist/index.d.ts",
+    "dist/style.css",
+    "dist/components/**/*.d.ts",
+    "dist/lib/**/*.d.ts",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build:app": "vite build",
+    "build:types": "tsc -p tsconfig.lib.json",
+    "build:lib": "npm run build:types && vite build --config vite.config.lib.ts",
+    "build": "npm run build:app && npm run build:lib",
+    "test": "node scripts/test-consumer.mjs",
+    "prepack": "npm run build:lib",
     "preview": "vite preview"
   },
   "engines": {
@@ -25,26 +55,49 @@
     "arrows",
     "underlines",
     "badges",
+    "react",
+    "react-components",
+    "ui-components",
     "scribblekit"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JakeerC/ScribbleKit.git"
+  },
+  "homepage": "https://scribblekit.vercel.app",
+  "bugs": {
+    "url": "https://github.com/JakeerC/ScribbleKit/issues"
+  },
   "author": "ScribbleKit",
   "license": "MIT",
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": false
+    },
+    "react-dom": {
+      "optional": false
+    }
+  },
   "dependencies": {
-    "@vercel/analytics": "^2.0.1",
-    "@vercel/speed-insights": "^2.0.0",
-    "clsx": "^2.1.1",
-    "lucide-react": "^0.468.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "tailwind-merge": "^2.5.5"
+    "lucide-react": "^0.468.0"
   },
   "devDependencies": {
     "@types/node": "^22.10.1",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
+    "clsx": "^2.1.1",
     "postcss": "^8.4.49",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.5.5",
     "tailwindcss": "^3.4.16",
     "typescript": "^5.7.2",
     "vite": "^6.0.1"
