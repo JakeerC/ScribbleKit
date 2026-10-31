@@ -25,7 +25,7 @@ export const Hero: React.FC<HeroProps> = ({
   onDownloadAll = () => {},
   assetCount,
 }) => {
-  const [activeColor, setActiveColor] = useState("#EA552B");
+  const [activeColor, setActiveColor] = useState("#F7D046");
 
   return (
     <section className="relative min-h-screen flex flex-col justify-between overflow-hidden border-b border-black/10 bg-gradient-to-b from-[#FAF4EC] via-scribble-paper to-[#F5ECE1]">
@@ -34,7 +34,9 @@ export const Hero: React.FC<HeroProps> = ({
         currentPage="library"
         onNavigateToLibrary={onNavigateToLibrary || onScrollToCatalog}
         onNavigateToSvgStudio={onNavigateToSvgStudio || onOpenEditor}
-        onNavigateToHeadlineStudio={onNavigateToHeadlineStudio || onScrollToStudio}
+        onNavigateToHeadlineStudio={
+          onNavigateToHeadlineStudio || onScrollToStudio
+        }
         onOpenGuide={onOpenGuide}
         onDownloadAll={onDownloadAll}
         assetCount={assetCount}
@@ -44,28 +46,23 @@ export const Hero: React.FC<HeroProps> = ({
       {/* DECORATIVE FLOATING FUNKY SCRIBBLLES (MATCHING SCREENSHOT) */}
       {/* ========================================================= */}
 
-      {/* Top-Left: Coral Polka-Dot Blob */}
-      <div className="absolute top-20 sm:top-24 left-2 sm:left-6 lg:left-12 opacity-95 pointer-events-none select-none animate-float-slow">
-        <Scribble name="funky-coral-polka-blob" size={145} />
-      </div>
-
       {/* Mid-Left: Black Striped Carved Pebble */}
       <div className="absolute top-[52%] -translate-y-1/2 -left-6 sm:left-2 lg:left-8 opacity-95 pointer-events-none select-none animate-float-reverse hover:scale-105 transition-transform">
-        <Scribble name="funky-black-pebble-stripes" size={135} />
+        <Scribble name="funky-black-pebble-stripes" size={140} />
       </div>
 
       {/* Upper-Left: Green Cactus Spotted Hand */}
       <div className="absolute top-[26%] left-6 sm:left-14 lg:left-24 opacity-95 pointer-events-none select-none animate-float-gentle hover:rotate-12 transition-transform">
-        <Scribble name="funky-cactus-spotted" size={135} />
+        <Scribble name="funky-cactus-spotted" size={200} />
       </div>
 
       {/* Bottom-Left: Big Sky-Blue Wireframe Scribble Pebble */}
-      <div className="absolute -bottom-4 sm:bottom-4 left-0 sm:left-6 lg:left-12 opacity-95 pointer-events-none select-none animate-wobble-slow hover:scale-105 transition-transform">
+      <div className="absolute -bottom-4 sm:bottom-4 left-0 sm:left-6 lg:left-24 opacity-95 pointer-events-none select-none animate-wobble-slow hover:scale-105 transition-transform">
         <Scribble name="funky-blue-wire-scribble" size={215} />
       </div>
 
       {/* Mid-Right: Curly Telephone Spring Coil */}
-      <div className="absolute top-[26%] right-2 sm:right-6 lg:right-14 opacity-95 pointer-events-none select-none animate-float-slow hover:scale-110 transition-transform">
+      <div className="absolute top-[26%] right-2 sm:right-6 lg:right-14 opacity-95 pointer-events-none select-none animate-wobble-slow hover:scale-110 transition-transform">
         <Scribble name="funky-curly-spring-coil" size={175} />
       </div>
 
@@ -135,7 +132,7 @@ export const Hero: React.FC<HeroProps> = ({
           <div className="relative -mt-2 sm:-mt-3 pointer-events-none select-none hover:scale-110 transition-transform animate-bounce-subtle">
             <Scribble
               name="funky-bolt-comic-3d"
-              size={98}
+              size={160}
               color={activeColor}
             />
           </div>
@@ -168,8 +165,6 @@ export const Hero: React.FC<HeroProps> = ({
                 />
               ))}
             </div>
-
-            
           </div>
         </div>
       </div>

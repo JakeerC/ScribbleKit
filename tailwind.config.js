@@ -30,6 +30,8 @@ export default {
         'wiggle-slow': 'wiggle 2.5s ease-in-out infinite',
         'spin-slow': 'spin 20s linear infinite',
         'spin-reverse': 'spinReverse 22s linear infinite',
+        'rotate': 'spin 8s linear infinite',
+        'rotate-slow': 'spin 16s linear infinite',
         'pulse-subtle': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'pulse-glow': 'pulseGlow 2.5s ease-in-out infinite',
         'float': 'float 5s ease-in-out infinite',

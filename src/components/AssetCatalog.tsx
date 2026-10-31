@@ -17,7 +17,15 @@ interface AssetCatalogProps {
   onColorChange: (color: string) => void;
 }
 
-export type CatalogAnimationMode = 'none' | 'draw' | 'float' | 'wobble' | 'pulse';
+export type CatalogAnimationMode =
+  | 'original'
+  | 'none'
+  | 'draw'
+  | 'rotate'
+  | 'sparkle'
+  | 'float'
+  | 'wobble'
+  | 'pulse';
 
 export const AssetCatalog: React.FC<AssetCatalogProps> = ({
   assets,
@@ -29,7 +37,7 @@ export const AssetCatalog: React.FC<AssetCatalogProps> = ({
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [scale, setScale] = useState(56);
-  const [animationMode, setAnimationMode] = useState<CatalogAnimationMode>('none');
+  const [animationMode, setAnimationMode] = useState<CatalogAnimationMode>('original');
   const [cardTheme, setCardTheme] = useState<'paper' | 'white' | 'dark' | 'grid'>('paper');
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
@@ -241,12 +249,26 @@ export const AssetCatalog: React.FC<AssetCatalogProps> = ({
           </div>
 
           {/* Animation Selector */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             <span className="uppercase tracking-wider text-black/50 text-[11px] font-bold">Animation:</span>
-            <div className="flex items-center gap-1 bg-black/5 p-1 rounded-xl border border-black/10">
+            <div className="flex items-center gap-1 bg-black/5 p-1 rounded-xl border border-black/10 flex-wrap">
+              <button
+                onClick={() => setAnimationMode('original')}
+                title="Original Signature Animations"
+                className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                  animationMode === 'original'
+                    ? 'bg-black text-white shadow-sm'
+                    : 'bg-black/5 hover:bg-black/10 text-black/70'
+                }`}
+              >
+                <span className="w-2.5 h-2.5 rounded-full bg-gradient-to-tr from-scribble-orange via-scribble-yellow to-scribble-blue animate-spin-slow" />
+                <span>Original</span>
+              </button>
               {[
                 { id: 'none', label: 'Static' },
                 { id: 'draw', label: 'Draw' },
+                { id: 'rotate', label: 'Rotate' },
+                { id: 'sparkle', label: 'Sparkle' },
                 { id: 'float', label: 'Float' },
                 { id: 'wobble', label: 'Wobble' },
                 { id: 'pulse', label: 'Glow' },

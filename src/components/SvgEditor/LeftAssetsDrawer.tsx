@@ -208,6 +208,7 @@ export const LeftAssetsDrawer: React.FC<LeftAssetsDrawerProps> = ({
                       name={asset.id}
                       color={displayColor}
                       size={52}
+                      animate="original"
                     />
 
                     {/* Just Added Feedback Badge */}

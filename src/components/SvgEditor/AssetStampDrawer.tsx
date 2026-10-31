@@ -129,6 +129,7 @@ export const AssetStampDrawer: React.FC<AssetStampDrawerProps> = ({
                     name={asset.id}
                     color={asset.defaultColor || '#EA552B'}
                     size={72}
+                    animate="original"
                   />
                 </div>
 

@@ -3,7 +3,15 @@ import { Sparkles, Copy, Check } from 'lucide-react';
 import { ScribbleHighlight, HighlightStyle } from './ScribbleHighlight';
 import { Scribble, ScribbleAnimation } from './Scribble';
 
-type StudioAnimationMode = 'none' | 'draw' | 'float' | 'wobble' | 'pulse' | 'bounce';
+type StudioAnimationMode =
+  | 'none'
+  | 'draw'
+  | 'rotate'
+  | 'sparkle'
+  | 'float'
+  | 'wobble'
+  | 'pulse'
+  | 'bounce';
 
 export const HeadlineStudio: React.FC = () => {
   const [headlinePrefix, setHeadlinePrefix] = useState('Build products people');
@@ -283,9 +291,11 @@ export const HeadlineStudio: React.FC = () => {
               <div className="flex flex-wrap gap-1.5">
                 {[
                   { id: 'draw', label: '✏️ Draw' },
+                  { id: 'rotate', label: '🔄 Rotate' },
+                  { id: 'sparkle', label: '✨ Sparkle' },
                   { id: 'float', label: '🌊 Float' },
                   { id: 'wobble', label: '〰️ Wobble' },
-                  { id: 'pulse', label: '✨ Pulse' },
+                  { id: 'pulse', label: '💫 Pulse' },
                   { id: 'bounce', label: '🏀 Bounce' },
                   { id: 'none', label: 'Off' },
                 ].map((anim) => (

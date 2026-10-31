@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { X, Copy, Check, Download, Pencil } from 'lucide-react';
 import { ScribbleAsset } from '../lib/scribbles-data';
-import { Scribble } from './Scribble';
+import { Scribble, ScribbleAnimation } from './Scribble';
 
 interface AssetDetailModalProps {
   asset: ScribbleAsset | null;
@@ -24,7 +24,7 @@ export const AssetDetailModal: React.FC<AssetDetailModalProps> = ({
   const [copiedSvg, setCopiedSvg] = useState(false);
   const [copiedJsx, setCopiedJsx] = useState(false);
   const [activeTab, setActiveTab] = useState<'svg' | 'jsx' | 'datauri'>('svg');
-  const [animate, setAnimate] = useState(true);
+  const [animationMode, setAnimationMode] = useState<ScribbleAnimation>('original');
   const [modalBg, setModalBg] = useState<'paper' | 'dark' | 'grid'>('grid');
 
   // Compute clean SVG string
@@ -49,7 +49,14 @@ export const AssetDetailModal: React.FC<AssetDetailModalProps> = ({
     }
   }
 
-  const jsxCode = `<Scribble\n  name="${asset.id}"\n  color="${color}"\n  size={48}\n  animate={${animate}}\n/>`;
+  const animAttr =
+    !animationMode || animationMode === 'none'
+      ? 'animate={false}'
+      : animationMode === 'original' || animationMode === true
+      ? 'animate'
+      : `animate="${animationMode}"`;
+
+  const jsxCode = `<Scribble\n  name="${asset.id}"\n  color="${color}"\n  size={48}\n  ${animAttr}\n/>`;
 
   const dataUri = `data:image/svg+xml;utf8,${encodeURIComponent(svgCode)}`;
 
@@ -136,14 +143,30 @@ export const AssetDetailModal: React.FC<AssetDetailModalProps> = ({
                 </button>
               </div>
 
-              <button
-                onClick={() => setAnimate(!animate)}
-                className={`px-3 py-1 text-xs font-bold rounded-xl border transition-all ${
-                  animate ? 'bg-scribble-orange/20 text-scribble-orange border-scribble-orange/40' : 'bg-white text-black/50 border-black/10'
-                }`}
-              >
-                Animation: {animate ? 'ON' : 'OFF'}
-              </button>
+              {/* Animation Selector */}
+              <div className="flex items-center gap-1 bg-black/5 p-1 rounded-xl border border-black/10 overflow-x-auto no-scrollbar">
+                {[
+                  { id: 'original', label: 'Original' },
+                  { id: 'draw', label: 'Draw' },
+                  { id: 'rotate', label: 'Rotate' },
+                  { id: 'sparkle', label: 'Sparkle' },
+                  { id: 'float', label: 'Float' },
+                  { id: 'wobble', label: 'Wobble' },
+                  { id: 'none', label: 'Off' },
+                ].map((mode) => (
+                  <button
+                    key={mode.id}
+                    onClick={() => setAnimationMode(mode.id as ScribbleAnimation)}
+                    className={`px-2 py-0.5 text-[11px] font-bold rounded-lg transition-all ${
+                      animationMode === mode.id || (mode.id === 'none' && !animationMode)
+                        ? 'bg-white text-black shadow-sm'
+                        : 'text-black/60 hover:text-black'
+                    }`}
+                  >
+                    {mode.label}
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* Canvas */}
@@ -161,8 +184,8 @@ export const AssetDetailModal: React.FC<AssetDetailModalProps> = ({
                   name={asset.id}
                   color={color}
                   size={160}
-                  animate={animate}
-                  key={`${asset.id}-${color}-${animate}`}
+                  animate={animationMode}
+                  key={`${asset.id}-${color}-${animationMode}`}
                 />
               </div>
             </div>

@@ -94,6 +94,15 @@
   }
 }
 
+@keyframes scribbleRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .animate-scribble-draw {
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
@@ -108,42 +117,74 @@
 
 .animate-scribble-pop {
   animation: scribblePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.animate-rotate {
+  animation: scribbleRotate 8s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.animate-spin-slow {
+  animation: scribbleRotate 18s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 .animate-float {
   animation: scribbleFloat 5s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 .animate-float-slow {
   animation: scribbleFloat 7s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 .animate-float-reverse {
   animation: scribbleFloatReverse 6.5s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 .animate-float-gentle {
   animation: scribbleFloat 4.5s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 .animate-wobble {
   animation: scribbleWobble 2s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 .animate-wobble-slow {
   animation: scribbleWobble 4s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 .animate-sparkle {
-  animation: scribbleSparkle 2.5s ease-in-out infinite;
+  animation: scribbleSparkle 2.2s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 .animate-bounce-subtle {
   animation: scribbleBounce 3s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 .animate-pulse-glow {
   animation: scribbleGlow 2.5s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 /* Custom Grid Background Patterns */

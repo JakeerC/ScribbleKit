@@ -6,6 +6,7 @@ import {
   SvgElementData,
   CanvasDimensions,
   CanvasBackground,
+  ElementAnimationType,
 } from './types';
 import { COLOR_PRESETS } from '../../lib/scribbles-data';
 import {
@@ -30,6 +31,18 @@ import {
   AlignRight,
 } from 'lucide-react';
 import { getCombinedBoundingBox } from './svg-utils';
+
+const ANIMATION_OPTIONS: Array<{ id: ElementAnimationType; label: string; icon: string }> = [
+  { id: 'none', label: 'Off', icon: '⏹' },
+  { id: 'original', label: 'Original', icon: '✨' },
+  { id: 'draw', label: 'Draw', icon: '✏️' },
+  { id: 'rotate', label: 'Rotate', icon: '🔄' },
+  { id: 'sparkle', label: 'Sparkle', icon: '❇️' },
+  { id: 'float', label: 'Float', icon: '🌊' },
+  { id: 'wobble', label: 'Wobble', icon: '〰️' },
+  { id: 'bounce', label: 'Bounce', icon: '🏀' },
+  { id: 'pulse', label: 'Glow', icon: '💫' },
+];
 
 interface PropertyInspectorProps {
   selectedElement: SvgElementData | null;
@@ -895,15 +908,69 @@ export const PropertyInspector: React.FC<PropertyInspectorProps> = ({
             <div className="pb-3 border-b border-black/10">
               <h4 className="text-sm font-extrabold text-scribble-dark font-display flex items-center gap-1.5">
                 <Sparkles className="w-4 h-4 text-scribble-orange" />
-                <span>Hand-Drawn & Funky FX</span>
+                <span>Animation & Funky FX</span>
               </h4>
               <p className="text-xs text-black/50 mt-0.5">
-                Apply ScribbleKit signature comic drop shadows, organic wiggle, and glows.
+                Apply ScribbleKit signature animations, comic drop shadows, organic wiggle, and glows.
               </p>
             </div>
 
             {selectedElement ? (
               <div className="space-y-4">
+                {/* Scribble Animation Card */}
+                <div className="bg-[#FAF7F2] p-3.5 rounded-2xl border border-black/10 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-xs font-bold text-scribble-dark flex items-center gap-1.5">
+                        <Sparkles className="w-3.5 h-3.5 text-scribble-orange" />
+                        <span>Scribble Animation</span>
+                      </div>
+                      <div className="text-[10px] text-black/50">
+                        {isMultiSelect ? `Apply to ${selectedElements.length} selected layers` : 'Signature motion & kinetic presets'}
+                      </div>
+                    </div>
+                    {selectedElement.animation && selectedElement.animation !== 'none' && (
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-scribble-yellow/40 text-black border border-scribble-yellow/60">
+                        {selectedElement.animation}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-1.5 pt-1">
+                    {ANIMATION_OPTIONS.map((anim) => {
+                      const isActive = (selectedElement.animation || 'none') === anim.id;
+                      return (
+                        <button
+                          key={anim.id}
+                          onClick={() => {
+                            if (isMultiSelect && onUpdateMultipleElements) {
+                              const updates = selectedElements.map((el) => ({
+                                id: el.id,
+                                updates: { animation: anim.id },
+                              }));
+                              onUpdateMultipleElements(updates, true);
+                            } else {
+                              onUpdateElement(selectedElement.id, {
+                                animation: anim.id,
+                              });
+                            }
+                          }}
+                          className={`px-2 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 border ${
+                            isActive
+                              ? anim.id === 'original'
+                                ? 'bg-gradient-to-r from-scribble-orange to-scribble-yellow text-white border-transparent shadow'
+                                : 'bg-black text-white border-black shadow'
+                              : 'bg-white hover:bg-black/5 text-black/70 border-black/10'
+                          }`}
+                        >
+                          <span className="text-[11px]">{anim.icon}</span>
+                          <span className="text-[11px] truncate">{anim.label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
                 {/* Comic 3D Isometric Drop Shadow */}
                 <div className="bg-[#FAF7F2] p-3.5 rounded-2xl border border-black/10 space-y-3">
                   <div className="flex items-center justify-between">
@@ -1046,8 +1113,46 @@ export const PropertyInspector: React.FC<PropertyInspectorProps> = ({
                 </div>
               </div>
             ) : (
-              <div className="text-center py-8 text-black/40 text-xs">
-                Select an element to configure funky effects.
+              <div className="space-y-4">
+                {/* Apply Animation to All Elements */}
+                <div className="bg-[#FAF7F2] p-3.5 rounded-2xl border border-black/10 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-xs font-bold text-scribble-dark flex items-center gap-1.5">
+                        <Sparkles className="w-3.5 h-3.5 text-scribble-orange" />
+                        <span>All Layers Animation</span>
+                      </div>
+                      <div className="text-[10px] text-black/50">
+                        Batch animate all {elements.length} elements on canvas
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-1.5 pt-1">
+                    {ANIMATION_OPTIONS.map((anim) => (
+                      <button
+                        key={anim.id}
+                        onClick={() => {
+                          if (onUpdateMultipleElements && elements.length > 0) {
+                            const updates = elements.map((el) => ({
+                              id: el.id,
+                              updates: { animation: anim.id },
+                            }));
+                            onUpdateMultipleElements(updates, true);
+                          }
+                        }}
+                        className="px-2 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 border bg-white hover:bg-black/5 text-black/70 border-black/10 hover:border-black/30"
+                      >
+                        <span className="text-[11px]">{anim.icon}</span>
+                        <span className="text-[11px] truncate">{anim.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="text-center py-6 text-black/40 text-xs">
+                  Select an individual layer to customize its specific effects and animation.
+                </div>
               </div>
             )}
           </div>

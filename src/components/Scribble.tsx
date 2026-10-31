@@ -3,14 +3,32 @@ import { getScribbleById } from '../lib/scribbles-data';
 
 export type ScribbleAnimation =
   | boolean
+  | 'none'
+  | 'original'
   | 'draw'
+  | 'rotate'
+  | 'sparkle'
   | 'float'
   | 'wobble'
-  | 'sparkle'
   | 'pulse'
   | 'bounce'
   | 'spin'
   | 'pop';
+
+export function getOriginalAnimation(
+  name: string,
+  type?: 'stroke' | 'fill' | 'mixed' | 'raw' | string
+): ScribbleAnimation {
+  const n = name.toLowerCase();
+  if (n.includes('star') || n.includes('sparkle') || n.includes('diamond')) return 'sparkle';
+  if (n.includes('orbit') || n.includes('globe') || n.includes('sun') || n.includes('spiral') || n.includes('circle-double')) return 'rotate';
+  if (n.includes('spring') || n.includes('coil') || n.includes('blob') || n.includes('wire') || n.includes('ribbon')) return 'float';
+  if (n.includes('badge') || n.includes('stamp') || n.includes('wave') || n.includes('boom') || n.includes('shades')) return 'wobble';
+  if (n.includes('bolt') || n.includes('peace') || n.includes('heart') || n.includes('hand')) return 'bounce';
+  if (type === 'stroke' || n.includes('arrow') || n.includes('underline') || n.includes('circle') || n.includes('box')) return 'draw';
+  if (type === 'fill') return 'pop';
+  return 'float';
+}
 
 export interface ScribbleProps extends React.SVGProps<SVGSVGElement> {
   name: string;
@@ -47,24 +65,28 @@ export const Scribble: React.FC<ScribbleProps> = ({
   const effectiveWidth = size || width || '100%';
   const effectiveHeight = size || height || 'auto';
 
-  const getAnimationClass = (anim: ScribbleAnimation, fallback: string) => {
+  const getAnimationClass = (anim: ScribbleAnimation, fallback: string): string => {
     if (!anim) return '';
-    if (anim === true) return fallback;
+    if (anim === true || anim === 'original') {
+      const orig = getOriginalAnimation(name, asset.type || (asset.rawSvg ? 'raw' : 'stroke'));
+      return getAnimationClass(orig, fallback);
+    }
     switch (anim) {
       case 'draw':
         return 'animate-scribble-draw';
+      case 'rotate':
+      case 'spin':
+        return 'animate-rotate';
+      case 'sparkle':
+        return 'animate-sparkle';
       case 'float':
         return 'animate-float-slow';
       case 'wobble':
         return 'animate-wobble-slow';
-      case 'sparkle':
-        return 'animate-sparkle';
       case 'pulse':
         return 'animate-pulse-glow';
       case 'bounce':
         return 'animate-bounce-subtle';
-      case 'spin':
-        return 'animate-spin-slow';
       case 'pop':
         return 'animate-scribble-pop';
       default:
@@ -122,7 +144,9 @@ export const Scribble: React.FC<ScribbleProps> = ({
             strokeLinecap="round"
             strokeLinejoin="round"
             style={
-              animate === true || animate === 'draw'
+              animate === true ||
+              animate === 'draw' ||
+              (animate === 'original' && getOriginalAnimation(name, asset.type) === 'draw')
                 ? {
                     strokeDasharray: 1000,
                     strokeDashoffset: 1000,
