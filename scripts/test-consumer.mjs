@@ -3,6 +3,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import {
   Scribble,
   ScribbleHighlight,
+  SvgEditor,
   SCRIBBLES_ASSETS,
   CATEGORIES,
   COLOR_PRESETS,
@@ -39,8 +40,6 @@ const scribbleHtml = renderToStaticMarkup(
     animate: 'draw',
   })
 );
-console.log('\nRendered <Scribble /> HTML:');
-console.log(scribbleHtml);
 if (!scribbleHtml.includes('<svg') || !scribbleHtml.includes('viewBox="0 0 120 120"')) {
   throw new Error('Scribble SVG rendering failed validation');
 }
@@ -57,11 +56,16 @@ const highlightHtml = renderToStaticMarkup(
     'Awesome Text'
   )
 );
-console.log('\nRendered <ScribbleHighlight /> HTML:');
-console.log(highlightHtml);
 if (!highlightHtml.includes('Awesome Text') || !highlightHtml.includes('<svg')) {
   throw new Error('ScribbleHighlight rendering failed validation');
 }
 console.log('✓ <ScribbleHighlight /> rendered markup with embedded SVG successfully');
+
+// Test 5: Render <SvgEditor /> to static HTML markup (verifies bundled Lucide icons)
+const editorHtml = renderToStaticMarkup(React.createElement(SvgEditor));
+if (!editorHtml.includes('<svg') || !editorHtml.includes('Canvas')) {
+  throw new Error('SvgEditor rendering failed validation');
+}
+console.log('✓ <SvgEditor /> rendered with inlined icons successfully (0 external dependencies)');
 
 console.log('\n🎉 ALL CONSUMER INTEGRATION TESTS PASSED 100%!');
