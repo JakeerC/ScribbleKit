@@ -517,10 +517,10 @@ export function App() {
 
               {/* Install Code Pill */}
               <div className="flex items-center justify-between p-3.5 rounded-2xl bg-black/60 border border-white/15 font-mono text-xs sm:text-sm mb-6">
-                <span className="text-scribble-mint">$ npm install @jakeerc/scribblekit</span>
+                <span className="text-scribble-mint">$ npm install scribblekit</span>
                 <button
                   onClick={() => {
-                    navigator.clipboard.writeText('npm install @jakeerc/scribblekit');
+                    navigator.clipboard.writeText('npm install scribblekit');
                     setCopiedInstall(true);
                     setTimeout(() => setCopiedInstall(false), 2000);
                   }}

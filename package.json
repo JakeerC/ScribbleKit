@@ -1,5 +1,5 @@
 {
-  "name": "@jakeerc/scribblekit",
+  "name": "scribblekit",
   "version": "1.1.1",
   "type": "module",
   "description": "150+ hand-drawn vector scribbles, animated highlights, and interactive React SVG component library",
@@ -7,7 +7,8 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "exports": {
     ".": {
@@ -36,11 +37,12 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build:app": "vite build",
-    "build:types": "tsc -p tsconfig.lib.json",
-    "build:lib": "npm run build:types && vite build --config vite.config.lib.ts",
-    "build": "npm run build:app && npm run build:lib",
-    "test": "npm run build:lib && node scripts/test-consumer.mjs",
+    "build:app": "vite build && echo '✅ Showcase Web App built successfully'",
+    "build:types": "tsc -p tsconfig.lib.json && echo '✅ TypeScript declarations generated in dist/'",
+    "build:lib": "npm run build:types && vite build --config vite.config.lib.ts && echo '✅ Library bundle created (ESM, CJS, CSS)'",
+    "build": "npm run build:app && npm run build:lib && echo '🎉 Complete build finished successfully!'",
+    "test": "npm run build:lib && node scripts/test-consumer.mjs && echo '✅ All consumer integration tests passed!'",
+    "verify:release": "npm run build:lib && npm test && npm run build && npm pack --dry-run && echo '\n🎉 [VERIFIED] All checks passed cleanly! Run `npm publish` to deploy.'",
     "prepack": "npm run build:lib",
     "preview": "vite preview"
   },
@@ -65,7 +67,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/JakeerC/ScribbleKit.git"
+    "url": "git+https://github.com/JakeerC/ScribbleKit.git"
   },
   "homepage": "https://scribblekit.vercel.app",
   "bugs": {
