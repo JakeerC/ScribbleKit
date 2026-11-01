@@ -15,6 +15,7 @@ interface AssetCatalogProps {
   onEditAsset?: (asset: ScribbleAsset) => void;
   currentColor: string;
   onColorChange: (color: string) => void;
+  initialCategory?: string;
 }
 
 export type CatalogAnimationMode =
@@ -33,8 +34,19 @@ export const AssetCatalog: React.FC<AssetCatalogProps> = ({
   onEditAsset,
   currentColor,
   onColorChange,
+  initialCategory,
 }) => {
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState(() => {
+    if (initialCategory) return initialCategory;
+    if (typeof window !== 'undefined') {
+      const search = new URLSearchParams(window.location.search);
+      const cat = search.get('category');
+      if (cat && CATEGORIES.some((c) => c.id === cat)) {
+        return cat;
+      }
+    }
+    return 'all';
+  });
   const [searchQuery, setSearchQuery] = useState('');
   const [scale, setScale] = useState(56);
   const [animationMode, setAnimationMode] = useState<CatalogAnimationMode>('original');

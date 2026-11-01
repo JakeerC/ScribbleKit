@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { SquareLibrary, Pencil, ArrowRight } from "lucide-react";
 import { Scribble } from "./Scribble";
 import { Navbar } from "./Navbar";
 
 interface HeroProps {
   onScrollToCatalog?: () => void;
+  onNavigateHome?: () => void;
   onNavigateToLibrary?: () => void;
   onNavigateToSvgStudio?: () => void;
   onNavigateToHeadlineStudio?: () => void;
@@ -16,6 +18,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({
   onScrollToCatalog,
+  onNavigateHome,
   onNavigateToLibrary,
   onNavigateToSvgStudio,
   onNavigateToHeadlineStudio,
@@ -31,7 +34,8 @@ export const Hero: React.FC<HeroProps> = ({
     <section className="relative min-h-screen flex flex-col justify-between overflow-hidden border-b border-black/10 bg-gradient-to-b from-[#FAF4EC] via-scribble-paper to-[#F5ECE1]">
       {/* Top Navbar sharing the exact same Hero background */}
       <Navbar
-        currentPage="library"
+        currentPage="home"
+        onNavigateHome={onNavigateHome}
         onNavigateToLibrary={onNavigateToLibrary || onScrollToCatalog}
         onNavigateToSvgStudio={onNavigateToSvgStudio || onOpenEditor}
         onNavigateToHeadlineStudio={
@@ -111,10 +115,29 @@ export const Hero: React.FC<HeroProps> = ({
           </div>
         </div>
 
-        <p className="max-w-2xl sm:max-w-3xl mx-auto text-base sm:text-xl md:text-2xl text-black/75 mb-8 sm:mb-10 leading-relaxed font-sans font-medium">
+        <p className="max-w-2xl sm:max-w-3xl mx-auto text-base sm:text-xl md:text-2xl text-black/75 mb-6 sm:mb-8 leading-relaxed font-sans font-medium">
           A collection of funky vectorized scribbbles to spice up your design
           projects.
         </p>
+
+        {/* Primary Action Buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-3.5 mb-6 z-20">
+          <button
+            onClick={onNavigateToLibrary}
+            className="px-6 py-3 rounded-2xl bg-black text-white hover:bg-scribble-orange font-bold text-sm sm:text-base flex items-center gap-2.5 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
+          >
+            <SquareLibrary className="w-4 h-4 text-scribble-yellow" />
+            <span>Browse Library ({assetCount})</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+          <button
+            onClick={onNavigateToSvgStudio}
+            className="px-6 py-3 rounded-2xl bg-white/95 border-2 border-black/15 text-black hover:border-black font-bold text-sm sm:text-base flex items-center gap-2.5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
+          >
+            <Pencil className="w-4 h-4 text-scribble-orange" />
+            <span>Open SVG Studio</span>
+          </button>
+        </div>
 
         {/* Aesthetic Download & Centered Composition (Direct Match to Reference Image) */}
         <div className="relative flex flex-col items-center">
