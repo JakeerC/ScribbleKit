@@ -42,6 +42,112 @@ interface SvgEditorProps {
   onNavigateHome?: () => void;
 }
 
+function getInitialEditorContent(
+  initialAsset?: ScribbleAsset | null,
+  initialSvgCode?: string,
+  hasElements = false
+): { title: string; elements: SvgElementData[]; dimensions: CanvasDimensions } | null {
+  if (initialAsset) {
+    let svgToParse = '';
+    if (initialAsset.rawSvg) {
+      svgToParse = `<svg viewBox="${initialAsset.viewBox}">${initialAsset.rawSvg}</svg>`;
+    } else if (initialAsset.path) {
+      svgToParse = `<svg viewBox="${initialAsset.viewBox}"><path ${initialAsset.path} /></svg>`;
+    }
+    const { elements, dimensions } = parseSvgStringToElements(
+      svgToParse,
+      initialAsset.defaultColor || '#EA552B'
+    );
+    return { title: initialAsset.name || 'Edited Scribble', elements, dimensions };
+  }
+
+  if (initialSvgCode) {
+    const { elements, dimensions } = parseSvgStringToElements(initialSvgCode);
+    return { title: 'Imported Vector', elements, dimensions };
+  }
+
+  if (!hasElements) {
+    const defaultAsset = getScribbleById('funky-coral-polka-blob') || getScribbleById('circle-double-loop');
+    if (defaultAsset) {
+      const svgStr = defaultAsset.rawSvg
+        ? `<svg viewBox="${defaultAsset.viewBox}">${defaultAsset.rawSvg}</svg>`
+        : `<svg viewBox="${defaultAsset.viewBox}"><path ${defaultAsset.path} /></svg>`;
+      const { elements, dimensions } = parseSvgStringToElements(svgStr);
+      return { title: defaultAsset.name, elements, dimensions };
+    }
+  }
+
+  return null;
+}
+
+const TOOL_SHORTCUTS: Record<string, EditorTool> = {
+  v: 'select',
+  p: 'pen',
+  t: 'text',
+  h: 'pan',
+};
+
+function handleModifierShortcuts(
+  e: KeyboardEvent,
+  actions: {
+    undo: () => void;
+    redo: () => void;
+    selectAll: () => void;
+    copy: () => void;
+    paste: () => void;
+    duplicate: () => void;
+    toggleDrawer: () => void;
+  }
+) {
+  const k = e.key.toLowerCase();
+  switch (k) {
+    case 'z':
+      e.preventDefault();
+      if (e.shiftKey) {
+        actions.redo();
+      } else {
+        actions.undo();
+      }
+      break;
+    case 'y':
+      e.preventDefault();
+      actions.redo();
+      break;
+    case 'a':
+      e.preventDefault();
+      actions.selectAll();
+      break;
+    case 'c':
+      e.preventDefault();
+      actions.copy();
+      break;
+    case 'v':
+      e.preventDefault();
+      actions.paste();
+      break;
+    case 'd':
+      e.preventDefault();
+      actions.duplicate();
+      break;
+    case 'b':
+      e.preventDefault();
+      actions.toggleDrawer();
+      break;
+    default:
+      break;
+  }
+}
+
+function getEditorContainerClass(mode: string, isFullscreen: boolean): string {
+  if (mode === 'page') {
+    return 'w-full h-full rounded-none';
+  }
+  if (isFullscreen) {
+    return 'h-full rounded-none';
+  }
+  return 'h-[95vh] max-w-[96vw] rounded-3xl border border-black/20 shadow-2xl';
+}
+
 export const SvgEditor: React.FC<SvgEditorProps> = ({
   isOpen = true,
   onClose,
@@ -129,58 +235,21 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
   // Load initial asset or SVG when opened or changed
   useEffect(() => {
     if (!isOpen) return;
+    const initialData = getInitialEditorContent(initialAsset, initialSvgCode, elements.length > 0);
+    if (!initialData) return;
 
-    if (initialAsset) {
-      setTitle(initialAsset.name || 'Edited Scribble');
-      let svgToParse = '';
-      if (initialAsset.rawSvg) {
-        svgToParse = `<svg viewBox="${initialAsset.viewBox}">${initialAsset.rawSvg}</svg>`;
-      } else if (initialAsset.path) {
-        svgToParse = `<svg viewBox="${initialAsset.viewBox}"><path ${initialAsset.path} /></svg>`;
-      }
-
-      const { elements: parsed, dimensions: dims } = parseSvgStringToElements(
-        svgToParse,
-        initialAsset.defaultColor || '#EA552B'
-      );
-      setElements(parsed);
-      setDimensions(dims);
-      setSelectedIds(parsed[0]?.id ? [parsed[0].id] : []);
-      const initialSnap: HistorySnapshot = { elements: parsed, dimensions: dims };
-      setHistory([initialSnap]);
-      setHistoryIndex(0);
-      historyRef.current = [initialSnap];
-      historyIndexRef.current = 0;
-    } else if (initialSvgCode) {
-      setTitle('Imported Vector');
-      const { elements: parsed, dimensions: dims } = parseSvgStringToElements(initialSvgCode);
-      setElements(parsed);
-      setDimensions(dims);
-      setSelectedIds(parsed[0]?.id ? [parsed[0].id] : []);
-      const initialSnap: HistorySnapshot = { elements: parsed, dimensions: dims };
-      setHistory([initialSnap]);
-      setHistoryIndex(0);
-      historyRef.current = [initialSnap];
-      historyIndexRef.current = 0;
-    } else if (elements.length === 0) {
-      // Default initial starter canvas with a welcoming funky scribble
-      const defaultAsset = getScribbleById('funky-coral-polka-blob') || getScribbleById('circle-double-loop');
-      if (defaultAsset) {
-        setTitle(defaultAsset.name);
-        const svgStr = defaultAsset.rawSvg
-          ? `<svg viewBox="${defaultAsset.viewBox}">${defaultAsset.rawSvg}</svg>`
-          : `<svg viewBox="${defaultAsset.viewBox}"><path ${defaultAsset.path} /></svg>`;
-        const { elements: parsed, dimensions: dims } = parseSvgStringToElements(svgStr);
-        setElements(parsed);
-        setDimensions(dims);
-        setSelectedIds(parsed[0]?.id ? [parsed[0].id] : []);
-        const initialSnap: HistorySnapshot = { elements: parsed, dimensions: dims };
-        setHistory([initialSnap]);
-        setHistoryIndex(0);
-        historyRef.current = [initialSnap];
-        historyIndexRef.current = 0;
-      }
-    }
+    setTitle(initialData.title);
+    setElements(initialData.elements);
+    setDimensions(initialData.dimensions);
+    setSelectedIds(initialData.elements[0]?.id ? [initialData.elements[0].id] : []);
+    const initialSnap: HistorySnapshot = {
+      elements: initialData.elements,
+      dimensions: initialData.dimensions,
+    };
+    setHistory([initialSnap]);
+    setHistoryIndex(0);
+    historyRef.current = [initialSnap];
+    historyIndexRef.current = 0;
   }, [isOpen, initialAsset, initialSvgCode]);
 
   // Undo / Redo handlers
@@ -314,7 +383,7 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
 
     try {
       const svgText = serializeElementsToSvg(targets, dimensions);
-      if (navigator.clipboard && navigator.clipboard.writeText) {
+      if (navigator.clipboard?.writeText) {
         navigator.clipboard.writeText(svgText).catch(() => {});
       }
     } catch {
@@ -390,13 +459,12 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
 
   // Upload SVG File
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const content = event.target?.result as string;
+    try {
+      const content = await file.text();
       if (content) {
         const { elements: parsed, dimensions: dims } = parseSvgStringToElements(content);
         if (parsed.length > 0) {
@@ -409,8 +477,9 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
           alert('Could not find valid SVG graphic paths in this file.');
         }
       }
-    };
-    reader.readAsText(file);
+    } catch {
+      alert('Could not read SVG file.');
+    }
     e.target.value = '';
   };
 
@@ -423,56 +492,45 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
       const target = e.target as HTMLElement;
       if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') return;
 
-      const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+      const isMac = navigator.platform.toUpperCase().includes('MAC');
       const cmdOrCtrl = isMac ? e.metaKey : e.ctrlKey;
 
-      if (cmdOrCtrl && e.key.toLowerCase() === 'z') {
-        e.preventDefault();
-        if (e.shiftKey) {
-          handleRedo();
-        } else {
-          handleUndo();
-        }
-      } else if (cmdOrCtrl && e.key.toLowerCase() === 'y') {
-        e.preventDefault();
-        handleRedo();
-      } else if (cmdOrCtrl && e.key.toLowerCase() === 'a') {
-        e.preventDefault();
-        setSelectedIds(elements.map((el) => el.id));
-      } else if (cmdOrCtrl && e.key.toLowerCase() === 'c') {
-        if (selectedIds.length > 0) {
-          e.preventDefault();
-          handleCopySelected();
-        }
-      } else if (cmdOrCtrl && e.key.toLowerCase() === 'v') {
-        if (canPaste || clipboardRef.current.length > 0) {
-          e.preventDefault();
-          handlePasteClipboard();
-        }
-      } else if (e.key === 'Delete' || e.key === 'Backspace') {
+      if (cmdOrCtrl) {
+        handleModifierShortcuts(e, {
+          undo: handleUndo,
+          redo: handleRedo,
+          selectAll: () => setSelectedIds(elements.map((el) => el.id)),
+          copy: () => {
+            if (selectedIds.length > 0) handleCopySelected();
+          },
+          paste: () => {
+            if (canPaste || clipboardRef.current.length > 0) handlePasteClipboard();
+          },
+          duplicate: () => {
+            if (selectedIds.length > 0) handleDuplicateElement();
+          },
+          toggleDrawer: () => setIsAssetsDrawerOpen((prev) => !prev),
+        });
+        return;
+      }
+
+      if (e.key === 'Delete' || e.key === 'Backspace') {
         if (selectedIds.length > 0) {
           e.preventDefault();
           handleDeleteElement();
         }
-      } else if (cmdOrCtrl && e.key.toLowerCase() === 'd') {
-        if (selectedIds.length > 0) {
-          e.preventDefault();
-          handleDuplicateElement();
-        }
-      } else if (cmdOrCtrl && e.key.toLowerCase() === 'b') {
-        e.preventDefault();
-        setIsAssetsDrawerOpen((prev) => !prev);
-      } else if (e.key === 'Escape') {
+        return;
+      }
+
+      if (e.key === 'Escape') {
         setSelectedIds([]);
         setActiveTool('select');
-      } else if (e.key.toLowerCase() === 'v') {
-        setActiveTool('select');
-      } else if (e.key.toLowerCase() === 'p') {
-        setActiveTool('pen');
-      } else if (e.key.toLowerCase() === 't') {
-        setActiveTool('text');
-      } else if (e.key.toLowerCase() === 'h') {
-        setActiveTool('pan');
+        return;
+      }
+
+      const tool = TOOL_SHORTCUTS[e.key.toLowerCase()];
+      if (tool) {
+        setActiveTool(tool);
       }
     };
 
@@ -497,13 +555,7 @@ export const SvgEditor: React.FC<SvgEditorProps> = ({
 
   const editorContent = (
     <div
-      className={`relative w-full bg-white flex flex-col overflow-hidden transition-all ${
-        mode === 'page'
-          ? 'w-full h-full rounded-none'
-          : isFullscreen
-          ? 'h-full rounded-none'
-          : 'h-[95vh] max-w-[96vw] rounded-3xl border border-black/20 shadow-2xl'
-      }`}
+      className={`relative w-full bg-white flex flex-col overflow-hidden transition-all ${getEditorContainerClass(mode, isFullscreen)}`}
     >
       {/* ========================================================= */}
       {/* Top Header Bar */}

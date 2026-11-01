@@ -52,13 +52,15 @@ export const AssetStampDrawer: React.FC<AssetStampDrawerProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in select-none"
-      onClick={onClose}
-    >
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in select-none">
+      <button
+        type="button"
+        aria-label="Close stamp modal backdrop"
+        className="fixed inset-0 w-full h-full bg-black/60 backdrop-blur-sm cursor-default"
+        onClick={onClose}
+      />
       <div
-        className="relative w-full max-w-4xl bg-white rounded-3xl border border-black/20 shadow-2xl overflow-hidden flex flex-col max-h-[85vh]"
-        onClick={(e) => e.stopPropagation()}
+        className="relative z-10 w-full max-w-4xl bg-white rounded-3xl border border-black/20 shadow-2xl overflow-hidden flex flex-col max-h-[85vh]"
       >
         {/* Header */}
         <div className="px-6 py-4 border-b border-black/10 flex items-center justify-between bg-scribble-paper">

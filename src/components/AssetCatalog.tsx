@@ -75,18 +75,16 @@ export const AssetCatalog: React.FC<AssetCatalogProps> = ({
     if (item.rawSvg) {
       svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  ${item.rawSvg.replace(/currentColor/g, activeColor)}\n</svg>`;
     } else if (item.path) {
+      const dMatch = /d="([^"]+)"/.exec(item.path);
+      const d = dMatch ? dMatch[1] : '';
       if (item.type === 'stroke') {
-        const dMatch = item.path.match(/d="([^"]+)"/);
-        const d = dMatch ? dMatch[1] : '';
         svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  <path d="${d}" fill="none" stroke="${activeColor}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />\n</svg>`;
       } else {
-        const dMatch = item.path.match(/d="([^"]+)"/);
-        const d = dMatch ? dMatch[1] : '';
         svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  <path d="${d}" fill="${activeColor}" />\n</svg>`;
       }
     }
 
-    navigator.clipboard.writeText(svgContent);
+    void navigator.clipboard.writeText(svgContent);
     setCopiedId(item.id);
     setTimeout(() => setCopiedId(null), 1800);
   };
@@ -98,13 +96,11 @@ export const AssetCatalog: React.FC<AssetCatalogProps> = ({
     if (item.rawSvg) {
       svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  ${item.rawSvg.replace(/currentColor/g, activeColor)}\n</svg>`;
     } else if (item.path) {
+      const dMatch = /d="([^"]+)"/.exec(item.path);
+      const d = dMatch ? dMatch[1] : '';
       if (item.type === 'stroke') {
-        const dMatch = item.path.match(/d="([^"]+)"/);
-        const d = dMatch ? dMatch[1] : '';
         svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  <path d="${d}" fill="none" stroke="${activeColor}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />\n</svg>`;
       } else {
-        const dMatch = item.path.match(/d="([^"]+)"/);
-        const d = dMatch ? dMatch[1] : '';
         svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  <path d="${d}" fill="${activeColor}" />\n</svg>`;
       }
     }
@@ -116,8 +112,21 @@ export const AssetCatalog: React.FC<AssetCatalogProps> = ({
     a.download = `${item.id}.svg`;
     document.body.appendChild(a);
     a.click();
-    document.body.removeChild(a);
+    a.remove();
     URL.revokeObjectURL(url);
+  };
+
+  const getCardThemeClass = (theme: string) => {
+    switch (theme) {
+      case 'paper':
+        return 'bg-[#FDFBF7]';
+      case 'white':
+        return 'bg-white';
+      case 'grid':
+        return 'bg-white bg-grid-paper';
+      default:
+        return 'bg-[#141416] text-white border-white/10';
+    }
   };
 
   return (
@@ -335,16 +344,16 @@ export const AssetCatalog: React.FC<AssetCatalogProps> = ({
           {filteredAssets.map((item) => (
             <div
               key={item.id}
+              role="button"
+              tabIndex={0}
               onClick={() => onSelectAsset(item)}
-              className={`group relative rounded-2xl border border-black/10 p-4 flex flex-col justify-between cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 hover:border-black/30 ${
-                cardTheme === 'paper'
-                  ? 'bg-[#FDFBF7]'
-                  : cardTheme === 'white'
-                  ? 'bg-white'
-                  : cardTheme === 'grid'
-                  ? 'bg-white bg-grid-paper'
-                  : 'bg-[#141416] text-white border-white/10'
-              }`}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onSelectAsset(item);
+                }
+              }}
+              className={`group relative rounded-2xl border border-black/10 p-4 flex flex-col justify-between cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 hover:border-black/30 ${getCardThemeClass(cardTheme)}`}
             >
               {/* Asset Stage Canvas */}
               <div className="h-28 flex items-center justify-center p-2 overflow-hidden">

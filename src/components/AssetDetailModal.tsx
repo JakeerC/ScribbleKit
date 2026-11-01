@@ -10,6 +10,43 @@ interface AssetDetailModalProps {
   onOpenInEditor?: (asset: ScribbleAsset) => void;
 }
 
+const buildSvgCode = (asset: ScribbleAsset, color: string): string => {
+  if (asset.rawSvg) {
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${asset.viewBox}" fill="none">
+  ${asset.rawSvg.replace(/currentColor/g, color)}
+</svg>`;
+  }
+  if (asset.path) {
+    const dMatch = /d="([^"]+)"/.exec(asset.path);
+    const d = dMatch ? dMatch[1] : '';
+    if (asset.type === 'stroke') {
+      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${asset.viewBox}" fill="none">
+  <path d="${d}" fill="none" stroke="${color}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+</svg>`;
+    }
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${asset.viewBox}" fill="none">
+  <path d="${d}" fill="${color}" />
+</svg>`;
+  }
+  return '';
+};
+
+const getAnimAttr = (mode: ScribbleAnimation): string => {
+  if (!mode || mode === 'none') {
+    return 'animate={false}';
+  }
+  if (mode === 'original' || mode === true) {
+    return 'animate';
+  }
+  return `animate="${mode}"`;
+};
+
+const getModalBgClass = (bg: string): string => {
+  if (bg === 'grid') return 'bg-white bg-grid-paper';
+  if (bg === 'paper') return 'bg-[#FDFBF7] bg-dot-paper';
+  return 'bg-[#141416] bg-dark-grid text-white';
+};
+
 export const AssetDetailModal: React.FC<AssetDetailModalProps> = ({
   asset,
   onClose,
@@ -27,47 +64,19 @@ export const AssetDetailModal: React.FC<AssetDetailModalProps> = ({
   const [animationMode, setAnimationMode] = useState<ScribbleAnimation>('original');
   const [modalBg, setModalBg] = useState<'paper' | 'dark' | 'grid'>('grid');
 
-  // Compute clean SVG string
-  let svgCode = '';
-  if (asset.rawSvg) {
-    svgCode = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${asset.viewBox}" fill="none">
-  ${asset.rawSvg.replace(/currentColor/g, color)}
-</svg>`;
-  } else if (asset.path) {
-    if (asset.type === 'stroke') {
-      const dMatch = asset.path.match(/d="([^"]+)"/);
-      const d = dMatch ? dMatch[1] : '';
-      svgCode = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${asset.viewBox}" fill="none">
-  <path d="${d}" fill="none" stroke="${color}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
-</svg>`;
-    } else {
-      const dMatch = asset.path.match(/d="([^"]+)"/);
-      const d = dMatch ? dMatch[1] : '';
-      svgCode = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${asset.viewBox}" fill="none">
-  <path d="${d}" fill="${color}" />
-</svg>`;
-    }
-  }
-
-  const animAttr =
-    !animationMode || animationMode === 'none'
-      ? 'animate={false}'
-      : animationMode === 'original' || animationMode === true
-      ? 'animate'
-      : `animate="${animationMode}"`;
-
+  const svgCode = buildSvgCode(asset, color);
+  const animAttr = getAnimAttr(animationMode);
   const jsxCode = `<Scribble\n  name="${asset.id}"\n  color="${color}"\n  size={48}\n  ${animAttr}\n/>`;
-
   const dataUri = `data:image/svg+xml;utf8,${encodeURIComponent(svgCode)}`;
 
   const handleCopySvg = () => {
-    navigator.clipboard.writeText(svgCode);
+    void navigator.clipboard.writeText(svgCode);
     setCopiedSvg(true);
     setTimeout(() => setCopiedSvg(false), 2000);
   };
 
   const handleCopyJsx = () => {
-    navigator.clipboard.writeText(jsxCode);
+    void navigator.clipboard.writeText(jsxCode);
     setCopiedJsx(true);
     setTimeout(() => setCopiedJsx(false), 2000);
   };
@@ -80,15 +89,22 @@ export const AssetDetailModal: React.FC<AssetDetailModalProps> = ({
     a.download = `${asset.id}.svg`;
     document.body.appendChild(a);
     a.click();
-    document.body.removeChild(a);
+    a.remove();
     URL.revokeObjectURL(url);
   };
 
+  const isCopied = activeTab === 'svg' ? copiedSvg : copiedJsx;
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in">
+      <button
+        type="button"
+        aria-label="Close modal backdrop"
+        className="fixed inset-0 w-full h-full bg-black/60 backdrop-blur-sm cursor-default"
+        onClick={onClose}
+      />
       <div
-        className="relative w-full max-w-4xl bg-white rounded-3xl border border-black/20 shadow-2xl overflow-hidden flex flex-col max-h-[92vh]"
-        onClick={(e) => e.stopPropagation()}
+        className="relative z-10 w-full max-w-4xl bg-white rounded-3xl border border-black/20 shadow-2xl overflow-hidden flex flex-col max-h-[92vh]"
       >
         {/* Header */}
         <div className="px-6 py-4 border-b border-black/10 flex items-center justify-between bg-scribble-paper">
@@ -171,13 +187,7 @@ export const AssetDetailModal: React.FC<AssetDetailModalProps> = ({
 
             {/* Canvas */}
             <div
-              className={`flex-1 min-h-[260px] rounded-2xl border border-black/10 flex items-center justify-center p-8 transition-colors ${
-                modalBg === 'grid'
-                  ? 'bg-white bg-grid-paper'
-                  : modalBg === 'paper'
-                  ? 'bg-[#FDFBF7] bg-dot-paper'
-                  : 'bg-[#141416] bg-dark-grid text-white'
-              }`}
+              className={`flex-1 min-h-[260px] rounded-2xl border border-black/10 flex items-center justify-center p-8 transition-colors ${getModalBgClass(modalBg)}`}
             >
               <div className="max-w-[280px] max-h-[200px] flex items-center justify-center">
                 <Scribble
@@ -284,7 +294,7 @@ export const AssetDetailModal: React.FC<AssetDetailModalProps> = ({
                   onClick={activeTab === 'svg' ? handleCopySvg : handleCopyJsx}
                   className="flex items-center gap-1 text-xs font-bold text-black hover:text-scribble-orange transition-colors"
                 >
-                  {(activeTab === 'svg' ? copiedSvg : copiedJsx) ? (
+                  {isCopied ? (
                     <>
                       <Check className="w-3.5 h-3.5 text-green-600" />
                       <span>Copied!</span>

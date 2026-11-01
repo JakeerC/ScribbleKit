@@ -172,7 +172,7 @@ export function App() {
     a.download = `scribblekit-all-${SCRIBBLES_ASSETS.length}-assets.json`;
     document.body.appendChild(a);
     a.click();
-    document.body.removeChild(a);
+    a.remove();
     URL.revokeObjectURL(url);
   };
 
@@ -294,7 +294,6 @@ export function App() {
           onNavigateToHeadlineStudio={navigateToHeadlineStudio}
           onOpenGuide={() => setIsGuideOpen(true)}
           onDownloadAll={handleDownloadAll}
-          assetCount={SCRIBBLES_ASSETS.length}
         />
 
         <main className="flex-1">
@@ -325,7 +324,6 @@ export function App() {
           onNavigateToHeadlineStudio={navigateToHeadlineStudio}
           onOpenGuide={() => setIsGuideOpen(true)}
           onDownloadAll={handleDownloadAll}
-          assetCount={SCRIBBLES_ASSETS.length}
         />
 
         <main className="flex-1">
@@ -418,7 +416,6 @@ export function App() {
           onNavigateToHeadlineStudio={navigateToHeadlineStudio}
           onOpenGuide={() => setIsGuideOpen(true)}
           onDownloadAll={handleDownloadAll}
-          assetCount={SCRIBBLES_ASSETS.length}
         />
 
         {/* Feature Cards below Hero Section */}

@@ -47,6 +47,369 @@ interface CanvasProps {
   onToolChange?: (tool: EditorTool) => void;
 }
 
+type DragMode =
+  | 'none'
+  | 'move'
+  | 'rotate'
+  | 'nw'
+  | 'n'
+  | 'ne'
+  | 'e'
+  | 'se'
+  | 's'
+  | 'sw'
+  | 'w'
+  | 'pan'
+  | 'marquee';
+
+interface CanvasBox {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+interface InteractionState {
+  mode: DragMode;
+  startMouse: Point;
+  clientStart: Point;
+  panStart: Point;
+  elementStart: {
+    id: string;
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    rotation: number;
+  } | null;
+  elementsStart?: { id: string; x: number; y: number }[];
+  groupStart?: {
+    box: CanvasBox;
+    elements: {
+      id: string;
+      x: number;
+      y: number;
+      width: number;
+      height: number;
+      fontSize?: number;
+    }[];
+  } | null;
+  isAdditiveMarquee?: boolean;
+  hasMoved?: boolean;
+  marqueeBox?: CanvasBox | null;
+}
+
+function calculateGroupResize(
+  mode: DragMode,
+  orig: CanvasBox,
+  dx: number,
+  dy: number,
+  shiftKey: boolean
+) {
+  let newX = orig.x;
+  let newY = orig.y;
+  let newW = orig.width;
+  let newH = orig.height;
+
+  switch (mode) {
+    case 'se':
+      newW = Math.max(20, orig.width + dx);
+      newH = Math.max(20, orig.height + dy);
+      if (shiftKey && orig.height > 0) {
+        newH = Math.round(orig.height * (newW / orig.width));
+      }
+      break;
+    case 'e':
+      newW = Math.max(20, orig.width + dx);
+      if (shiftKey && orig.height > 0) {
+        newH = Math.round(orig.height * (newW / orig.width));
+      }
+      break;
+    case 's':
+      newH = Math.max(20, orig.height + dy);
+      if (shiftKey && orig.width > 0) {
+        newW = Math.round(orig.width * (newH / orig.height));
+      }
+      break;
+    case 'ne':
+      newW = Math.max(20, orig.width + dx);
+      newH = Math.max(20, orig.height - dy);
+      if (shiftKey && orig.height > 0) {
+        newH = Math.round(orig.height * (newW / orig.width));
+      }
+      newY = orig.y + (orig.height - newH);
+      break;
+    case 'sw':
+      newW = Math.max(20, orig.width - dx);
+      newH = Math.max(20, orig.height + dy);
+      if (shiftKey && orig.height > 0) {
+        newH = Math.round(orig.height * (newW / orig.width));
+      }
+      newX = orig.x + (orig.width - newW);
+      break;
+    case 'nw':
+      newW = Math.max(20, orig.width - dx);
+      newH = Math.max(20, orig.height - dy);
+      if (shiftKey && orig.height > 0) {
+        newH = Math.round(orig.height * (newW / orig.width));
+      }
+      newX = orig.x + (orig.width - newW);
+      newY = orig.y + (orig.height - newH);
+      break;
+    case 'w':
+      newW = Math.max(20, orig.width - dx);
+      if (shiftKey && orig.height > 0) {
+        newH = Math.round(orig.height * (newW / orig.width));
+      }
+      newX = orig.x + (orig.width - newW);
+      break;
+    case 'n':
+      newH = Math.max(20, orig.height - dy);
+      if (shiftKey && orig.width > 0) {
+        newW = Math.round(orig.width * (newH / orig.height));
+      }
+      newY = orig.y + (orig.height - newH);
+      break;
+    default:
+      break;
+  }
+
+  return { newX, newY, newW, newH };
+}
+
+function applyGroupResizeUpdates(
+  inter: InteractionState,
+  dx: number,
+  dy: number,
+  shiftKey: boolean,
+  onUpdateMultipleElements?: (updates: { id: string; updates: Partial<SvgElementData> }[], commit: boolean) => void,
+  onUpdateElement?: (id: string, updates: Partial<SvgElementData>, commit: boolean) => void
+) {
+  if (!inter.groupStart) return;
+  inter.hasMoved = true;
+  const orig = inter.groupStart.box;
+  const { newX, newY, newW, newH } = calculateGroupResize(inter.mode, orig, dx, dy, shiftKey);
+
+  const scaleX = orig.width > 0 ? newW / orig.width : 1;
+  const scaleY = orig.height > 0 ? newH / orig.height : 1;
+
+  const updatesList = inter.groupStart.elements.map((el) => {
+    const relX = el.x - orig.x;
+    const relY = el.y - orig.y;
+    const scaledX = Math.round(newX + relX * scaleX);
+    const scaledY = Math.round(newY + relY * scaleY);
+    const scaledW = Math.max(4, Math.round(el.width * scaleX));
+    const scaledH = Math.max(4, Math.round(el.height * scaleY));
+
+    const u: Partial<SvgElementData> = {
+      x: scaledX,
+      y: scaledY,
+      width: scaledW,
+      height: scaledH,
+    };
+    if (el.fontSize) {
+      u.fontSize = Math.max(8, Math.round(el.fontSize * scaleY));
+    }
+    return { id: el.id, updates: u };
+  });
+
+  if (onUpdateMultipleElements) {
+    onUpdateMultipleElements(updatesList, false);
+  } else if (onUpdateElement) {
+    for (const item of updatesList) {
+      onUpdateElement(item.id, item.updates, false);
+    }
+  }
+}
+
+function applySingleTransformUpdates(
+  mode: DragMode,
+  elStart: { id: string; x: number; y: number; width: number; height: number; rotation: number },
+  dx: number,
+  dy: number,
+  pt: Point,
+  shiftKey: boolean,
+  onUpdateElement: (id: string, updates: Partial<SvgElementData>, commit: boolean) => void
+) {
+  if (mode === 'rotate') {
+    const cx = elStart.x + elStart.width / 2;
+    const cy = elStart.y + elStart.height / 2;
+    const angleRad = Math.atan2(pt.y - cy, pt.x - cx);
+    let angleDeg = Math.round((angleRad * 180) / Math.PI + 90);
+    if (shiftKey) {
+      angleDeg = Math.round(angleDeg / 15) * 15;
+    }
+    onUpdateElement(elStart.id, { rotation: angleDeg }, false);
+    return;
+  }
+
+  const ratio = elStart.height > 0 ? elStart.width / elStart.height : 1;
+
+  switch (mode) {
+    case 'se': {
+      const newW = Math.max(16, Math.round(elStart.width + dx));
+      const newH = shiftKey && elStart.height > 0 ? Math.round(newW / ratio) : Math.max(16, Math.round(elStart.height + dy));
+      onUpdateElement(elStart.id, { width: newW, height: newH }, false);
+      break;
+    }
+    case 'e': {
+      const newW = Math.max(16, Math.round(elStart.width + dx));
+      onUpdateElement(elStart.id, { width: newW }, false);
+      break;
+    }
+    case 's': {
+      const newH = Math.max(16, Math.round(elStart.height + dy));
+      onUpdateElement(elStart.id, { height: newH }, false);
+      break;
+    }
+    case 'ne': {
+      const newW = Math.max(16, Math.round(elStart.width + dx));
+      const newH = shiftKey && elStart.height > 0 ? Math.round(newW / ratio) : Math.max(16, Math.round(elStart.height - dy));
+      const newY = Math.round(elStart.y + (elStart.height - newH));
+      onUpdateElement(elStart.id, { y: newY, width: newW, height: newH }, false);
+      break;
+    }
+    case 'sw': {
+      const newW = Math.max(16, Math.round(elStart.width - dx));
+      const newH = shiftKey && elStart.height > 0 ? Math.round(newW / ratio) : Math.max(16, Math.round(elStart.height + dy));
+      const newX = Math.round(elStart.x + (elStart.width - newW));
+      onUpdateElement(elStart.id, { x: newX, width: newW, height: newH }, false);
+      break;
+    }
+    case 'nw': {
+      const newW = Math.max(16, Math.round(elStart.width - dx));
+      const newH = shiftKey && elStart.height > 0 ? Math.round(newW / ratio) : Math.max(16, Math.round(elStart.height - dy));
+      const newX = Math.round(elStart.x + (elStart.width - newW));
+      const newY = Math.round(elStart.y + (elStart.height - newH));
+      onUpdateElement(elStart.id, { x: newX, y: newY, width: newW, height: newH }, false);
+      break;
+    }
+    case 'w': {
+      const newW = Math.max(16, Math.round(elStart.width - dx));
+      const newX = Math.round(elStart.x + (elStart.width - newW));
+      onUpdateElement(elStart.id, { x: newX, width: newW }, false);
+      break;
+    }
+    case 'n': {
+      const newH = Math.max(16, Math.round(elStart.height - dy));
+      const newY = Math.round(elStart.y + (elStart.height - newH));
+      onUpdateElement(elStart.id, { y: newY, height: newH }, false);
+      break;
+    }
+    default:
+      break;
+  }
+}
+
+function applyMoveUpdates(
+  inter: InteractionState,
+  dx: number,
+  dy: number,
+  onUpdateMultipleElements?: (updates: { id: string; updates: Partial<SvgElementData> }[], commit: boolean) => void,
+  onUpdateElement?: (id: string, updates: Partial<SvgElementData>, commit: boolean) => void
+) {
+  inter.hasMoved = true;
+  if (inter.elementsStart && inter.elementsStart.length > 1) {
+    if (onUpdateMultipleElements) {
+      onUpdateMultipleElements(
+        inter.elementsStart.map((item) => ({
+          id: item.id,
+          updates: {
+            x: Math.round(item.x + dx),
+            y: Math.round(item.y + dy),
+          },
+        })),
+        false
+      );
+    } else if (onUpdateElement) {
+      for (const item of inter.elementsStart) {
+        onUpdateElement(item.id, { x: Math.round(item.x + dx), y: Math.round(item.y + dy) }, false);
+      }
+    }
+  } else if (inter.elementStart && onUpdateElement) {
+    onUpdateElement(
+      inter.elementStart.id,
+      {
+        x: Math.round(inter.elementStart.x + dx),
+        y: Math.round(inter.elementStart.y + dy),
+      },
+      false
+    );
+  }
+}
+
+function resetInteractionState(
+  interactionRef: React.MutableRefObject<InteractionState>,
+  setDragMode: (mode: DragMode) => void
+) {
+  interactionRef.current = {
+    mode: 'none',
+    startMouse: { x: 0, y: 0 },
+    clientStart: { x: 0, y: 0 },
+    panStart: { x: 0, y: 0 },
+    elementStart: null,
+    groupStart: null,
+  };
+  setDragMode('none');
+}
+
+function finishMarquee(
+  inter: InteractionState,
+  box: CanvasBox | null,
+  elements: SvgElementData[],
+  onSelectMultiple?: (ids: string[], isAdditive?: boolean) => void,
+  onSelectElement?: (id: string | null, isMultiToggle?: boolean) => void
+) {
+  if (box && (box.width > 3 || box.height > 3)) {
+    const hits = elements
+      .filter((el) => el.visible && isBoxIntersecting(el, box))
+      .map((el) => el.id);
+
+    if (onSelectMultiple) {
+      onSelectMultiple(hits, inter.isAdditiveMarquee);
+    } else if (hits.length > 0 && onSelectElement) {
+      onSelectElement(hits[0]);
+    } else if (onSelectElement) {
+      onSelectElement(null);
+    }
+  } else if (!inter.isAdditiveMarquee && !inter.hasMoved && onSelectElement) {
+    onSelectElement(null);
+  }
+}
+
+const getCanvasElementAnimClass = (anim?: string, elType?: string) => {
+  if (!anim || anim === 'none') return '';
+  if (anim === 'original') {
+    if (elType === 'path') return 'animate-scribble-draw';
+    return 'animate-wobble-slow';
+  }
+  switch (anim) {
+    case 'draw':
+      return 'animate-scribble-draw';
+    case 'rotate':
+    case 'spin':
+      return 'animate-rotate';
+    case 'sparkle':
+      return 'animate-sparkle';
+    case 'float':
+      return 'animate-float-slow';
+    case 'wobble':
+      return 'animate-wobble-slow';
+    case 'bounce':
+      return 'animate-bounce-subtle';
+    case 'pulse':
+      return 'animate-pulse-glow';
+    default:
+      return '';
+  }
+};
+
+const getFilterAttr = (el: SvgElementData) => {
+  if (el.wiggle?.enabled) return 'url(#canvas-wiggle)';
+  if (el.glow?.enabled) return 'url(#canvas-glow)';
+  return undefined;
+};
+
 export const Canvas: React.FC<CanvasProps> = ({
   elements,
   selectedId,
@@ -80,48 +443,13 @@ export const Canvas: React.FC<CanvasProps> = ({
   const [shapeCurrent, setShapeCurrent] = useState<Point | null>(null);
 
   // Interaction / Dragging / Marquee state
-  const [dragMode, setDragMode] = useState<
-    'none' | 'move' | 'rotate' | 'nw' | 'n' | 'ne' | 'e' | 'se' | 's' | 'sw' | 'w' | 'pan' | 'marquee'
-  >('none');
+  const [dragMode, setDragMode] = useState<DragMode>('none');
 
-  const [marqueeBox, setMarqueeBox] = useState<{
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-  } | null>(null);
+  const [marqueeBox, setMarqueeBox] = useState<CanvasBox | null>(null);
   const marqueeBoxRef = useRef(marqueeBox);
   marqueeBoxRef.current = marqueeBox;
 
-  const interactionRef = useRef<{
-    mode: 'none' | 'move' | 'rotate' | 'nw' | 'n' | 'ne' | 'e' | 'se' | 's' | 'sw' | 'w' | 'pan' | 'marquee';
-    startMouse: Point;
-    clientStart: Point;
-    panStart: Point;
-    elementStart: {
-      id: string;
-      x: number;
-      y: number;
-      width: number;
-      height: number;
-      rotation: number;
-    } | null;
-    elementsStart?: { id: string; x: number; y: number }[];
-    groupStart?: {
-      box: { x: number; y: number; width: number; height: number };
-      elements: {
-        id: string;
-        x: number;
-        y: number;
-        width: number;
-        height: number;
-        fontSize?: number;
-      }[];
-    } | null;
-    isAdditiveMarquee?: boolean;
-    hasMoved?: boolean;
-    marqueeBox?: { x: number; y: number; width: number; height: number };
-  }>({
+  const interactionRef = useRef<InteractionState>({
     mode: 'none',
     startMouse: { x: 0, y: 0 },
     clientStart: { x: 0, y: 0 },
@@ -154,11 +482,12 @@ export const Canvas: React.FC<CanvasProps> = ({
     };
   }, []);
 
-  const activeSelectedIds = selectedIds !== undefined
-    ? selectedIds
-    : selectedId
-    ? [selectedId]
-    : [];
+  let activeSelectedIds: string[] = [];
+  if (selectedIds !== undefined) {
+    activeSelectedIds = selectedIds;
+  } else if (selectedId) {
+    activeSelectedIds = [selectedId];
+  }
 
   const selectedElements = elements.filter((el) => activeSelectedIds.includes(el.id));
   const isMultiSelect = selectedElements.length > 1;
@@ -199,7 +528,6 @@ export const Canvas: React.FC<CanvasProps> = ({
 
       const pt = getSvgCoordinates(e.clientX, e.clientY);
 
-      // Handle Marquee Selection Drag (Right-click or background drag)
       if (inter.mode === 'marquee') {
         const x = Math.min(inter.startMouse.x, pt.x);
         const y = Math.min(inter.startMouse.y, pt.y);
@@ -214,97 +542,8 @@ export const Canvas: React.FC<CanvasProps> = ({
       const dx = pt.x - inter.startMouse.x;
       const dy = pt.y - inter.startMouse.y;
 
-      // Handle Multi-Selection Group Resizing (Proportional Scaling & Repositioning)
       if (inter.groupStart) {
-        inter.hasMoved = true;
-        const orig = inter.groupStart.box;
-        let newX = orig.x;
-        let newY = orig.y;
-        let newW = orig.width;
-        let newH = orig.height;
-
-        if (inter.mode === 'se') {
-          newW = Math.max(20, orig.width + dx);
-          newH = Math.max(20, orig.height + dy);
-          if (e.shiftKey && orig.height > 0) {
-            newH = Math.round(orig.height * (newW / orig.width));
-          }
-        } else if (inter.mode === 'e') {
-          newW = Math.max(20, orig.width + dx);
-          if (e.shiftKey && orig.height > 0) {
-            newH = Math.round(orig.height * (newW / orig.width));
-          }
-        } else if (inter.mode === 's') {
-          newH = Math.max(20, orig.height + dy);
-          if (e.shiftKey && orig.width > 0) {
-            newW = Math.round(orig.width * (newH / orig.height));
-          }
-        } else if (inter.mode === 'ne') {
-          newW = Math.max(20, orig.width + dx);
-          newH = Math.max(20, orig.height - dy);
-          if (e.shiftKey && orig.height > 0) {
-            newH = Math.round(orig.height * (newW / orig.width));
-          }
-          newY = orig.y + (orig.height - newH);
-        } else if (inter.mode === 'sw') {
-          newW = Math.max(20, orig.width - dx);
-          newH = Math.max(20, orig.height + dy);
-          if (e.shiftKey && orig.height > 0) {
-            newH = Math.round(orig.height * (newW / orig.width));
-          }
-          newX = orig.x + (orig.width - newW);
-        } else if (inter.mode === 'nw') {
-          newW = Math.max(20, orig.width - dx);
-          newH = Math.max(20, orig.height - dy);
-          if (e.shiftKey && orig.height > 0) {
-            newH = Math.round(orig.height * (newW / orig.width));
-          }
-          newX = orig.x + (orig.width - newW);
-          newY = orig.y + (orig.height - newH);
-        } else if (inter.mode === 'w') {
-          newW = Math.max(20, orig.width - dx);
-          if (e.shiftKey && orig.height > 0) {
-            newH = Math.round(orig.height * (newW / orig.width));
-          }
-          newX = orig.x + (orig.width - newW);
-        } else if (inter.mode === 'n') {
-          newH = Math.max(20, orig.height - dy);
-          if (e.shiftKey && orig.width > 0) {
-            newW = Math.round(orig.width * (newH / orig.height));
-          }
-          newY = orig.y + (orig.height - newH);
-        }
-
-        const scaleX = orig.width > 0 ? newW / orig.width : 1;
-        const scaleY = orig.height > 0 ? newH / orig.height : 1;
-
-        const updatesList = inter.groupStart.elements.map((el) => {
-          const relX = el.x - orig.x;
-          const relY = el.y - orig.y;
-          const scaledX = Math.round(newX + relX * scaleX);
-          const scaledY = Math.round(newY + relY * scaleY);
-          const scaledW = Math.max(4, Math.round(el.width * scaleX));
-          const scaledH = Math.max(4, Math.round(el.height * scaleY));
-
-          const u: Partial<SvgElementData> = {
-            x: scaledX,
-            y: scaledY,
-            width: scaledW,
-            height: scaledH,
-          };
-          if (el.fontSize) {
-            u.fontSize = Math.max(8, Math.round(el.fontSize * scaleY));
-          }
-          return { id: el.id, updates: u };
-        });
-
-        if (onUpdateMultipleElements) {
-          onUpdateMultipleElements(updatesList, false);
-        } else {
-          for (const item of updatesList) {
-            onUpdateElement(item.id, item.updates, false);
-          }
-        }
+        applyGroupResizeUpdates(inter, dx, dy, e.shiftKey, onUpdateMultipleElements, onUpdateElement);
         return;
       }
 
@@ -312,101 +551,9 @@ export const Canvas: React.FC<CanvasProps> = ({
       if (!elStart) return;
 
       if (inter.mode === 'move') {
-        inter.hasMoved = true;
-        if (inter.elementsStart && inter.elementsStart.length > 1) {
-          // Multi-element synchronized atomic movement
-          if (onUpdateMultipleElements) {
-            onUpdateMultipleElements(
-              inter.elementsStart.map((item) => ({
-                id: item.id,
-                updates: {
-                  x: Math.round(item.x + dx),
-                  y: Math.round(item.y + dy),
-                },
-              })),
-              false
-            );
-          } else {
-            for (const item of inter.elementsStart) {
-              onUpdateElement(
-                item.id,
-                {
-                  x: Math.round(item.x + dx),
-                  y: Math.round(item.y + dy),
-                },
-                false
-              );
-            }
-          }
-        } else {
-          onUpdateElement(
-            elStart.id,
-            {
-              x: Math.round(elStart.x + dx),
-              y: Math.round(elStart.y + dy),
-            },
-            false
-          );
-        }
-      } else if (inter.mode === 'rotate') {
-        const cx = elStart.x + elStart.width / 2;
-        const cy = elStart.y + elStart.height / 2;
-        const angleRad = Math.atan2(pt.y - cy, pt.x - cx);
-        let angleDeg = Math.round((angleRad * 180) / Math.PI + 90);
-        if (e.shiftKey) {
-          angleDeg = Math.round(angleDeg / 15) * 15;
-        }
-        onUpdateElement(elStart.id, { rotation: angleDeg }, false);
-      } else if (inter.mode === 'se') {
-        let newW = Math.max(16, Math.round(elStart.width + dx));
-        let newH = Math.max(16, Math.round(elStart.height + dy));
-        if (e.shiftKey && elStart.height > 0) {
-          const ratio = elStart.width / elStart.height;
-          newH = Math.round(newW / ratio);
-        }
-        onUpdateElement(elStart.id, { width: newW, height: newH }, false);
-      } else if (inter.mode === 'e') {
-        const newW = Math.max(16, Math.round(elStart.width + dx));
-        onUpdateElement(elStart.id, { width: newW }, false);
-      } else if (inter.mode === 's') {
-        const newH = Math.max(16, Math.round(elStart.height + dy));
-        onUpdateElement(elStart.id, { height: newH }, false);
-      } else if (inter.mode === 'ne') {
-        let newW = Math.max(16, Math.round(elStart.width + dx));
-        let newH = Math.max(16, Math.round(elStart.height - dy));
-        if (e.shiftKey && elStart.height > 0) {
-          const ratio = elStart.width / elStart.height;
-          newH = Math.round(newW / ratio);
-        }
-        const newY = Math.round(elStart.y + (elStart.height - newH));
-        onUpdateElement(elStart.id, { y: newY, width: newW, height: newH }, false);
-      } else if (inter.mode === 'sw') {
-        let newW = Math.max(16, Math.round(elStart.width - dx));
-        let newH = Math.max(16, Math.round(elStart.height + dy));
-        if (e.shiftKey && elStart.height > 0) {
-          const ratio = elStart.width / elStart.height;
-          newH = Math.round(newW / ratio);
-        }
-        const newX = Math.round(elStart.x + (elStart.width - newW));
-        onUpdateElement(elStart.id, { x: newX, width: newW, height: newH }, false);
-      } else if (inter.mode === 'nw') {
-        let newW = Math.max(16, Math.round(elStart.width - dx));
-        let newH = Math.max(16, Math.round(elStart.height - dy));
-        if (e.shiftKey && elStart.height > 0) {
-          const ratio = elStart.width / elStart.height;
-          newH = Math.round(newW / ratio);
-        }
-        const newX = Math.round(elStart.x + (elStart.width - newW));
-        const newY = Math.round(elStart.y + (elStart.height - newH));
-        onUpdateElement(elStart.id, { x: newX, y: newY, width: newW, height: newH }, false);
-      } else if (inter.mode === 'w') {
-        const newW = Math.max(16, Math.round(elStart.width - dx));
-        const newX = Math.round(elStart.x + (elStart.width - newW));
-        onUpdateElement(elStart.id, { x: newX, width: newW }, false);
-      } else if (inter.mode === 'n') {
-        const newH = Math.max(16, Math.round(elStart.height - dy));
-        const newY = Math.round(elStart.y + (elStart.height - newH));
-        onUpdateElement(elStart.id, { y: newY, height: newH }, false);
+        applyMoveUpdates(inter, dx, dy, onUpdateMultipleElements, onUpdateElement);
+      } else {
+        applySingleTransformUpdates(inter.mode, elStart, dx, dy, pt, e.shiftKey, onUpdateElement);
       }
     };
 
@@ -415,46 +562,21 @@ export const Canvas: React.FC<CanvasProps> = ({
       if (inter.mode === 'none') return;
 
       if (inter.mode === 'marquee') {
-        const box = inter.marqueeBox || marqueeBoxRef.current;
-        if (box && (box.width > 3 || box.height > 3)) {
-          const hits = elements
-            .filter((el) => el.visible && isBoxIntersecting(el, box))
-            .map((el) => el.id);
-
-          if (onSelectMultiple) {
-            onSelectMultiple(hits, inter.isAdditiveMarquee);
-          } else if (hits.length > 0) {
-            onSelectElement(hits[0]);
-          } else {
-            onSelectElement(null);
-          }
-        } else if (!inter.isAdditiveMarquee && !inter.hasMoved) {
-          onSelectElement(null);
-        }
+        finishMarquee(
+          inter,
+          inter.marqueeBox || marqueeBoxRef.current,
+          elements,
+          onSelectMultiple,
+          onSelectElement
+        );
         setMarqueeBox(null);
-        setDragMode('none');
-        interactionRef.current = {
-          mode: 'none',
-          startMouse: { x: 0, y: 0 },
-          clientStart: { x: 0, y: 0 },
-          panStart: { x: 0, y: 0 },
-          elementStart: null,
-          groupStart: null,
-        };
+        resetInteractionState(interactionRef, setDragMode);
         return;
       }
 
       if (inter.groupStart) {
         const hadMoved = inter.hasMoved;
-        interactionRef.current = {
-          mode: 'none',
-          startMouse: { x: 0, y: 0 },
-          clientStart: { x: 0, y: 0 },
-          panStart: { x: 0, y: 0 },
-          elementStart: null,
-          groupStart: null,
-        };
-        setDragMode('none');
+        resetInteractionState(interactionRef, setDragMode);
         if (hadMoved) {
           onCommitHistory();
         }
@@ -464,34 +586,17 @@ export const Canvas: React.FC<CanvasProps> = ({
       if (inter.mode === 'move') {
         const hadMoved = inter.hasMoved;
         const elStart = inter.elementStart;
-        interactionRef.current = {
-          mode: 'none',
-          startMouse: { x: 0, y: 0 },
-          clientStart: { x: 0, y: 0 },
-          panStart: { x: 0, y: 0 },
-          elementStart: null,
-          groupStart: null,
-        };
-        setDragMode('none');
+        resetInteractionState(interactionRef, setDragMode);
         if (hadMoved) {
           onCommitHistory();
         } else if (elStart && activeSelectedIds.length > 1) {
-          // If clicked inside a multi-selection without dragging, narrow down to that element
           onSelectElement(elStart.id, false);
         }
         return;
       }
 
       const wasTransforming = inter.mode !== 'pan';
-      interactionRef.current = {
-        mode: 'none',
-        startMouse: { x: 0, y: 0 },
-        clientStart: { x: 0, y: 0 },
-        panStart: { x: 0, y: 0 },
-        elementStart: null,
-        groupStart: null,
-      };
-      setDragMode('none');
+      resetInteractionState(interactionRef, setDragMode);
       if (wasTransforming) {
         onCommitHistory();
       }
@@ -1001,6 +1106,7 @@ export const Canvas: React.FC<CanvasProps> = ({
       >
         <svg
           ref={svgRef}
+          aria-label="SVG Drawing Canvas"
           viewBox={dimensions.viewBox}
           width={dimensions.width}
           height={dimensions.height}
@@ -1041,40 +1147,9 @@ export const Canvas: React.FC<CanvasProps> = ({
             if (!el.visible) return null;
 
             const isSelected = activeSelectedIds.includes(el.id);
-            const filterAttr = el.wiggle?.enabled
-              ? 'url(#canvas-wiggle)'
-              : el.glow?.enabled
-              ? 'url(#canvas-glow)'
-              : undefined;
-
+            const filterAttr = getFilterAttr(el);
             const transformString = getElementTransform(el);
-            const getAnimationClass = (anim?: string, elType?: string) => {
-              if (!anim || anim === 'none') return '';
-              if (anim === 'original') {
-                if (elType === 'path') return 'animate-scribble-draw';
-                return 'animate-wobble-slow';
-              }
-              switch (anim) {
-                case 'draw':
-                  return 'animate-scribble-draw';
-                case 'rotate':
-                case 'spin':
-                  return 'animate-rotate';
-                case 'sparkle':
-                  return 'animate-sparkle';
-                case 'float':
-                  return 'animate-float-slow';
-                case 'wobble':
-                  return 'animate-wobble-slow';
-                case 'bounce':
-                  return 'animate-bounce-subtle';
-                case 'pulse':
-                  return 'animate-pulse-glow';
-                default:
-                  return '';
-              }
-            };
-            const animClass = getAnimationClass(el.animation, el.type);
+            const animClass = getCanvasElementAnimClass(el.animation, el.type);
 
             return (
               <g

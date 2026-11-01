@@ -75,7 +75,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
   const dataUri = `data:image/svg+xml;utf8,${encodeURIComponent(svgCode)}`;
 
   const handleCopy = (text: string) => {
-    navigator.clipboard.writeText(text);
+    void navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -88,7 +88,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
     a.download = `${fileName}.svg`;
     document.body.appendChild(a);
     a.click();
-    document.body.removeChild(a);
+    a.remove();
     URL.revokeObjectURL(url);
   };
 
@@ -102,7 +102,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
       a.download = `${fileName}@${pngScale}x.png`;
       document.body.appendChild(a);
       a.click();
-      document.body.removeChild(a);
+      a.remove();
       URL.revokeObjectURL(url);
     } catch (err) {
       console.error('PNG Export failed:', err);
@@ -113,13 +113,15 @@ export const ExportModal: React.FC<ExportModalProps> = ({
   };
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in select-none"
-      onClick={onClose}
-    >
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in select-none">
+      <button
+        type="button"
+        aria-label="Close export modal backdrop"
+        className="fixed inset-0 w-full h-full bg-black/60 backdrop-blur-sm cursor-default"
+        onClick={onClose}
+      />
       <div
-        className="relative w-full max-w-2xl bg-white rounded-3xl border border-black/20 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
-        onClick={(e) => e.stopPropagation()}
+        className="relative z-10 w-full max-w-2xl bg-white rounded-3xl border border-black/20 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
       >
         {/* Header */}
         <div className="px-6 py-4 border-b border-black/10 flex items-center justify-between bg-scribble-paper">
@@ -242,9 +244,9 @@ export const ExportModal: React.FC<ExportModalProps> = ({
               <div className="grid grid-cols-2 gap-4">
                 {/* Scale selection */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold uppercase tracking-wider text-black/70">
+                  <span className="block text-xs font-bold uppercase tracking-wider text-black/70">
                     Resolution Scale
-                  </label>
+                  </span>
                   <div className="flex bg-[#FAF7F2] p-1 rounded-xl border border-black/10">
                     {[
                       { scale: 1, label: '1x (Standard)' },
@@ -266,9 +268,9 @@ export const ExportModal: React.FC<ExportModalProps> = ({
 
                 {/* Background option */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold uppercase tracking-wider text-black/70">
+                  <span className="block text-xs font-bold uppercase tracking-wider text-black/70">
                     Background Color
-                  </label>
+                  </span>
                   <div className="flex bg-[#FAF7F2] p-1 rounded-xl border border-black/10">
                     {[
                       { id: 'transparent', label: 'Transparent' },

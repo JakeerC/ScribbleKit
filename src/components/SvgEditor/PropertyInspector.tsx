@@ -60,6 +60,266 @@ interface PropertyInspectorProps {
   onUpdateBackground: (bg: CanvasBackground) => void;
 }
 
+function getSwatchColor(el: SvgElementData): string {
+  if (el.fill !== 'none') return el.fill;
+  if (el.stroke !== 'none') return el.stroke;
+  return '#EA552B';
+}
+
+function getAnimButtonClass(isActive: boolean, animId: string): string {
+  if (!isActive) {
+    return 'bg-white hover:bg-black/5 text-black/70 border-black/10';
+  }
+  if (animId === 'original') {
+    return 'bg-gradient-to-r from-scribble-orange to-scribble-yellow text-white border-transparent shadow';
+  }
+  return 'bg-black text-white border-black shadow';
+}
+
+interface LayersTabProps {
+  elements: SvgElementData[];
+  selectedIds?: string[];
+  selectedElement: SvgElementData | null;
+  onSelectElement: (id: string | null, isMultiToggle?: boolean) => void;
+  onReorderElements: (elements: SvgElementData[]) => void;
+  onUpdateElement: (id: string, updates: Partial<SvgElementData>) => void;
+  onDeleteElement: (id?: string) => void;
+}
+
+const LayersTab: React.FC<LayersTabProps> = ({
+  elements,
+  selectedIds,
+  selectedElement,
+  onSelectElement,
+  onReorderElements,
+  onUpdateElement,
+  onDeleteElement,
+}) => {
+  const moveLayer = (id: string, direction: 'up' | 'down') => {
+    const idx = elements.findIndex((el) => el.id === id);
+    if (idx === -1) return;
+    const targetIdx = direction === 'up' ? idx + 1 : idx - 1;
+    if (targetIdx < 0 || targetIdx >= elements.length) return;
+
+    const newEls = [...elements];
+    const [moved] = newEls.splice(idx, 1);
+    newEls.splice(targetIdx, 0, moved);
+    onReorderElements(newEls);
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center justify-between pb-3 border-b border-black/10">
+        <div>
+          <h4 className="text-sm font-extrabold text-scribble-dark font-display">
+            Vector Layers
+          </h4>
+          <p className="text-[11px] text-black/50">Z-index stack (top to bottom)</p>
+        </div>
+        <span className="text-xs font-bold bg-black/5 px-2 py-0.5 rounded-full">
+          {elements.length}
+        </span>
+      </div>
+
+      <div className="space-y-1.5">
+        {[...elements].reverse().map((el) => {
+          const isSelected = selectedIds ? selectedIds.includes(el.id) : el.id === selectedElement?.id;
+          return (
+            <div
+              key={el.id}
+              role="button"
+              tabIndex={0}
+              onClick={(e) => onSelectElement(el.id, e.ctrlKey || e.metaKey)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onSelectElement(el.id, e.ctrlKey || e.metaKey);
+                }
+              }}
+              className={`flex items-center justify-between p-2.5 rounded-xl border transition-all cursor-pointer ${
+                isSelected
+                  ? 'bg-black text-white border-black shadow'
+                  : 'bg-[#FAF7F2] hover:bg-black/5 text-scribble-dark border-black/10'
+              }`}
+            >
+              <div className="flex items-center gap-2.5 truncate">
+                <span
+                  className="w-3.5 h-3.5 rounded-full shrink-0 border border-black/20"
+                  style={{ backgroundColor: getSwatchColor(el) }}
+                />
+                <span className="text-xs font-bold truncate">{el.name}</span>
+              </div>
+
+              <div className="flex items-center gap-1 shrink-0">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    moveLayer(el.id, 'up');
+                  }}
+                  className="p-1 hover:bg-white/20 rounded"
+                  title="Bring Forward"
+                >
+                  <ArrowUp className="w-3 h-3" />
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    moveLayer(el.id, 'down');
+                  }}
+                  className="p-1 hover:bg-white/20 rounded"
+                  title="Send Backward"
+                >
+                  <ArrowDown className="w-3 h-3" />
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onUpdateElement(el.id, { visible: !el.visible });
+                  }}
+                  className="p-1 hover:bg-white/20 rounded"
+                >
+                  {el.visible ? (
+                    <Eye className="w-3 h-3" />
+                  ) : (
+                    <EyeOff className="w-3 h-3 opacity-40" />
+                  )}
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onDeleteElement(el.id);
+                  }}
+                  className="p-1 hover:bg-red-500/20 text-red-400 hover:text-red-500 rounded"
+                >
+                  <Trash2 className="w-3 h-3" />
+                </button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+interface CanvasSettingsSectionProps {
+  canvasBackground: CanvasBackground;
+  dimensions: CanvasDimensions;
+  onUpdateBackground: (bg: CanvasBackground) => void;
+  onUpdateDimensions: (dims: CanvasDimensions) => void;
+}
+
+const CanvasSettingsSection: React.FC<CanvasSettingsSectionProps> = ({
+  canvasBackground,
+  dimensions,
+  onUpdateBackground,
+  onUpdateDimensions,
+}) => (
+  <div className="space-y-5">
+    <div className="pb-3 border-b border-black/10">
+      <h4 className="text-sm font-extrabold text-scribble-dark font-display">
+        Canvas Setup
+      </h4>
+      <p className="text-xs text-black/50 mt-0.5">
+        Click any element to inspect its properties, or customize the canvas below.
+      </p>
+    </div>
+
+    {/* Canvas Background Chooser */}
+    <div className="space-y-2">
+      <span className="block text-xs font-bold uppercase tracking-wider text-black/70">
+        Canvas Texture
+      </span>
+      <div className="grid grid-cols-2 gap-2 text-xs font-bold">
+        {[
+          { id: 'paper', label: 'Paper' },
+          { id: 'grid', label: 'Grid Paper' },
+          { id: 'dots', label: 'Dot Paper' },
+          { id: 'dark', label: 'Dark Board' },
+          { id: 'transparent', label: 'Transparent' },
+        ].map((bg) => (
+          <button
+            key={bg.id}
+            onClick={() => onUpdateBackground(bg.id as CanvasBackground)}
+            className={`p-2 rounded-xl border text-left transition-all ${
+              canvasBackground === bg.id
+                ? 'bg-black text-white border-black shadow'
+                : 'bg-[#FAF7F2] text-black/70 border-black/10 hover:border-black/30'
+            }`}
+          >
+            {bg.label}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    {/* Canvas Dimensions */}
+    <div className="space-y-2">
+      <span className="block text-xs font-bold uppercase tracking-wider text-black/70">
+        Dimensions (viewBox)
+      </span>
+      <div className="grid grid-cols-2 gap-2 text-xs">
+        <div className="bg-[#FAF7F2] p-2.5 rounded-xl border border-black/10">
+          <span className="text-[10px] text-black/50 block">Width</span>
+          <input
+            type="number"
+            value={dimensions.width}
+            onChange={(e) => {
+              const w = Number(e.target.value);
+              onUpdateDimensions({
+                ...dimensions,
+                width: w,
+                viewBox: `0 0 ${w} ${dimensions.height}`,
+              });
+            }}
+            className="w-full font-mono font-bold bg-transparent focus:outline-none"
+          />
+        </div>
+        <div className="bg-[#FAF7F2] p-2.5 rounded-xl border border-black/10">
+          <span className="text-[10px] text-black/50 block">Height</span>
+          <input
+            type="number"
+            value={dimensions.height}
+            onChange={(e) => {
+              const h = Number(e.target.value);
+              onUpdateDimensions({
+                ...dimensions,
+                height: h,
+                viewBox: `0 0 ${dimensions.width} ${h}`,
+              });
+            }}
+            className="w-full font-mono font-bold bg-transparent focus:outline-none"
+          />
+        </div>
+      </div>
+
+      {/* Preset dimension buttons */}
+      <div className="flex gap-1.5 flex-wrap pt-1">
+        {[
+          { label: 'Square', w: 600, h: 600 },
+          { label: 'Landscape', w: 800, h: 500 },
+          { label: 'Banner', w: 800, h: 260 },
+          { label: 'Icon', w: 256, h: 256 },
+        ].map((pre) => (
+          <button
+            key={pre.label}
+            onClick={() =>
+              onUpdateDimensions({
+                width: pre.w,
+                height: pre.h,
+                viewBox: `0 0 ${pre.w} ${pre.h}`,
+              })
+            }
+            className="px-2 py-1 rounded-lg bg-black/5 hover:bg-black/10 text-[11px] font-bold text-black/70"
+          >
+            {pre.label} ({pre.w}x{pre.h})
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
 export const PropertyInspector: React.FC<PropertyInspectorProps> = ({
   selectedElement,
   selectedIds,
@@ -76,19 +336,6 @@ export const PropertyInspector: React.FC<PropertyInspectorProps> = ({
   onUpdateBackground,
 }) => {
   const [activeTab, setActiveTab] = useState<'style' | 'effects' | 'layers'>('style');
-
-  // Move layer up / down
-  const moveLayer = (id: string, direction: 'up' | 'down') => {
-    const idx = elements.findIndex((el) => el.id === id);
-    if (idx === -1) return;
-    const targetIdx = direction === 'up' ? idx + 1 : idx - 1;
-    if (targetIdx < 0 || targetIdx >= elements.length) return;
-
-    const newEls = [...elements];
-    const [moved] = newEls.splice(idx, 1);
-    newEls.splice(targetIdx, 0, moved);
-    onReorderElements(newEls);
-  };
 
   // Center selected element
   const centerElement = (axis: 'both' | 'h' | 'v') => {
@@ -432,10 +679,11 @@ export const PropertyInspector: React.FC<PropertyInspectorProps> = ({
                 {/* Text Content (if Text element) */}
                 {selectedElement.type === 'text' && (
                   <div className="space-y-2 bg-[#F8F6F0] p-3 rounded-2xl border border-black/10">
-                    <label className="text-xs font-bold uppercase tracking-wider text-black/70">
+                    <label htmlFor="prop-text-input" className="text-xs font-bold uppercase tracking-wider text-black/70">
                       Text Value
                     </label>
                     <input
+                      id="prop-text-input"
                       type="text"
                       value={selectedElement.text || ''}
                       onChange={(e) => onUpdateElement(selectedElement.id, { text: e.target.value })}
@@ -463,9 +711,9 @@ export const PropertyInspector: React.FC<PropertyInspectorProps> = ({
                 {/* Stroke Styling */}
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <label className="text-xs font-bold uppercase tracking-wider text-black/70">
+                    <span className="block text-xs font-bold uppercase tracking-wider text-black/70">
                       Stroke
-                    </label>
+                    </span>
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() =>
@@ -585,9 +833,9 @@ export const PropertyInspector: React.FC<PropertyInspectorProps> = ({
                 {/* Fill Styling */}
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <label className="text-xs font-bold uppercase tracking-wider text-black/70">
+                    <span className="block text-xs font-bold uppercase tracking-wider text-black/70">
                       Fill Color
-                    </label>
+                    </span>
                     <button
                       onClick={() =>
                         onUpdateElement(selectedElement.id, {
@@ -656,9 +904,9 @@ export const PropertyInspector: React.FC<PropertyInspectorProps> = ({
 
                 {/* Transform & Geometry */}
                 <div className="space-y-3">
-                  <label className="text-xs font-bold uppercase tracking-wider text-black/70">
+                  <span className="block text-xs font-bold uppercase tracking-wider text-black/70">
                     Transform & Position
-                  </label>
+                  </span>
 
                   <div className="grid grid-cols-2 gap-2 text-xs">
                     <div className="bg-[#FAF7F2] p-2 rounded-xl border border-black/10">
@@ -795,109 +1043,12 @@ export const PropertyInspector: React.FC<PropertyInspectorProps> = ({
               </div>
             ) : (
               /* Canvas Settings (when no element is selected) */
-              <div className="space-y-5">
-                <div className="pb-3 border-b border-black/10">
-                  <h4 className="text-sm font-extrabold text-scribble-dark font-display">
-                    Canvas Setup
-                  </h4>
-                  <p className="text-xs text-black/50 mt-0.5">
-                    Click any element to inspect its properties, or customize the canvas below.
-                  </p>
-                </div>
-
-                {/* Canvas Background Chooser */}
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-wider text-black/70">
-                    Canvas Texture
-                  </label>
-                  <div className="grid grid-cols-2 gap-2 text-xs font-bold">
-                    {[
-                      { id: 'paper', label: 'Paper' },
-                      { id: 'grid', label: 'Grid Paper' },
-                      { id: 'dots', label: 'Dot Paper' },
-                      { id: 'dark', label: 'Dark Board' },
-                      { id: 'transparent', label: 'Transparent' },
-                    ].map((bg) => (
-                      <button
-                        key={bg.id}
-                        onClick={() => onUpdateBackground(bg.id as any)}
-                        className={`p-2 rounded-xl border text-left transition-all ${
-                          canvasBackground === bg.id
-                            ? 'bg-black text-white border-black shadow'
-                            : 'bg-[#FAF7F2] text-black/70 border-black/10 hover:border-black/30'
-                        }`}
-                      >
-                        {bg.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Canvas Dimensions */}
-                <div className="space-y-2">
-                  <label className="text-xs font-bold uppercase tracking-wider text-black/70">
-                    Dimensions (viewBox)
-                  </label>
-                  <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div className="bg-[#FAF7F2] p-2.5 rounded-xl border border-black/10">
-                      <span className="text-[10px] text-black/50 block">Width</span>
-                      <input
-                        type="number"
-                        value={dimensions.width}
-                        onChange={(e) => {
-                          const w = Number(e.target.value);
-                          onUpdateDimensions({
-                            ...dimensions,
-                            width: w,
-                            viewBox: `0 0 ${w} ${dimensions.height}`,
-                          });
-                        }}
-                        className="w-full font-mono font-bold bg-transparent focus:outline-none"
-                      />
-                    </div>
-                    <div className="bg-[#FAF7F2] p-2.5 rounded-xl border border-black/10">
-                      <span className="text-[10px] text-black/50 block">Height</span>
-                      <input
-                        type="number"
-                        value={dimensions.height}
-                        onChange={(e) => {
-                          const h = Number(e.target.value);
-                          onUpdateDimensions({
-                            ...dimensions,
-                            height: h,
-                            viewBox: `0 0 ${dimensions.width} ${h}`,
-                          });
-                        }}
-                        className="w-full font-mono font-bold bg-transparent focus:outline-none"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Preset dimension buttons */}
-                  <div className="flex gap-1.5 flex-wrap pt-1">
-                    {[
-                      { label: 'Square', w: 600, h: 600 },
-                      { label: 'Landscape', w: 800, h: 500 },
-                      { label: 'Banner', w: 800, h: 260 },
-                      { label: 'Icon', w: 256, h: 256 },
-                    ].map((pre) => (
-                      <button
-                        key={pre.label}
-                        onClick={() =>
-                          onUpdateDimensions({
-                            width: pre.w,
-                            height: pre.h,
-                            viewBox: `0 0 ${pre.w} ${pre.h}`,
-                          })
-                        }
-                        className="px-2 py-1 rounded-lg bg-black/5 hover:bg-black/10 text-[11px] font-bold text-black/70"
-                      >
-                        {pre.label} ({pre.w}x{pre.h})
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <CanvasSettingsSection
+                canvasBackground={canvasBackground}
+                dimensions={dimensions}
+                onUpdateBackground={onUpdateBackground}
+                onUpdateDimensions={onUpdateDimensions}
+              />
             )}
           </>
         )}
@@ -955,13 +1106,10 @@ export const PropertyInspector: React.FC<PropertyInspectorProps> = ({
                               });
                             }
                           }}
-                          className={`px-2 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 border ${
-                            isActive
-                              ? anim.id === 'original'
-                                ? 'bg-gradient-to-r from-scribble-orange to-scribble-yellow text-white border-transparent shadow'
-                                : 'bg-black text-white border-black shadow'
-                              : 'bg-white hover:bg-black/5 text-black/70 border-black/10'
-                          }`}
+                          className={`px-2 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 border ${getAnimButtonClass(
+                            isActive,
+                            anim.id
+                          )}`}
                         >
                           <span className="text-[11px]">{anim.icon}</span>
                           <span className="text-[11px] truncate">{anim.label}</span>
@@ -1160,105 +1308,15 @@ export const PropertyInspector: React.FC<PropertyInspectorProps> = ({
 
         {/* Layers Tab */}
         {activeTab === 'layers' && (
-          <div className="space-y-4">
-            <div className="pb-2 border-b border-black/10 flex items-center justify-between">
-              <div>
-                <h4 className="text-sm font-extrabold text-scribble-dark font-display">
-                  Vector Layers
-                </h4>
-                <p className="text-[11px] text-black/50">Z-index stack (top to bottom)</p>
-              </div>
-              <span className="text-xs font-bold bg-black/5 px-2 py-0.5 rounded-full">
-                {elements.length}
-              </span>
-            </div>
-
-            {/* List of Layers */}
-            <div className="space-y-1.5">
-              {[...elements].reverse().map((el) => {
-                const isSelected = selectedIds ? selectedIds.includes(el.id) : el.id === selectedElement?.id;
-                return (
-                  <div
-                    key={el.id}
-                    onClick={(e) => onSelectElement(el.id, e.ctrlKey || e.metaKey)}
-                    className={`flex items-center justify-between p-2.5 rounded-xl border transition-all cursor-pointer ${
-                      isSelected
-                        ? 'bg-black text-white border-black shadow'
-                        : 'bg-[#FAF7F2] hover:bg-black/5 text-scribble-dark border-black/10'
-                    }`}
-                  >
-                    <div className="flex items-center gap-2.5 truncate">
-                      {/* Swatch color representation */}
-                      <span
-                        className="w-3.5 h-3.5 rounded-full shrink-0 border border-black/20"
-                        style={{
-                          backgroundColor:
-                            el.fill !== 'none'
-                              ? el.fill
-                              : el.stroke !== 'none'
-                              ? el.stroke
-                              : '#EA552B',
-                        }}
-                      />
-                      <span className="text-xs font-bold truncate">{el.name}</span>
-                    </div>
-
-                    <div className="flex items-center gap-1 shrink-0">
-                      {/* Move Up */}
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          moveLayer(el.id, 'up');
-                        }}
-                        className="p-1 hover:bg-white/20 rounded"
-                        title="Bring Forward"
-                      >
-                        <ArrowUp className="w-3 h-3" />
-                      </button>
-
-                      {/* Move Down */}
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          moveLayer(el.id, 'down');
-                        }}
-                        className="p-1 hover:bg-white/20 rounded"
-                        title="Send Backward"
-                      >
-                        <ArrowDown className="w-3 h-3" />
-                      </button>
-
-                      {/* Toggle Visibility */}
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onUpdateElement(el.id, { visible: !el.visible });
-                        }}
-                        className="p-1 hover:bg-white/20 rounded"
-                      >
-                        {el.visible ? (
-                          <Eye className="w-3 h-3" />
-                        ) : (
-                          <EyeOff className="w-3 h-3 opacity-40" />
-                        )}
-                      </button>
-
-                      {/* Delete */}
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onDeleteElement(el.id);
-                        }}
-                        className="p-1 hover:bg-red-500/20 text-red-400 hover:text-red-500 rounded"
-                      >
-                        <Trash2 className="w-3 h-3" />
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+          <LayersTab
+            elements={elements}
+            selectedIds={selectedIds}
+            selectedElement={selectedElement}
+            onSelectElement={onSelectElement}
+            onReorderElements={onReorderElements}
+            onUpdateElement={onUpdateElement}
+            onDeleteElement={onDeleteElement}
+          />
         )}
       </div>
     </div>

@@ -11,7 +11,7 @@ export function generateId(prefix = 'el'): string {
  * Calculates the bounding box of an SVG path `d` string.
  */
 export function getPathBoundingBox(d: string): { x: number; y: number; width: number; height: number } {
-  const numbers = d.match(/[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?/g);
+  const numbers = d.match(/[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?/g);
   if (!numbers || numbers.length < 2) {
     return { x: 0, y: 0, width: 100, height: 100 };
   }
@@ -21,13 +21,13 @@ export function getPathBoundingBox(d: string): { x: number; y: number; width: nu
   let maxY = -Infinity;
 
   for (let i = 0; i < numbers.length; i += 2) {
-    const x = parseFloat(numbers[i]);
-    const y = parseFloat(numbers[i + 1]);
-    if (!isNaN(x)) {
+    const x = Number.parseFloat(numbers[i]);
+    const y = Number.parseFloat(numbers[i + 1]);
+    if (!Number.isNaN(x)) {
       minX = Math.min(minX, x);
       maxX = Math.max(maxX, x);
     }
-    if (!isNaN(y)) {
+    if (!Number.isNaN(y)) {
       minY = Math.min(minY, y);
       maxY = Math.max(maxY, y);
     }
@@ -190,7 +190,7 @@ export function createOrganicArrow(x1: number, y1: number, x2: number, y2: numbe
   const dx = x2 - x1;
   const dy = y2 - y1;
   const angle = Math.atan2(dy, dx);
-  const headLen = Math.min(24, Math.sqrt(dx * dx + dy * dy) * 0.35);
+  const headLen = Math.min(24, Math.hypot(dx, dy) * 0.35);
 
   const midX = (x1 + x2) / 2 + Math.cos(angle + Math.PI / 2) * 12;
   const midY = (y1 + y2) / 2 + Math.sin(angle + Math.PI / 2) * 12;
@@ -268,6 +268,256 @@ export function createOrganicBubble(x: number, y: number, w: number, h: number):
          `C ${x - 3} ${y + h * 0.5}, ${x} ${y + 20}, ${x + 20} ${y} Z`;
 }
 
+function parseAnimationFromClass(classAttr: string): ElementAnimationType {
+  if (classAttr.includes('animate-rotate')) return 'rotate';
+  if (classAttr.includes('animate-sparkle')) return 'sparkle';
+  if (classAttr.includes('animate-float')) return 'float';
+  if (classAttr.includes('animate-wobble')) return 'wobble';
+  if (classAttr.includes('animate-bounce')) return 'bounce';
+  if (classAttr.includes('animate-pulse')) return 'pulse';
+  if (classAttr.includes('animate-scribble-draw')) return 'draw';
+  return 'none';
+}
+
+const TRANSLATE_REGEX = /translate\(\s*([^,\s)]+)[,\s]+([^,\s)]+)\s*\)/;
+const ROTATE_REGEX = /rotate\(([^)\s]+)/;
+
+function parseTransformAttr(transformAttr: string | null): { initialX: number; initialY: number; initialRotation: number } {
+  let initialX = 0;
+  let initialY = 0;
+  let initialRotation = 0;
+  if (!transformAttr) {
+    return { initialX, initialY, initialRotation };
+  }
+  const translateMatch = TRANSLATE_REGEX.exec(transformAttr);
+  if (translateMatch) {
+    initialX = Number.parseFloat(translateMatch[1]) || 0;
+    initialY = Number.parseFloat(translateMatch[2]) || 0;
+  }
+  const rotateMatch = ROTATE_REGEX.exec(transformAttr);
+  if (rotateMatch) {
+    initialRotation = Number.parseFloat(rotateMatch[1]) || 0;
+  }
+  return { initialX, initialY, initialRotation };
+}
+
+interface BaseElementProps {
+  stroke: string;
+  fill: string;
+  strokeWidth: number;
+  strokeDasharray: string;
+  strokeLinecap: 'butt' | 'round' | 'square';
+  strokeLinejoin: 'miter' | 'round' | 'bevel';
+  opacity: number;
+}
+
+function getBaseElementProps(el: Element, defaultColor: string): BaseElementProps {
+  const strokeAttr = el.getAttribute('stroke');
+  const fillAttr = el.getAttribute('fill');
+  const strokeWidthAttr = el.getAttribute('stroke-width');
+  const strokeDasharray = el.getAttribute('stroke-dasharray') || 'none';
+  const strokeLinecap = (el.getAttribute('stroke-linecap') as 'butt' | 'round' | 'square') || 'round';
+  const strokeLinejoin = (el.getAttribute('stroke-linejoin') as 'miter' | 'round' | 'bevel') || 'round';
+  const opacityAttr = el.getAttribute('opacity');
+
+  let stroke = strokeAttr === 'currentColor' ? defaultColor : strokeAttr || 'none';
+  let fill = fillAttr === 'currentColor' ? defaultColor : fillAttr || 'none';
+  if (stroke === 'none' && fill === 'none') {
+    stroke = defaultColor;
+  }
+
+  let defaultStrokeWidth = 0;
+  if (stroke !== 'none') {
+    defaultStrokeWidth = 4.5;
+  }
+  const strokeWidth = strokeWidthAttr ? Number.parseFloat(strokeWidthAttr) : defaultStrokeWidth;
+  const opacity = opacityAttr ? Number.parseFloat(opacityAttr) : 1;
+
+  return {
+    stroke,
+    fill,
+    strokeWidth,
+    strokeDasharray,
+    strokeLinecap,
+    strokeLinejoin,
+    opacity,
+  };
+}
+
+function parsePathElement(
+  el: Element,
+  index: number,
+  baseProps: BaseElementProps,
+  transform: ReturnType<typeof parseTransformAttr>,
+  initialAnimation: ElementAnimationType
+): SvgElementData | null {
+  const d = el.getAttribute('d') || '';
+  if (!d) return null;
+  const bbox = getPathBoundingBox(d);
+  const posX = transform.initialX !== 0 ? bbox.x + transform.initialX : bbox.x;
+  const posY = transform.initialY !== 0 ? bbox.y + transform.initialY : bbox.y;
+
+  return {
+    id: generateId(`path-${index + 1}`),
+    name: `Path ${index + 1}`,
+    type: 'path',
+    visible: true,
+    locked: false,
+    stroke: baseProps.stroke,
+    strokeWidth: baseProps.strokeWidth,
+    strokeOpacity: 1,
+    strokeDasharray: baseProps.strokeDasharray,
+    strokeLinecap: baseProps.strokeLinecap,
+    strokeLinejoin: baseProps.strokeLinejoin,
+    fill: baseProps.fill,
+    fillOpacity: 1,
+    opacity: baseProps.opacity,
+    x: posX,
+    y: posY,
+    width: bbox.width,
+    height: bbox.height,
+    rotation: transform.initialRotation,
+    origX: bbox.x,
+    origY: bbox.y,
+    origWidth: bbox.width,
+    origHeight: bbox.height,
+    d,
+    animation: initialAnimation,
+  };
+}
+
+function parseTextElement(
+  el: Element,
+  index: number,
+  baseProps: BaseElementProps,
+  defaultColor: string,
+  initialAnimation: ElementAnimationType
+): SvgElementData {
+  const text = el.textContent || '';
+  const x = Number.parseFloat(el.getAttribute('x') || '50');
+  const y = Number.parseFloat(el.getAttribute('y') || '50');
+  const fontSize = Number.parseFloat(el.getAttribute('font-size') || '28');
+  const fontFamily = el.getAttribute('font-family') || 'Space Grotesk';
+  const fontWeight = el.getAttribute('font-weight') || 'bold';
+
+  return {
+    id: generateId(`text-${index + 1}`),
+    name: `Text: "${text.substring(0, 10)}"`,
+    type: 'text',
+    visible: true,
+    locked: false,
+    stroke: baseProps.stroke,
+    strokeWidth: baseProps.stroke !== 'none' ? baseProps.strokeWidth : 0,
+    strokeOpacity: 1,
+    strokeDasharray: baseProps.strokeDasharray,
+    strokeLinecap: baseProps.strokeLinecap,
+    strokeLinejoin: baseProps.strokeLinejoin,
+    fill: baseProps.fill === 'none' ? defaultColor : baseProps.fill,
+    fillOpacity: 1,
+    opacity: baseProps.opacity,
+    x,
+    y: y - fontSize,
+    width: text.length * fontSize * 0.6,
+    height: fontSize * 1.2,
+    rotation: 0,
+    text,
+    fontSize,
+    fontFamily,
+    fontWeight,
+    animation: initialAnimation,
+  };
+}
+
+function parseRectElement(
+  el: Element,
+  index: number,
+  baseProps: BaseElementProps,
+  initialAnimation: ElementAnimationType
+): SvgElementData {
+  const x = Number.parseFloat(el.getAttribute('x') || '0');
+  const y = Number.parseFloat(el.getAttribute('y') || '0');
+  const w = Number.parseFloat(el.getAttribute('width') || '100');
+  const h = Number.parseFloat(el.getAttribute('height') || '100');
+
+  return {
+    id: generateId(`rect-${index + 1}`),
+    name: `Rectangle ${index + 1}`,
+    type: 'rect',
+    visible: true,
+    locked: false,
+    stroke: baseProps.stroke,
+    strokeWidth: baseProps.strokeWidth,
+    strokeOpacity: 1,
+    strokeDasharray: baseProps.strokeDasharray,
+    strokeLinecap: baseProps.strokeLinecap,
+    strokeLinejoin: baseProps.strokeLinejoin,
+    fill: baseProps.fill,
+    fillOpacity: 1,
+    opacity: baseProps.opacity,
+    x,
+    y,
+    width: w,
+    height: h,
+    rotation: 0,
+    animation: initialAnimation,
+  };
+}
+
+function parseCircleElement(
+  el: Element,
+  index: number,
+  baseProps: BaseElementProps,
+  initialAnimation: ElementAnimationType
+): SvgElementData {
+  const cx = Number.parseFloat(el.getAttribute('cx') || '50');
+  const cy = Number.parseFloat(el.getAttribute('cy') || '50');
+  const r = Number.parseFloat(el.getAttribute('r') || '40');
+
+  return {
+    id: generateId(`circle-${index + 1}`),
+    name: `Circle ${index + 1}`,
+    type: 'circle',
+    visible: true,
+    locked: false,
+    stroke: baseProps.stroke,
+    strokeWidth: baseProps.strokeWidth,
+    strokeOpacity: 1,
+    strokeDasharray: baseProps.strokeDasharray,
+    strokeLinecap: baseProps.strokeLinecap,
+    strokeLinejoin: baseProps.strokeLinejoin,
+    fill: baseProps.fill,
+    fillOpacity: 1,
+    opacity: baseProps.opacity,
+    x: cx - r,
+    y: cy - r,
+    width: r * 2,
+    height: r * 2,
+    rotation: 0,
+    animation: initialAnimation,
+  };
+}
+
+function parseGraphicElement(el: Element, index: number, defaultColor: string): SvgElementData | null {
+  const tagName = el.tagName.toLowerCase();
+  const classAttr = el.getAttribute('class') || '';
+  const initialAnimation = parseAnimationFromClass(classAttr);
+  const transform = parseTransformAttr(el.getAttribute('transform'));
+  const baseProps = getBaseElementProps(el, defaultColor);
+
+  switch (tagName) {
+    case 'path':
+      return parsePathElement(el, index, baseProps, transform, initialAnimation);
+    case 'text':
+      return parseTextElement(el, index, baseProps, defaultColor, initialAnimation);
+    case 'rect':
+      return parseRectElement(el, index, baseProps, initialAnimation);
+    case 'circle':
+      return parseCircleElement(el, index, baseProps, initialAnimation);
+    default:
+      return null;
+  }
+}
+
 /**
  * Parses SVG string into structured elements and canvas dimensions.
  */
@@ -295,7 +545,7 @@ export function parseSvgStringToElements(
 
       if (viewBoxAttr) {
         const parts = viewBoxAttr.trim().split(/[\s,]+/).map(Number);
-        if (parts.length === 4 && !isNaN(parts[2]) && !isNaN(parts[3])) {
+        if (parts.length === 4 && !Number.isNaN(parts[2]) && !Number.isNaN(parts[3])) {
           dimensions = {
             width: parts[2] || 600,
             height: parts[3] || 400,
@@ -303,8 +553,8 @@ export function parseSvgStringToElements(
           };
         }
       } else if (widthAttr && heightAttr) {
-        const w = parseFloat(widthAttr) || 600;
-        const h = parseFloat(heightAttr) || 400;
+        const w = Number.parseFloat(widthAttr) || 600;
+        const h = Number.parseFloat(heightAttr) || 400;
         dimensions = {
           width: w,
           height: h,
@@ -317,174 +567,9 @@ export function parseSvgStringToElements(
       );
 
       graphicEls.forEach((el, index) => {
-        const tagName = el.tagName.toLowerCase();
-        const strokeAttr = el.getAttribute('stroke');
-        const fillAttr = el.getAttribute('fill');
-        const strokeWidthAttr = el.getAttribute('stroke-width');
-        const strokeDasharray = el.getAttribute('stroke-dasharray') || 'none';
-        const strokeLinecap = (el.getAttribute('stroke-linecap') as any) || 'round';
-        const strokeLinejoin = (el.getAttribute('stroke-linejoin') as any) || 'round';
-        const opacityAttr = el.getAttribute('opacity');
-        const classAttr = el.getAttribute('class') || '';
-        let initialAnimation: ElementAnimationType = 'none';
-        if (classAttr.includes('animate-rotate')) initialAnimation = 'rotate';
-        else if (classAttr.includes('animate-sparkle')) initialAnimation = 'sparkle';
-        else if (classAttr.includes('animate-float')) initialAnimation = 'float';
-        else if (classAttr.includes('animate-wobble')) initialAnimation = 'wobble';
-        else if (classAttr.includes('animate-bounce')) initialAnimation = 'bounce';
-        else if (classAttr.includes('animate-pulse')) initialAnimation = 'pulse';
-        else if (classAttr.includes('animate-scribble-draw')) initialAnimation = 'draw';
-
-        let initialX = 0;
-        let initialY = 0;
-        let initialRotation = 0;
-        const transformAttr = el.getAttribute('transform');
-        if (transformAttr) {
-          const translateMatch = transformAttr.match(/translate\(([^,\s]+)[,\s]+([^)]+)\)/);
-          if (translateMatch) {
-            initialX = parseFloat(translateMatch[1]) || 0;
-            initialY = parseFloat(translateMatch[2]) || 0;
-          }
-          const rotateMatch = transformAttr.match(/rotate\(([^)\s]+)/);
-          if (rotateMatch) {
-            initialRotation = parseFloat(rotateMatch[1]) || 0;
-          }
-        }
-
-        let stroke = strokeAttr === 'currentColor' ? defaultColor : strokeAttr || 'none';
-        let fill = fillAttr === 'currentColor' ? defaultColor : fillAttr || 'none';
-
-        if (stroke === 'none' && fill === 'none') {
-          stroke = defaultColor;
-        }
-
-        const strokeWidth = strokeWidthAttr ? parseFloat(strokeWidthAttr) : (stroke !== 'none' ? 4.5 : 0);
-        const opacity = opacityAttr ? parseFloat(opacityAttr) : 1;
-
-        if (tagName === 'path') {
-          const d = el.getAttribute('d') || '';
-          if (d) {
-            const bbox = getPathBoundingBox(d);
-            const posX = initialX !== 0 ? bbox.x + initialX : bbox.x;
-            const posY = initialY !== 0 ? bbox.y + initialY : bbox.y;
-
-            elements.push({
-              id: generateId(`path-${index + 1}`),
-              name: `Path ${index + 1}`,
-              type: 'path',
-              visible: true,
-              locked: false,
-              stroke,
-              strokeWidth,
-              strokeOpacity: 1,
-              strokeDasharray,
-              strokeLinecap,
-              strokeLinejoin,
-              fill,
-              fillOpacity: 1,
-              opacity,
-              x: posX,
-              y: posY,
-              width: bbox.width,
-              height: bbox.height,
-              rotation: initialRotation,
-              origX: bbox.x,
-              origY: bbox.y,
-              origWidth: bbox.width,
-              origHeight: bbox.height,
-              d,
-              animation: initialAnimation,
-            });
-          }
-        } else if (tagName === 'text') {
-          const text = el.textContent || '';
-          const x = parseFloat(el.getAttribute('x') || '50');
-          const y = parseFloat(el.getAttribute('y') || '50');
-          const fontSize = parseFloat(el.getAttribute('font-size') || '28');
-          const fontFamily = el.getAttribute('font-family') || 'Space Grotesk';
-          const fontWeight = el.getAttribute('font-weight') || 'bold';
-
-          elements.push({
-            id: generateId(`text-${index + 1}`),
-            name: `Text: "${text.substring(0, 10)}"`,
-            type: 'text',
-            visible: true,
-            locked: false,
-            stroke,
-            strokeWidth: stroke !== 'none' ? strokeWidth : 0,
-            strokeOpacity: 1,
-            strokeDasharray,
-            strokeLinecap,
-            strokeLinejoin,
-            fill: fill === 'none' ? defaultColor : fill,
-            fillOpacity: 1,
-            opacity,
-            x,
-            y: y - fontSize,
-            width: text.length * fontSize * 0.6,
-            height: fontSize * 1.2,
-            rotation: 0,
-            text,
-            fontSize,
-            fontFamily,
-            fontWeight,
-            animation: initialAnimation,
-          });
-        } else if (tagName === 'rect') {
-          const x = parseFloat(el.getAttribute('x') || '0');
-          const y = parseFloat(el.getAttribute('y') || '0');
-          const w = parseFloat(el.getAttribute('width') || '100');
-          const h = parseFloat(el.getAttribute('height') || '100');
-
-          elements.push({
-            id: generateId(`rect-${index + 1}`),
-            name: `Rectangle ${index + 1}`,
-            type: 'rect',
-            visible: true,
-            locked: false,
-            stroke,
-            strokeWidth,
-            strokeOpacity: 1,
-            strokeDasharray,
-            strokeLinecap,
-            strokeLinejoin,
-            fill,
-            fillOpacity: 1,
-            opacity,
-            x,
-            y,
-            width: w,
-            height: h,
-            rotation: 0,
-            animation: initialAnimation,
-          });
-        } else if (tagName === 'circle') {
-          const cx = parseFloat(el.getAttribute('cx') || '50');
-          const cy = parseFloat(el.getAttribute('cy') || '50');
-          const r = parseFloat(el.getAttribute('r') || '40');
-
-          elements.push({
-            id: generateId(`circle-${index + 1}`),
-            name: `Circle ${index + 1}`,
-            type: 'circle',
-            visible: true,
-            locked: false,
-            stroke,
-            strokeWidth,
-            strokeOpacity: 1,
-            strokeDasharray,
-            strokeLinecap,
-            strokeLinejoin,
-            fill,
-            fillOpacity: 1,
-            opacity,
-            x: cx - r,
-            y: cy - r,
-            width: r * 2,
-            height: r * 2,
-            rotation: 0,
-            animation: initialAnimation,
-          });
+        const item = parseGraphicElement(el, index, defaultColor);
+        if (item) {
+          elements.push(item);
         }
       });
     }
@@ -494,7 +579,7 @@ export function parseSvgStringToElements(
 
   // Fallback single path if no graphic elements were parsed
   if (elements.length === 0) {
-    const dMatch = svgStr.match(/d="([^"]+)"/);
+    const dMatch = /d="([^"]+)"/.exec(svgStr);
     if (dMatch) {
       const bbox = getPathBoundingBox(dMatch[1]);
       elements.push({
@@ -529,6 +614,153 @@ export function parseSvgStringToElements(
   return { elements, dimensions };
 }
 
+function serializeDefs(includeFilters: boolean, hasWiggle: boolean, hasGlow: boolean, hasAnimation: boolean): string {
+  if (!includeFilters || (!hasWiggle && !hasGlow && !hasAnimation)) {
+    return '';
+  }
+  let defsMarkup = '  <defs>\n';
+  if (hasAnimation) {
+    defsMarkup += `    <style>
+      @keyframes scribbleRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      @keyframes scribbleSparkle { 0%, 100% { transform: scale(0.9) rotate(0deg); opacity: 0.85; } 50% { transform: scale(1.2) rotate(25deg); opacity: 1; filter: drop-shadow(0 0 6px rgba(247, 208, 70, 0.7)); } }
+      @keyframes scribbleFloat { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-12px) rotate(2.5deg); } }
+      @keyframes scribbleWobble { 0%, 100% { transform: rotate(0deg) scale(1); } 25% { transform: rotate(-2.5deg) scale(1.02); } 75% { transform: rotate(2.5deg) scale(0.98); } }
+      @keyframes scribbleBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+      @keyframes scribbleGlow { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); filter: drop-shadow(0 0 10px rgba(247, 208, 70, 0.75)); } }
+      @keyframes scribbleDraw { 0% { stroke-dashoffset: 1000; opacity: 0.2; } 100% { stroke-dashoffset: 0; opacity: 1; } }
+      .animate-rotate { animation: scribbleRotate 8s linear infinite; transform-box: fill-box; transform-origin: center; }
+      .animate-sparkle { animation: scribbleSparkle 2.2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+      .animate-float-slow { animation: scribbleFloat 7s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+      .animate-wobble-slow { animation: scribbleWobble 4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+      .animate-bounce-subtle { animation: scribbleBounce 3s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+      .animate-pulse-glow { animation: scribbleGlow 2.5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+      .animate-scribble-draw { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: scribbleDraw 1.2s cubic-bezier(0.65, 0, 0.35, 1) forwards; }
+    </style>\n`;
+  }
+  if (hasWiggle) {
+    defsMarkup += `    <filter id="scribble-wiggle" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" />
+    </filter>\n`;
+  }
+  if (hasGlow) {
+    defsMarkup += `    <filter id="scribble-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>\n`;
+  }
+  defsMarkup += '  </defs>\n';
+  return defsMarkup;
+}
+
+function getFilterAttr(el: SvgElementData): string {
+  if (el.wiggle?.enabled) {
+    return ' filter="url(#scribble-wiggle)"';
+  }
+  if (el.glow?.enabled) {
+    return ' filter="url(#scribble-glow)"';
+  }
+  return '';
+}
+
+function getStrokeProps(el: SvgElementData): string {
+  let res = `stroke="${el.stroke}" stroke-width="${el.strokeWidth}" stroke-linecap="${el.strokeLinecap}" stroke-linejoin="${el.strokeLinejoin}"`;
+  if (el.strokeDasharray && el.strokeDasharray !== 'none') {
+    res += ` stroke-dasharray="${el.strokeDasharray}"`;
+  }
+  if (el.strokeOpacity < 1) {
+    res += ` stroke-opacity="${el.strokeOpacity}"`;
+  }
+  return res;
+}
+
+function getFillProps(el: SvgElementData): string {
+  let res = `fill="${el.fill}"`;
+  if (el.fillOpacity < 1) {
+    res += ` fill-opacity="${el.fillOpacity}"`;
+  }
+  return res;
+}
+
+function serializeComicShadow(el: SvgElementData, transformStr: string): string {
+  if (!el.comicShadow?.enabled) return '';
+  const sOx = el.comicShadow.offsetX || 6;
+  const sOy = el.comicShadow.offsetY || 6;
+  const sColor = el.comicShadow.color || '#141416';
+  let markup = '';
+
+  if (el.type === 'path' && el.d) {
+    markup += `  <!-- Comic Shadow for ${el.name} -->\n`;
+    const shadowTransform = transformStr
+      ? ` transform="translate(${sOx}, ${sOy}) ${transformStr}"`
+      : ` transform="translate(${sOx}, ${sOy})"`;
+    markup += `  <path d="${el.d}" fill="${el.fill !== 'none' ? sColor : 'none'}" stroke="${el.stroke !== 'none' ? sColor : 'none'}" stroke-width="${el.strokeWidth}" stroke-linecap="${el.strokeLinecap}" stroke-linejoin="${el.strokeLinejoin}"${shadowTransform} opacity="0.9" />\n`;
+  } else if (el.type === 'rect') {
+    const shadowTransform = el.rotation !== 0
+      ? ` transform="rotate(${el.rotation.toFixed(1)} ${(el.x + sOx + el.width / 2).toFixed(1)} ${(el.y + sOy + el.height / 2).toFixed(1)})"`
+      : '';
+    markup += `  <rect x="${el.x + sOx}" y="${el.y + sOy}" width="${el.width}" height="${el.height}" rx="12" fill="${sColor}" stroke="${sColor}" stroke-width="${el.strokeWidth}"${shadowTransform} opacity="0.9" />\n`;
+  } else if (el.type === 'circle') {
+    const cx = el.x + el.width / 2 + sOx;
+    const cy = el.y + el.height / 2 + sOy;
+    const r = el.width / 2;
+    markup += `  <circle cx="${cx}" cy="${cy}" r="${r}" fill="${sColor}" stroke="${sColor}" stroke-width="${el.strokeWidth}" opacity="0.9" />\n`;
+  } else if (el.type === 'text') {
+    const shadowTransform = el.rotation !== 0
+      ? ` transform="rotate(${el.rotation.toFixed(1)} ${(el.x + sOx + el.width / 2).toFixed(1)} ${(el.y + sOy + el.height / 2).toFixed(1)})"`
+      : '';
+    markup += `  <text x="${el.x + sOx}" y="${el.y + (el.fontSize || 32) + sOy}" font-family="${el.fontFamily || 'Space Grotesk'}" font-size="${el.fontSize || 28}" font-weight="${el.fontWeight || 'bold'}" fill="${sColor}" stroke="${sColor}" stroke-width="${el.strokeWidth || 1}"${shadowTransform} opacity="0.9">${el.text || ''}</text>\n`;
+  }
+  return markup;
+}
+
+function getAnimClass(anim?: string, elType?: string): string {
+  if (!anim || anim === 'none') return '';
+  if (anim === 'original') return elType === 'path' ? 'animate-scribble-draw' : 'animate-wobble-slow';
+  if (anim === 'rotate' || anim === 'spin') return 'animate-rotate';
+  if (anim === 'sparkle') return 'animate-sparkle';
+  if (anim === 'float') return 'animate-float-slow';
+  if (anim === 'wobble') return 'animate-wobble-slow';
+  if (anim === 'bounce') return 'animate-bounce-subtle';
+  if (anim === 'pulse') return 'animate-pulse-glow';
+  if (anim === 'draw') return 'animate-scribble-draw';
+  return '';
+}
+
+function serializeSingleElement(el: SvgElementData): string {
+  if (!el.visible) return '';
+
+  const filterAttr = getFilterAttr(el);
+  const transformStr = getElementTransform(el);
+  const transformAttr = transformStr ? ` transform="${transformStr}"` : '';
+
+  let markup = serializeComicShadow(el, transformStr);
+
+  const strokeProps = getStrokeProps(el);
+  const fillProps = getFillProps(el);
+  const opacityProp = el.opacity < 1 ? ` opacity="${el.opacity}"` : '';
+  const animClass = getAnimClass(el.animation, el.type);
+  const classAttr = animClass ? ` class="${animClass}"` : '';
+
+  if (el.type === 'path' && el.d) {
+    markup += `  <path id="${el.id}" d="${el.d}" ${fillProps} ${strokeProps}${opacityProp}${filterAttr}${transformAttr}${classAttr} />\n`;
+  } else if (el.type === 'rect') {
+    markup += `  <rect id="${el.id}" x="${el.x}" y="${el.y}" width="${el.width}" height="${el.height}" rx="12" ${fillProps} ${strokeProps}${opacityProp}${filterAttr}${transformAttr}${classAttr} />\n`;
+  } else if (el.type === 'circle') {
+    const cx = el.x + el.width / 2;
+    const cy = el.y + el.height / 2;
+    const r = el.width / 2;
+    markup += `  <circle id="${el.id}" cx="${cx}" cy="${cy}" r="${r}" ${fillProps} ${strokeProps}${opacityProp}${filterAttr}${transformAttr}${classAttr} />\n`;
+  } else if (el.type === 'text') {
+    markup += `  <text id="${el.id}" x="${el.x}" y="${el.y + (el.fontSize || 32)}" font-family="${el.fontFamily || 'Space Grotesk'}" font-size="${el.fontSize || 28}" font-weight="${el.fontWeight || 'bold'}" ${fillProps} ${strokeProps}${opacityProp}${filterAttr}${transformAttr}${classAttr}>${el.text || ''}</text>\n`;
+  }
+
+  return markup;
+}
+
 /**
  * Serializes elements into a clean, standalone, standard SVG string.
  */
@@ -547,44 +779,7 @@ export function serializeElementsToSvg(
   const hasGlow = elements.some((el) => el.glow?.enabled);
   const hasAnimation = elements.some((el) => el.animation && el.animation !== 'none');
 
-  let defsMarkup = '';
-  if (includeFilters && (hasWiggle || hasGlow || hasAnimation)) {
-    defsMarkup += '  <defs>\n';
-    if (hasAnimation) {
-      defsMarkup += `    <style>
-      @keyframes scribbleRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-      @keyframes scribbleSparkle { 0%, 100% { transform: scale(0.9) rotate(0deg); opacity: 0.85; } 50% { transform: scale(1.2) rotate(25deg); opacity: 1; filter: drop-shadow(0 0 6px rgba(247, 208, 70, 0.7)); } }
-      @keyframes scribbleFloat { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-12px) rotate(2.5deg); } }
-      @keyframes scribbleWobble { 0%, 100% { transform: rotate(0deg) scale(1); } 25% { transform: rotate(-2.5deg) scale(1.02); } 75% { transform: rotate(2.5deg) scale(0.98); } }
-      @keyframes scribbleBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-      @keyframes scribbleGlow { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); filter: drop-shadow(0 0 10px rgba(247, 208, 70, 0.75)); } }
-      @keyframes scribbleDraw { 0% { stroke-dashoffset: 1000; opacity: 0.2; } 100% { stroke-dashoffset: 0; opacity: 1; } }
-      .animate-rotate { animation: scribbleRotate 8s linear infinite; transform-box: fill-box; transform-origin: center; }
-      .animate-sparkle { animation: scribbleSparkle 2.2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
-      .animate-float-slow { animation: scribbleFloat 7s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
-      .animate-wobble-slow { animation: scribbleWobble 4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
-      .animate-bounce-subtle { animation: scribbleBounce 3s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
-      .animate-pulse-glow { animation: scribbleGlow 2.5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
-      .animate-scribble-draw { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: scribbleDraw 1.2s cubic-bezier(0.65, 0, 0.35, 1) forwards; }
-    </style>\n`;
-    }
-    if (hasWiggle) {
-      defsMarkup += `    <filter id="scribble-wiggle" x="-10%" y="-10%" width="120%" height="120%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" />
-    </filter>\n`;
-    }
-    if (hasGlow) {
-      defsMarkup += `    <filter id="scribble-glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="6" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur" />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>\n`;
-    }
-    defsMarkup += '  </defs>\n';
-  }
+  const defsMarkup = serializeDefs(includeFilters, hasWiggle, hasGlow, hasAnimation);
 
   let bodyMarkup = '';
 
@@ -592,82 +787,9 @@ export function serializeElementsToSvg(
     bodyMarkup += `  <rect width="${width}" height="${height}" fill="${options.background}" />\n`;
   }
 
-  elements.forEach((el) => {
-    if (!el.visible) return;
-
-    let filterAttr = '';
-    if (el.wiggle?.enabled) {
-      filterAttr = ' filter="url(#scribble-wiggle)"';
-    } else if (el.glow?.enabled) {
-      filterAttr = ' filter="url(#scribble-glow)"';
-    }
-
-    const transformStr = getElementTransform(el);
-    const transformAttr = transformStr ? ` transform="${transformStr}"` : '';
-
-    // Comic 3D Shadow (offset under-layer)
-    if (el.comicShadow?.enabled) {
-      const sOx = el.comicShadow.offsetX || 6;
-      const sOy = el.comicShadow.offsetY || 6;
-      const sColor = el.comicShadow.color || '#141416';
-
-      if (el.type === 'path' && el.d) {
-        bodyMarkup += `  <!-- Comic Shadow for ${el.name} -->\n`;
-        const shadowTransform = transformStr
-          ? ` transform="translate(${sOx}, ${sOy}) ${transformStr}"`
-          : ` transform="translate(${sOx}, ${sOy})"`;
-        bodyMarkup += `  <path d="${el.d}" fill="${el.fill !== 'none' ? sColor : 'none'}" stroke="${el.stroke !== 'none' ? sColor : 'none'}" stroke-width="${el.strokeWidth}" stroke-linecap="${el.strokeLinecap}" stroke-linejoin="${el.strokeLinejoin}"${shadowTransform} opacity="0.9" />\n`;
-      } else if (el.type === 'rect') {
-        const shadowTransform = el.rotation !== 0
-          ? ` transform="rotate(${el.rotation.toFixed(1)} ${(el.x + sOx + el.width / 2).toFixed(1)} ${(el.y + sOy + el.height / 2).toFixed(1)})"`
-          : '';
-        bodyMarkup += `  <rect x="${el.x + sOx}" y="${el.y + sOy}" width="${el.width}" height="${el.height}" rx="12" fill="${sColor}" stroke="${sColor}" stroke-width="${el.strokeWidth}"${shadowTransform} opacity="0.9" />\n`;
-      } else if (el.type === 'circle') {
-        const cx = el.x + el.width / 2 + sOx;
-        const cy = el.y + el.height / 2 + sOy;
-        const r = el.width / 2;
-        bodyMarkup += `  <circle cx="${cx}" cy="${cy}" r="${r}" fill="${sColor}" stroke="${sColor}" stroke-width="${el.strokeWidth}" opacity="0.9" />\n`;
-      } else if (el.type === 'text') {
-        const shadowTransform = el.rotation !== 0
-          ? ` transform="rotate(${el.rotation.toFixed(1)} ${(el.x + sOx + el.width / 2).toFixed(1)} ${(el.y + sOy + el.height / 2).toFixed(1)})"`
-          : '';
-        bodyMarkup += `  <text x="${el.x + sOx}" y="${el.y + (el.fontSize || 32) + sOy}" font-family="${el.fontFamily || 'Space Grotesk'}" font-size="${el.fontSize || 28}" font-weight="${el.fontWeight || 'bold'}" fill="${sColor}" stroke="${sColor}" stroke-width="${el.strokeWidth || 1}"${shadowTransform} opacity="0.9">${el.text || ''}</text>\n`;
-      }
-    }
-
-    // Main Element
-    const strokeProps = `stroke="${el.stroke}" stroke-width="${el.strokeWidth}" stroke-linecap="${el.strokeLinecap}" stroke-linejoin="${el.strokeLinejoin}"${el.strokeDasharray && el.strokeDasharray !== 'none' ? ` stroke-dasharray="${el.strokeDasharray}"` : ''}${el.strokeOpacity < 1 ? ` stroke-opacity="${el.strokeOpacity}"` : ''}`;
-    const fillProps = `fill="${el.fill}"${el.fillOpacity < 1 ? ` fill-opacity="${el.fillOpacity}"` : ''}`;
-    const opacityProp = el.opacity < 1 ? ` opacity="${el.opacity}"` : '';
-
-    const getAnimClass = (anim?: string, elType?: string) => {
-      if (!anim || anim === 'none') return '';
-      if (anim === 'original') return elType === 'path' ? 'animate-scribble-draw' : 'animate-wobble-slow';
-      if (anim === 'rotate' || anim === 'spin') return 'animate-rotate';
-      if (anim === 'sparkle') return 'animate-sparkle';
-      if (anim === 'float') return 'animate-float-slow';
-      if (anim === 'wobble') return 'animate-wobble-slow';
-      if (anim === 'bounce') return 'animate-bounce-subtle';
-      if (anim === 'pulse') return 'animate-pulse-glow';
-      if (anim === 'draw') return 'animate-scribble-draw';
-      return '';
-    };
-    const animClass = getAnimClass(el.animation, el.type);
-    const classAttr = animClass ? ` class="${animClass}"` : '';
-
-    if (el.type === 'path' && el.d) {
-      bodyMarkup += `  <path id="${el.id}" d="${el.d}" ${fillProps} ${strokeProps}${opacityProp}${filterAttr}${transformAttr}${classAttr} />\n`;
-    } else if (el.type === 'rect') {
-      bodyMarkup += `  <rect id="${el.id}" x="${el.x}" y="${el.y}" width="${el.width}" height="${el.height}" rx="12" ${fillProps} ${strokeProps}${opacityProp}${filterAttr}${transformAttr}${classAttr} />\n`;
-    } else if (el.type === 'circle') {
-      const cx = el.x + el.width / 2;
-      const cy = el.y + el.height / 2;
-      const r = el.width / 2;
-      bodyMarkup += `  <circle id="${el.id}" cx="${cx}" cy="${cy}" r="${r}" ${fillProps} ${strokeProps}${opacityProp}${filterAttr}${transformAttr}${classAttr} />\n`;
-    } else if (el.type === 'text') {
-      bodyMarkup += `  <text id="${el.id}" x="${el.x}" y="${el.y + (el.fontSize || 32)}" font-family="${el.fontFamily || 'Space Grotesk'}" font-size="${el.fontSize || 28}" font-weight="${el.fontWeight || 'bold'}" ${fillProps} ${strokeProps}${opacityProp}${filterAttr}${transformAttr}${classAttr}>${el.text || ''}</text>\n`;
-    }
-  });
+  for (const el of elements) {
+    bodyMarkup += serializeSingleElement(el);
+  }
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}" width="${width}" height="${height}" fill="none">
 ${defsMarkup}${bodyMarkup}</svg>`.trim();
@@ -738,8 +860,8 @@ export function renderSvgToPngBlob(
         height = parts[3] || 400;
       }
     } else {
-      width = parseFloat(svgEl.getAttribute('width') || '600');
-      height = parseFloat(svgEl.getAttribute('height') || '400');
+      width = Number.parseFloat(svgEl.getAttribute('width') || '600');
+      height = Number.parseFloat(svgEl.getAttribute('height') || '400');
     }
 
     const canvas = document.createElement('canvas');
@@ -783,7 +905,8 @@ export function renderSvgToPngBlob(
 
     img.onerror = (e) => {
       URL.revokeObjectURL(url);
-      reject(new Error('Failed to load SVG into image: ' + e));
+      const errMsg = typeof e === 'string' ? e : (e instanceof Error ? e.message : 'Image load error');
+      reject(new Error('Failed to load SVG into image: ' + errMsg));
     };
 
     img.src = url;

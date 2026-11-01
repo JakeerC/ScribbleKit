@@ -17,7 +17,7 @@ export type ScribbleAnimation =
 
 export function getOriginalAnimation(
   name: string,
-  type?: 'stroke' | 'fill' | 'mixed' | 'raw' | string
+  type?: 'stroke' | 'fill' | 'mixed' | 'raw'
 ): ScribbleAnimation {
   const n = name.toLowerCase();
   if (n.includes('star') || n.includes('sparkle') || n.includes('diamond')) return 'sparkle';
@@ -29,6 +29,53 @@ export function getOriginalAnimation(
   if (type === 'fill') return 'pop';
   return 'float';
 }
+
+export const getAnimationClass = (
+  anim: ScribbleAnimation,
+  fallback: string,
+  name?: string,
+  type?: 'stroke' | 'fill' | 'mixed' | 'raw'
+): string => {
+  if (!anim) return '';
+  if (anim === true || anim === 'original') {
+    const orig = getOriginalAnimation(name || '', type);
+    return getAnimationClass(orig, fallback);
+  }
+  switch (anim) {
+    case 'draw':
+      return 'animate-scribble-draw';
+    case 'rotate':
+    case 'spin':
+      return 'animate-rotate';
+    case 'sparkle':
+      return 'animate-sparkle';
+    case 'float':
+      return 'animate-float-slow';
+    case 'wobble':
+      return 'animate-wobble-slow';
+    case 'pulse':
+      return 'animate-pulse-glow';
+    case 'bounce':
+      return 'animate-bounce-subtle';
+    case 'pop':
+      return 'animate-scribble-pop';
+    default:
+      return fallback;
+  }
+};
+
+const parsePathData = (path: string) => {
+  const dMatch = /d="([^"]+)"/.exec(path);
+  const swMatch = /stroke-width="([^"]+)"/.exec(path);
+  return {
+    d: dMatch ? dMatch[1] : '',
+    strokeWidth: swMatch ? Number.parseFloat(swMatch[1]) : 4,
+  };
+};
+
+const isDrawAnimated = (anim: ScribbleAnimation, name: string, type?: 'stroke' | 'fill' | 'mixed' | 'raw') => {
+  return anim === true || anim === 'draw' || (anim === 'original' && getOriginalAnimation(name, type) === 'draw');
+};
 
 export interface ScribbleProps extends React.SVGProps<SVGSVGElement> {
   name: string;
@@ -64,35 +111,7 @@ export const Scribble: React.FC<ScribbleProps> = ({
   const effectiveColor = color || asset.defaultColor || 'currentColor';
   const effectiveWidth = size || width || '100%';
   const effectiveHeight = size || height || 'auto';
-
-  const getAnimationClass = (anim: ScribbleAnimation, fallback: string): string => {
-    if (!anim) return '';
-    if (anim === true || anim === 'original') {
-      const orig = getOriginalAnimation(name, asset.type || (asset.rawSvg ? 'raw' : 'stroke'));
-      return getAnimationClass(orig, fallback);
-    }
-    switch (anim) {
-      case 'draw':
-        return 'animate-scribble-draw';
-      case 'rotate':
-      case 'spin':
-        return 'animate-rotate';
-      case 'sparkle':
-        return 'animate-sparkle';
-      case 'float':
-        return 'animate-float-slow';
-      case 'wobble':
-        return 'animate-wobble-slow';
-      case 'pulse':
-        return 'animate-pulse-glow';
-      case 'bounce':
-        return 'animate-bounce-subtle';
-      case 'pop':
-        return 'animate-scribble-pop';
-      default:
-        return fallback;
-    }
-  };
+  const assetType = asset.type || (asset.rawSvg ? 'raw' : 'stroke');
 
   const baseSvgStyle: React.CSSProperties = {
     color: effectiveColor,
@@ -110,7 +129,7 @@ export const Scribble: React.FC<ScribbleProps> = ({
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         style={baseSvgStyle}
-        className={`inline-block shrink-0 ${getAnimationClass(animate, 'animate-scribble-draw')} ${className}`}
+        className={`inline-block shrink-0 ${getAnimationClass(animate, 'animate-scribble-draw', name, assetType)} ${className}`}
         dangerouslySetInnerHTML={{ __html: asset.rawSvg }}
         {...props}
       />
@@ -118,13 +137,17 @@ export const Scribble: React.FC<ScribbleProps> = ({
   }
 
   if (asset.path) {
-    // Check if it's a fill or stroke path
+    const { d, strokeWidth: defaultSw } = parsePathData(asset.path);
+
     if (asset.type === 'stroke') {
-      const dMatch = asset.path.match(/d="([^"]+)"/);
-      const d = dMatch ? dMatch[1] : '';
-      const swMatch = asset.path.match(/stroke-width="([^"]+)"/);
-      const defaultSw = swMatch ? parseFloat(swMatch[1]) : 4;
       const finalSw = strokeWidth !== undefined ? strokeWidth : defaultSw;
+      const strokeAnimStyle = isDrawAnimated(animate, name, asset.type)
+        ? {
+            strokeDasharray: 1000,
+            strokeDashoffset: 1000,
+            animation: 'scribbleDraw 1.2s cubic-bezier(0.65, 0, 0.35, 1) forwards',
+          }
+        : undefined;
 
       return (
         <svg
@@ -132,7 +155,7 @@ export const Scribble: React.FC<ScribbleProps> = ({
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           style={baseSvgStyle}
-          className={`inline-block shrink-0 ${getAnimationClass(animate, 'animate-scribble-draw')} ${className}`}
+          className={`inline-block shrink-0 ${getAnimationClass(animate, 'animate-scribble-draw', name, assetType)} ${className}`}
           {...props}
         >
           <path
@@ -142,38 +165,24 @@ export const Scribble: React.FC<ScribbleProps> = ({
             strokeWidth={finalSw}
             strokeLinecap="round"
             strokeLinejoin="round"
-            style={
-              animate === true ||
-              animate === 'draw' ||
-              (animate === 'original' && getOriginalAnimation(name, asset.type) === 'draw')
-                ? {
-                    strokeDasharray: 1000,
-                    strokeDashoffset: 1000,
-                    animation: 'scribbleDraw 1.2s cubic-bezier(0.65, 0, 0.35, 1) forwards',
-                  }
-                : undefined
-            }
+            style={strokeAnimStyle}
           />
         </svg>
       );
-    } else {
-      // Fill path
-      const dMatch = asset.path.match(/d="([^"]+)"/);
-      const d = dMatch ? dMatch[1] : '';
-
-      return (
-        <svg
-          viewBox={asset.viewBox}
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          style={baseSvgStyle}
-          className={`inline-block shrink-0 ${getAnimationClass(animate, 'animate-scribble-pop')} ${className}`}
-          {...props}
-        >
-          <path d={d} fill={effectiveColor} />
-        </svg>
-      );
     }
+
+    return (
+      <svg
+        viewBox={asset.viewBox}
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        style={baseSvgStyle}
+        className={`inline-block shrink-0 ${getAnimationClass(animate, 'animate-scribble-pop', name, assetType)} ${className}`}
+        {...props}
+      >
+        <path d={d} fill={effectiveColor} />
+      </svg>
+    );
   }
 
   return null;

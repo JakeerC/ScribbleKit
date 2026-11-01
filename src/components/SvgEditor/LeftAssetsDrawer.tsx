@@ -53,7 +53,7 @@ export const LeftAssetsDrawer: React.FC<LeftAssetsDrawerProps> = ({
 
   // Handle stamp with brief tactile feedback
   const handleStamp = useCallback(
-    (asset: ScribbleAsset, mode: 'layer' | 'replace', e?: React.MouseEvent) => {
+    (asset: ScribbleAsset, mode: 'layer' | 'replace', e?: React.SyntheticEvent) => {
       if (e) e.stopPropagation();
       onStampAsset(asset, mode);
       setLastStampedId(asset.id);
@@ -194,7 +194,15 @@ export const LeftAssetsDrawer: React.FC<LeftAssetsDrawerProps> = ({
               return (
                 <div
                   key={asset.id}
+                  role="button"
+                  tabIndex={0}
                   onClick={(e) => handleStamp(asset, 'layer', e)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      handleStamp(asset, 'layer', e);
+                    }
+                  }}
                   className={`group relative bg-white rounded-2xl border transition-all flex flex-col p-2 cursor-pointer text-left select-none ${
                     isJustStamped
                       ? 'border-green-500 shadow-md ring-2 ring-green-400/20 bg-green-50/20'
