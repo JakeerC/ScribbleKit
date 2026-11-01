@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" fill="none">
+  <polygon points="18,172 28,162 136,54 126,44 18,152" fill="#141416" />
+<polygon points="126,44 136,54 156,34 146,24" fill="currentColor" stroke="#141416" stroke-width="2.5" />
+<path d="M152 8 C153 20 158 25 170 26 C158 27 153 32 152 44 C151 32 146 27 134 26 C146 25 151 20 152 8 Z" fill="#EA552B" stroke="#141416" stroke-width="1.5" />
+<path d="M120 4 C121 12 124 15 132 16 C124 17 121 20 120 28 C119 20 116 17 108 16 C116 15 119 12 120 4 Z" fill="#EE8DB9" />
+<path d="M166 52 C167 58 170 61 176 62 C170 63 167 66 166 72 C165 66 162 63 156 62 C162 61 165 58 166 52 Z" fill="#0BDC85" />
+<circle cx="106" cy="40" r="3" fill="#141416" />
+<circle cx="140" cy="68" r="2.5" fill="#141416" />
+<circle cx="168" cy="40" r="3" fill="#141416" />
+<circle cx="132" cy="10" r="2" fill="#F7D046" />
+</svg>

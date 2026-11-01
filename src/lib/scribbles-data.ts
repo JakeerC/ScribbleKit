@@ -70,7 +70,19 @@ export const CATEGORIES = [
     "id": "all",
     "name": "All Scribbles",
     "icon": "Sparkles",
-    "count": 155
+    "count": 191
+  },
+  {
+    "id": "algorithms-data-structures",
+    "name": "Algorithms & Data Structures",
+    "icon": "Binary",
+    "count": 18
+  },
+  {
+    "id": "system-design",
+    "name": "System Design",
+    "icon": "Server",
+    "count": 18
   },
   {
     "id": "funky-complex",
@@ -337,7 +349,7 @@ export const SCRIBBLES_ASSETS: ScribbleAsset[] = [
     "type": "mixed",
     "defaultColor": "#141416",
     "description": "Crisp hand-drawn 4-point diamond sparkle star with tapered curved flares in rich ink black.",
-    "rawSvg": "<path d=\"M55 8 C56 32 67 43 92 45 C67 47 56 58 55 82 C54 58 43 47 18 45 C43 43 54 32 55 8 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n  <circle cx=\"84\" cy=\"22\" r=\"3\" fill=\"currentColor\" />\n  <circle cx=\"26\" cy=\"68\" r=\"2.5\" fill=\"currentColor\" />"
+    "rawSvg": "<path d=\"M55 5 C56 32 68 44 95 45 C68 46 56 58 55 85 C54 58 42 46 15 45 C42 44 54 32 55 5 Z\" fill=\"currentColor\" />\n  <circle cx=\"85\" cy=\"20\" r=\"3.5\" fill=\"currentColor\" />\n  <circle cx=\"25\" cy=\"72\" r=\"2.5\" fill=\"currentColor\" />"
   },
   {
     "id": "funky-striped-globe-ball",
@@ -2741,6 +2753,661 @@ export const SCRIBBLES_ASSETS: ScribbleAsset[] = [
     "defaultColor": "#141416",
     "description": "Hand-drawn pen hatching texture for shading and backgrounds.",
     "path": "d=\"M24 16C42 16 68 32 82 50C98 72 108 98 116 124C120 138 112 152 98 152C82 152 74 138 70 124C62 98 52 72 38 50C30 38 18 28 24 16Z\" fill=\"currentColor\""
+  },
+  {
+    "id": "algo-binary-tree",
+    "name": "Binary Search Tree",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "tree",
+      "binary-tree",
+      "bst",
+      "nodes",
+      "hierarchy",
+      "search"
+    ],
+    "viewBox": "0 0 180 150",
+    "type": "stroke",
+    "defaultColor": "#EA552B",
+    "description": "Hand-drawn binary search tree with root node, branch edges, and child leaves.",
+    "path": "d=\"M90 14 C98 14 105 20 105 28 C105 36 98 42 90 42 C82 42 75 36 75 28 C75 20 82 14 90 14 Z M50 64 C58 64 64 70 64 78 C64 86 58 92 50 92 C42 92 36 86 36 78 C36 70 42 64 50 64 Z M130 64 C138 64 144 70 144 78 C144 86 138 92 130 92 C122 92 116 86 116 78 C116 70 122 64 130 64 Z M26 114 C33 114 38 119 38 126 C38 133 33 138 26 138 C19 138 14 133 14 126 C14 119 19 114 26 114 Z M74 114 C81 114 86 119 86 126 C86 133 81 138 74 138 C67 138 62 133 62 126 C62 119 67 114 74 114 Z M106 114 C113 114 118 119 118 126 C118 133 113 138 106 138 C99 138 94 133 94 126 C94 119 99 114 106 114 Z M154 114 C161 114 166 119 166 126 C166 133 161 138 154 138 C147 138 142 133 142 126 C142 119 147 114 154 114 Z M79 38 C68 48 59 56 56 65 M101 38 C112 48 121 56 124 65 M42 90 C36 98 32 106 29 115 M58 90 C64 98 68 106 71 115 M122 90 C116 98 112 106 109 115 M138 90 C144 98 148 106 151 115\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-linked-list",
+    "name": "Singly Linked List",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "linked-list",
+      "pointers",
+      "nodes",
+      "chain",
+      "linear",
+      "data-structures"
+    ],
+    "viewBox": "0 0 210 90",
+    "type": "stroke",
+    "defaultColor": "#55BBDA",
+    "description": "Chained linked list nodes with data compartments, pointer arrows, and null terminator.",
+    "path": "d=\"M12 28 C12 23 16 20 22 20 H58 C64 20 68 23 68 28 V62 C68 67 64 70 58 70 H22 C16 70 12 67 12 62 Z M46 20 V70 M29 45 H31 M57 45 H78 M72 39 L78 45 L72 51 M80 28 C80 23 84 20 90 20 H126 C132 20 136 23 136 28 V62 C136 67 132 70 126 70 H90 C84 70 80 67 80 62 Z M114 20 V70 M97 45 H99 M125 45 H146 M140 39 L146 45 L140 51 M148 28 C148 23 152 20 158 20 H194 C200 20 204 23 204 28 V62 C204 67 200 70 194 70 H158 C152 70 148 67 148 62 Z M182 20 V70 M165 45 H167 M191 36 L197 54 M188 54 H200\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-doubly-linked-list",
+    "name": "Doubly Linked List",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "doubly-linked-list",
+      "bidirectional",
+      "pointers",
+      "nodes",
+      "chains"
+    ],
+    "viewBox": "0 0 220 100",
+    "type": "stroke",
+    "defaultColor": "#4CA96D",
+    "description": "Bidirectional linked list nodes with forward and backward hand-drawn pointer arrows.",
+    "path": "d=\"M14 24 C14 20 18 18 24 18 H90 C96 18 100 20 100 24 V76 C100 80 96 82 90 82 H24 C18 82 14 80 14 76 Z M38 18 V82 M76 18 V82 M57 50 H59 M120 24 C120 20 124 18 130 18 H196 C202 18 206 20 206 24 V76 C206 80 202 82 196 82 H130 C124 82 120 80 120 76 Z M144 18 V82 M182 18 V82 M163 50 H165 M88 38 C98 36 109 36 118 38 M112 32 L119 38 L112 44 M132 62 C122 64 111 64 102 62 M108 56 L101 62 L108 68 M26 50 H32 M194 50 H200\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-array-buffer",
+    "name": "Indexed Array Buffer",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "array",
+      "buffer",
+      "indices",
+      "memory",
+      "linear",
+      "pointers"
+    ],
+    "viewBox": "0 0 200 110",
+    "type": "stroke",
+    "defaultColor": "#F7D046",
+    "description": "Contiguous array cells with index markers and a hand-drawn pointer cursor.",
+    "path": "d=\"M16 40 C16 35 20 32 26 32 H174 C180 32 184 35 184 40 V74 C184 79 180 82 174 82 H26 C20 82 16 79 16 74 Z M50 32 V82 M84 32 V82 M118 32 V82 M152 32 V82 M33 57 H35 M67 57 H69 M101 57 H103 M135 57 H137 M168 57 H170 M33 96 C33 92 37 92 37 96 C37 100 33 100 33 96 Z M67 92 V100 M99 93 C101 93 104 94 104 96 C104 99 98 100 98 101 H105 M132 93 H138 L134 97 C138 97 138 101 133 101 M168 93 L166 97 H172 M170 93 V101 M101 8 L101 24 M95 18 L101 25 L107 18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-stack-lifo",
+    "name": "LIFO Stack Container",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "stack",
+      "lifo",
+      "push",
+      "pop",
+      "container",
+      "depth"
+    ],
+    "viewBox": "0 0 160 160",
+    "type": "stroke",
+    "defaultColor": "#EA552B",
+    "description": "Vertical stack container with nested data plates and curved push/pop trajectory arrows.",
+    "path": "d=\"M38 46 L40 134 C40 144 50 148 80 148 C110 148 120 144 120 134 L122 46 M50 128 C56 123 72 121 80 121 C88 121 104 123 110 128 C110 133 98 136 80 136 C62 136 50 133 50 128 Z M50 100 C56 95 72 93 80 93 C88 93 104 95 110 100 C110 105 98 108 80 108 C62 108 50 105 50 100 Z M50 72 C56 67 72 65 80 65 C88 65 104 67 110 72 C110 77 98 80 80 80 C62 80 50 77 50 72 Z M26 22 C44 14 68 20 74 38 M66 36 L75 39 L79 30 M86 38 C92 20 116 14 134 22 M126 16 L135 22 L131 31\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-queue-fifo",
+    "name": "FIFO Queue Pipeline",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "queue",
+      "fifo",
+      "enqueue",
+      "dequeue",
+      "pipeline",
+      "buffer"
+    ],
+    "viewBox": "0 0 210 100",
+    "type": "stroke",
+    "defaultColor": "#0BDC85",
+    "description": "Horizontal queue pipeline with items enqueuing at the rear and dequeuing from the front.",
+    "path": "d=\"M44 26 C80 24 130 24 166 26 M44 74 C80 76 130 76 166 74 M58 35 C56 35 54 38 54 50 C54 62 56 65 58 65 H78 C80 65 82 62 82 50 C82 38 80 35 78 35 Z M92 35 C90 35 88 38 88 50 C88 62 90 65 92 65 H112 C114 65 116 62 116 50 C116 38 114 35 112 35 Z M126 35 C124 35 122 38 122 50 C122 62 124 65 126 65 H146 C148 65 150 62 150 50 C150 38 148 35 146 35 Z M12 50 H34 M26 43 L34 50 L26 57 M176 50 H198 M190 43 L198 50 L190 57\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-hash-table",
+    "name": "Hash Table & Buckets",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "hash-table",
+      "hash-map",
+      "buckets",
+      "collision",
+      "key-value",
+      "dictionary"
+    ],
+    "viewBox": "0 0 190 150",
+    "type": "stroke",
+    "defaultColor": "#EE8DB9",
+    "description": "Key hashing into an array of buckets with an attached collision resolution chain.",
+    "path": "d=\"M14 42 C14 35 18 32 26 32 H54 C62 32 66 35 66 42 V62 C66 69 62 72 54 72 H26 C18 72 14 69 14 62 Z M28 52 H32 M37 46 V58 M43 48 C46 48 48 50 48 53 C48 58 43 58 43 58 M66 52 C72 52 78 52 82 52 M88 44 C84 47 84 57 88 60 M82 52 H92 M100 18 C100 15 103 14 108 14 H134 C139 14 142 15 142 18 V132 C142 135 139 136 134 136 H108 C103 136 100 135 100 132 Z M100 44 H142 M100 74 H142 M100 104 H142 M92 52 C95 52 97 52 100 52 M134 89 H156 M150 83 L157 89 L150 95 M158 78 C158 75 160 74 164 74 H182 C186 74 188 75 188 78 V100 C188 103 186 104 182 104 H164 C160 104 158 103 158 100 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-graph-network",
+    "name": "Graph Network Topology",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "graph",
+      "nodes",
+      "edges",
+      "network",
+      "mesh",
+      "topology"
+    ],
+    "viewBox": "0 0 170 160",
+    "type": "stroke",
+    "defaultColor": "#55BBDA",
+    "description": "Multi-node undirected graph with organic interconnecting edge paths.",
+    "path": "d=\"M85 16 C93 16 100 22 100 30 C100 38 93 44 85 44 C77 44 70 38 70 30 C70 22 77 16 85 16 Z M32 58 C40 58 46 64 46 72 C46 80 40 86 32 86 C24 86 18 80 18 72 C18 64 24 58 32 58 Z M138 58 C146 58 152 64 152 72 C152 80 146 86 138 86 C130 86 124 80 124 72 C124 64 130 58 138 58 Z M50 118 C58 118 64 124 64 132 C64 140 58 146 50 146 C42 146 36 140 36 132 C36 124 42 118 50 118 Z M120 118 C128 118 134 124 134 132 C134 140 128 146 120 146 C112 146 106 140 106 132 C106 124 112 118 120 118 Z M74 38 C62 48 52 58 43 65 M96 38 C108 48 118 58 127 65 M46 73 C68 73 102 73 124 73 M36 86 C40 96 44 107 47 118 M134 86 C130 96 126 107 123 118 M64 132 C80 132 94 132 106 132\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-dag-topological",
+    "name": "Directed Acyclic Graph (DAG)",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "dag",
+      "directed-graph",
+      "topological",
+      "dependencies",
+      "workflow",
+      "sort"
+    ],
+    "viewBox": "0 0 190 130",
+    "type": "stroke",
+    "defaultColor": "#EA552B",
+    "description": "Directed acyclic graph with flow arrows demonstrating task dependencies and topological sorting.",
+    "path": "d=\"M26 52 C33 52 38 57 38 65 C38 73 33 78 26 78 C19 78 14 73 14 65 C14 57 19 52 26 52 Z M80 20 C87 20 92 25 92 32 C92 39 87 44 80 44 C73 44 68 39 68 32 C68 25 73 20 80 20 Z M80 86 C87 86 92 91 92 98 C92 105 87 110 80 110 C73 110 68 105 68 98 C68 91 73 86 80 86 Z M138 34 C145 34 150 39 150 46 C150 53 145 58 138 58 C131 58 126 53 126 46 C126 39 131 34 138 34 Z M166 74 C173 74 178 79 178 86 C178 93 173 98 166 98 C159 98 154 93 154 86 C154 79 159 74 166 74 Z M36 58 C47 49 57 41 68 35 M60 34 L69 34 L66 42 M36 72 C47 81 57 89 68 95 M66 88 L69 96 L60 96 M92 34 C104 37 114 40 126 43 M118 38 L126 43 L119 47 M92 98 C104 95 116 90 128 84 M90 42 C102 56 122 72 154 83 M145 77 L154 83 L146 86 M148 52 C153 58 157 65 161 74 M154 68 L161 74 L163 66\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-heap-tree",
+    "name": "Min/Max Priority Heap",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "heap",
+      "priority-queue",
+      "binary-heap",
+      "min-heap",
+      "max-heap",
+      "pyramid"
+    ],
+    "viewBox": "0 0 180 150",
+    "type": "stroke",
+    "defaultColor": "#F7D046",
+    "description": "Triangular hierarchical heap with root priority element highlighted at the summit.",
+    "path": "d=\"M90 12 L164 136 C166 140 162 144 154 144 H26 C18 144 14 140 16 136 Z M90 32 C97 32 103 37 103 44 C103 51 97 56 90 56 C83 56 77 51 77 44 C77 37 83 32 90 32 Z M60 76 C66 76 71 81 71 87 C71 93 66 98 60 98 C54 98 49 93 49 87 C49 81 54 76 60 76 Z M120 76 C126 76 131 81 131 87 C131 93 126 98 120 98 C114 98 109 93 109 87 C109 81 114 76 120 76 Z M82 52 L68 76 M98 52 L112 76 M52 96 L42 120 M68 96 L74 120 M112 96 L106 120 M128 96 L138 120 M42 124 H44 M74 124 H76 M106 124 H108 M138 124 H140 M90 18 L90 24 M85 21 H95\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-recursion-spiral",
+    "name": "Recursive Call Stack",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "recursion",
+      "call-stack",
+      "spiral",
+      "fractal",
+      "depth",
+      "base-case"
+    ],
+    "viewBox": "0 0 160 160",
+    "type": "stroke",
+    "defaultColor": "#4CA96D",
+    "description": "Descending recursive spiral frames zooming into the base case and unwinding back.",
+    "path": "d=\"M142 80 C142 114 114 142 80 142 C46 142 18 114 18 80 C18 46 46 18 80 18 C108 18 130 40 130 68 C130 94 108 116 82 116 C58 116 40 98 40 74 C40 52 58 36 78 36 C96 36 110 50 110 68 C110 82 98 94 84 94 C72 94 62 84 62 72 C62 62 70 54 80 54 C88 54 94 60 94 68 C94 74 88 80 82 80 C78 80 74 76 74 72 M144 72 L142 82 L132 80 M76 72 A 2 2 0 1 1 76 71.9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-binary-search",
+    "name": "Binary Search Split",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "binary-search",
+      "divide-and-conquer",
+      "log-n",
+      "array-split",
+      "search"
+    ],
+    "viewBox": "0 0 200 110",
+    "type": "stroke",
+    "defaultColor": "#55BBDA",
+    "description": "Sorted array partitioned down the middle with discarded half and target pointer.",
+    "path": "d=\"M16 40 H184 V78 H16 Z M40 40 V78 M64 40 V78 M88 40 V78 M112 40 V78 M136 40 V78 M160 40 V78 M18 43 L38 75 M42 43 L62 75 M66 43 L86 75 M100 32 C108 32 114 36 114 59 C114 82 108 86 100 86 C92 86 86 82 86 59 C86 36 92 32 100 32 Z M100 10 L100 24 M94 18 L100 25 L106 18 M116 90 C130 96 160 96 180 90 M148 94 V102\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-two-pointers",
+    "name": "Two Pointers Convergence",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "two-pointers",
+      "left-right",
+      "indices",
+      "sliding",
+      "algorithm",
+      "pointers"
+    ],
+    "viewBox": "0 0 200 110",
+    "type": "stroke",
+    "defaultColor": "#EA552B",
+    "description": "Left and right pointer arrows stepping toward each other over an array segment.",
+    "path": "d=\"M16 34 H184 V70 H16 Z M44 34 V70 M72 34 V70 M100 34 V70 M128 34 V70 M156 34 V70 M30 52 H32 M58 52 H60 M86 52 H88 M114 52 H116 M142 52 H144 M170 52 H172 M30 96 V80 M24 86 L30 79 L36 86 M18 102 H26 M170 96 V80 M164 86 L170 79 L176 86 M164 102 H172 M30 22 C64 10 136 10 170 22 M96 16 L100 20 L104 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-big-o-complexity",
+    "name": "Big-O Complexity Curves",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "big-o",
+      "complexity",
+      "asymptotic",
+      "o-n",
+      "time-complexity",
+      "chart"
+    ],
+    "viewBox": "0 0 160 160",
+    "type": "stroke",
+    "defaultColor": "#EE8DB9",
+    "description": "Hand-sketched time complexity axes with O(1), O(log n), O(n), and O(n\u00b2) growth curves.",
+    "path": "d=\"M22 140 L22 18 M16 26 L22 16 L28 26 M22 140 L144 140 M136 134 L146 140 L136 146 M22 120 C50 120 100 120 138 120 M22 138 C54 122 92 104 138 96 M22 138 C58 102 96 66 138 30 M22 138 C52 134 76 86 86 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-matrix-grid",
+    "name": "2D Matrix & Traversal",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "matrix",
+      "2d-grid",
+      "dynamic-programming",
+      "traversal",
+      "pathfinding",
+      "grid"
+    ],
+    "viewBox": "0 0 160 160",
+    "type": "stroke",
+    "defaultColor": "#0BDC85",
+    "description": "Hand-drawn 2D matrix grid with a meandering dynamic programming traversal path from start to goal.",
+    "path": "d=\"M20 20 H140 V140 H20 Z M60 20 V140 M100 20 V140 M20 60 H140 M20 100 H140 M40 40 C44 40 46 36 46 40 C46 44 36 44 40 40 Z M38 40 C50 40 70 40 80 40 C80 50 80 70 80 80 C90 80 110 80 120 80 C120 90 120 110 120 120 M114 114 L120 122 L126 114 M120 120 L124 124 M116 124 L124 116\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-trie-tree",
+    "name": "Prefix Trie Tree",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "trie",
+      "prefix-tree",
+      "autocomplete",
+      "strings",
+      "search-tree",
+      "dictionary"
+    ],
+    "viewBox": "0 0 180 150",
+    "type": "stroke",
+    "defaultColor": "#F7D046",
+    "description": "Prefix trie branching from a central root node into characters spelling dictionary words.",
+    "path": "d=\"M90 16 C96 16 102 21 102 28 C102 35 96 40 90 40 C84 40 78 35 78 28 C78 21 84 16 90 16 Z M52 64 C58 64 64 69 64 76 C64 83 58 88 52 88 C46 88 40 83 40 76 C40 69 46 64 52 64 Z M128 64 C134 64 140 69 140 76 C140 83 134 88 128 88 C122 88 116 83 116 76 C116 69 122 64 128 64 Z M32 114 C38 114 44 119 44 126 C44 133 38 138 32 138 C26 138 20 133 20 126 C20 119 26 114 32 114 Z M72 114 C78 114 84 119 84 126 C84 133 78 138 72 138 C66 138 60 133 60 126 C60 119 66 114 72 114 Z M108 114 C114 114 120 119 120 126 C120 133 114 138 108 138 C102 138 96 133 96 126 C96 119 102 114 108 114 Z M148 114 C154 114 160 119 160 126 C160 133 154 138 148 138 C142 138 136 133 136 126 C136 119 142 114 148 114 Z M80 36 L62 64 M100 36 L118 64 M44 86 L36 114 M60 86 L68 114 M120 86 L112 114 M136 86 L144 114\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-sliding-window",
+    "name": "Sliding Window Frame",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "sliding-window",
+      "subarray",
+      "range",
+      "pointers",
+      "window",
+      "algorithm"
+    ],
+    "viewBox": "0 0 200 110",
+    "type": "stroke",
+    "defaultColor": "#55BBDA",
+    "description": "Highlighted sliding bracket window framing contiguous elements with a directional shift arrow.",
+    "path": "d=\"M16 38 H184 V74 H16 Z M44 38 V74 M72 38 V74 M100 38 V74 M128 38 V74 M156 38 V74 M42 30 H130 C134 30 136 32 136 36 V76 C136 80 134 82 130 82 H42 C38 82 36 80 36 76 V36 C36 32 38 30 42 30 Z M56 16 C84 8 118 8 144 18 M136 12 L146 18 L140 26 M86 96 C80 96 76 98 76 102 C76 106 86 106 86 102 M92 98 V104\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-quicksort-partition",
+    "name": "Quicksort Partition",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "quicksort",
+      "partition",
+      "pivot",
+      "sorting",
+      "divide-and-conquer"
+    ],
+    "viewBox": "0 0 200 120",
+    "type": "stroke",
+    "defaultColor": "#EA552B",
+    "description": "Array elements divided around a circled pivot element with left/right partitioning brackets.",
+    "path": "d=\"M100 36 C114 36 124 46 124 60 C124 74 114 84 100 84 C86 84 76 74 76 60 C76 46 86 36 100 36 Z M95 50 V70 M95 50 H103 C107 50 109 52 109 56 C109 60 107 62 103 62 H95 M64 38 C48 38 40 48 40 60 C40 72 48 82 64 82 M136 38 C152 38 160 48 160 60 C160 72 152 82 136 82 M60 98 H24 M30 92 L22 98 L30 104 M140 98 H176 M170 92 L178 98 L170 104\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-load-balancer",
+    "name": "Load Balancer Router",
+    "category": "system-design",
+    "tags": [
+      "load-balancer",
+      "reverse-proxy",
+      "nginx",
+      "routing",
+      "traffic-distribution"
+    ],
+    "viewBox": "0 0 180 150",
+    "type": "stroke",
+    "defaultColor": "#55BBDA",
+    "description": "Reverse proxy load balancer splitting an incoming traffic stream across multiple backend servers.",
+    "path": "d=\"M14 75 H52 M44 68 L52 75 L44 82 M56 46 C56 40 60 36 66 36 H98 C104 36 108 40 108 46 V104 C108 110 104 114 98 114 H66 C60 114 56 110 56 104 Z M72 58 L92 58 M72 75 L92 75 M72 92 L92 92 M108 56 C120 48 132 40 144 36 M136 32 L146 36 L140 44 M108 75 H144 M136 68 L144 75 L136 82 M108 94 C120 102 132 110 144 114 M140 106 L146 114 L136 118 M150 26 H170 V46 H150 Z M150 65 H170 V85 H150 Z M150 104 H170 V124 H150 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-database-cylinder",
+    "name": "Database Storage Drum",
+    "category": "system-design",
+    "tags": [
+      "database",
+      "rdbms",
+      "sql",
+      "storage",
+      "postgres",
+      "data-persistence"
+    ],
+    "viewBox": "0 0 150 160",
+    "type": "stroke",
+    "defaultColor": "#4CA96D",
+    "description": "Hand-drawn database storage cylinder with distinct disc platters and read/write arrows.",
+    "path": "d=\"M26 36 C26 22 48 16 75 16 C102 16 124 22 124 36 C124 50 102 56 75 56 C48 56 26 50 26 36 Z M26 36 V124 C26 138 48 144 75 144 C102 144 124 138 124 124 V36 M26 66 C26 80 48 86 75 86 C102 86 124 80 124 66 M26 96 C26 110 48 116 75 116 C102 116 124 110 124 96 M134 46 C144 54 144 80 134 90 M142 86 L134 92 L132 82\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-db-replication-cluster",
+    "name": "Primary & Read Replicas",
+    "category": "system-design",
+    "tags": [
+      "replication",
+      "cluster",
+      "primary-replica",
+      "sharding",
+      "high-availability",
+      "database"
+    ],
+    "viewBox": "0 0 200 150",
+    "type": "stroke",
+    "defaultColor": "#EA552B",
+    "description": "Primary leader database synchronizing data streams down to two follower read replicas.",
+    "path": "d=\"M74 22 C74 14 86 10 100 10 C114 10 126 14 126 22 C126 30 114 34 100 34 C86 34 74 30 74 22 Z M74 22 V48 C74 56 86 60 100 60 C114 60 126 56 126 48 V22 M74 35 C74 43 86 47 100 47 C114 47 126 43 126 35 M84 62 C68 76 54 90 44 102 M42 94 L42 104 L52 104 M116 62 C132 76 146 90 156 102 M148 104 L158 104 L158 94 M22 112 C22 106 32 102 44 102 C56 102 66 106 66 112 C66 118 56 122 44 122 C32 122 22 118 22 112 Z M22 112 V132 C22 138 32 142 44 142 C56 142 66 138 66 132 V112 M134 112 C134 106 144 102 156 102 C168 102 178 106 178 112 C178 118 168 122 156 122 C144 122 134 118 134 112 Z M134 112 V132 C134 138 144 142 156 142 C168 142 178 138 178 132 V112\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-microservice-node",
+    "name": "Microservice Container Pod",
+    "category": "system-design",
+    "tags": [
+      "microservice",
+      "service",
+      "container",
+      "pod",
+      "kubernetes",
+      "api",
+      "architecture"
+    ],
+    "viewBox": "0 0 150 150",
+    "type": "stroke",
+    "defaultColor": "#0BDC85",
+    "description": "Organic hexagonal microservice container pod with internal core logic and communication ports.",
+    "path": "d=\"M75 14 L128 44 L128 106 L75 136 L22 106 L22 44 Z M75 38 L106 56 L106 94 L75 112 L44 94 L44 56 Z M75 62 L87 69 V83 L75 90 L63 83 V69 Z M75 6 V14 M128 44 L136 39 M128 106 L136 111 M75 136 V144 M22 106 L14 111 M22 44 L14 39\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-api-gateway",
+    "name": "API Gateway Portal",
+    "category": "system-design",
+    "tags": [
+      "api-gateway",
+      "gateway",
+      "entry-point",
+      "routing",
+      "auth",
+      "proxy",
+      "security"
+    ],
+    "viewBox": "0 0 180 150",
+    "type": "stroke",
+    "defaultColor": "#F7D046",
+    "description": "Front-door API gateway arch filtering incoming client traffic into decoupled backend services.",
+    "path": "d=\"M48 136 V58 C48 30 66 18 90 18 C114 18 132 30 132 58 V136 M64 136 V66 C64 44 76 34 90 34 C104 34 116 44 116 66 V136 M90 10 L90 54 M82 46 L90 54 L98 46 M72 90 C62 98 48 108 36 120 M44 122 L36 122 L36 114 M90 90 V124 M84 116 L90 124 L96 116 M108 90 C118 98 132 108 144 120 M136 122 L144 122 L144 114\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-cache-redis",
+    "name": "In-Memory Flash Cache",
+    "category": "system-design",
+    "tags": [
+      "cache",
+      "redis",
+      "memcached",
+      "in-memory",
+      "fast",
+      "low-latency",
+      "ram"
+    ],
+    "viewBox": "0 0 160 150",
+    "type": "stroke",
+    "defaultColor": "#EE8DB9",
+    "description": "High-speed RAM cache block accented with a signature lightning bolt doodle representing sub-millisecond lookups.",
+    "path": "d=\"M80 18 L136 46 L80 74 L24 46 Z M24 46 V94 L80 122 V74 M136 46 V94 L80 122 M24 70 L80 98 L136 70 M86 36 L68 70 H84 L72 104 L102 64 H84 L96 36 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-message-queue",
+    "name": "Kafka Message Pipe",
+    "category": "system-design",
+    "tags": [
+      "message-queue",
+      "kafka",
+      "rabbitmq",
+      "streaming",
+      "buffer",
+      "async",
+      "pubsub"
+    ],
+    "viewBox": "0 0 210 100",
+    "type": "stroke",
+    "defaultColor": "#EA552B",
+    "description": "Serialized message broker queue pipe transporting event payloads between decoupled producers and consumers.",
+    "path": "d=\"M32 26 C24 26 20 36 20 50 C20 64 24 74 32 74 M32 26 H178 C186 26 190 36 190 50 C190 64 186 74 178 74 H32 M178 26 C170 26 166 36 166 50 C166 64 170 74 178 74 M50 36 H76 V64 H50 Z M50 36 L63 50 L76 36 M92 36 H118 V64 H92 Z M92 36 L105 50 L118 36 M134 36 H160 V64 H134 Z M134 36 L147 50 L160 36 M6 50 H16 M194 50 H204 M198 44 L204 50 L198 56\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-cdn-edge",
+    "name": "CDN Global Edge Network",
+    "category": "system-design",
+    "tags": [
+      "cdn",
+      "edge",
+      "cloudflare",
+      "global",
+      "caching",
+      "network",
+      "latency"
+    ],
+    "viewBox": "0 0 170 160",
+    "type": "stroke",
+    "defaultColor": "#55BBDA",
+    "description": "Hand-drawn globe with distributed edge cache point markers delivering assets with minimal latency.",
+    "path": "d=\"M85 24 C118 24 144 50 144 83 C144 116 118 142 85 142 C52 142 26 116 26 83 C26 50 52 24 85 24 Z M26 83 C48 95 122 95 144 83 M28 60 C52 70 118 70 142 60 M28 106 C52 96 118 96 142 106 M85 24 C62 52 62 114 85 142 M85 24 C108 52 108 114 85 142 M85 10 V18 M85 148 V156 M12 83 H20 M150 83 H158 M82 14 H88 M154 80 V86\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-cloud-vpc",
+    "name": "Cloud Infrastructure VPC",
+    "category": "system-design",
+    "tags": [
+      "cloud",
+      "aws",
+      "vpc",
+      "infrastructure",
+      "network",
+      "private-cloud"
+    ],
+    "viewBox": "0 0 180 130",
+    "type": "stroke",
+    "defaultColor": "#55BBDA",
+    "description": "Billowing organic cloud boundary encapsulating secure backend cloud infrastructure.",
+    "path": "d=\"M44 104 C26 104 16 92 16 78 C16 64 26 54 40 54 C44 38 60 24 82 24 C104 24 120 38 124 54 C138 52 154 60 158 74 C168 78 174 88 172 98 C170 108 160 116 146 116 H44 Z M74 68 H106 V100 H74 Z M74 84 H106 M82 76 H84 M82 92 H84 M90 54 C90 48 94 44 100 44 C106 44 110 48 110 54\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-event-pubsub",
+    "name": "Event Bus & Pub-Sub",
+    "category": "system-design",
+    "tags": [
+      "pub-sub",
+      "event-bus",
+      "broadcast",
+      "fan-out",
+      "sns",
+      "events",
+      "broker"
+    ],
+    "viewBox": "0 0 200 140",
+    "type": "stroke",
+    "defaultColor": "#F7D046",
+    "description": "Central event topic bus broadcasting events out to multiple subscriber queues and handlers.",
+    "path": "d=\"M14 70 H52 M44 64 L52 70 L44 76 M74 70 C74 56 86 44 100 44 C114 44 126 56 126 70 C126 84 114 96 100 96 C86 96 74 84 74 70 Z M92 70 C92 66 96 62 100 62 C104 62 108 66 108 70 C108 74 104 78 100 78 M126 58 C138 50 152 42 164 36 M156 32 L166 36 L160 44 M126 70 H164 M156 64 L164 70 L156 76 M126 82 C138 90 152 98 164 104 M160 96 L166 104 L156 108 M168 26 H188 V44 H168 Z M168 61 H188 V79 H168 Z M168 96 H188 V114 H168 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-rate-limiter",
+    "name": "Rate Limiter Token Funnel",
+    "category": "system-design",
+    "tags": [
+      "rate-limiter",
+      "token-bucket",
+      "throttling",
+      "ddos-protection",
+      "traffic-control",
+      "gateway"
+    ],
+    "viewBox": "0 0 160 160",
+    "type": "stroke",
+    "defaultColor": "#EA552B",
+    "description": "Traffic funnel and token bucket metering incoming request bursts to prevent server overloads.",
+    "path": "d=\"M26 28 C62 20 98 20 134 28 M26 28 L64 86 V112 C64 116 68 120 72 120 H88 C92 120 96 116 96 112 V86 L134 28 M52 44 H54 M80 38 H82 M108 44 H110 M66 60 H68 M94 60 H96 M80 72 H82 M56 102 H104 M80 132 V136 M80 148 V152 M76 134 H84 M76 150 H84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-circuit-breaker",
+    "name": "Fault Circuit Breaker",
+    "category": "system-design",
+    "tags": [
+      "circuit-breaker",
+      "resilience",
+      "fault-tolerance",
+      "switch",
+      "failover",
+      "stability"
+    ],
+    "viewBox": "0 0 180 120",
+    "type": "stroke",
+    "defaultColor": "#EE8DB9",
+    "description": "Resilient circuit breaker switch toggling open to protect downstream systems from cascading outages.",
+    "path": "d=\"M16 68 H54 M54 62 C58 62 61 65 61 68 C61 71 58 74 54 74 C50 74 47 71 47 68 C47 65 50 62 54 62 Z M126 62 C130 62 133 65 133 68 C133 71 130 74 126 74 C122 74 119 71 119 68 C119 65 122 62 126 62 Z M126 68 H164 M58 64 L114 26 M116 40 L122 48 L114 52 L120 60 M32 94 C70 106 110 106 148 94 M140 88 L150 94 L142 102\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-server-rack",
+    "name": "Bare Metal Server Rack",
+    "category": "system-design",
+    "tags": [
+      "server",
+      "rack",
+      "hardware",
+      "host",
+      "datacenter",
+      "compute",
+      "blade"
+    ],
+    "viewBox": "0 0 150 170",
+    "type": "stroke",
+    "defaultColor": "#4CA96D",
+    "description": "Multi-chassis server blade rack with ventilated faceplates, activity LEDs, and uplink cabling.",
+    "path": "d=\"M30 18 H120 V152 H30 Z M40 28 H110 V58 H40 Z M48 43 H50 M56 43 H58 M64 43 H66 M82 38 H102 M82 48 H102 M40 68 H110 V98 H40 Z M48 83 H50 M56 83 H58 M64 83 H66 M82 78 H102 M82 88 H102 M40 108 H110 V138 H40 Z M48 123 H50 M56 123 H58 M64 123 H66 M82 118 H102 M82 128 H102 M75 152 C75 162 90 162 100 162 C110 162 124 162 128 156\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-client-devices",
+    "name": "Client Multi-Device Cluster",
+    "category": "system-design",
+    "tags": [
+      "clients",
+      "devices",
+      "browser",
+      "mobile",
+      "frontend",
+      "traffic",
+      "screen"
+    ],
+    "viewBox": "0 0 190 140",
+    "type": "stroke",
+    "defaultColor": "#55BBDA",
+    "description": "Hand-sketched desktop monitor and companion smartphone client emitting HTTP/REST requests.",
+    "path": "d=\"M16 24 H112 V92 H16 Z M26 78 H102 M54 92 L46 118 H82 L74 92 M36 118 H92 M126 48 H172 V126 H126 Z M134 58 H164 V112 H134 Z M149 119 H151 M116 36 C124 32 134 32 142 36 M112 26 C126 18 142 18 156 26\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-object-storage",
+    "name": "S3 Blob Storage Bucket",
+    "category": "system-design",
+    "tags": [
+      "s3",
+      "blob-storage",
+      "object-storage",
+      "bucket",
+      "media",
+      "files",
+      "cloud"
+    ],
+    "viewBox": "0 0 150 160",
+    "type": "stroke",
+    "defaultColor": "#F7D046",
+    "description": "Hand-drawn storage bucket filled with binary file objects and asset upload/download arrows.",
+    "path": "d=\"M26 36 C26 24 50 18 75 18 C100 18 124 24 124 36 C124 48 100 54 75 54 C50 54 26 48 26 36 Z M26 36 L40 138 C40 148 54 154 75 154 C96 154 110 148 110 138 L124 36 M24 36 C24 8 126 8 126 36 M56 64 H84 V92 H56 Z M56 64 L70 76 L84 64 M72 74 H100 V102 H72 Z M72 74 L86 86 L100 74 M75 106 V126 M69 120 L75 126 L81 120\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-websocket-duplex",
+    "name": "WebSocket Full-Duplex Stream",
+    "category": "system-design",
+    "tags": [
+      "websocket",
+      "realtime",
+      "bi-directional",
+      "streaming",
+      "full-duplex",
+      "socket"
+    ],
+    "viewBox": "0 0 190 110",
+    "type": "stroke",
+    "defaultColor": "#0BDC85",
+    "description": "Persistent bidirectional streaming channel exchanging real-time packets between client and server.",
+    "path": "d=\"M34 20 H156 C172 20 182 34 182 55 C182 76 172 90 156 90 H34 C18 90 8 76 8 55 C8 34 18 20 34 20 Z M36 42 C60 30 84 54 108 42 C132 30 148 42 160 42 M152 36 L162 42 L152 48 M154 68 C130 80 106 56 82 68 C58 80 42 68 30 68 M38 62 L28 68 L38 74\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-leader-election",
+    "name": "Distributed Leader Election",
+    "category": "system-design",
+    "tags": [
+      "consensus",
+      "leader-election",
+      "raft",
+      "paxos",
+      "quorum",
+      "distributed",
+      "voting"
+    ],
+    "viewBox": "0 0 180 160",
+    "type": "stroke",
+    "defaultColor": "#EA552B",
+    "description": "Ring of distributed voting nodes with the elected cluster leader crowned at the center.",
+    "path": "d=\"M90 76 C102 76 112 86 112 98 C112 110 102 120 90 120 C78 120 68 110 68 98 C68 86 78 76 90 76 Z M76 68 L78 52 L85 62 L90 48 L95 62 L102 52 L104 68 Z M32 40 C38 40 44 46 44 52 C44 58 38 64 32 64 C26 64 20 58 20 52 C20 46 26 40 32 40 Z M148 40 C154 40 160 46 160 52 C160 58 154 64 148 64 C142 64 136 58 136 52 C136 46 142 40 148 40 Z M40 124 C46 124 52 130 52 136 C52 142 46 148 40 148 C34 148 28 142 28 136 C28 130 34 124 40 124 Z M140 124 C146 124 152 130 152 136 C152 142 146 148 140 148 C134 148 128 142 128 136 C128 130 134 124 140 124 Z M44 58 C56 68 66 78 72 84 M136 58 C124 68 114 78 108 84 M50 128 C62 120 70 114 76 108 M130 128 C118 120 110 114 104 108\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-firewall-shield",
+    "name": "Security WAF Firewall",
+    "category": "system-design",
+    "tags": [
+      "firewall",
+      "waf",
+      "security",
+      "protection",
+      "shield",
+      "defense",
+      "ddos"
+    ],
+    "viewBox": "0 0 160 160",
+    "type": "stroke",
+    "defaultColor": "#4CA96D",
+    "description": "Hand-drawn security shield with a brick barrier texture bouncing back malicious attacks.",
+    "path": "d=\"M80 18 C114 18 136 30 136 62 C136 106 104 138 80 148 C56 138 24 106 24 62 C24 30 46 18 80 18 Z M40 50 H120 M32 76 H128 M38 102 H122 M52 124 H108 M66 50 V76 M94 50 V76 M52 76 V102 M80 76 V102 M108 76 V102 M66 102 V124 M94 102 V124 M12 40 L26 56 L16 66 L28 80 M18 80 L28 80 L28 70\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
   }
 ];
 

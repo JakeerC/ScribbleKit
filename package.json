@@ -2,7 +2,7 @@
   "name": "scribblekit",
   "version": "1.1.1",
   "type": "module",
-  "description": "150+ hand-drawn vector scribbles, animated highlights, and interactive React SVG component library",
+  "description": "190+ hand-drawn vector scribbles, animated highlights, and interactive React SVG component library",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",

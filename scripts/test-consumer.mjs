@@ -28,6 +28,18 @@ const underlines = getScribblesByCategory('underlines');
 if (underlines.length === 0) throw new Error('No underlines found');
 console.log(`✓ getScribblesByCategory('underlines') returned: ${underlines.length} items`);
 
+const algoItems = getScribblesByCategory('algorithms-data-structures');
+if (algoItems.length !== 18) throw new Error(`Expected 18 algorithms items, got ${algoItems.length}`);
+console.log(`✓ getScribblesByCategory('algorithms-data-structures') returned: ${algoItems.length} items`);
+
+const sysItems = getScribblesByCategory('system-design');
+if (sysItems.length !== 18) throw new Error(`Expected 18 system design items, got ${sysItems.length}`);
+console.log(`✓ getScribblesByCategory('system-design') returned: ${sysItems.length} items`);
+
+const funkyItems = getScribblesByCategory('funky-complex');
+if (funkyItems.length !== 39) throw new Error(`Expected 39 funky items, got ${funkyItems.length}`);
+console.log(`✓ getScribblesByCategory('funky-complex') returned: ${funkyItems.length} items`);
+
 const anim = getOriginalAnimation('arrow-curved-down-right', scribble.type);
 console.log(`✓ getOriginalAnimation returned: ${anim}`);
 
@@ -44,6 +56,45 @@ if (!scribbleHtml.includes('<svg') || !scribbleHtml.includes('viewBox="0 0 120 1
   throw new Error('Scribble SVG rendering failed validation');
 }
 console.log('✓ <Scribble /> rendered valid SVG successfully');
+
+// Test 3b: Render new category SVGs to static HTML markup
+const algoHtml = renderToStaticMarkup(
+  React.createElement(Scribble, {
+    name: 'algo-binary-tree',
+    color: '#EA552B',
+    size: 48,
+    animate: 'draw',
+  })
+);
+if (!algoHtml.includes('<svg') || !algoHtml.includes('viewBox="0 0 180 150"')) {
+  throw new Error('algo-binary-tree SVG rendering failed validation');
+}
+console.log('✓ <Scribble name="algo-binary-tree" /> rendered valid SVG successfully');
+
+const sysHtml = renderToStaticMarkup(
+  React.createElement(Scribble, {
+    name: 'sys-load-balancer',
+    color: '#55BBDA',
+    size: 48,
+    animate: 'draw',
+  })
+);
+if (!sysHtml.includes('<svg') || !sysHtml.includes('viewBox="0 0 180 150"')) {
+  throw new Error('sys-load-balancer SVG rendering failed validation');
+}
+console.log('✓ <Scribble name="sys-load-balancer" /> rendered valid SVG successfully');
+
+const funkyHtml = renderToStaticMarkup(
+  React.createElement(Scribble, {
+    name: 'funky-retro-cassette-tape',
+    color: '#EA552B',
+    size: 48,
+  })
+);
+if (!funkyHtml.includes('<svg') || !funkyHtml.includes('viewBox="0 0 220 145"')) {
+  throw new Error('funky-retro-cassette-tape SVG rendering failed validation');
+}
+console.log('✓ <Scribble name="funky-retro-cassette-tape" /> rendered valid SVG successfully');
 
 // Test 4: Render <ScribbleHighlight /> to static HTML markup
 const highlightHtml = renderToStaticMarkup(

@@ -20,12 +20,13 @@ export function getOriginalAnimation(
   type?: 'stroke' | 'fill' | 'mixed' | 'raw'
 ): ScribbleAnimation {
   const n = name.toLowerCase();
-  if (n.includes('star') || n.includes('sparkle') || n.includes('diamond')) return 'sparkle';
-  if (n.includes('orbit') || n.includes('globe') || n.includes('sun') || n.includes('spiral') || n.includes('circle-double')) return 'rotate';
-  if (n.includes('spring') || n.includes('coil') || n.includes('blob') || n.includes('wire') || n.includes('ribbon')) return 'float';
-  if (n.includes('badge') || n.includes('stamp') || n.includes('wave') || n.includes('boom') || n.includes('shades')) return 'wobble';
-  if (n.includes('bolt') || n.includes('peace') || n.includes('heart') || n.includes('hand')) return 'bounce';
-  if (type === 'stroke' || n.includes('arrow') || n.includes('underline') || n.includes('circle') || n.includes('box')) return 'draw';
+  if (n.includes('star') || n.includes('sparkle') || n.includes('diamond') || n.includes('cache') || n.includes('crystal') || n.includes('gem') || n.includes('spark')) return 'sparkle';
+  if (n.includes('orbit') || n.includes('globe') || n.includes('sun') || n.includes('spiral') || n.includes('circle-double') || n.includes('cdn') || n.includes('yin-yang') || n.includes('yinyang')) return 'rotate';
+  if (n.includes('spring') || n.includes('coil') || n.includes('blob') || n.includes('wire') || n.includes('ribbon') || n.includes('cloud') || n.includes('stream') || n.includes('steam') || n.includes('cylinder')) return 'float';
+  if (n.includes('badge') || n.includes('stamp') || n.includes('wave') || n.includes('boom') || n.includes('shades') || n.includes('breaker') || n.includes('cassette')) return 'wobble';
+  if (n.includes('bolt') || n.includes('peace') || n.includes('heart') || n.includes('hand') || n.includes('rocket') || n.includes('flower')) return 'bounce';
+  if (n.includes('gateway') || n.includes('server') || n.includes('database') || n.includes('leader') || n.includes('eye')) return 'pulse';
+  if (type === 'stroke' || n.includes('arrow') || n.includes('underline') || n.includes('circle') || n.includes('box') || n.includes('algo') || n.includes('sys')) return 'draw';
   if (type === 'fill') return 'pop';
   return 'float';
 }
