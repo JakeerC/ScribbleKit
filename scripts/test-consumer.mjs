@@ -29,16 +29,20 @@ if (underlines.length === 0) throw new Error('No underlines found');
 console.log(`✓ getScribblesByCategory('underlines') returned: ${underlines.length} items`);
 
 const algoItems = getScribblesByCategory('algorithms-data-structures');
-if (algoItems.length !== 18) throw new Error(`Expected 18 algorithms items, got ${algoItems.length}`);
+if (algoItems.length !== 30) throw new Error(`Expected 30 algorithms items, got ${algoItems.length}`);
 console.log(`✓ getScribblesByCategory('algorithms-data-structures') returned: ${algoItems.length} items`);
 
 const sysItems = getScribblesByCategory('system-design');
-if (sysItems.length !== 18) throw new Error(`Expected 18 system design items, got ${sysItems.length}`);
+if (sysItems.length !== 30) throw new Error(`Expected 30 system design items, got ${sysItems.length}`);
 console.log(`✓ getScribblesByCategory('system-design') returned: ${sysItems.length} items`);
 
 const funkyItems = getScribblesByCategory('funky-complex');
-if (funkyItems.length !== 39) throw new Error(`Expected 39 funky items, got ${funkyItems.length}`);
+if (funkyItems.length !== 72) throw new Error(`Expected 72 funky items, got ${funkyItems.length}`);
 console.log(`✓ getScribblesByCategory('funky-complex') returned: ${funkyItems.length} items`);
+
+const horseshoe = getScribbleById('funky-lucky-horseshoe-stars');
+if (!horseshoe || horseshoe.name !== 'Pop Horseshoe') throw new Error(`Expected Pop Horseshoe, got ${horseshoe?.name}`);
+console.log(`✓ getScribbleById('funky-lucky-horseshoe-stars') returned: "${horseshoe.name}"`);
 
 const anim = getOriginalAnimation('arrow-curved-down-right', scribble.type);
 console.log(`✓ getOriginalAnimation returned: ${anim}`);
@@ -95,6 +99,18 @@ if (!funkyHtml.includes('<svg') || !funkyHtml.includes('viewBox="0 0 220 145"'))
   throw new Error('funky-retro-cassette-tape SVG rendering failed validation');
 }
 console.log('✓ <Scribble name="funky-retro-cassette-tape" /> rendered valid SVG successfully');
+
+const vinylHtml = renderToStaticMarkup(
+  React.createElement(Scribble, {
+    name: 'funky-vinyl-record-spin',
+    color: '#EA552B',
+    size: 48,
+  })
+);
+if (!vinylHtml.includes('<svg') || !vinylHtml.includes('viewBox="0 0 190 190"')) {
+  throw new Error('funky-vinyl-record-spin SVG rendering failed validation');
+}
+console.log('✓ <Scribble name="funky-vinyl-record-spin" /> rendered valid SVG successfully');
 
 // Test 4: Render <ScribbleHighlight /> to static HTML markup
 const highlightHtml = renderToStaticMarkup(

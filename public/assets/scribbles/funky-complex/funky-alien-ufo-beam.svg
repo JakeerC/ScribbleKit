@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 210" fill="none">
+  <polygon points="80,102 120,102 168,198 32,198" fill="#F7D046" opacity="0.35" />
+  <path d="M80 102 L32 198 M120 102 L168 198" stroke="#F7D046" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 4" />
+  <ellipse cx="100" cy="80" rx="78" ry="24" fill="#141416" transform="translate(4, 6)" />
+  <ellipse cx="100" cy="76" rx="78" ry="24" fill="currentColor" stroke="#141416" stroke-width="3.5" />
+  <ellipse cx="100" cy="62" rx="42" ry="26" fill="#55BBDA" stroke="#141416" stroke-width="3" />
+  <circle cx="90" cy="58" r="4" fill="#141416" />
+  <circle cx="110" cy="58" r="4" fill="#141416" />
+  <circle cx="44" cy="78" r="5" fill="#FAF6F0" stroke="#141416" stroke-width="2" />
+  <circle cx="72" cy="84" r="5" fill="#FAF6F0" stroke="#141416" stroke-width="2" />
+  <circle cx="100" cy="86" r="5" fill="#FAF6F0" stroke="#141416" stroke-width="2" />
+  <circle cx="128" cy="84" r="5" fill="#FAF6F0" stroke="#141416" stroke-width="2" />
+  <circle cx="156" cy="78" r="5" fill="#FAF6F0" stroke="#141416" stroke-width="2" />
+  <path d="M100 156 L103 166 L113 166 L105 172 L108 182 L100 176 L92 182 L95 172 L87 166 L97 166 Z" fill="#FAF6F0" stroke="#141416" stroke-width="2" />
+</svg>
