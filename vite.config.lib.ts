@@ -8,7 +8,7 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: false,
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
+      entry: resolve(import.meta.dirname, 'src/index.ts'),
       name: 'ScribbleKit',
       formats: ['es', 'cjs'],
       fileName: (format) => `index.${format === 'es' ? 'js' : 'cjs'}`,
@@ -27,10 +27,11 @@ export default defineConfig({
           'react/jsx-runtime': 'jsxRuntime',
         },
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name && assetInfo.name.endsWith('.css')) {
+          const name = assetInfo.name || (assetInfo.names && assetInfo.names[0]) || '';
+          if (name.endsWith('.css')) {
             return 'style.css';
           }
-          return assetInfo.name || '[name].[ext]';
+          return name || '[name].[ext]';
         },
       },
     },

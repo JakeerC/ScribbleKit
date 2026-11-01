@@ -1,6 +1,6 @@
 {
   "name": "@jakeerc/scribblekit",
-  "version": "1.0.1",
+  "version": "1.1.1",
   "type": "module",
   "description": "150+ hand-drawn vector scribbles, animated highlights, and interactive React SVG component library",
   "main": "./dist/index.cjs",
@@ -45,7 +45,7 @@
     "preview": "vite preview"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=24.0.0"
   },
   "keywords": [
     "scribbles",
@@ -87,21 +87,20 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/node": "^22.10.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^22.20.5",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
-    "@vitejs/plugin-react": "^4.3.4",
-    "autoprefixer": "^10.4.20",
+    "@vitejs/plugin-react": "^6.1.2",
     "clsx": "^2.1.1",
     "lucide-react": "^0.468.0",
-    "postcss": "^8.4.49",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "tailwind-merge": "^2.5.5",
-    "tailwindcss": "^3.4.16",
+    "tailwind-merge": "^3.7.0",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5.7.2",
-    "vite": "^6.0.1"
+    "vite": "^8.3.5"
   }
 }
