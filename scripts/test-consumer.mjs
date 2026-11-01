@@ -37,8 +37,19 @@ if (sysItems.length !== 30) throw new Error(`Expected 30 system design items, go
 console.log(`✓ getScribblesByCategory('system-design') returned: ${sysItems.length} items`);
 
 const funkyItems = getScribblesByCategory('funky-complex');
-if (funkyItems.length !== 72) throw new Error(`Expected 72 funky items, got ${funkyItems.length}`);
+if (funkyItems.length !== 80) throw new Error(`Expected 80 funky items, got ${funkyItems.length}`);
 console.log(`✓ getScribblesByCategory('funky-complex') returned: ${funkyItems.length} items`);
+
+const doodleItems = getScribblesByCategory('abstract-doodles');
+if (doodleItems.length !== 28) throw new Error(`Expected 28 abstract doodles items, got ${doodleItems.length}`);
+console.log(`✓ getScribblesByCategory('abstract-doodles') returned: ${doodleItems.length} items`);
+
+const accentItems = getScribblesByCategory('accents-emphasis');
+if (accentItems.length !== 24) throw new Error(`Expected 24 accents items, got ${accentItems.length}`);
+console.log(`✓ getScribblesByCategory('accents-emphasis') returned: ${accentItems.length} items`);
+
+if (SCRIBBLES_ASSETS.length !== 278) throw new Error(`Expected 278 total assets, got ${SCRIBBLES_ASSETS.length}`);
+console.log(`✓ Total assets verified: ${SCRIBBLES_ASSETS.length}`);
 
 const horseshoe = getScribbleById('funky-lucky-horseshoe-stars');
 if (!horseshoe || horseshoe.name !== 'Pop Horseshoe') throw new Error(`Expected Pop Horseshoe, got ${horseshoe?.name}`);
@@ -111,6 +122,42 @@ if (!vinylHtml.includes('<svg') || !vinylHtml.includes('viewBox="0 0 190 190"'))
   throw new Error('funky-vinyl-record-spin SVG rendering failed validation');
 }
 console.log('✓ <Scribble name="funky-vinyl-record-spin" /> rendered valid SVG successfully');
+
+const whorlHtml = renderToStaticMarkup(
+  React.createElement(Scribble, {
+    name: 'doodle-fingerprint-whorl',
+    color: '#141416',
+    size: 48,
+  })
+);
+if (!whorlHtml.includes('<svg') || !whorlHtml.includes('viewBox="0 0 140 140"')) {
+  throw new Error('doodle-fingerprint-whorl SVG rendering failed validation');
+}
+console.log('✓ <Scribble name="doodle-fingerprint-whorl" /> rendered valid SVG successfully');
+
+const scandiHtml = renderToStaticMarkup(
+  React.createElement(Scribble, {
+    name: 'accent-scandi-sun-dot',
+    color: '#F7D046',
+    size: 48,
+  })
+);
+if (!scandiHtml.includes('<svg') || !scandiHtml.includes('viewBox="0 0 100 100"')) {
+  throw new Error('accent-scandi-sun-dot SVG rendering failed validation');
+}
+console.log('✓ <Scribble name="accent-scandi-sun-dot" /> rendered valid SVG successfully');
+
+const zigzagHtml = renderToStaticMarkup(
+  React.createElement(Scribble, {
+    name: 'funky-chisel-marker-zigzag',
+    color: '#EA552B',
+    size: 48,
+  })
+);
+if (!zigzagHtml.includes('<svg') || !zigzagHtml.includes('viewBox="0 0 150 180"')) {
+  throw new Error('funky-chisel-marker-zigzag SVG rendering failed validation');
+}
+console.log('✓ <Scribble name="funky-chisel-marker-zigzag" /> rendered valid SVG successfully');
 
 // Test 4: Render <ScribbleHighlight /> to static HTML markup
 const highlightHtml = renderToStaticMarkup(

@@ -13,7 +13,7 @@
 
 ## ⚡ Features
 
-* **250+ Clean Vector SVGs**: 100% resolution-independent, hand-crafted vector graphics organized across 11 categories (including 30 Algorithms & Data Structures and 30 System Design assets).
+* **275+ Clean Vector SVGs**: 100% resolution-independent, hand-crafted vector graphics organized across 11 categories (including 30 Algorithms & Data Structures and 30 System Design assets).
 * **Production-Grade NPM Package**: Dual ESM + CommonJS bundles, complete TypeScript types, zero runtime overhead.
 * **React Component System**: Includes `<Scribble name="..." />` and `<ScribbleHighlight styleType="..." />` for effortless inline headline wrapping with zero layout shift.
 * **Embedded Vector Editor**: Exported `<SvgEditor />` component for full in-browser SVG manipulation and stamp drawing.
