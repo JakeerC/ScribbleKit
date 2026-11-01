@@ -2,7 +2,7 @@
 // Asset stamp browser to easily drop any ScribbleKit asset onto the canvas
 
 import React, { useState, useMemo } from 'react';
-import { X, Search, Plus, Sparkles, FolderDown } from 'lucide-react';
+import { X, Search, Plus, Sparkles, FolderDown, ChevronDown } from 'lucide-react';
 import {
   SCRIBBLES_ASSETS,
   CATEGORIES,
@@ -99,13 +99,36 @@ export const AssetStampDrawer: React.FC<AssetStampDrawerProps> = ({
             />
           </div>
 
-          {/* Category Tabs */}
-          <div className="flex items-center gap-1 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0">
-            {CATEGORIES.slice(0, 6).map((cat) => (
+          {/* Mobile Category Dropdown */}
+          <div className="sm:hidden w-full">
+            <label htmlFor="stamp-category-select" className="sr-only">
+              Filter by Category
+            </label>
+            <div className="relative">
+              <select
+                id="stamp-category-select"
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="w-full appearance-none px-3 py-1.5 bg-white rounded-xl border border-black/15 text-xs font-bold text-scribble-dark focus:outline-none focus:border-black cursor-pointer shadow-sm pr-8"
+              >
+                {CATEGORIES.map((cat) => (
+                  <option key={cat.id} value={cat.id}>
+                    {cat.name} ({cat.count})
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="w-3.5 h-3.5 absolute right-2.5 top-1/2 -translate-y-1/2 text-black/40 pointer-events-none" />
+            </div>
+          </div>
+
+          {/* Tablet & Desktop Category Tabs (Wrapped cleanly) */}
+          <div className="hidden sm:flex flex-wrap items-center gap-1.5 max-w-lg justify-end">
+            {CATEGORIES.map((cat) => (
               <button
                 key={cat.id}
+                type="button"
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-3 py-1 rounded-xl text-xs font-bold shrink-0 transition-colors ${
+                className={`px-3 py-1 rounded-xl text-xs font-bold transition-colors ${
                   selectedCategory === cat.id
                     ? 'bg-black text-white'
                     : 'bg-white hover:bg-black/5 text-black/70 border border-black/10'

@@ -12,6 +12,8 @@ import {
   PanelLeftOpen,
   Layers,
   Check,
+  ChevronDown,
+  SlidersHorizontal,
 } from 'lucide-react';
 import {
   SCRIBBLES_ASSETS,
@@ -35,6 +37,7 @@ export const LeftAssetsDrawer: React.FC<LeftAssetsDrawerProps> = ({
 }) => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [showPills, setShowPills] = useState(false);
   const [lastStampedId, setLastStampedId] = useState<string | null>(null);
 
   // Filter assets based on category and search query
@@ -150,21 +153,62 @@ export const LeftAssetsDrawer: React.FC<LeftAssetsDrawerProps> = ({
           )}
         </div>
 
-        {/* Category Scroll Filter */}
-        <div className="flex items-center gap-1 overflow-x-auto mt-2 pb-1 no-scrollbar">
-          {CATEGORIES.map((cat) => (
+        {/* Category Filter */}
+        <div className="mt-2">
+          <div className="flex items-center gap-1.5">
+            <div className="relative flex-1">
+              <label htmlFor="drawer-category-select" className="sr-only">
+                Filter by Category
+              </label>
+              <select
+                id="drawer-category-select"
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="w-full appearance-none pl-3 pr-8 py-1.5 bg-white rounded-xl border border-black/15 text-xs font-bold text-scribble-dark focus:outline-none focus:border-black cursor-pointer shadow-sm hover:border-black/30 transition-all"
+              >
+                {CATEGORIES.map((cat) => (
+                  <option key={cat.id} value={cat.id}>
+                    {cat.name} ({cat.count})
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="w-3.5 h-3.5 absolute right-2.5 top-1/2 -translate-y-1/2 text-black/40 pointer-events-none" />
+            </div>
+
             <button
-              key={cat.id}
-              onClick={() => setSelectedCategory(cat.id)}
-              className={`px-2.5 py-1 rounded-xl text-[10px] font-bold shrink-0 transition-all ${
-                selectedCategory === cat.id
-                  ? 'bg-black text-white shadow-sm'
-                  : 'bg-white hover:bg-black/5 text-black/70 border border-black/10'
+              type="button"
+              onClick={() => setShowPills((prev) => !prev)}
+              className={`p-1.5 rounded-xl border text-xs font-bold transition-all ${
+                showPills
+                  ? 'bg-black text-white border-black'
+                  : 'bg-white text-black/60 hover:text-black border-black/15 hover:border-black/30'
               }`}
+              title={showPills ? 'Hide category pills' : 'Wrap and show all category pills'}
+              aria-label={showPills ? 'Hide category pills' : 'Wrap and show all category pills'}
             >
-              {cat.name}
+              <SlidersHorizontal className="w-3.5 h-3.5" />
             </button>
-          ))}
+          </div>
+
+          {/* Optional Expanded Wrapped Pills */}
+          {showPills && (
+            <div className="flex flex-wrap items-center gap-1 mt-2 pt-2 border-t border-black/10 animate-fade-in">
+              {CATEGORIES.map((cat) => (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={`px-2 py-0.5 rounded-lg text-[10px] font-bold transition-all ${
+                    selectedCategory === cat.id
+                      ? 'bg-black text-white shadow-sm'
+                      : 'bg-white hover:bg-black/5 text-black/70 border border-black/10'
+                  }`}
+                >
+                  {cat.name} ({cat.count})
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 

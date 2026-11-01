@@ -5,6 +5,7 @@ import {
   Check,
   Download,
   Pencil,
+  ChevronDown,
 } from 'lucide-react';
 import { ScribbleAsset, CATEGORIES, COLOR_PRESETS } from '../lib/scribbles-data';
 import { Scribble } from './Scribble';
@@ -131,11 +132,34 @@ export const AssetCatalog: React.FC<AssetCatalogProps> = ({
 
   return (
     <section id="asset-catalog" className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      {/* Category Tabs */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
+      {/* Mobile Category Dropdown (sm:hidden) */}
+      <div className="sm:hidden mb-6">
+        <label htmlFor="catalog-category-select" className="sr-only">
+          Select Category
+        </label>
+        <div className="relative">
+          <select
+            id="catalog-category-select"
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            className="w-full appearance-none px-4 py-3 bg-white rounded-2xl border border-black/15 text-xs font-bold uppercase tracking-wider text-scribble-dark focus:outline-none focus:border-black shadow-sm pr-10 cursor-pointer"
+          >
+            {CATEGORIES.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {cat.name} ({cat.count})
+              </option>
+            ))}
+          </select>
+          <ChevronDown className="w-4 h-4 absolute right-3.5 top-1/2 -translate-y-1/2 text-black/50 pointer-events-none" />
+        </div>
+      </div>
+
+      {/* Desktop / Tablet Category Tabs (Wrapped cleanly) */}
+      <div className="hidden sm:flex flex-wrap items-center gap-2 mb-8">
         {CATEGORIES.map((cat) => (
           <button
             key={cat.id}
+            type="button"
             onClick={() => setSelectedCategory(cat.id)}
             className={`px-4 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all flex items-center gap-2 ${
               selectedCategory === cat.id
