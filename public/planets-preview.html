@@ -18,9 +18,11 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-6px); }
     }
-    .anim-float { animation: floatSlow 4s ease-in-out infinite; }
-    .anim-rotate { animation: rotateSlow 20s linear infinite; }
-    .anim-bounce { animation: bounceSubtle 2.5s ease-in-out infinite; }
+    @media (prefers-reduced-motion: no-preference) {
+      .anim-float { animation: floatSlow 4s ease-in-out infinite; }
+      .anim-rotate { animation: rotateSlow 20s linear infinite; }
+      .anim-bounce { animation: bounceSubtle 2.5s ease-in-out infinite; }
+    }
   </style>
 </head>
 <body class="bg-[#FAF6F0] text-[#141416] min-h-screen p-6 sm:p-12 font-sans antialiased">

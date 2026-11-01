@@ -56,7 +56,7 @@ if (SCRIBBLES_ASSETS.length !== 294) throw new Error(`Expected 294 total assets,
 console.log(`✓ Total assets verified: ${SCRIBBLES_ASSETS.length}`);
 
 const horseshoe = getScribbleById('funky-lucky-horseshoe-stars');
-if (!horseshoe || horseshoe.name !== 'Pop Horseshoe') throw new Error(`Expected Pop Horseshoe, got ${horseshoe?.name}`);
+if (horseshoe?.name !== 'Pop Horseshoe') throw new Error(`Expected Pop Horseshoe, got ${horseshoe?.name}`);
 console.log(`✓ getScribbleById('funky-lucky-horseshoe-stars') returned: "${horseshoe.name}"`);
 
 const anim = getOriginalAnimation('arrow-curved-down-right', scribble.type);
