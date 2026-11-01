@@ -452,23 +452,24 @@ export function App() {
           {/* Grid of Featured Highlights */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-10">
             {featuredScribbles.map((item) => (
-              <div
+              <button
+                type="button"
                 key={item.id}
                 onClick={() => setSelectedAsset(item)}
-                className="group relative p-4 rounded-2xl bg-white border border-black/10 hover:border-black/30 hover:shadow-md transition-all cursor-pointer flex flex-col items-center justify-between text-center min-h-[170px]"
+                className="group relative p-4 rounded-2xl bg-white border border-black/10 hover:border-black/30 hover:shadow-md transition-all cursor-pointer flex flex-col items-center justify-between text-center min-h-[170px] w-full"
               >
                 <div className="flex-1 flex items-center justify-center w-full py-2">
                   <Scribble name={item.id} size={56} animate={true} />
                 </div>
                 <div className="w-full pt-2 border-t border-black/5">
-                  <h4 className="text-xs font-bold text-black truncate group-hover:text-scribble-orange transition-colors">
+                  <span className="text-xs font-bold text-black truncate group-hover:text-scribble-orange transition-colors block">
                     {item.name}
-                  </h4>
+                  </span>
                   <span className="text-[10px] text-black/40 font-mono block truncate">
                     {item.category}
                   </span>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
 
@@ -519,10 +520,15 @@ export function App() {
               <div className="flex items-center justify-between p-3.5 rounded-2xl bg-black/60 border border-white/15 font-mono text-xs sm:text-sm mb-6">
                 <span className="text-scribble-mint">$ npm install scribblekit</span>
                 <button
+                  type="button"
                   onClick={() => {
-                    navigator.clipboard.writeText('npm install scribblekit');
-                    setCopiedInstall(true);
-                    setTimeout(() => setCopiedInstall(false), 2000);
+                    void navigator.clipboard
+                      .writeText('npm install scribblekit')
+                      .then(() => {
+                        setCopiedInstall(true);
+                        setTimeout(() => setCopiedInstall(false), 2000);
+                      })
+                      .catch(() => {});
                   }}
                   className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-sans font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
                 >
