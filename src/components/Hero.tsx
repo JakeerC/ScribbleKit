@@ -13,7 +13,7 @@ interface HeroProps {
   onOpenEditor?: () => void;
   onScrollToStudio?: () => void;
   onDownloadAll?: () => void;
-  assetCount: number;
+  assetCount?: number;
 }
 
 export const Hero: React.FC<HeroProps> = ({
@@ -26,7 +26,7 @@ export const Hero: React.FC<HeroProps> = ({
   onOpenEditor,
   onScrollToStudio,
   onDownloadAll = () => {},
-  assetCount,
+  assetCount = 100,
 }) => {
   const [activeColor, setActiveColor] = useState("#F7D046");
 
@@ -43,7 +43,6 @@ export const Hero: React.FC<HeroProps> = ({
         }
         onOpenGuide={onOpenGuide}
         onDownloadAll={onDownloadAll}
-        assetCount={assetCount}
       />
 
       {/* ========================================================= */}
@@ -88,8 +87,9 @@ export const Hero: React.FC<HeroProps> = ({
       {/* Center Hero Content (Vertically Balanced in Full Screen) */}
       <div className="flex-1 flex flex-col justify-center items-center py-6 my-auto max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 w-full">
         {/* Badge Banner */}
-        <div
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 backdrop-blur-sm border border-black/15 shadow-sm mb-6 hover:scale-105 transition-transform cursor-pointer"
+        <button
+          type="button"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 backdrop-blur-sm border border-black/15 shadow-sm mb-6 hover:scale-105 transition-transform cursor-pointer text-left"
           onClick={onOpenGuide}
         >
           <span className="w-2.5 h-2.5 rounded-full bg-scribble-orange animate-ping" />
@@ -101,7 +101,7 @@ export const Hero: React.FC<HeroProps> = ({
               v1.0.0 ({assetCount} assets)
             </span>
           </div>
-        </div>
+        </button>
 
         {/* Hero Headline with Retro 'New' Starburst Stamp */}
         <div className="relative inline-block mb-4 sm:mb-5">

@@ -87,7 +87,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
 
   // Copy code
   const handleCopy = () => {
-    navigator.clipboard.writeText(code);
+    void navigator.clipboard.writeText(code);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };

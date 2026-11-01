@@ -13,6 +13,18 @@ type StudioAnimationMode =
   | 'pulse'
   | 'bounce';
 
+const getAnimAttr = (mode: string) => {
+  if (mode === 'draw') return ' animate';
+  if (mode === 'none') return ' animate={false}';
+  return ` animate="${mode}"`;
+};
+
+const getStudioThemeClass = (theme: string) => {
+  if (theme === 'paper') return 'bg-[#FDFBF7] text-scribble-dark bg-grid-paper';
+  if (theme === 'dark') return 'bg-[#141416] text-white bg-dark-grid';
+  return 'bg-[#EDFAF4] text-[#0A3D28]';
+};
+
 export const HeadlineStudio: React.FC = () => {
   const [headlinePrefix, setHeadlinePrefix] = useState('Build products people');
   const [highlightWord, setHighlightWord] = useState('actually love');
@@ -110,7 +122,7 @@ export const HeadlineStudio: React.FC = () => {
     animationMode === 'none' ? false : (animationMode as ScribbleAnimation);
 
   const handleCopyCode = () => {
-    const animAttr = animationMode === 'draw' ? ' animate' : animationMode === 'none' ? ' animate={false}' : ` animate="${animationMode}"`;
+    const animAttr = getAnimAttr(animationMode);
     const code = `<h1 className="text-5xl font-extrabold text-black font-display">
   ${headlinePrefix}{' '}
   <ScribbleHighlight styleType="${styleType}" color="${color}"${animAttr}>
@@ -119,7 +131,7 @@ export const HeadlineStudio: React.FC = () => {
   ${headlineSuffix}
 </h1>`;
 
-    navigator.clipboard.writeText(code);
+    void navigator.clipboard.writeText(code);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -168,9 +180,9 @@ export const HeadlineStudio: React.FC = () => {
           {/* Controls Column (5 cols) */}
           <div className="lg:col-span-5 p-6 rounded-3xl bg-scribble-paper border border-black/15 shadow-sm space-y-6">
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-black/70 mb-2">
+              <span className="block text-xs font-bold uppercase tracking-wider text-black/70 mb-2">
                 Headline Text & Highlight Target
-              </label>
+              </span>
               <div className="space-y-2">
                 <div>
                   <span className="text-[11px] font-medium text-black/50">Before text:</span>
@@ -208,9 +220,9 @@ export const HeadlineStudio: React.FC = () => {
             {/* Scribble Style Selection */}
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="block text-xs font-bold uppercase tracking-wider text-black/70">
+                <span className="block text-xs font-bold uppercase tracking-wider text-black/70">
                   Scribble Accent Style
-                </label>
+                </span>
                 <span className="text-[10px] font-semibold text-scribble-orange uppercase tracking-wider">
                   16 Styles
                 </span>
@@ -251,9 +263,9 @@ export const HeadlineStudio: React.FC = () => {
 
             {/* Color Chooser */}
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-black/70 mb-2">
+              <span className="block text-xs font-bold uppercase tracking-wider text-black/70 mb-2">
                 Accent Color
-              </label>
+              </span>
               <div className="flex items-center gap-2 flex-wrap">
                 {[
                   { name: 'Orange', color: '#EA552B' },
@@ -285,9 +297,9 @@ export const HeadlineStudio: React.FC = () => {
 
             {/* Animation Selector */}
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-black/70 mb-2">
+              <span className="block text-xs font-bold uppercase tracking-wider text-black/70 mb-2">
                 Scribble Animation Mode
-              </label>
+              </span>
               <div className="flex flex-wrap gap-1.5">
                 {[
                   { id: 'draw', label: '✏️ Draw' },
@@ -351,13 +363,7 @@ export const HeadlineStudio: React.FC = () => {
           {/* Live Preview Display (7 cols) */}
           <div className="lg:col-span-7 space-y-6">
             <div
-              className={`p-10 sm:p-14 rounded-3xl border border-black/15 shadow-sm min-h-[320px] flex flex-col justify-center transition-colors relative overflow-hidden ${
-                studioTheme === 'paper'
-                  ? 'bg-[#FDFBF7] text-scribble-dark bg-grid-paper'
-                  : studioTheme === 'dark'
-                  ? 'bg-[#141416] text-white bg-dark-grid'
-                  : 'bg-[#EDFAF4] text-[#0A3D28]'
-              }`}
+              className={`p-10 sm:p-14 rounded-3xl border border-black/15 shadow-sm min-h-[320px] flex flex-col justify-center transition-colors relative overflow-hidden ${getStudioThemeClass(studioTheme)}`}
             >
               {/* Badge sticker in corner with floating animation */}
               <div className="absolute top-6 right-6 opacity-80 pointer-events-none animate-float-slow">
@@ -407,13 +413,7 @@ export const HeadlineStudio: React.FC = () => {
               <pre className="overflow-x-auto text-emerald-400 leading-relaxed">
 {`<h1 className="text-5xl font-extrabold text-black font-display">
   ${headlinePrefix}{' '}
-  <ScribbleHighlight styleType="${styleType}" color="${color}"${
-    animationMode === 'draw'
-      ? ' animate'
-      : animationMode === 'none'
-      ? ' animate={false}'
-      : ` animate="${animationMode}"`
-  }>
+  <ScribbleHighlight styleType="${styleType}" color="${color}"${getAnimAttr(animationMode)}>
     ${highlightWord}
   </ScribbleHighlight>{' '}
   ${headlineSuffix}

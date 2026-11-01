@@ -21,7 +21,6 @@ export interface NavbarProps {
   onScrollToCatalog?: () => void;
   onDownloadAll?: () => void;
   onOpenEditor?: () => void;
-  assetCount?: number;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({

@@ -12,10 +12,15 @@ export const DesignGuideModal: React.FC<DesignGuideModalProps> = ({ isOpen, onCl
   const [activeTab, setActiveTab] = useState<'overview' | 'palette' | 'taxonomy' | 'guide'>('overview');
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in">
+      <button
+        type="button"
+        aria-label="Close modal backdrop"
+        className="fixed inset-0 w-full h-full bg-black/60 backdrop-blur-sm cursor-default"
+        onClick={onClose}
+      />
       <div
-        className="relative w-full max-w-4xl bg-white rounded-3xl border border-black/20 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
-        onClick={(e) => e.stopPropagation()}
+        className="relative z-10 w-full max-w-4xl bg-white rounded-3xl border border-black/20 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
       >
         {/* Header */}
         <div className="px-6 py-5 border-b border-black/10 bg-scribble-paper flex items-center justify-between">
@@ -96,7 +101,7 @@ export const DesignGuideModal: React.FC<DesignGuideModalProps> = ({ isOpen, onCl
               <div className="p-5 rounded-2xl bg-scribble-cream/40 border border-black/10">
                 <h3 className="text-base font-bold text-black mb-2 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-scribble-orange" />
-                  Why Hand-Drawn Vectors in Modern UI?
+                  <span>Why Hand-Drawn Vectors in Modern UI?</span>
                 </h3>
                 <p>
                   As digital interfaces standardize on identical layout frameworks and sanitized UI libraries, digital experiences risk feeling mechanical and sterile. <strong>ScribbleKit</strong> provides an intentionally hand-crafted layer of vector graphics—wavy underlines, casual circling loops, dynamic arrows, and organic badges—to inject vitality, guidance, and warmth into modern web apps.

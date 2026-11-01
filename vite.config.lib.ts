@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { resolve } from 'path';
+import { resolve } from 'node:path';
 
 export default defineConfig({
   plugins: [react()],
@@ -27,7 +27,7 @@ export default defineConfig({
           'react/jsx-runtime': 'jsxRuntime',
         },
         assetFileNames: (assetInfo) => {
-          const name = assetInfo.name || (assetInfo.names && assetInfo.names[0]) || '';
+          const name = assetInfo.name || assetInfo.names?.[0] || '';
           if (name.endsWith('.css')) {
             return 'style.css';
           }

@@ -137,8 +137,10 @@ export const Toolbar: React.FC<ToolbarProps> = ({
           {/* Shapes Dropdown */}
           {shapesOpen && (
             <>
-              <div
-                className="fixed inset-0 z-30"
+              <button
+                type="button"
+                aria-label="Close shapes dropdown"
+                className="fixed inset-0 z-30 cursor-default"
                 onClick={() => setShapesOpen(false)}
               />
               <div className="absolute top-full left-0 mt-2 z-40 bg-white rounded-2xl border border-black/15 shadow-xl p-2 w-48 flex flex-col gap-1">

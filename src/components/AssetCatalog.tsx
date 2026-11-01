@@ -5,6 +5,7 @@ import {
   Check,
   Download,
   Pencil,
+  ChevronDown,
 } from 'lucide-react';
 import { ScribbleAsset, CATEGORIES, COLOR_PRESETS } from '../lib/scribbles-data';
 import { Scribble } from './Scribble';
@@ -75,18 +76,16 @@ export const AssetCatalog: React.FC<AssetCatalogProps> = ({
     if (item.rawSvg) {
       svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  ${item.rawSvg.replace(/currentColor/g, activeColor)}\n</svg>`;
     } else if (item.path) {
+      const dMatch = /d="([^"]+)"/.exec(item.path);
+      const d = dMatch ? dMatch[1] : '';
       if (item.type === 'stroke') {
-        const dMatch = item.path.match(/d="([^"]+)"/);
-        const d = dMatch ? dMatch[1] : '';
         svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  <path d="${d}" fill="none" stroke="${activeColor}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />\n</svg>`;
       } else {
-        const dMatch = item.path.match(/d="([^"]+)"/);
-        const d = dMatch ? dMatch[1] : '';
         svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  <path d="${d}" fill="${activeColor}" />\n</svg>`;
       }
     }
 
-    navigator.clipboard.writeText(svgContent);
+    void navigator.clipboard.writeText(svgContent);
     setCopiedId(item.id);
     setTimeout(() => setCopiedId(null), 1800);
   };
@@ -98,13 +97,11 @@ export const AssetCatalog: React.FC<AssetCatalogProps> = ({
     if (item.rawSvg) {
       svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  ${item.rawSvg.replace(/currentColor/g, activeColor)}\n</svg>`;
     } else if (item.path) {
+      const dMatch = /d="([^"]+)"/.exec(item.path);
+      const d = dMatch ? dMatch[1] : '';
       if (item.type === 'stroke') {
-        const dMatch = item.path.match(/d="([^"]+)"/);
-        const d = dMatch ? dMatch[1] : '';
         svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  <path d="${d}" fill="none" stroke="${activeColor}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />\n</svg>`;
       } else {
-        const dMatch = item.path.match(/d="([^"]+)"/);
-        const d = dMatch ? dMatch[1] : '';
         svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${item.viewBox}" fill="none">\n  <path d="${d}" fill="${activeColor}" />\n</svg>`;
       }
     }
@@ -116,17 +113,53 @@ export const AssetCatalog: React.FC<AssetCatalogProps> = ({
     a.download = `${item.id}.svg`;
     document.body.appendChild(a);
     a.click();
-    document.body.removeChild(a);
+    a.remove();
     URL.revokeObjectURL(url);
+  };
+
+  const getCardThemeClass = (theme: string) => {
+    switch (theme) {
+      case 'paper':
+        return 'bg-[#FDFBF7]';
+      case 'white':
+        return 'bg-white';
+      case 'grid':
+        return 'bg-white bg-grid-paper';
+      default:
+        return 'bg-[#141416] text-white border-white/10';
+    }
   };
 
   return (
     <section id="asset-catalog" className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      {/* Category Tabs */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
+      {/* Mobile Category Dropdown (sm:hidden) */}
+      <div className="sm:hidden mb-6">
+        <label htmlFor="catalog-category-select" className="sr-only">
+          Select Category
+        </label>
+        <div className="relative">
+          <select
+            id="catalog-category-select"
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            className="w-full appearance-none px-4 py-3 bg-white rounded-2xl border border-black/15 text-xs font-bold uppercase tracking-wider text-scribble-dark focus:outline-none focus:border-black shadow-sm pr-10 cursor-pointer"
+          >
+            {CATEGORIES.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {cat.name} ({cat.count})
+              </option>
+            ))}
+          </select>
+          <ChevronDown className="w-4 h-4 absolute right-3.5 top-1/2 -translate-y-1/2 text-black/50 pointer-events-none" />
+        </div>
+      </div>
+
+      {/* Desktop / Tablet Category Tabs (Wrapped cleanly) */}
+      <div className="hidden sm:flex flex-wrap items-center gap-2 mb-8">
         {CATEGORIES.map((cat) => (
           <button
             key={cat.id}
+            type="button"
             onClick={() => setSelectedCategory(cat.id)}
             className={`px-4 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all flex items-center gap-2 ${
               selectedCategory === cat.id
@@ -335,16 +368,16 @@ export const AssetCatalog: React.FC<AssetCatalogProps> = ({
           {filteredAssets.map((item) => (
             <div
               key={item.id}
+              role="button"
+              tabIndex={0}
               onClick={() => onSelectAsset(item)}
-              className={`group relative rounded-2xl border border-black/10 p-4 flex flex-col justify-between cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 hover:border-black/30 ${
-                cardTheme === 'paper'
-                  ? 'bg-[#FDFBF7]'
-                  : cardTheme === 'white'
-                  ? 'bg-white'
-                  : cardTheme === 'grid'
-                  ? 'bg-white bg-grid-paper'
-                  : 'bg-[#141416] text-white border-white/10'
-              }`}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onSelectAsset(item);
+                }
+              }}
+              className={`group relative rounded-2xl border border-black/10 p-4 flex flex-col justify-between cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1 hover:border-black/30 ${getCardThemeClass(cardTheme)}`}
             >
               {/* Asset Stage Canvas */}
               <div className="h-28 flex items-center justify-center p-2 overflow-hidden">
