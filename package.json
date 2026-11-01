@@ -1,13 +1,14 @@
 {
-  "name": "@jakeerc/scribblekit",
-  "version": "1.0.1",
+  "name": "scribblekit",
+  "version": "1.1.1",
   "type": "module",
   "description": "150+ hand-drawn vector scribbles, animated highlights, and interactive React SVG component library",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "exports": {
     ".": {
@@ -36,16 +37,17 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build:app": "vite build",
-    "build:types": "tsc -p tsconfig.lib.json",
-    "build:lib": "npm run build:types && vite build --config vite.config.lib.ts",
-    "build": "npm run build:app && npm run build:lib",
-    "test": "npm run build:lib && node scripts/test-consumer.mjs",
+    "build:app": "vite build && echo '✅ Showcase Web App built successfully'",
+    "build:types": "tsc -p tsconfig.lib.json && echo '✅ TypeScript declarations generated in dist/'",
+    "build:lib": "npm run build:types && vite build --config vite.config.lib.ts && echo '✅ Library bundle created (ESM, CJS, CSS)'",
+    "build": "npm run build:app && npm run build:lib && echo '🎉 Complete build finished successfully!'",
+    "test": "npm run build:lib && node scripts/test-consumer.mjs && echo '✅ All consumer integration tests passed!'",
+    "verify:release": "npm run build:lib && npm test && npm run build && npm pack --dry-run && echo '\n🎉 [VERIFIED] All checks passed cleanly! Run `npm publish` to deploy.'",
     "prepack": "npm run build:lib",
     "preview": "vite preview"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=24.0.0"
   },
   "keywords": [
     "scribbles",
@@ -65,7 +67,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/JakeerC/ScribbleKit.git"
+    "url": "git+https://github.com/JakeerC/ScribbleKit.git"
   },
   "homepage": "https://scribblekit.vercel.app",
   "bugs": {
@@ -87,21 +89,20 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/node": "^22.10.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^22.20.5",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
-    "@vitejs/plugin-react": "^4.3.4",
-    "autoprefixer": "^10.4.20",
+    "@vitejs/plugin-react": "^6.1.2",
     "clsx": "^2.1.1",
     "lucide-react": "^0.468.0",
-    "postcss": "^8.4.49",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "tailwind-merge": "^2.5.5",
-    "tailwindcss": "^3.4.16",
+    "tailwind-merge": "^3.7.0",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5.7.2",
-    "vite": "^6.0.1"
+    "vite": "^8.3.5"
   }
 }

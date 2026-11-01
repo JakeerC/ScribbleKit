@@ -5,12 +5,14 @@ import {
   Download,
   Pencil,
   SquareLibrary,
+  Home,
 } from "lucide-react";
 
-export type NavPage = "library" | "svg-studio" | "headline-studio";
+export type NavPage = "home" | "library" | "svg-studio" | "headline-studio";
 
 export interface NavbarProps {
   currentPage?: NavPage;
+  onNavigateHome?: () => void;
   onNavigateToLibrary?: () => void;
   onNavigateToSvgStudio?: () => void;
   onNavigateToHeadlineStudio?: () => void;
@@ -23,7 +25,8 @@ export interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
-  currentPage = "library",
+  currentPage = "home",
+  onNavigateHome,
   onNavigateToLibrary,
   onNavigateToSvgStudio,
   onNavigateToHeadlineStudio,
@@ -33,6 +36,12 @@ export const Navbar: React.FC<NavbarProps> = ({
   onDownloadAll,
   onOpenEditor,
 }) => {
+  const handleHomeClick = () => {
+    if (onNavigateHome) {
+      onNavigateHome();
+    }
+  };
+
   const handleLibraryClick = () => {
     if (onNavigateToLibrary) {
       onNavigateToLibrary();
@@ -58,7 +67,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   const getNavItemClass = (isActive: boolean) =>
-    `px-3.5 sm:px-4 py-1.5 text-xs sm:text-sm font-medium rounded-full transition-all flex items-center gap-1.5 ${
+    `px-3 sm:px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-full transition-all flex items-center gap-1.5 ${
       isActive
         ? "bg-white text-black font-semibold shadow-sm border border-black/5"
         : "text-black/70 hover:text-black hover:bg-white/60"
@@ -66,6 +75,14 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navButtons = (
     <>
+      <button
+        onClick={handleHomeClick}
+        className={getNavItemClass(currentPage === "home")}
+        title="ScribbleKit Home"
+      >
+        <Home className="w-3.5 h-3.5 text-scribble-orange" />
+        <span>Home</span>
+      </button>
       <button
         onClick={handleLibraryClick}
         className={getNavItemClass(currentPage === "library")}
@@ -102,7 +119,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             href="/"
             onClick={(e) => {
               e.preventDefault();
-              handleLibraryClick();
+              handleHomeClick();
             }}
             className="flex items-center gap-3 group"
           >

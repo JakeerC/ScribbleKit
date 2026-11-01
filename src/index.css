@@ -1,8 +1,87 @@
 @import './styles/scribblekit.css';
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-scribble-orange: #EA552B;
+  --color-scribble-yellow: #F7D046;
+  --color-scribble-green: #4CA96D;
+  --color-scribble-pink: #EE8DB9;
+  --color-scribble-blue: #55BBDA;
+  --color-scribble-blush: #FDD5E7;
+  --color-scribble-cream: #FBE8DE;
+  --color-scribble-mint: #0BDC85;
+  --color-scribble-dark: #141416;
+  --color-scribble-paper: #FDFBF7;
+
+  --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  --font-display: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+
+  --animate-wiggle: wiggle 1s ease-in-out infinite;
+  --animate-wiggle-slow: wiggle 2.5s ease-in-out infinite;
+  --animate-spin-slow: spin 20s linear infinite;
+  --animate-spin-reverse: spinReverse 22s linear infinite;
+  --animate-rotate: spin 8s linear infinite;
+  --animate-rotate-slow: spin 16s linear infinite;
+  --animate-pulse-subtle: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-pulse-glow: pulseGlow 2.5s ease-in-out infinite;
+  --animate-float: float 5s ease-in-out infinite;
+  --animate-float-slow: float 7s ease-in-out infinite;
+  --animate-float-reverse: floatReverse 6.5s ease-in-out infinite;
+  --animate-float-gentle: float 4.5s ease-in-out infinite;
+  --animate-wobble: wobble 2s ease-in-out infinite;
+  --animate-wobble-slow: wobble 4s ease-in-out infinite;
+  --animate-sparkle: sparkle 2.5s ease-in-out infinite;
+  --animate-bounce-subtle: bounceSubtle 3s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+@keyframes spinReverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(2.5deg); }
+}
+
+@keyframes floatReverse {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(12px) rotate(-3deg); }
+}
+
+@keyframes wobble {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(-2.5deg) scale(1.02); }
+  75% { transform: rotate(2.5deg) scale(0.98); }
+}
+
+@keyframes sparkle {
+  0%, 100% { transform: scale(0.9) rotate(0deg); opacity: 0.85; }
+  50% { transform: scale(1.2) rotate(45deg); opacity: 1; }
+}
+
+@keyframes bounceSubtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 2px rgba(234, 85, 43, 0.35));
+  }
+  50% {
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 10px rgba(247, 208, 70, 0.75)) drop-shadow(0 0 3px rgba(234, 85, 43, 0.6));
+  }
+}
 
 @layer base {
   body {
