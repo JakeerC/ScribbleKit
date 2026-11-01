@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Midnight Cosmic Badge Frame -->
+  <circle cx="100" cy="100" r="88" fill="#161A30" stroke="#141416" stroke-width="4" />
+
+  <!-- Constellation & Stardust Field -->
+  <path d="M145 42 Q145 52 155 52 Q145 52 145 62 Q145 52 135 52 Q145 52 145 42 Z" fill="#F7D046" stroke="#141416" stroke-width="1.5" stroke-linejoin="round" />
+  <path d="M50 120 Q50 125 55 125 Q50 125 50 130 Q50 125 45 125 Q50 125 50 120 Z" fill="#FFFFFF" />
+  <circle cx="78" cy="38" r="2.5" fill="#F7D046" />
+  <circle cx="132" cy="85" r="2" fill="#FFFFFF" />
+  <circle cx="118" cy="162" r="2.5" fill="#F7D046" />
+  <circle cx="42" cy="72" r="2" fill="#FFFFFF" />
+
+  <!-- Coral Striped Gas Giant -->
+  <circle cx="78" cy="78" r="38" fill="#EA552B" stroke="#141416" stroke-width="3.5" />
+  <path d="M44 70 C58 75 98 75 112 70" fill="none" stroke="#F97316" stroke-width="4.5" stroke-linecap="round" />
+  <path d="M46 86 C62 91 94 91 110 86" fill="none" stroke="#C2410C" stroke-width="4.5" stroke-linecap="round" />
+
+  <!-- Mint Green Terrestrial World -->
+  <circle cx="138" cy="124" r="23" fill="#0BDC85" stroke="#141416" stroke-width="3" />
+  <circle cx="132" cy="119" r="4" fill="#059669" />
+  <circle cx="145" cy="131" r="3" fill="#059669" />
+
+  <!-- Golden Ringed Mini Planet -->
+  <g transform="rotate(-15 72 142)">
+    <ellipse cx="72" cy="142" rx="24" ry="7" fill="none" stroke="#FDE68A" stroke-width="4.5" />
+    <ellipse cx="72" cy="142" rx="24" ry="7" fill="none" stroke="#141416" stroke-width="2.5" />
+    <circle cx="72" cy="142" r="15" fill="#F7D046" stroke="#141416" stroke-width="3" />
+    <path d="M52 143 C56 150 88 150 92 143" fill="none" stroke="#141416" stroke-width="2.5" stroke-linecap="round" />
+  </g>
+</svg>

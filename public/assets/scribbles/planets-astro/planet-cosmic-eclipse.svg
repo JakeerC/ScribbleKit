@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Radiant Golden Sun with Wavy Flare Corona -->
+  <path d="M60 76 Q60 62 70 66 Q74 54 86 60 Q96 50 104 60 Q116 54 120 66 Q130 62 130 76 Q140 82 136 94 Q144 104 136 114 Q140 126 130 132 Q120 142 110 136 Q98 144 90 136 Q78 142 74 130 Q62 126 66 114 Q58 104 66 94 Q60 82 60 76 Z" fill="#F7D046" stroke="#141416" stroke-width="3.5" stroke-linejoin="round" />
+  <circle cx="98" cy="98" r="26" fill="#FFFBEB" stroke="#141416" stroke-width="3" />
+
+  <!-- Orbiting Ringed Planet (Top Left) -->
+  <g transform="rotate(-25 46 48)">
+    <ellipse cx="46" cy="48" rx="18" ry="6" fill="none" stroke="#55BBDA" stroke-width="3.5" />
+    <ellipse cx="46" cy="48" rx="18" ry="6" fill="none" stroke="#141416" stroke-width="2" />
+    <circle cx="46" cy="48" r="11" fill="#55BBDA" stroke="#141416" stroke-width="2.5" />
+    <path d="M32 49 C36 54 56 54 60 49" fill="none" stroke="#141416" stroke-width="2" stroke-linecap="round" />
+  </g>
+
+  <!-- Cratered Companion Moon (Top Right) -->
+  <circle cx="152" cy="52" r="15" fill="#E2E8F0" stroke="#141416" stroke-width="2.5" />
+  <circle cx="148" cy="50" r="3" fill="#94A3B8" />
+  <circle cx="156" cy="56" r="2.5" fill="#94A3B8" />
+
+  <!-- Crimson Satellite (Bottom Right) -->
+  <circle cx="152" cy="146" r="12" fill="#EA552B" stroke="#141416" stroke-width="2.5" />
+  <circle cx="149" cy="144" r="2.5" fill="#B91C1C" />
+
+  <!-- Sparkles & Dust -->
+  <path d="M168 100 L168 108 M164 104 L172 104" stroke="#141416" stroke-width="2" stroke-linecap="round" />
+  <circle cx="34" cy="116" r="2" fill="#141416" />
+</svg>

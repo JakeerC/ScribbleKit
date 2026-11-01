@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Celestial Sparkles & Stardust -->
+  <path d="M166 40 Q166 48 174 48 Q166 48 166 56 Q166 48 158 48 Q166 48 166 40 Z" fill="#F7D046" stroke="#141416" stroke-width="2" stroke-linejoin="round" />
+  <path d="M34 140 L34 152 M28 146 L40 146" stroke="#141416" stroke-width="2.5" stroke-linecap="round" />
+  <circle cx="45" cy="55" r="3.5" fill="none" stroke="#141416" stroke-width="2" />
+  <circle cx="155" cy="145" r="2.5" fill="#141416" />
+  <circle cx="95" cy="32" r="2" fill="#141416" />
+
+  <!-- Planetary Ring (Back Segment - behind planet) -->
+  <path d="M40 96 C40 68 160 68 160 96" fill="none" stroke="#FBE8DE" stroke-width="12" stroke-linecap="round" />
+  <path d="M40 96 C40 68 160 68 160 96" fill="none" stroke="#141416" stroke-width="3.5" stroke-linecap="round" />
+
+  <!-- Planet Body Shadow & Base -->
+  <circle cx="103" cy="103" r="46" fill="#141416" opacity="0.12" />
+  <circle cx="100" cy="100" r="46" fill="#F7D046" stroke="#141416" stroke-width="3.5" />
+
+  <!-- Atmospheric Belly Stripes -->
+  <path d="M57 90 C72 95 128 95 143 90" fill="none" stroke="#F59E0B" stroke-width="4" stroke-linecap="round" opacity="0.6" />
+  <path d="M59 112 C74 117 126 117 141 112" fill="none" stroke="#F59E0B" stroke-width="4" stroke-linecap="round" opacity="0.6" />
+
+  <!-- Cute Kawaii Smiling Face -->
+  <circle cx="86" cy="98" r="4" fill="#141416" />
+  <circle cx="87.5" cy="96.5" r="1.3" fill="#FFFFFF" />
+  <circle cx="114" cy="98" r="4" fill="#141416" />
+  <circle cx="115.5" cy="96.5" r="1.3" fill="#FFFFFF" />
+  <path d="M96 103 Q100 109 104 103" fill="none" stroke="#141416" stroke-width="3" stroke-linecap="round" />
+  <ellipse cx="78" cy="104" rx="5.5" ry="3.5" fill="#EE8DB9" opacity="0.85" />
+  <ellipse cx="122" cy="104" rx="5.5" ry="3.5" fill="#EE8DB9" opacity="0.85" />
+
+  <!-- Planetary Ring (Front Segment - sweeps across front) -->
+  <path d="M30 100 C30 130 170 130 170 100" fill="none" stroke="#FBE8DE" stroke-width="12" stroke-linecap="round" />
+  <path d="M30 100 C30 130 170 130 170 100" fill="none" stroke="#141416" stroke-width="3.5" stroke-linecap="round" />
+  <path d="M54 105 C64 122 136 122 146 105" fill="none" stroke="#141416" stroke-width="3" stroke-linecap="round" />
+
+  <!-- Satellite Companion Moons -->
+  <circle cx="160" cy="134" r="13" fill="#55BBDA" stroke="#141416" stroke-width="3" />
+  <circle cx="156" cy="131" r="3" fill="#38BDF8" opacity="0.8" />
+  <circle cx="44" cy="72" r="8" fill="#EA552B" stroke="#141416" stroke-width="2.5" />
+</svg>

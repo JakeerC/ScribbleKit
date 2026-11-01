@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Gas Giant Body Base -->
+  <circle cx="101" cy="103" r="48" fill="#141416" opacity="0.12" />
+  <circle cx="98" cy="100" r="48" fill="#F7D046" stroke="#141416" stroke-width="3.5" />
+
+  <!-- Wavy Retro Atmospheric Bands -->
+  <path d="M53 78 C70 85 125 72 143 78" fill="none" stroke="#EA552B" stroke-width="6" stroke-linecap="round" />
+  <path d="M51 92 C68 98 128 86 145 92" fill="none" stroke="#FBE8DE" stroke-width="5" stroke-linecap="round" />
+  <path d="M50 108 C72 116 124 102 146 108" fill="none" stroke="#EA552B" stroke-width="7" stroke-linecap="round" />
+  <path d="M53 124 C72 130 124 120 143 124" fill="none" stroke="#D97706" stroke-width="5" stroke-linecap="round" />
+
+  <!-- Great Red Spot Storm Vortex -->
+  <ellipse cx="120" cy="108" rx="10" ry="6" fill="#C2410C" stroke="#141416" stroke-width="2" />
+  <path d="M115 108 Q120 104 125 108" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" />
+
+  <!-- Rim Reinforcement -->
+  <circle cx="98" cy="100" r="48" fill="none" stroke="#141416" stroke-width="3.5" />
+
+  <!-- Satellite Moons & Sparkles -->
+  <circle cx="162" cy="58" r="12" fill="#55BBDA" stroke="#141416" stroke-width="2.5" />
+  <circle cx="38" cy="142" r="9" fill="#C4B5FD" stroke="#141416" stroke-width="2" />
+  <circle cx="36" cy="140" r="2" fill="#8B5CF6" />
+  <path d="M156 126 L156 134 M152 130 L160 130" stroke="#141416" stroke-width="2" stroke-linecap="round" />
+  <path d="M46 52 Q46 58 52 58 Q46 58 46 64 Q46 58 40 58 Q46 58 46 52 Z" fill="#F7D046" stroke="#141416" stroke-width="1.5" />
+  <circle cx="105" cy="34" r="2" fill="#141416" />
+</svg>

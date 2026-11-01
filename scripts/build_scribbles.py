@@ -3137,7 +3137,14 @@ system_design = [
     }
 ]
 
-all_scribbles = funky_scribbles + underlines + circles + arrows + stars + badges + doodles + accents + signature_shapes + algorithms_data_structures + system_design
+# ==========================================
+# 12. PLANETS & ASTRO (16 ITEMS)
+# ==========================================
+planets_astro_path = os.path.join(os.path.dirname(__file__), "planets_astro_assets.json")
+with open(planets_astro_path, "r") as f:
+    planets_astro = json.load(f)
+
+all_scribbles = funky_scribbles + underlines + circles + arrows + stars + badges + doodles + accents + signature_shapes + algorithms_data_structures + system_design + planets_astro
 print(f"Total scribbles defined: {len(all_scribbles)}")
 
 # Save each SVG into public/assets/scribbles/<category>/<id>.svg
@@ -3172,6 +3179,7 @@ for item in all_scribbles:
 
 category_metadata = [
     {"id": "all", "name": "All Scribbles", "icon": "Sparkles", "count": len(all_scribbles)},
+    {"id": "planets-astro", "name": "Planets & Astro", "icon": "Orbit", "count": categories_summary.get("planets-astro", 0)},
     {"id": "algorithms-data-structures", "name": "Algorithms & Data Structures", "icon": "Binary", "count": categories_summary.get("algorithms-data-structures", 0)},
     {"id": "system-design", "name": "System Design", "icon": "Server", "count": categories_summary.get("system-design", 0)},
     {"id": "funky-complex", "name": "Funky & Colorful", "icon": "Palette", "count": categories_summary.get("funky-complex", 0)},

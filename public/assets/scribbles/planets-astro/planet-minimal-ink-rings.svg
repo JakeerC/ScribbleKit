@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Minimalist Ink Ring (Back Arc) -->
+  <path d="M42 92 C42 66 150 66 150 92" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" />
+
+  <!-- Planet Body -->
+  <circle cx="96" cy="98" r="44" fill="#FFFFFF" stroke="currentColor" stroke-width="3.5" />
+
+  <!-- Bold Graphic Negative Space Bands -->
+  <path d="M56 86 C70 92 122 92 136 86" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" />
+  <path d="M53 100 C70 106 122 106 139 100" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" />
+  <path d="M57 114 C72 120 120 120 135 114" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" />
+
+  <!-- Minimalist Ink Ring (Front Arc) -->
+  <path d="M34 98 C34 128 158 128 158 98" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" />
+  <path d="M54 104 C64 120 128 120 138 104" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+
+  <!-- Accompanying Celestial Bodies -->
+  <circle cx="156" cy="144" r="12" fill="currentColor" />
+  <circle cx="48" cy="52" r="10" fill="#FFFFFF" stroke="currentColor" stroke-width="2.5" />
+  <circle cx="46" cy="50" r="2.5" fill="currentColor" />
+
+  <!-- Sparkles & Dust -->
+  <path d="M154 50 L154 60 M149 55 L159 55" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+  <circle cx="34" cy="112" r="2.5" fill="currentColor" />
+  <circle cx="168" cy="95" r="2" fill="currentColor" />
+  <circle cx="96" cy="34" r="2.5" fill="currentColor" />
+</svg>

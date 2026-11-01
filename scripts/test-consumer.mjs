@@ -48,7 +48,11 @@ const accentItems = getScribblesByCategory('accents-emphasis');
 if (accentItems.length !== 24) throw new Error(`Expected 24 accents items, got ${accentItems.length}`);
 console.log(`✓ getScribblesByCategory('accents-emphasis') returned: ${accentItems.length} items`);
 
-if (SCRIBBLES_ASSETS.length !== 278) throw new Error(`Expected 278 total assets, got ${SCRIBBLES_ASSETS.length}`);
+const planetItems = getScribblesByCategory('planets-astro');
+if (planetItems.length !== 16) throw new Error(`Expected 16 planets-astro items, got ${planetItems.length}`);
+console.log(`✓ getScribblesByCategory('planets-astro') returned: ${planetItems.length} items`);
+
+if (SCRIBBLES_ASSETS.length !== 294) throw new Error(`Expected 294 total assets, got ${SCRIBBLES_ASSETS.length}`);
 console.log(`✓ Total assets verified: ${SCRIBBLES_ASSETS.length}`);
 
 const horseshoe = getScribbleById('funky-lucky-horseshoe-stars');
@@ -158,6 +162,18 @@ if (!zigzagHtml.includes('<svg') || !zigzagHtml.includes('viewBox="0 0 150 180"'
   throw new Error('funky-chisel-marker-zigzag SVG rendering failed validation');
 }
 console.log('✓ <Scribble name="funky-chisel-marker-zigzag" /> rendered valid SVG successfully');
+
+const planetSaturnHtml = renderToStaticMarkup(
+  React.createElement(Scribble, {
+    name: 'planet-kawaii-saturn',
+    color: '#F7D046',
+    size: 64,
+  })
+);
+if (!planetSaturnHtml.includes('<svg') || !planetSaturnHtml.includes('viewBox="0 0 200 200"')) {
+  throw new Error('planet-kawaii-saturn SVG rendering failed validation');
+}
+console.log('✓ <Scribble name="planet-kawaii-saturn" /> rendered valid SVG successfully');
 
 // Test 4: Render <ScribbleHighlight /> to static HTML markup
 const highlightHtml = renderToStaticMarkup(

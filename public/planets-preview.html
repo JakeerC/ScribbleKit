@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScribbleKit — Planets & Astro SVG Collection</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(2deg); }
+    }
+    @keyframes rotateSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes bounceSubtle {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    .anim-float { animation: floatSlow 4s ease-in-out infinite; }
+    .anim-rotate { animation: rotateSlow 20s linear infinite; }
+    .anim-bounce { animation: bounceSubtle 2.5s ease-in-out infinite; }
+  </style>
+</head>
+<body class="bg-[#FAF6F0] text-[#141416] min-h-screen p-6 sm:p-12 font-sans antialiased">
+  <div class="max-w-7xl mx-auto space-y-10">
+    <!-- Header -->
+    <header class="text-center space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EA552B]/10 border border-[#EA552B]/30 text-[#EA552B] text-xs font-mono font-bold tracking-wider uppercase">
+        <span>✨ New Asset Release</span>
+      </div>
+      <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-[#141416]">
+        Planets & Astro SVGs
+      </h1>
+      <p class="text-base sm:text-lg text-black/60 max-w-2xl mx-auto font-medium">
+        16 handcrafted vector illustrations inspired by retro-pop cosmic doodles, kawaii planets, and mid-century space exploration.
+      </p>
+    </header>
+
+    <!-- Asset Cards Grid (Matching reference card styling) -->
+    <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+  </div>
+
+  <script>
+    const assets = [
+      {
+        id: "planet-kawaii-saturn",
+        name: "Kawaii Smiling Saturn",
+        anim: "anim-rotate",
+        desc: "Cheerful ringed gas giant with cute smiling face, blushing pink cheeks, sweet satellite moon, and sparkle stars.",
+        file: "assets/scribbles/planets-astro/planet-kawaii-saturn.svg"
+      },
+      {
+        id: "planet-deep-space-portal",
+        name: "Deep Midnight Cosmic Badge",
+        anim: "anim-float",
+        desc: "Circular midnight navy portal badge featuring a glowing coral striped gas giant, emerald ringed orb, and gold starfield.",
+        file: "assets/scribbles/planets-astro/planet-deep-space-portal.svg"
+      },
+      {
+        id: "planet-solar-system-trio",
+        name: "Solar System Trio & Orbits",
+        anim: "anim-float",
+        desc: "Harmonious celestial trio with a ringed Saturn, blue Earth with continents, cratered moon, and dotted orbit tracks.",
+        file: "assets/scribbles/planets-astro/planet-solar-system-trio.svg"
+      },
+      {
+        id: "planet-split-day-night",
+        name: "Day & Night Celestial Globe",
+        anim: "anim-rotate",
+        desc: "Duality sphere divided between tropical daylight ocean with lush continents and midnight cosmos starry sky.",
+        file: "assets/scribbles/planets-astro/planet-split-day-night.svg"
+      },
+      {
+        id: "planet-snuggling-duo",
+        name: "Snuggling Kawaii Planet Besties",
+        anim: "anim-bounce",
+        desc: "Two affectionate smiling kawaii celestial buddies snuggling together with rosy cheeks and floating love heart.",
+        file: "assets/scribbles/planets-astro/planet-snuggling-duo.svg"
+      },
+      {
+        id: "planet-multi-orbit-vortex",
+        name: "Triple Halo Cosmic Vortex",
+        anim: "anim-rotate",
+        desc: "Radiant ultraviolet planet encircled by three dynamic tilted racetrack orbit halos with orbiting energy beads.",
+        file: "assets/scribbles/planets-astro/planet-multi-orbit-vortex.svg"
+      },
+      {
+        id: "planet-earth-atmosphere",
+        name: "Terrestrial Earth & Orbiting Moon",
+        anim: "anim-float",
+        desc: "Living terrestrial blue orb with lush emerald continents, white atmospheric cloud swirls, and cratered moon in orbit.",
+        file: "assets/scribbles/planets-astro/planet-earth-atmosphere.svg"
+      },
+      {
+        id: "planet-striped-jupiter",
+        name: "Banded Jupiter & Red Spot",
+        anim: "anim-float",
+        desc: "Dynamic banded gas giant with rich wavy retro-pop atmospheric stripes, iconic swirling storm spot, and orbiting moons.",
+        file: "assets/scribbles/planets-astro/planet-striped-jupiter.svg"
+      },
+      {
+        id: "planet-crater-moon-cluster",
+        name: "Cratered Moon & Asteroids",
+        anim: "anim-float",
+        desc: "Textured celestial moon with hand-drawn crater rings, accompanied by a mini ringed planet and orbiting asteroids.",
+        file: "assets/scribbles/planets-astro/planet-crater-moon-cluster.svg"
+      },
+      {
+        id: "planet-cosmic-eclipse",
+        name: "Solar Flare Eclipse & Crescent",
+        anim: "anim-rotate",
+        desc: "Radiant golden sun with organic wavy solar flare corona, aligned with a crescent moon and ringed celestial orb.",
+        file: "assets/scribbles/planets-astro/planet-cosmic-eclipse.svg"
+      },
+      {
+        id: "planet-alien-biosphere",
+        name: "Mint Alien World & Rings",
+        anim: "anim-rotate",
+        desc: "Hypnotic alien exoplanet with mint and turquoise wavy atmospheric contours, encircled by a bright cyan halo ring.",
+        file: "assets/scribbles/planets-astro/planet-alien-biosphere.svg"
+      },
+      {
+        id: "planet-minimal-ink-rings",
+        name: "Minimalist Ink Saturn & Dust",
+        anim: "anim-rotate",
+        desc: "Crisp monochrome hand-drawn ink planet with tilted ring, horizontal negative space bands, companion moon, and dust.",
+        file: "assets/scribbles/planets-astro/planet-minimal-ink-rings.svg"
+      },
+      {
+        id: "astro-cute-cosmonaut",
+        name: "Kawaii Space Explorer Helmet",
+        anim: "anim-float",
+        desc: "Charming retro space astronaut helmet with reflective golden bubble visor, antenna star, cute face, and mini planet.",
+        file: "assets/scribbles/planets-astro/astro-cute-cosmonaut.svg"
+      },
+      {
+        id: "astro-retro-rocket-voyage",
+        name: "Retro Cosmic Rocket Slingshot",
+        anim: "anim-bounce",
+        desc: "1950s atomic-age streamlined rocket ship slingshotting past a ringed planet through a starry galaxy field.",
+        file: "assets/scribbles/planets-astro/astro-retro-rocket-voyage.svg"
+      },
+      {
+        id: "planet-galaxy-badge",
+        name: "Midnight Nebula & Constellation Badge",
+        anim: "anim-float",
+        desc: "Circular midnight medallion with bubblegum pink striped planet, golden ringed orb, and glowing constellation stars.",
+        file: "assets/scribbles/planets-astro/planet-galaxy-badge.svg"
+      },
+      {
+        id: "planet-orbital-parade",
+        name: "Cosmic Orbit Parade & Trails",
+        anim: "anim-float",
+        desc: "Sweeping cosmic orbit tracks carrying a procession of celestial worlds: ringed gas giant, Earth, cratered moon, and sun.",
+        file: "assets/scribbles/planets-astro/planet-orbital-parade.svg"
+      }
+    ];
+
+    const grid = document.getElementById('grid');
+
+    assets.forEach(asset => {
+      const card = document.createElement('div');
+      card.className = "bg-white rounded-3xl p-6 border border-black/10 shadow-sm hover:shadow-xl hover:border-black/30 transition-all flex flex-col items-center justify-between group";
+      card.innerHTML = `
+        <div class="w-full flex items-center justify-between mb-4">
+          <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-black/40">ScribbleKit</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/5 text-black/60 font-semibold">200x200</span>
+        </div>
+        <div class="w-36 h-36 flex items-center justify-center p-2 my-2 transition-transform duration-300 group-hover:scale-110">
+          <img src="${asset.file}" alt="${asset.name}" class="w-full h-full object-contain ${asset.anim}" />
+        </div>
+        <div class="w-full text-center mt-4 pt-4 border-t border-black/5 space-y-1">
+          <h3 class="font-bold text-sm text-[#141416] tracking-tight">${asset.name}</h3>
+          <p class="text-[11px] text-black/55 leading-relaxed line-clamp-2">${asset.desc}</p>
+          <div class="pt-3 flex items-center justify-center gap-2">
+            <button onclick="copySnippet('${asset.id}')" class="px-3 py-1.5 rounded-xl bg-black/5 hover:bg-black hover:text-white text-[11px] font-bold transition-all">
+              Copy JSX
+            </button>
+            <a href="${asset.file}" download="${asset.id}.svg" class="px-3 py-1.5 rounded-xl bg-[#EA552B]/10 hover:bg-[#EA552B] hover:text-white text-[#EA552B] text-[11px] font-bold transition-all">
+              Download SVG
+            </a>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    function copySnippet(id) {
+      const code = `<Scribble name="${id}" size={120} animate="original" />`;
+      navigator.clipboard.writeText(code);
+      alert('Copied to clipboard:\n' + code);
+    }
+  </script>
+</body>
+</html>

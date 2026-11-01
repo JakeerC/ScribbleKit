@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Sweeping Cosmic Orbit Tracks -->
+  <path d="M22 65 C50 145 150 165 182 95" fill="none" stroke="#141416" stroke-width="2.5" stroke-dasharray="5 7" stroke-linecap="round" opacity="0.4" />
+  <path d="M30 45 C60 125 160 145 190 75" fill="none" stroke="#141416" stroke-width="1.5" stroke-dasharray="3 5" stroke-linecap="round" opacity="0.25" />
+
+  <!-- Planet 1: Ringed Saturn (Top Left) -->
+  <g transform="rotate(-15 60 56)">
+    <ellipse cx="60" cy="56" rx="26" ry="8" fill="none" stroke="#FBE8DE" stroke-width="4.5" />
+    <ellipse cx="60" cy="56" rx="26" ry="8" fill="none" stroke="#141416" stroke-width="2" />
+    <circle cx="60" cy="56" r="18" fill="#F7D046" stroke="#141416" stroke-width="3" />
+    <path d="M38 57 C44 64 76 64 82 57" fill="none" stroke="#141416" stroke-width="2.5" stroke-linecap="round" />
+  </g>
+
+  <!-- Planet 2: Terrestrial Earth (Center) -->
+  <circle cx="106" cy="120" r="26" fill="#55BBDA" stroke="#141416" stroke-width="3" />
+  <path d="M92 112 C98 106 110 110 112 118 C108 126 96 124 92 112 Z" fill="#4CA96D" stroke="#141416" stroke-width="2" stroke-linejoin="round" />
+  <path d="M102 128 C110 124 120 130 116 138 C108 142 100 136 102 128 Z" fill="#4CA96D" stroke="#141416" stroke-width="2" stroke-linejoin="round" />
+
+  <!-- Planet 3: Cratered Coral Moon (Right) -->
+  <circle cx="158" cy="124" r="16" fill="#EA552B" stroke="#141416" stroke-width="2.5" />
+  <circle cx="154" cy="120" r="3.5" fill="#991B1B" />
+  <circle cx="162" cy="128" r="2.5" fill="#991B1B" />
+
+  <!-- Planet 4: Radiant Golden Baby Sun (Top Right) -->
+  <circle cx="168" cy="56" r="11" fill="#F7D046" stroke="#141416" stroke-width="2" />
+
+  <!-- Sparkles & Space Dust -->
+  <path d="M34 116 L34 124 M30 120 L38 120" stroke="#141416" stroke-width="2" stroke-linecap="round" />
+  <path d="M120 40 Q120 46 126 46 Q120 46 120 52 Q120 46 114 46 Q120 46 120 40 Z" fill="#F7D046" stroke="#141416" stroke-width="1.5" />
+  <circle cx="130" cy="80" r="2" fill="#141416" />
+  <circle cx="78" cy="158" r="2.5" fill="#141416" />
+</svg>
