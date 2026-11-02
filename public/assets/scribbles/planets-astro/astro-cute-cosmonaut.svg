@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Looping Oxygen Hose -->
+  <path d="M78 140 C66 156 58 168 80 172 C94 174 104 162 92 150 C88 144 84 140 84 140" fill="none" stroke="#55BBDA" stroke-width="6" stroke-linecap="round" />
+  <path d="M78 140 C66 156 58 168 80 172 C94 174 104 162 92 150 C88 144 84 140 84 140" fill="none" stroke="#141416" stroke-width="2.5" stroke-linecap="round" />
+
+  <!-- Side Ear Communication Modules -->
+  <rect x="42" y="86" width="12" height="26" rx="5" fill="#E2E8F0" stroke="#141416" stroke-width="3" />
+  <rect x="146" y="86" width="12" height="26" rx="5" fill="#E2E8F0" stroke="#141416" stroke-width="3" />
+
+  <!-- Outer Helmet Dome -->
+  <path d="M58 120 C50 110 50 64 100 58 C150 64 150 110 142 120 C136 134 120 142 100 142 C80 142 64 134 58 120 Z" fill="#F8FAFC" stroke="#141416" stroke-width="3.5" stroke-linejoin="round" />
+
+  <!-- Antenna with Star Tip -->
+  <path d="M100 58 L100 36" fill="none" stroke="#141416" stroke-width="3" stroke-linecap="round" />
+  <path d="M100 24 Q100 30 106 30 Q100 30 100 36 Q100 30 94 30 Z" fill="#F7D046" stroke="#141416" stroke-width="2" />
+
+  <!-- Deep Cosmic Bubble Visor -->
+  <path d="M68 84 C68 72 132 72 132 84 C132 116 68 116 68 84 Z" fill="#1E1B4B" stroke="#141416" stroke-width="3.5" />
+
+  <!-- Visor Golden Highlight Curve -->
+  <path d="M76 78 C86 74 96 74 102 76 C94 82 86 86 78 86 Z" fill="#F7D046" opacity="0.8" />
+
+  <!-- Cute Face Inside Helmet -->
+  <circle cx="88" cy="94" r="3.5" fill="#FFFFFF" />
+  <circle cx="112" cy="94" r="3.5" fill="#FFFFFF" />
+  <path d="M96 100 Q100 104 104 100" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+  <ellipse cx="82" cy="97" rx="3.5" ry="2" fill="#EE8DB9" />
+  <ellipse cx="118" cy="97" rx="3.5" ry="2" fill="#EE8DB9" />
+
+  <!-- Orbiting Mini Planet -->
+  <circle cx="164" cy="56" r="11" fill="#EA552B" stroke="#141416" stroke-width="2.5" />
+  <ellipse cx="164" cy="56" rx="16" ry="5" fill="none" stroke="#141416" stroke-width="2" transform="rotate(-20 164 56)" />
+
+  <!-- Accents -->
+  <path d="M34 50 L34 58 M30 54 L38 54" stroke="#141416" stroke-width="2" stroke-linecap="round" />
+  <circle cx="168" cy="136" r="2.5" fill="#141416" />
+</svg>

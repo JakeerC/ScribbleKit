@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <!-- ScribbleKit: Minimal Ink Monochrome Medal Badge -->
+  <defs>
+    <filter id="soft-shadow-ink" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#141416" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  <!-- Pinned Metal Top Clasp (Monochrome Ink) -->
+  <g filter="url(#soft-shadow-ink)">
+    <rect x="54" y="20" width="92" height="18" rx="4" fill="#FFFFFF" stroke="#141416" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <rect x="60" y="24" width="80" height="4" fill="#141416" rx="2" />
+    <!-- Hanging Wire Loops -->
+    <path d="M 80 38 L 88 56 M 120 38 L 112 56" stroke="#141416" stroke-width="3" stroke-linecap="round" />
+  </g>
+
+  <!-- Hanging Twin Ribbon Tails (Black & White Striped) -->
+  <g stroke="#141416" stroke-linecap="round" stroke-linejoin="round" filter="url(#soft-shadow-ink)">
+    <!-- Left Ribbon -->
+    <polygon points="76,120 50,184 74,172 94,184 90,120" fill="#FFFFFF" stroke-width="3" />
+    <polygon points="62,130 50,184 74,172 70,130" fill="#141416" stroke="none" />
+    <line x1="82" y1="126" x2="84" y2="174" stroke="#141416" stroke-width="2" stroke-dasharray="4 3" />
+
+    <!-- Right Ribbon -->
+    <polygon points="110,120 106,184 126,172 150,184 124,120" fill="#FFFFFF" stroke-width="3" />
+    <polygon points="130,130 126,172 150,184 138,130" fill="#141416" stroke="none" />
+    <line x1="118" y1="126" x2="116" y2="174" stroke="#141416" stroke-width="2" stroke-dasharray="4 3" />
+  </g>
+
+  <!-- Central Rosette Medallion -->
+  <g filter="url(#soft-shadow-ink)">
+    <!-- Shadow Disc -->
+    <circle cx="100" cy="98" r="54" fill="#141416" opacity="0.12" />
+
+    <!-- 16-Fluted Rosette Petal Silhouette -->
+    <path d="
+      M 100 44
+      L 106 50 L 116 48 L 120 56 L 130 57 L 131 67 L 141 71 L 138 81 L 146 88 L 140 98 L 146 108 L 138 115 L 141 125 L 131 129 L 130 139 L 120 140 L 116 148 L 106 146 L 100 152
+      L 94 146 L 84 148 L 80 140 L 70 139 L 69 129 L 59 125 L 62 115 L 54 108 L 60 98 L 54 88 L 62 81 L 59 71 L 69 67 L 70 57 L 80 56 L 84 48 L 94 50 Z"
+      fill="#141416" stroke="#141416" stroke-width="3.5" stroke-linejoin="round" />
+
+    <!-- Crisp White Outer Ring Inside Rosette -->
+    <circle cx="100" cy="98" r="42" fill="#FFFFFF" stroke="#141416" stroke-width="3" />
+
+    <!-- Dotted Linework Track -->
+    <circle cx="100" cy="98" r="35" fill="none" stroke="#141416" stroke-width="2" stroke-dasharray="3 3" />
+
+    <!-- Center Black Core Disc -->
+    <circle cx="100" cy="98" r="28" fill="#141416" stroke="#141416" stroke-width="2" />
+
+    <!-- Gleaming White 5-Point Star in Center -->
+    <polygon points="100,78 105,89 117,91 108,99 110,111 100,105 90,111 92,99 83,91 95,89" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round" />
+  </g>
+
+  <!-- Hand-drawn Crosshatch Sparkles & Doodles -->
+  <g stroke="#141416" stroke-linecap="round">
+    <!-- Top-left sparkle -->
+    <line x1="36" y1="64" x2="48" y2="64" stroke-width="2.5" />
+    <line x1="42" y1="58" x2="42" y2="70" stroke-width="2.5" />
+    <!-- Bottom-right sparkle -->
+    <line x1="156" y1="136" x2="168" y2="136" stroke-width="2.5" />
+    <line x1="162" y1="130" x2="162" y2="142" stroke-width="2.5" />
+    <!-- Dots -->
+    <circle cx="166" cy="62" r="3" fill="#141416" />
+    <circle cx="34" cy="132" r="2.5" fill="#141416" />
+    <circle cx="100" cy="188" r="2.5" fill="#141416" />
+  </g>
+</svg>

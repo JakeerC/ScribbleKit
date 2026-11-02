@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 210" fill="none">
+  <path d="M36 28 L85 106 V176 H56 V192 H114 V176 H85 V106 L134 28 Z" transform="translate(6, 6)" fill="#141416" />
+  <path d="M36 24 L85 102 V172 H56 V188 H114 V172 H85 V102 L134 24 Z" fill="none" stroke="#141416" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+  <polygon points="46,38 85,100 124,38" fill="currentColor" stroke="#141416" stroke-width="2" />
+  <path d="M102 14 L80 62 L94 92" fill="none" stroke="#EA552B" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="118" cy="22" r="10" fill="#4CA96D" stroke="#141416" stroke-width="2.5" />
+  <circle cx="118" cy="22" r="4" fill="#EA552B" />
+  <path d="M142 56 C144 64 148 67 154 68 C148 69 144 72 142 80 C140 72 136 69 130 68 C136 67 140 64 142 56 Z" fill="#EE8DB9" />
+</svg>

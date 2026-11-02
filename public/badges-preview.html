@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScribbleKit — Badges & Achievements SVG Collection</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes wobbleSlow {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-3deg); }
+      75% { transform: rotate(3deg); }
+    }
+    @keyframes bounceSubtle {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+    }
+    @keyframes sparkleGlint {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.85; transform: scale(1.04); }
+    }
+    @keyframes rotateSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .anim-wobble { animation: wobbleSlow 3s ease-in-out infinite; }
+      .anim-bounce { animation: bounceSubtle 2.5s ease-in-out infinite; }
+      .anim-sparkle { animation: sparkleGlint 2.8s ease-in-out infinite; }
+      .anim-rotate { animation: rotateSlow 24s linear infinite; }
+      .anim-float { animation: floatSlow 3.5s ease-in-out infinite; }
+    }
+  </style>
+</head>
+<body class="bg-[#FAF6F0] text-[#141416] min-h-screen p-6 sm:p-12 font-sans antialiased">
+  <div class="max-w-7xl mx-auto space-y-10">
+    <!-- Header -->
+    <header class="text-center space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EA552B]/10 border border-[#EA552B]/30 text-[#EA552B] text-xs font-mono font-bold tracking-wider uppercase">
+        <span>🏆 Game & Quiz Gamification</span>
+      </div>
+      <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-[#141416]">
+        Badges & Achievements
+      </h1>
+      <p class="text-base sm:text-lg text-black/60 max-w-2xl mx-auto font-medium">
+        16 handcrafted vector illustrations inspired by vintage award rosettes, victory podium medals, shield crests, and arcade quiz achievements.
+      </p>
+
+      <!-- Category Filter Tabs -->
+      <div class="flex flex-wrap items-center justify-center gap-2 pt-2">
+        <button onclick="filterCategory('all')" class="tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-[#141416] text-white" data-cat="all">All (16)</button>
+        <button onclick="filterCategory('podium')" class="tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-black/5 hover:bg-black/10 text-[#141416]" data-cat="podium">Podium & Medals</button>
+        <button onclick="filterCategory('rosette')" class="tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-black/5 hover:bg-black/10 text-[#141416]" data-cat="rosette">Rosettes & Ribbons</button>
+        <button onclick="filterCategory('quiz')" class="tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-black/5 hover:bg-black/10 text-[#141416]" data-cat="quiz">Quizzes & Streaks</button>
+        <button onclick="filterCategory('monochrome')" class="tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-black/5 hover:bg-black/10 text-[#141416]" data-cat="monochrome">Monochrome Ink</button>
+      </div>
+    </header>
+
+    <!-- Asset Cards Grid (Matching reference card styling) -->
+    <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+  </div>
+
+  <script>
+    const assets = [
+      {
+        id: "badge-gold-champion-medal",
+        name: "Gold Champion 1st Place",
+        group: "podium",
+        anim: "anim-bounce",
+        desc: "Prestigious gold champion medal with bold number 1, radiant starburst rosette, and striped victory ribbons.",
+        file: "assets/scribbles/badges-achievements/badge-gold-champion-medal.svg"
+      },
+      {
+        id: "badge-silver-runner-up",
+        name: "Silver Runner-Up 2nd Place",
+        group: "podium",
+        anim: "anim-bounce",
+        desc: "Cool metallic silver medal with bold numeral 2, laurel branch garland, and twin cobalt ribbon tails.",
+        file: "assets/scribbles/badges-achievements/badge-silver-runner-up.svg"
+      },
+      {
+        id: "badge-bronze-third-place",
+        name: "Bronze Podium 3rd Place",
+        group: "podium",
+        anim: "anim-bounce",
+        desc: "Warm metallic bronze medallion with numeral 3 and tri-star crown, hung from a pinned suspension clasp.",
+        file: "assets/scribbles/badges-achievements/badge-bronze-third-place.svg"
+      },
+      {
+        id: "badge-trophy-cup-honor",
+        name: "Victory Trophy Cup Rosette",
+        group: "podium",
+        anim: "anim-wobble",
+        desc: "Regal golden victory goblet framed within a scalloped rosette disc with emerald green hanging sashes.",
+        file: "assets/scribbles/badges-achievements/badge-trophy-cup-honor.svg"
+      },
+      {
+        id: "badge-award-rosette-ribbon",
+        name: "Grand Honor Award Rosette",
+        group: "rosette",
+        anim: "anim-wobble",
+        desc: "Double-layered bubblegum pink and mint green fluted rosette with hanging notched tails for academic and gaming honors.",
+        file: "assets/scribbles/badges-achievements/badge-award-rosette-ribbon.svg"
+      },
+      {
+        id: "badge-quiz-master-star",
+        name: "Quiz Master Star Rosette",
+        group: "quiz",
+        anim: "anim-sparkle",
+        desc: "Vibrant persimmon orange rosette ribbon badge centered with an ink star for top trivia and quiz scorers.",
+        file: "assets/scribbles/badges-achievements/badge-quiz-master-star.svg"
+      },
+      {
+        id: "badge-brain-quiz-genius",
+        name: "Brainiac Quiz Genius Badge",
+        group: "quiz",
+        anim: "anim-sparkle",
+        desc: "Cerebral violet and pink rosette badge showcasing an energetic glowing brain icon for puzzle mastery.",
+        file: "assets/scribbles/badges-achievements/badge-brain-quiz-genius.svg"
+      },
+      {
+        id: "badge-shield-level-up",
+        name: "Heraldic Shield Level Up",
+        group: "rosette",
+        anim: "anim-wobble",
+        desc: "Stout heraldic knight shield badge in sky blue and parchment with center victory star and dual ribbon tails.",
+        file: "assets/scribbles/badges-achievements/badge-shield-level-up.svg"
+      },
+      {
+        id: "badge-streak-flame-medal",
+        name: "Daily Streak Flame Badge",
+        group: "quiz",
+        anim: "anim-bounce",
+        desc: "Blazing retro fire flame medallion commemorating continuous quiz streaks and hot win combos.",
+        file: "assets/scribbles/badges-achievements/badge-streak-flame-medal.svg"
+      },
+      {
+        id: "badge-bullseye-accuracy",
+        name: "Bullseye Accuracy 100% Badge",
+        group: "quiz",
+        anim: "anim-wobble",
+        desc: "Concentric red-and-white archery target medal with pierced arrow and reticle crosshairs for pin-point accuracy.",
+        file: "assets/scribbles/badges-achievements/badge-bullseye-accuracy.svg"
+      },
+      {
+        id: "badge-speedy-stopwatch",
+        name: "Speedy Chrono Lightning",
+        group: "quiz",
+        anim: "anim-rotate",
+        desc: "High-velocity stopwatch chronometer with ticking hand, motion speed lines, and lightning bolt for fast completion.",
+        file: "assets/scribbles/badges-achievements/badge-speedy-stopwatch.svg"
+      },
+      {
+        id: "badge-vip-crown-ribbon",
+        name: "VIP Crown Sovereign Ribbon",
+        group: "rosette",
+        anim: "anim-wobble",
+        desc: "12-fluted royal violet rosette badge with triple-jeweled gold crown emblem and flowing satin ribbon tails.",
+        file: "assets/scribbles/badges-achievements/badge-vip-crown-ribbon.svg"
+      },
+      {
+        id: "badge-diamond-gem-rank",
+        name: "Prestige Diamond Gem Rank",
+        group: "rosette",
+        anim: "anim-sparkle",
+        desc: "Octagonal gold-framed brooch medal displaying a multi-faceted brilliant diamond gemstone on midnight velvet.",
+        file: "assets/scribbles/badges-achievements/badge-diamond-gem-rank.svg"
+      },
+      {
+        id: "badge-game-controller-xp",
+        name: "Gamer Controller +100 XP",
+        group: "quiz",
+        anim: "anim-bounce",
+        desc: "16-point golden starburst arcade badge featuring a retro game controller emblem and +100 XP score tag.",
+        file: "assets/scribbles/badges-achievements/badge-game-controller-xp.svg"
+      },
+      {
+        id: "badge-checklist-perfection",
+        name: "Checklist Perfection 100%",
+        group: "quiz",
+        anim: "anim-bounce",
+        desc: "Mint floral scalloped award medal with bold hand-drawn verification checkmark and celebration confetti.",
+        file: "assets/scribbles/badges-achievements/badge-checklist-perfection.svg"
+      },
+      {
+        id: "badge-minimal-ink-medal",
+        name: "Monochrome Minimal Ink Star",
+        group: "monochrome",
+        anim: "anim-wobble",
+        desc: "High-contrast black-and-white ink rosette medal with striped ribbon tails, pinned clasp, and center star.",
+        file: "assets/scribbles/badges-achievements/badge-minimal-ink-medal.svg"
+      }
+    ];
+
+    const grid = document.getElementById('grid');
+
+    function renderCards(filter = 'all') {
+      grid.innerHTML = '';
+      const filtered = filter === 'all' ? assets : assets.filter(a => a.group === filter);
+      
+      filtered.forEach(asset => {
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-3xl p-6 border border-black/10 shadow-sm hover:shadow-xl hover:border-black/30 transition-all flex flex-col items-center justify-between group";
+        card.innerHTML = `
+          <div class="w-full flex items-center justify-between mb-4">
+            <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-black/40">ScribbleKit</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/5 text-black/60 font-semibold">200x200</span>
+          </div>
+          <div class="w-36 h-36 flex items-center justify-center p-2 my-2 transition-transform duration-300 group-hover:scale-110">
+            <img src="${asset.file}" alt="${asset.name}" class="w-full h-full object-contain ${asset.anim}" />
+          </div>
+          <div class="w-full text-center mt-4 pt-4 border-t border-black/5 space-y-1">
+            <h3 class="font-bold text-sm text-[#141416] tracking-tight">${asset.name}</h3>
+            <p class="text-[11px] text-black/55 leading-relaxed line-clamp-2">${asset.desc}</p>
+            <div class="pt-3 flex items-center justify-center gap-2">
+              <button onclick="copySnippet('${asset.id}')" class="px-3 py-1.5 rounded-xl bg-black/5 hover:bg-black hover:text-white text-[11px] font-bold transition-all">
+                Copy JSX
+              </button>
+              <a href="${asset.file}" download="${asset.id}.svg" class="px-3 py-1.5 rounded-xl bg-[#EA552B]/10 hover:bg-[#EA552B] hover:text-white text-[#EA552B] text-[11px] font-bold transition-all">
+                Download SVG
+              </a>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterCategory(cat) {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        if (btn.getAttribute('data-cat') === cat) {
+          btn.className = 'tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-[#141416] text-white';
+        } else {
+          btn.className = 'tab-btn px-4 py-2 rounded-full text-xs font-bold transition-all bg-black/5 hover:bg-black/10 text-[#141416]';
+        }
+      });
+      renderCards(cat);
+    }
+
+    function copySnippet(id) {
+      const code = `<Scribble name="${id}" size={120} animate="original" />`;
+      navigator.clipboard.writeText(code);
+      alert('Copied to clipboard:\n' + code);
+    }
+
+    renderCards('all');
+  </script>
+</body>
+</html>

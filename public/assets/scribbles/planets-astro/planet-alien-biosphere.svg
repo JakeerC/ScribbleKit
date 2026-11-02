@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Ring Back Segment -->
+  <path d="M48 94 C48 76 152 76 152 94" fill="none" stroke="#55BBDA" stroke-width="8" stroke-linecap="round" />
+  <path d="M48 94 C48 76 152 76 152 94" fill="none" stroke="#141416" stroke-width="3" stroke-linecap="round" />
+
+  <!-- Alien Planet Body -->
+  <circle cx="102" cy="102" r="44" fill="#141416" opacity="0.12" />
+  <circle cx="100" cy="100" r="44" fill="#0BDC85" stroke="#141416" stroke-width="3.5" />
+
+  <!-- Layered Atmospheric Contour Bands -->
+  <path d="M59 86 C75 92 125 92 141 86" fill="none" stroke="#059669" stroke-width="4" stroke-linecap="round" />
+  <path d="M60 100 C75 106 125 106 140 100" fill="none" stroke="#6EE7B7" stroke-width="4.5" stroke-linecap="round" />
+  <path d="M63 114 C78 120 122 120 137 114" fill="none" stroke="#047857" stroke-width="4" stroke-linecap="round" />
+
+  <!-- Ring Front Segment -->
+  <path d="M42 98 C42 122 158 122 158 98" fill="none" stroke="#55BBDA" stroke-width="8" stroke-linecap="round" />
+  <path d="M42 98 C42 122 158 122 158 98" fill="none" stroke="#141416" stroke-width="3.5" stroke-linecap="round" />
+
+  <!-- Companion Satellites -->
+  <g transform="rotate(-25 50 46)">
+    <ellipse cx="50" cy="46" rx="20" ry="6" fill="none" stroke="#141416" stroke-width="2" />
+    <circle cx="50" cy="46" r="13" fill="#2DD4BF" stroke="#141416" stroke-width="2.5" />
+  </g>
+  <circle cx="154" cy="148" r="12" fill="#A7F3D0" stroke="#141416" stroke-width="2.5" />
+  <circle cx="151" cy="145" r="2.5" fill="#047857" />
+
+  <!-- Accents -->
+  <path d="M166 42 Q166 48 172 48 Q166 48 166 54 Q166 48 160 48 Q166 48 166 42 Z" fill="#F7D046" stroke="#141416" stroke-width="1.5" />
+  <circle cx="44" cy="140" r="2.5" fill="#141416" />
+</svg>

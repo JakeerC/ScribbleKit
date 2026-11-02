@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <!-- ScribbleKit: Diamond Gem Rank Badge -->
+  <defs>
+    <filter id="soft-shadow-diamond" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#141416" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  <!-- Pinned Metal Brooch Bar at Top -->
+  <g filter="url(#soft-shadow-diamond)">
+    <polygon points="56,22 144,22 152,38 48,38" fill="#F7D046" stroke="#141416" stroke-width="3" stroke-linejoin="round" />
+    <line x1="64" y1="30" x2="136" y2="30" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" opacity="0.7" />
+    <!-- Center gem stud on bar -->
+    <rect x="94" y="25" width="12" height="10" rx="3" fill="#55BBDA" stroke="#141416" stroke-width="2" />
+  </g>
+
+  <!-- Hanging Twin Ribbon Tails -->
+  <g stroke="#141416" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Left Ribbon -->
+    <polygon points="72,38 52,120 74,108 92,120 86,38" fill="#55BBDA" stroke-width="3" />
+    <line x1="72" y1="44" x2="72" y2="104" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="4 3" opacity="0.8" />
+    <!-- Right Ribbon -->
+    <polygon points="114,38 108,120 126,108 148,120 128,38" fill="#0BDC85" stroke-width="3" />
+    <line x1="128" y1="44" x2="128" y2="104" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="4 3" opacity="0.8" />
+  </g>
+
+  <!-- Central Diamond Gem Crest Medallion -->
+  <g filter="url(#soft-shadow-diamond)">
+    <!-- Outer Shield / Disc Frame Shadow -->
+    <circle cx="100" cy="116" r="54" fill="#141416" opacity="0.12" />
+
+    <!-- Outer Octagonal Medallion Frame -->
+    <polygon points="80,66 120,66 150,86 154,126 130,158 100,168 70,158 46,126 50,86" fill="#FBE8DE" stroke="#141416" stroke-width="3.5" stroke-linejoin="round" />
+    
+    <!-- Inner Dark Circle Backplate for Contrast -->
+    <circle cx="100" cy="116" r="42" fill="#1E1B4B" stroke="#141416" stroke-width="2.8" />
+
+    <!-- Faceted Brilliant Diamond Gem -->
+    <g stroke="#141416" stroke-width="2.5" stroke-linejoin="round">
+      <!-- Gem Top Crown Facets -->
+      <polygon points="78,98 88,84 100,84 94,98" fill="#BAE6FD" />
+      <polygon points="94,98 100,84 112,84 106,98" fill="#E0F2FE" />
+      <polygon points="106,98 112,84 122,98" fill="#7DD3FC" />
+      <polygon points="78,98 88,84 82,98" fill="#38BDF8" />
+      <polygon points="112,84 122,98 118,98" fill="#0284C7" />
+      
+      <!-- Top Table / Center -->
+      <polygon points="88,84 112,84 106,98 94,98" fill="#FFFFFF" />
+
+      <!-- Gem Bottom Pavilion Facets -->
+      <polygon points="78,98 94,98 100,144" fill="#38BDF8" />
+      <polygon points="94,98 106,98 100,144" fill="#BAE6FD" />
+      <polygon points="106,98 122,98 100,144" fill="#0284C7" />
+    </g>
+
+    <!-- Diamond Gleam / Sparkle on Corner -->
+    <polygon points="88,84 86,76 90,80 96,78 92,84 96,88 90,86 86,92" fill="#FFFFFF" stroke="#141416" stroke-width="1.5" />
+    
+    <!-- Small Level Rank Indicator Stars at Medallion Top -->
+    <polygon points="100,69 102,73 106,73 103,75 104,79 100,77 96,79 97,75 94,73 98,73" fill="#F7D046" stroke="#141416" stroke-width="1.2" />
+  </g>
+
+  <!-- Ambient Glint & Doodles -->
+  <path d="M 32 64 Q 36 68 40 68 Q 36 68 32 72 Q 36 68 32 64" fill="#55BBDA" stroke="#141416" stroke-width="1.8" />
+  <path d="M 166 66 Q 170 70 174 70 Q 170 70 166 74 Q 170 70 166 66" fill="#F7D046" stroke="#141416" stroke-width="1.8" />
+  <circle cx="166" cy="144" r="3" fill="#0BDC85" stroke="#141416" stroke-width="1.8" />
+  <circle cx="34" cy="148" r="2.5" fill="#F7D046" stroke="#141416" stroke-width="1.5" />
+</svg>

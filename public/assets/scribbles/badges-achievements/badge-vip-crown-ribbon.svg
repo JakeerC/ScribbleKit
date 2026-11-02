@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <!-- ScribbleKit: VIP Crown Royal Ribbon Badge -->
+  <defs>
+    <filter id="soft-shadow-crown" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#141416" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  <!-- Flowing Royal Ribbon Tails -->
+  <g stroke="#141416" stroke-linecap="round" stroke-linejoin="round" filter="url(#soft-shadow-crown)">
+    <!-- Left Tail -->
+    <path d="M 76 112 L 48 178 L 70 166 L 90 178 L 86 112 Z" fill="#8B5CF6" stroke-width="3" />
+    <path d="M 68 122 L 58 166" stroke="#FBE8DE" stroke-width="2" stroke-dasharray="4 3" opacity="0.8" />
+    
+    <!-- Right Tail -->
+    <path d="M 114 112 L 110 178 L 130 166 L 152 178 L 124 112 Z" fill="#EE8DB9" stroke-width="3" />
+    <path d="M 132 122 L 142 166" stroke="#FBE8DE" stroke-width="2" stroke-dasharray="4 3" opacity="0.8" />
+  </g>
+
+  <!-- Scalloped Outer Rosette -->
+  <g filter="url(#soft-shadow-crown)">
+    <!-- Shadow Disc -->
+    <circle cx="100" cy="86" r="54" fill="#141416" opacity="0.12" />
+
+    <!-- 12-Fluted Rosette Petal Background -->
+    <path d="
+      M 100 30
+      C 108 30 114 36 122 38
+      C 129 40 137 38 143 44
+      C 149 50 148 58 152 66
+      C 156 73 162 78 162 86
+      C 162 94 156 99 152 106
+      C 148 114 149 122 143 128
+      C 137 134 129 132 122 134
+      C 114 136 108 142 100 142
+      C 92 142 86 136 78 134
+      C 71 132 63 134 57 128
+      C 51 122 52 114 48 106
+      C 44 99 38 94 38 86
+      C 38 78 44 73 48 66
+      C 52 58 51 50 57 44
+      C 63 38 71 40 78 38
+      C 86 36 92 30 100 30 Z"
+      fill="#8B5CF6" stroke="#141416" stroke-width="3.5" stroke-linejoin="round" />
+
+    <!-- Secondary Scalloped Inner Disc -->
+    <circle cx="100" cy="86" r="44" fill="#F7D046" stroke="#141416" stroke-width="3" />
+    
+    <!-- White Inner Core Circle -->
+    <circle cx="100" cy="86" r="34" fill="#FFFFFF" stroke="#141416" stroke-width="2.5" />
+
+    <!-- Dotted Circular Stitching -->
+    <circle cx="100" cy="86" r="30" fill="none" stroke="#141416" stroke-width="1.8" stroke-dasharray="3 3" opacity="0.5" />
+
+    <!-- 3-Peak Regal Gold Crown Emblem -->
+    <polygon points="76,102 74,74 88,86 100,68 112,86 126,74 124,102" fill="#F7D046" stroke="#141416" stroke-width="3" stroke-linejoin="round" />
+    <!-- Crown Base Band -->
+    <rect x="76" y="98" width="48" height="6" rx="2" fill="#EA552B" stroke="#141416" stroke-width="2" />
+
+    <!-- Crown Jewels on Peaks -->
+    <circle cx="74" cy="73" r="3.5" fill="#EE8DB9" stroke="#141416" stroke-width="1.8" />
+    <circle cx="100" cy="67" r="4.5" fill="#55BBDA" stroke="#141416" stroke-width="2" />
+    <circle cx="126" cy="73" r="3.5" fill="#0BDC85" stroke="#141416" stroke-width="1.8" />
+    
+    <!-- Center Jewel on Crown Base -->
+    <circle cx="100" cy="101" r="2" fill="#FFFFFF" />
+  </g>
+
+  <!-- Sparkles & Regal Shimmer -->
+  <g stroke="#141416" stroke-width="1.8" stroke-linejoin="round">
+    <path d="M 30 52 Q 34 56 38 56 Q 34 56 30 60 Q 34 56 30 52" fill="#F7D046" />
+    <path d="M 166 44 Q 170 48 174 48 Q 170 48 166 52 Q 170 48 166 44" fill="#EE8DB9" />
+    <circle cx="172" cy="98" r="3" fill="#F7D046" />
+    <circle cx="28" cy="110" r="2.5" fill="#55BBDA" />
+  </g>
+</svg>

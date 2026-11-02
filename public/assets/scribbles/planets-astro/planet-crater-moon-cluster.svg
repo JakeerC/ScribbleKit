@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Large Cratered Celestial Moon (Center Left) -->
+  <circle cx="91" cy="107" r="46" fill="#141416" opacity="0.12" />
+  <circle cx="88" cy="104" r="46" fill="#E2E8F0" stroke="#141416" stroke-width="3.5" />
+
+  <!-- Moon Craters with Hand-Drawn Inner Shadow Arcs -->
+  <circle cx="70" cy="88" r="9" fill="#CBD5E1" stroke="#141416" stroke-width="2.5" />
+  <path d="M64 88 A6 6 0 0 0 76 88" fill="none" stroke="#64748B" stroke-width="2" />
+  <circle cx="106" cy="94" r="12" fill="#CBD5E1" stroke="#141416" stroke-width="2.5" />
+  <path d="M98 94 A8 8 0 0 0 114 94" fill="none" stroke="#64748B" stroke-width="2" />
+  <circle cx="78" cy="122" r="7" fill="#CBD5E1" stroke="#141416" stroke-width="2.5" />
+  <circle cx="112" cy="126" r="6" fill="#CBD5E1" stroke="#141416" stroke-width="2.5" />
+
+  <!-- Companion Mini Saturn (Top Right) -->
+  <g transform="rotate(-20 150 54)">
+    <ellipse cx="150" cy="54" rx="22" ry="7" fill="none" stroke="#FBE8DE" stroke-width="4.5" />
+    <ellipse cx="150" cy="54" rx="22" ry="7" fill="none" stroke="#141416" stroke-width="2" />
+    <circle cx="150" cy="54" r="14" fill="#F7D046" stroke="#141416" stroke-width="2.5" />
+    <path d="M132 55 C136 60 164 60 168 55" fill="none" stroke="#141416" stroke-width="2" stroke-linecap="round" />
+  </g>
+
+  <!-- Orbiting Asteroids & Motion Trails -->
+  <polygon points="38,62 44,58 48,64 42,70 36,66" fill="#EA552B" stroke="#141416" stroke-width="2" stroke-linejoin="round" />
+  <path d="M28 56 L34 60" stroke="#141416" stroke-width="2" stroke-linecap="round" />
+  <polygon points="152,142 158,138 162,144 156,148 150,146" fill="#55BBDA" stroke="#141416" stroke-width="2" stroke-linejoin="round" />
+
+  <!-- Sparkles -->
+  <path d="M166 94 Q166 100 172 100 Q166 100 166 106 Q166 100 160 100 Q166 100 166 94 Z" fill="#F7D046" stroke="#141416" stroke-width="1.5" />
+  <circle cx="48" cy="146" r="2.5" fill="#141416" />
+</svg>

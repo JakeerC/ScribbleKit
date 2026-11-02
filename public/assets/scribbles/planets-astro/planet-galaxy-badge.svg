@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Midnight Space Badge Medallion -->
+  <circle cx="100" cy="100" r="88" fill="#14142B" stroke="#141416" stroke-width="4" />
+
+  <!-- Constellation Line & Sparkles -->
+  <path d="M140 50 L160 70 L145 92 L125 80" fill="none" stroke="#FDE68A" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.85" />
+  <path d="M140 45 Q140 50 145 50 Q140 50 140 55 Q140 50 135 50 Z" fill="#F7D046" />
+  <path d="M160 65 Q160 70 165 70 Q160 70 160 75 Q160 70 155 70 Z" fill="#F7D046" />
+  <path d="M145 87 Q145 92 150 92 Q145 92 145 97 Q145 92 140 92 Z" fill="#F7D046" />
+  <path d="M125 75 Q125 80 130 80 Q125 80 125 85 Q125 80 120 80 Z" fill="#F7D046" />
+
+  <!-- Pink Striped Gas Giant -->
+  <circle cx="82" cy="80" r="38" fill="#EE8DB9" stroke="#141416" stroke-width="3.5" />
+  <path d="M48 72 C62 76 102 76 116 72" fill="none" stroke="#DB2777" stroke-width="4.5" stroke-linecap="round" />
+  <path d="M50 88 C65 92 98 92 114 88" fill="none" stroke="#F472B6" stroke-width="4.5" stroke-linecap="round" />
+
+  <!-- Turquoise Ringed Satellite Planet -->
+  <g transform="rotate(-15 138 130)">
+    <ellipse cx="138" cy="130" rx="28" ry="8" fill="none" stroke="#FBE8DE" stroke-width="4" />
+    <ellipse cx="138" cy="130" rx="28" ry="8" fill="none" stroke="#141416" stroke-width="2.5" />
+    <circle cx="138" cy="130" r="18" fill="#2DD4BF" stroke="#141416" stroke-width="3" />
+    <path d="M114 131 C120 138 156 138 162 131" fill="none" stroke="#141416" stroke-width="2.5" stroke-linecap="round" />
+  </g>
+
+  <!-- Golden Mini Sun/Moon -->
+  <circle cx="56" cy="142" r="12" fill="#F7D046" stroke="#141416" stroke-width="2.5" />
+
+  <!-- Stardust Particles -->
+  <circle cx="40" cy="100" r="2" fill="#FFFFFF" />
+  <circle cx="95" cy="160" r="2.5" fill="#F7D046" />
+</svg>

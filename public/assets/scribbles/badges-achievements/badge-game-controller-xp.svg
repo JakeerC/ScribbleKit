@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <!-- ScribbleKit: Game Controller XP Badge -->
+  <defs>
+    <filter id="soft-shadow-gamer" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#141416" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  <!-- Hanging Twin Notched Ribbons -->
+  <g stroke="#141416" stroke-linecap="round" stroke-linejoin="round" filter="url(#soft-shadow-gamer)">
+    <!-- Left Ribbon -->
+    <polygon points="76,118 48,180 72,168 92,180 88,118" fill="#EA552B" stroke-width="3" />
+    <line x1="68" y1="126" x2="68" y2="168" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="4 3" opacity="0.8" />
+    <!-- Right Ribbon -->
+    <polygon points="112,118 108,180 128,168 152,180 124,118" fill="#8B5CF6" stroke-width="3" />
+    <line x1="132" y1="126" x2="132" y2="168" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="4 3" opacity="0.8" />
+  </g>
+
+  <!-- Starburst Gamer Medallion -->
+  <g filter="url(#soft-shadow-gamer)">
+    <!-- Medallion Shadow Disc -->
+    <circle cx="100" cy="88" r="54" fill="#141416" opacity="0.12" />
+
+    <!-- 16-point Starburst Medallion Rim -->
+    <path d="
+      M 100 32 L 108 42 L 122 36 L 126 48 L 140 46 L 140 60 L 154 62 L 148 76 L 160 82 L 152 94 L 160 104 L 148 112 L 152 126 L 138 128 L 136 142 L 122 138 L 116 150 L 104 144 L 96 150 L 90 138 L 76 142 L 74 128 L 60 126 L 64 112 L 52 104 L 60 94 L 52 82 L 64 76 L 58 62 L 72 60 L 72 46 L 86 48 L 90 36 Z"
+      fill="#F7D046" stroke="#141416" stroke-width="3.5" stroke-linejoin="round" />
+
+    <!-- Inner Circle Backing -->
+    <circle cx="100" cy="88" r="44" fill="#1E1B4B" stroke="#141416" stroke-width="3" />
+
+    <!-- Retro Gamepad Silhouette -->
+    <!-- Controller Body -->
+    <path d="
+      M 74 74
+      C 62 74 58 92 62 104
+      C 64 110 72 112 78 106
+      L 86 98
+      L 114 98
+      L 122 106
+      C 128 112 136 110 138 104
+      C 142 92 138 74 126 74
+      Z"
+      fill="#55BBDA" stroke="#141416" stroke-width="2.8" stroke-linejoin="round" />
+
+    <!-- Directional Pad (D-pad Cross) -->
+    <g fill="#141416">
+      <rect x="74" y="82" width="6" height="16" rx="1.5" />
+      <rect x="69" y="87" width="16" height="6" rx="1.5" />
+    </g>
+
+    <!-- Action Buttons (A & B) -->
+    <circle cx="120" cy="94" r="3.5" fill="#EA552B" stroke="#141416" stroke-width="1.5" />
+    <circle cx="128" cy="85" r="3.5" fill="#F7D046" stroke="#141416" stroke-width="1.5" />
+
+    <!-- Start / Select Slits -->
+    <line x1="94" y1="92" x2="98" y2="92" stroke="#141416" stroke-width="1.8" stroke-linecap="round" />
+    <line x1="102" y1="92" x2="106" y2="92" stroke="#141416" stroke-width="1.8" stroke-linecap="round" />
+
+    <!-- XP / Floating Score Pill at Top -->
+    <rect x="80" y="58" width="40" height="14" rx="7" fill="#0BDC85" stroke="#141416" stroke-width="2" />
+    <text x="100" y="69" font-family="'Space Grotesk', system-ui, sans-serif" font-size="10" font-weight="900" fill="#141416" text-anchor="middle">+100</text>
+  </g>
+
+  <!-- Sparkles & Energy Burst Doodles -->
+  <g stroke="#141416" stroke-width="1.8" stroke-linejoin="round">
+    <path d="M 34 50 Q 38 54 42 54 Q 38 54 34 58 Q 38 54 34 50" fill="#F7D046" />
+    <path d="M 164 54 Q 168 58 172 58 Q 168 58 164 62 Q 168 58 164 54" fill="#0BDC85" />
+    <circle cx="170" cy="120" r="3" fill="#EA552B" />
+    <circle cx="30" cy="116" r="2.5" fill="#8B5CF6" />
+  </g>
+</svg>

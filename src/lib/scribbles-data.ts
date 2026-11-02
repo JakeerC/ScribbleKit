@@ -70,13 +70,37 @@ export const CATEGORIES = [
     "id": "all",
     "name": "All Scribbles",
     "icon": "Sparkles",
-    "count": 155
+    "count": 310
+  },
+  {
+    "id": "badges-achievements",
+    "name": "Badges & Achievements",
+    "icon": "Award",
+    "count": 16
+  },
+  {
+    "id": "planets-astro",
+    "name": "Planets & Astro",
+    "icon": "Orbit",
+    "count": 16
+  },
+  {
+    "id": "algorithms-data-structures",
+    "name": "Algorithms & Data Structures",
+    "icon": "Binary",
+    "count": 30
+  },
+  {
+    "id": "system-design",
+    "name": "System Design",
+    "icon": "Server",
+    "count": 30
   },
   {
     "id": "funky-complex",
     "name": "Funky & Colorful",
     "icon": "Palette",
-    "count": 39
+    "count": 80
   },
   {
     "id": "underlines",
@@ -112,13 +136,13 @@ export const CATEGORIES = [
     "id": "abstract-doodles",
     "name": "Abstract & Doodles",
     "icon": "Zap",
-    "count": 16
+    "count": 28
   },
   {
     "id": "accents-emphasis",
     "name": "Accents & Emphasis",
     "icon": "Check",
-    "count": 14
+    "count": 24
   },
   {
     "id": "signature-shapes",
@@ -129,6 +153,665 @@ export const CATEGORIES = [
 ];
 
 export const SCRIBBLES_ASSETS: ScribbleAsset[] = [
+  {
+    "id": "badge-award-rosette-ribbon",
+    "name": "Grand Honor Award Rosette",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "rosette",
+      "award",
+      "honor",
+      "ribbon",
+      "contest",
+      "medal",
+      "prestige"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#EE8DB9",
+    "description": "Double-layered bubblegum pink and mint green fluted rosette with hanging notched tails for academic and gaming honors.",
+    "rawSvg": "<!-- Cascading Rosette Tail Ribbons (Back Layer) -->\n  <!-- Left Tail Ribbon -->\n  <path d=\"M82 120 L66 182 L86 172 L98 182 L96 122 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M78 132 L72 165\" stroke=\"#FFFFFF\" stroke-width=\"2.5\" stroke-linecap=\"round\" opacity=\"0.6\" />\n\n  <!-- Right Tail Ribbon -->\n  <path d=\"M118 120 L134 182 L114 172 L102 182 L104 122 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M122 132 L128 165\" stroke=\"#FFFFFF\" stroke-width=\"2.5\" stroke-linecap=\"round\" opacity=\"0.6\" />\n\n  <!-- Drop Shadow for Rosette Disc -->\n  <circle cx=\"102\" cy=\"85\" r=\"48\" fill=\"#141416\" opacity=\"0.12\" />\n\n  <!-- Scalloped 16-Petal Award Rosette (Sky Blue) -->\n  <path d=\"M100 35 \n           Q106 35 110 38 Q116 38 120 42 Q125 44 128 49 Q133 53 135 58 Q139 63 140 69 Q143 75 142 81 Q144 87 141 93 Q142 99 138 104 Q137 110 132 114 Q129 119 123 122 Q119 126 113 127 Q108 130 102 131 Q96 131 90 129 Q85 128 80 124 Q75 122 71 117 Q66 114 64 109 Q60 105 60 99 Q58 93 60 87 Q59 81 62 75 Q63 69 67 64 Q69 58 74 54 Q77 49 82 46 Q86 42 92 40 Q95 35 100 35 Z\" \n        fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n\n  <!-- Inner Concentric Navy Accent Ring -->\n  <circle cx=\"100\" cy=\"83\" r=\"36\" fill=\"#1E1B4B\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n  <!-- Center Gold Coin Disc -->\n  <circle cx=\"100\" cy=\"83\" r=\"28\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n  <!-- Embossed 3D Gold Bars / Ingots Doodle -->\n  <!-- Top Bar -->\n  <polygon points=\"86,84 104,74 114,79 96,89\" fill=\"#FDE68A\" stroke=\"#141416\" stroke-width=\"2\" stroke-linejoin=\"round\" />\n  <polygon points=\"96,89 114,79 114,84 96,94\" fill=\"#D97706\" stroke=\"#141416\" stroke-width=\"2\" stroke-linejoin=\"round\" />\n  <!-- Bottom Bar -->\n  <polygon points=\"90,92 108,82 118,87 100,97\" fill=\"#FFFBEB\" stroke=\"#141416\" stroke-width=\"2\" stroke-linejoin=\"round\" />\n  <polygon points=\"100,97 118,87 118,92 100,102\" fill=\"#D97706\" stroke=\"#141416\" stroke-width=\"2\" stroke-linejoin=\"round\" />\n\n  <!-- Winner Sparkles -->\n  <path d=\"M158 52 Q158 58 164 58 Q158 58 158 64 Q158 58 152 58 Q158 58 158 52 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <path d=\"M42 68 L42 76 M38 72 L46 72\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n  <circle cx=\"152\" cy=\"116\" r=\"2.5\" fill=\"#141416\" />"
+  },
+  {
+    "id": "badge-brain-quiz-genius",
+    "name": "Brainiac Quiz Genius Badge",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "brain",
+      "genius",
+      "iq",
+      "trivia",
+      "smart",
+      "quiz",
+      "knowledge"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#8B5CF6",
+    "description": "Cerebral violet and pink rosette badge showcasing an energetic glowing brain icon for puzzle mastery.",
+    "rawSvg": "<!-- Cascading Tail Ribbons -->\n  <path d=\"M82 120 L66 182 L86 172 L98 182 L96 122 Z\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M118 120 L134 182 L114 172 L102 182 L104 122 Z\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n\n  <!-- Drop Shadow -->\n  <circle cx=\"102\" cy=\"85\" r=\"46\" fill=\"#141416\" opacity=\"0.12\" />\n\n  <!-- Scalloped 12-Petal Flower Rosette (ScribbleKit Mint) -->\n  <path d=\"M100 36 \n           Q108 36 114 41 Q122 40 126 47 Q134 49 136 57 Q142 62 142 70 Q146 78 143 85 Q145 93 140 99 Q140 107 133 112 Q130 119 122 122 Q117 128 109 129 Q103 133 96 133 Q88 132 82 127 Q75 126 70 120 Q64 117 62 110 Q57 105 58 97 Q55 90 58 83 Q56 75 61 69 Q62 61 69 57 Q72 49 80 47 Q84 40 92 41 Q97 36 100 36 Z\" \n        fill=\"#0BDC85\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n\n  <!-- Inner Dark Blue Contrast Coin -->\n  <circle cx=\"100\" cy=\"84\" r=\"35\" fill=\"#14142B\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"100\" cy=\"84\" r=\"30\" fill=\"#FFFBEB\" stroke=\"#141416\" stroke-width=\"2\" />\n\n  <!-- Genius Lightbulb / Idea Doodle -->\n  <!-- Bulb Glass Outline -->\n  <path d=\"M92 88 C88 84 86 78 88 72 C91 66 97 62 103 62 C109 62 115 66 117 72 C119 78 117 84 113 88 L111 93 L94 93 Z\" \n        fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n  <!-- Bulb Screw Base -->\n  <rect x=\"94\" y=\"93\" width=\"17\" height=\"4\" rx=\"1.5\" fill=\"#E2E8F0\" stroke=\"#141416\" stroke-width=\"1.8\" />\n  <rect x=\"96\" y=\"97\" width=\"13\" height=\"3\" rx=\"1\" fill=\"#94A3B8\" stroke=\"#141416\" stroke-width=\"1.5\" />\n\n  <!-- Filament / Glow Doodle Inside Bulb -->\n  <path d=\"M98 76 Q102 70 107 76\" fill=\"none\" stroke=\"#EA552B\" stroke-width=\"2\" stroke-linecap=\"round\" />\n\n  <!-- Genius Radiating Idea Rays -->\n  <line x1=\"102\" y1=\"53\" x2=\"102\" y2=\"57\" stroke=\"#EA552B\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n  <line x1=\"82\" y1=\"62\" x2=\"85\" y2=\"65\" stroke=\"#EA552B\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n  <line x1=\"123\" y1=\"62\" x2=\"120\" y2=\"65\" stroke=\"#EA552B\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n\n  <!-- Confetti Sparkles -->\n  <path d=\"M156 50 Q156 56 162 56 Q156 56 156 62 Q156 56 150 56 Q156 56 156 50 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <circle cx=\"44\" cy=\"62\" r=\"2.5\" fill=\"#141416\" />"
+  },
+  {
+    "id": "badge-bronze-third-place",
+    "name": "Bronze Podium 3rd Place Medal",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "bronze",
+      "third-place",
+      "podium",
+      "medal",
+      "award",
+      "ribbon"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#D97706",
+    "description": "Warm metallic bronze medallion with numeral 3 and tri-star crown, hung from a pinned suspension clasp.",
+    "rawSvg": "<!-- Warm Tri-Fold Ribbon -->\n  <path d=\"M72 16 L52 78 L76 78 L90 26 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M60 34 L70 72\" stroke=\"#FBE8DE\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <path d=\"M128 16 L148 78 L124 78 L110 26 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M140 34 L130 72\" stroke=\"#FBE8DE\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <polygon points=\"84,68 116,68 106,86 94,86\" fill=\"#B91C1C\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n\n  <!-- Bronze Buckle Loop -->\n  <rect x=\"88\" y=\"82\" width=\"24\" height=\"9\" rx=\"3\" fill=\"#D97706\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n  <!-- Bronze Medallion Base & Shadow -->\n  <circle cx=\"102\" cy=\"136\" r=\"46\" fill=\"#141416\" opacity=\"0.12\" />\n  <circle cx=\"100\" cy=\"133\" r=\"46\" fill=\"#D97706\" stroke=\"#141416\" stroke-width=\"3.5\" />\n\n  <!-- Inner Warm Amber Recessed Rim -->\n  <circle cx=\"100\" cy=\"133\" r=\"38\" fill=\"#FDE68A\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"100\" cy=\"133\" r=\"32\" fill=\"#D97706\" stroke=\"#141416\" stroke-width=\"1.8\" stroke-dasharray=\"3 3\" />\n\n  <!-- Stylized Numeral \"3\" (Bronze Podium) -->\n  <path d=\"M89 113 H111 L99 126 C105 126 112 130 112 138 C112 145 106 149 99 149 C93 149 87 145 87 141\" \n        fill=\"none\" stroke=\"#141416\" stroke-width=\"5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n\n  <!-- Bronze Metallic Highlight -->\n  <path d=\"M82 120 Q86 114 92 112\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n\n  <!-- Sparkles -->\n  <path d=\"M156 102 Q156 108 162 108 Q156 108 156 114 Q156 108 150 108 Q156 108 156 102 Z\" fill=\"#D97706\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <circle cx=\"44\" cy=\"120\" r=\"2.5\" fill=\"#141416\" />"
+  },
+  {
+    "id": "badge-bullseye-accuracy",
+    "name": "Bullseye Accuracy 100% Badge",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "bullseye",
+      "target",
+      "accuracy",
+      "precision",
+      "arrow",
+      "quiz",
+      "perfect"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Concentric red-and-white archery target medal with pierced arrow and reticle crosshairs for pin-point quiz accuracy.",
+    "rawSvg": "<!-- ScribbleKit: Bullseye Accuracy Badge -->\n  <defs>\n    <filter id=\"soft-shadow-bullseye\" x=\"-10%\" y=\"-10%\" width=\"125%\" height=\"125%\">\n      <feDropShadow dx=\"0\" dy=\"4\" stdDeviation=\"3\" flood-color=\"#141416\" flood-opacity=\"0.12\" />\n    </filter>\n  </defs>\n\n  <!-- Pinned Bar / Clasp at Top -->\n  <g filter=\"url(#soft-shadow-bullseye)\">\n    <!-- Clasp shadow -->\n    <rect x=\"52\" y=\"22\" width=\"96\" height=\"20\" rx=\"6\" fill=\"#141416\" opacity=\"0.1\" />\n    <!-- Clasp body -->\n    <rect x=\"50\" y=\"20\" width=\"100\" height=\"20\" rx=\"6\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n    <!-- Clasp pin highlight & detail -->\n    <rect x=\"56\" y=\"25\" width=\"88\" height=\"4\" rx=\"2\" fill=\"#FFFFFF\" opacity=\"0.6\" />\n    <line x1=\"100\" y1=\"20\" x2=\"100\" y2=\"40\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-dasharray=\"3 3\" />\n  </g>\n\n  <!-- Hanging Ribbon Straps -->\n  <g stroke=\"#141416\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n    <!-- Left Ribbon Tail -->\n    <polygon points=\"68,38 52,106 68,98 84,106 80,38\" fill=\"#EA552B\" stroke-width=\"3\" />\n    <line x1=\"68\" y1=\"42\" x2=\"68\" y2=\"92\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-dasharray=\"4 3\" opacity=\"0.8\" />\n    <!-- Right Ribbon Tail -->\n    <polygon points=\"120,38 116,106 132,98 148,106 132,38\" fill=\"#F7D046\" stroke-width=\"3\" />\n    <line x1=\"132\" y1=\"42\" x2=\"132\" y2=\"92\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-dasharray=\"4 3\" opacity=\"0.8\" />\n  </g>\n\n  <!-- Circular Target Medallion -->\n  <g filter=\"url(#soft-shadow-bullseye)\">\n    <!-- Outer Medallion Bezel Shadow -->\n    <circle cx=\"100\" cy=\"118\" r=\"54\" fill=\"#141416\" opacity=\"0.12\" />\n    \n    <!-- Scalloped Outer Disc -->\n    <circle cx=\"100\" cy=\"116\" r=\"52\" fill=\"#FBE8DE\" stroke=\"#141416\" stroke-width=\"3.5\" />\n    \n    <!-- Outer Red Ring -->\n    <circle cx=\"100\" cy=\"116\" r=\"42\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" />\n    \n    <!-- White Middle Ring -->\n    <circle cx=\"100\" cy=\"116\" r=\"30\" fill=\"#FFFFFF\" stroke=\"#141416\" stroke-width=\"2.5\" />\n    \n    <!-- Bullseye Center Circle -->\n    <circle cx=\"100\" cy=\"116\" r=\"18\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2.5\" />\n    \n    <!-- Center Hit Sparkle / Star Core -->\n    <polygon points=\"100,106 103,113 110,116 103,119 100,126 97,119 90,116 97,113\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2\" />\n    \n    <!-- Crosshairs Reticle Lines -->\n    <line x1=\"100\" y1=\"70\" x2=\"100\" y2=\"78\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n    <line x1=\"100\" y1=\"154\" x2=\"100\" y2=\"162\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n    <line x1=\"54\" y1=\"116\" x2=\"62\" y2=\"116\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n    <line x1=\"138\" y1=\"116\" x2=\"146\" y2=\"116\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n    \n    <!-- Target Reflection / Highlight Arc -->\n    <path d=\"M 72 94 A 38 38 0 0 1 128 94\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"3\" stroke-linecap=\"round\" opacity=\"0.5\" />\n  </g>\n\n  <!-- Accuracy Arrow Feather Feathering into Bullseye -->\n  <g stroke=\"#141416\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n    <!-- Arrow Shaft from top-right -->\n    <line x1=\"146\" y1=\"70\" x2=\"106\" y2=\"110\" stroke=\"#141416\" stroke-width=\"3.5\" />\n    <line x1=\"145\" y1=\"71\" x2=\"108\" y2=\"108\" stroke=\"#FFFFFF\" stroke-width=\"1.5\" />\n    <!-- Arrow Fletching Fins -->\n    <polygon points=\"146,70 156,66 150,78 140,76\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"2\" />\n    <polygon points=\"146,70 148,58 136,64 140,76\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2\" />\n  </g>\n\n  <!-- Retro Sparkles & Pop Dots -->\n  <path d=\"M 36 78 Q 40 82 44 82 Q 40 82 36 86 Q 40 82 36 78\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.8\" />\n  <circle cx=\"166\" cy=\"132\" r=\"3\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"1.8\" />\n  <circle cx=\"34\" cy=\"142\" r=\"2.5\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <path d=\"M 160 48 Q 163 52 167 52 Q 163 52 160 56 Q 163 52 160 48\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"1.8\" />"
+  },
+  {
+    "id": "badge-checklist-perfection",
+    "name": "Checklist Perfection 100% Medal",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "check",
+      "perfection",
+      "100%",
+      "quiz",
+      "complete",
+      "score",
+      "verified"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#4CA96D",
+    "description": "Mint floral scalloped award medal with bold hand-drawn verification checkmark and celebration confetti.",
+    "rawSvg": "<!-- ScribbleKit: Checklist Perfection 100% Badge -->\n  <defs>\n    <filter id=\"soft-shadow-perfect\" x=\"-10%\" y=\"-10%\" width=\"125%\" height=\"125%\">\n      <feDropShadow dx=\"0\" dy=\"4\" stdDeviation=\"3\" flood-color=\"#141416\" flood-opacity=\"0.12\" />\n    </filter>\n  </defs>\n\n  <!-- Neck Ribbon Loop at Top -->\n  <g stroke=\"#141416\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n    <path d=\"M 68 20 L 86 64 L 114 64 L 132 20 Z\" fill=\"#4CA96D\" stroke-width=\"3\" />\n    <path d=\"M 84 20 L 96 64 L 104 64 L 116 20 Z\" fill=\"#0BDC85\" stroke-width=\"2.5\" />\n    <!-- White stitching accents -->\n    <line x1=\"74\" y1=\"22\" x2=\"89\" y2=\"60\" stroke=\"#FFFFFF\" stroke-width=\"1.8\" stroke-dasharray=\"3 3\" opacity=\"0.8\" />\n    <line x1=\"126\" y1=\"22\" x2=\"111\" y2=\"60\" stroke=\"#FFFFFF\" stroke-width=\"1.8\" stroke-dasharray=\"3 3\" opacity=\"0.8\" />\n  </g>\n\n  <!-- Hanging Twin Ribbon Tails Below -->\n  <g stroke=\"#141416\" stroke-linecap=\"round\" stroke-linejoin=\"round\" filter=\"url(#soft-shadow-perfect)\">\n    <!-- Left Ribbon Tail -->\n    <polygon points=\"78,140 52,186 76,176 96,186 92,140\" fill=\"#0BDC85\" stroke-width=\"3\" />\n    <line x1=\"72\" y1=\"146\" x2=\"74\" y2=\"176\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-dasharray=\"3 3\" opacity=\"0.8\" />\n    <!-- Right Ribbon Tail -->\n    <polygon points=\"108,140 104,186 124,176 148,186 122,140\" fill=\"#F7D046\" stroke-width=\"3\" />\n    <line x1=\"126\" y1=\"146\" x2=\"126\" y2=\"176\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-dasharray=\"3 3\" opacity=\"0.8\" />\n  </g>\n\n  <!-- Central Circular Rosette Medal -->\n  <g filter=\"url(#soft-shadow-perfect)\">\n    <!-- Drop Shadow Disc -->\n    <circle cx=\"100\" cy=\"106\" r=\"54\" fill=\"#141416\" opacity=\"0.12\" />\n\n    <!-- Scalloped Outer Floral Border (16 scallops) -->\n    <path d=\"\n      M 100 52\n      A 7 7 0 0 1 114 54\n      A 7 7 0 0 1 127 61\n      A 7 7 0 0 1 138 72\n      A 7 7 0 0 1 146 85\n      A 7 7 0 0 1 150 99\n      A 7 7 0 0 1 148 114\n      A 7 7 0 0 1 141 127\n      A 7 7 0 0 1 130 137\n      A 7 7 0 0 1 117 145\n      A 7 7 0 0 1 102 148\n      A 7 7 0 0 1 87 146\n      A 7 7 0 0 1 73 139\n      A 7 7 0 0 1 63 129\n      A 7 7 0 0 1 55 116\n      A 7 7 0 0 1 52 101\n      A 7 7 0 0 1 54 87\n      A 7 7 0 0 1 62 74\n      A 7 7 0 0 1 73 63\n      A 7 7 0 0 1 86 55\n      A 7 7 0 0 1 100 52 Z\"\n      fill=\"#4CA96D\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n\n    <!-- Sunny Gold Inner Disc -->\n    <circle cx=\"100\" cy=\"106\" r=\"44\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" />\n    \n    <!-- Crisp White Center Emblem Disc -->\n    <circle cx=\"100\" cy=\"106\" r=\"35\" fill=\"#FFFFFF\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n    <!-- Dotted Ring -->\n    <circle cx=\"100\" cy=\"106\" r=\"30\" fill=\"none\" stroke=\"#0BDC85\" stroke-width=\"2\" stroke-dasharray=\"3 3\" />\n\n    <!-- Prominent Hand-drawn Green Checkmark ✓ -->\n    <path d=\"M 80 106 L 94 120 L 122 88\" fill=\"none\" stroke=\"#0BDC85\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n    <path d=\"M 80 106 L 94 120 L 122 88\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n\n    <!-- 100% Star Accents around Check -->\n    <polygon points=\"100,77 102,81 106,81 103,83 104,87 100,85 96,87 97,83 94,81 98,81\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.2\" stroke-linejoin=\"round\" />\n  </g>\n\n  <!-- Celebration Confetti / Sparkles -->\n  <path d=\"M 32 86 Q 36 90 40 90 Q 36 90 32 94 Q 36 90 32 86\" fill=\"#0BDC85\" stroke=\"#141416\" stroke-width=\"1.8\" />\n  <path d=\"M 166 76 Q 170 80 174 80 Q 170 80 166 84 Q 170 80 166 76\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.8\" />\n  <circle cx=\"168\" cy=\"136\" r=\"3\" fill=\"#4CA96D\" stroke=\"#141416\" stroke-width=\"1.8\" />\n  <circle cx=\"34\" cy=\"136\" r=\"2.5\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"1.5\" />"
+  },
+  {
+    "id": "badge-diamond-gem-rank",
+    "name": "Prestige Diamond Gem Rank",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "diamond",
+      "gem",
+      "rank",
+      "prestige",
+      "crystal",
+      "tier",
+      "elite"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#55BBDA",
+    "description": "Octagonal gold-framed brooch medal displaying a multi-faceted brilliant diamond gemstone on midnight velvet.",
+    "rawSvg": "<!-- ScribbleKit: Diamond Gem Rank Badge -->\n  <defs>\n    <filter id=\"soft-shadow-diamond\" x=\"-10%\" y=\"-10%\" width=\"125%\" height=\"125%\">\n      <feDropShadow dx=\"0\" dy=\"4\" stdDeviation=\"3\" flood-color=\"#141416\" flood-opacity=\"0.12\" />\n    </filter>\n  </defs>\n\n  <!-- Pinned Metal Brooch Bar at Top -->\n  <g filter=\"url(#soft-shadow-diamond)\">\n    <polygon points=\"56,22 144,22 152,38 48,38\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n    <line x1=\"64\" y1=\"30\" x2=\"136\" y2=\"30\" stroke=\"#FFFFFF\" stroke-width=\"2.5\" stroke-linecap=\"round\" opacity=\"0.7\" />\n    <!-- Center gem stud on bar -->\n    <rect x=\"94\" y=\"25\" width=\"12\" height=\"10\" rx=\"3\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"2\" />\n  </g>\n\n  <!-- Hanging Twin Ribbon Tails -->\n  <g stroke=\"#141416\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n    <!-- Left Ribbon -->\n    <polygon points=\"72,38 52,120 74,108 92,120 86,38\" fill=\"#55BBDA\" stroke-width=\"3\" />\n    <line x1=\"72\" y1=\"44\" x2=\"72\" y2=\"104\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-dasharray=\"4 3\" opacity=\"0.8\" />\n    <!-- Right Ribbon -->\n    <polygon points=\"114,38 108,120 126,108 148,120 128,38\" fill=\"#0BDC85\" stroke-width=\"3\" />\n    <line x1=\"128\" y1=\"44\" x2=\"128\" y2=\"104\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-dasharray=\"4 3\" opacity=\"0.8\" />\n  </g>\n\n  <!-- Central Diamond Gem Crest Medallion -->\n  <g filter=\"url(#soft-shadow-diamond)\">\n    <!-- Outer Shield / Disc Frame Shadow -->\n    <circle cx=\"100\" cy=\"116\" r=\"54\" fill=\"#141416\" opacity=\"0.12\" />\n\n    <!-- Outer Octagonal Medallion Frame -->\n    <polygon points=\"80,66 120,66 150,86 154,126 130,158 100,168 70,158 46,126 50,86\" fill=\"#FBE8DE\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n    \n    <!-- Inner Dark Circle Backplate for Contrast -->\n    <circle cx=\"100\" cy=\"116\" r=\"42\" fill=\"#1E1B4B\" stroke=\"#141416\" stroke-width=\"2.8\" />\n\n    <!-- Faceted Brilliant Diamond Gem -->\n    <g stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\">\n      <!-- Gem Top Crown Facets -->\n      <polygon points=\"78,98 88,84 100,84 94,98\" fill=\"#BAE6FD\" />\n      <polygon points=\"94,98 100,84 112,84 106,98\" fill=\"#E0F2FE\" />\n      <polygon points=\"106,98 112,84 122,98\" fill=\"#7DD3FC\" />\n      <polygon points=\"78,98 88,84 82,98\" fill=\"#38BDF8\" />\n      <polygon points=\"112,84 122,98 118,98\" fill=\"#0284C7\" />\n      \n      <!-- Top Table / Center -->\n      <polygon points=\"88,84 112,84 106,98 94,98\" fill=\"#FFFFFF\" />\n\n      <!-- Gem Bottom Pavilion Facets -->\n      <polygon points=\"78,98 94,98 100,144\" fill=\"#38BDF8\" />\n      <polygon points=\"94,98 106,98 100,144\" fill=\"#BAE6FD\" />\n      <polygon points=\"106,98 122,98 100,144\" fill=\"#0284C7\" />\n    </g>\n\n    <!-- Diamond Gleam / Sparkle on Corner -->\n    <polygon points=\"88,84 86,76 90,80 96,78 92,84 96,88 90,86 86,92\" fill=\"#FFFFFF\" stroke=\"#141416\" stroke-width=\"1.5\" />\n    \n    <!-- Small Level Rank Indicator Stars at Medallion Top -->\n    <polygon points=\"100,69 102,73 106,73 103,75 104,79 100,77 96,79 97,75 94,73 98,73\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.2\" />\n  </g>\n\n  <!-- Ambient Glint & Doodles -->\n  <path d=\"M 32 64 Q 36 68 40 68 Q 36 68 32 72 Q 36 68 32 64\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"1.8\" />\n  <path d=\"M 166 66 Q 170 70 174 70 Q 170 70 166 74 Q 170 70 166 66\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.8\" />\n  <circle cx=\"166\" cy=\"144\" r=\"3\" fill=\"#0BDC85\" stroke=\"#141416\" stroke-width=\"1.8\" />\n  <circle cx=\"34\" cy=\"148\" r=\"2.5\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />"
+  },
+  {
+    "id": "badge-game-controller-xp",
+    "name": "Gamer Controller +100 XP Badge",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "game",
+      "controller",
+      "gamepad",
+      "xp",
+      "arcade",
+      "retro",
+      "level-up"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "16-point golden starburst arcade badge featuring a retro game controller emblem and +100 XP score tag.",
+    "rawSvg": "<!-- ScribbleKit: Game Controller XP Badge -->\n  <defs>\n    <filter id=\"soft-shadow-gamer\" x=\"-10%\" y=\"-10%\" width=\"125%\" height=\"125%\">\n      <feDropShadow dx=\"0\" dy=\"4\" stdDeviation=\"3\" flood-color=\"#141416\" flood-opacity=\"0.12\" />\n    </filter>\n  </defs>\n\n  <!-- Hanging Twin Notched Ribbons -->\n  <g stroke=\"#141416\" stroke-linecap=\"round\" stroke-linejoin=\"round\" filter=\"url(#soft-shadow-gamer)\">\n    <!-- Left Ribbon -->\n    <polygon points=\"76,118 48,180 72,168 92,180 88,118\" fill=\"#EA552B\" stroke-width=\"3\" />\n    <line x1=\"68\" y1=\"126\" x2=\"68\" y2=\"168\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-dasharray=\"4 3\" opacity=\"0.8\" />\n    <!-- Right Ribbon -->\n    <polygon points=\"112,118 108,180 128,168 152,180 124,118\" fill=\"#8B5CF6\" stroke-width=\"3\" />\n    <line x1=\"132\" y1=\"126\" x2=\"132\" y2=\"168\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-dasharray=\"4 3\" opacity=\"0.8\" />\n  </g>\n\n  <!-- Starburst Gamer Medallion -->\n  <g filter=\"url(#soft-shadow-gamer)\">\n    <!-- Medallion Shadow Disc -->\n    <circle cx=\"100\" cy=\"88\" r=\"54\" fill=\"#141416\" opacity=\"0.12\" />\n\n    <!-- 16-point Starburst Medallion Rim -->\n    <path d=\"\n      M 100 32 L 108 42 L 122 36 L 126 48 L 140 46 L 140 60 L 154 62 L 148 76 L 160 82 L 152 94 L 160 104 L 148 112 L 152 126 L 138 128 L 136 142 L 122 138 L 116 150 L 104 144 L 96 150 L 90 138 L 76 142 L 74 128 L 60 126 L 64 112 L 52 104 L 60 94 L 52 82 L 64 76 L 58 62 L 72 60 L 72 46 L 86 48 L 90 36 Z\"\n      fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n\n    <!-- Inner Circle Backing -->\n    <circle cx=\"100\" cy=\"88\" r=\"44\" fill=\"#1E1B4B\" stroke=\"#141416\" stroke-width=\"3\" />\n\n    <!-- Retro Gamepad Silhouette -->\n    <!-- Controller Body -->\n    <path d=\"\n      M 74 74\n      C 62 74 58 92 62 104\n      C 64 110 72 112 78 106\n      L 86 98\n      L 114 98\n      L 122 106\n      C 128 112 136 110 138 104\n      C 142 92 138 74 126 74\n      Z\"\n      fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"2.8\" stroke-linejoin=\"round\" />\n\n    <!-- Directional Pad (D-pad Cross) -->\n    <g fill=\"#141416\">\n      <rect x=\"74\" y=\"82\" width=\"6\" height=\"16\" rx=\"1.5\" />\n      <rect x=\"69\" y=\"87\" width=\"16\" height=\"6\" rx=\"1.5\" />\n    </g>\n\n    <!-- Action Buttons (A & B) -->\n    <circle cx=\"120\" cy=\"94\" r=\"3.5\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"1.5\" />\n    <circle cx=\"128\" cy=\"85\" r=\"3.5\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n\n    <!-- Start / Select Slits -->\n    <line x1=\"94\" y1=\"92\" x2=\"98\" y2=\"92\" stroke=\"#141416\" stroke-width=\"1.8\" stroke-linecap=\"round\" />\n    <line x1=\"102\" y1=\"92\" x2=\"106\" y2=\"92\" stroke=\"#141416\" stroke-width=\"1.8\" stroke-linecap=\"round\" />\n\n    <!-- XP / Floating Score Pill at Top -->\n    <rect x=\"80\" y=\"58\" width=\"40\" height=\"14\" rx=\"7\" fill=\"#0BDC85\" stroke=\"#141416\" stroke-width=\"2\" />\n    <text x=\"100\" y=\"69\" font-family=\"'Space Grotesk', system-ui, sans-serif\" font-size=\"10\" font-weight=\"900\" fill=\"#141416\" text-anchor=\"middle\">+100</text>\n  </g>\n\n  <!-- Sparkles & Energy Burst Doodles -->\n  <g stroke=\"#141416\" stroke-width=\"1.8\" stroke-linejoin=\"round\">\n    <path d=\"M 34 50 Q 38 54 42 54 Q 38 54 34 58 Q 38 54 34 50\" fill=\"#F7D046\" />\n    <path d=\"M 164 54 Q 168 58 172 58 Q 168 58 164 62 Q 168 58 164 54\" fill=\"#0BDC85\" />\n    <circle cx=\"170\" cy=\"120\" r=\"3\" fill=\"#EA552B\" />\n    <circle cx=\"30\" cy=\"116\" r=\"2.5\" fill=\"#8B5CF6\" />\n  </g>"
+  },
+  {
+    "id": "badge-gold-champion-medal",
+    "name": "Gold Champion 1st Place Medal",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "medal",
+      "champion",
+      "gold",
+      "first-place",
+      "winner",
+      "quiz",
+      "trophy",
+      "star"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Prestigious gold champion medal with bold number 1, radiant starburst rosette, and striped victory ribbons.",
+    "rawSvg": "<!-- Neck Ribbon (V-Fold Striped Ribbon) -->\n  <!-- Left Ribbon Leg -->\n  <path d=\"M72 18 L52 82 L76 82 L90 28 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M58 38 L68 76\" stroke=\"#FFFFFF\" stroke-width=\"3\" stroke-linecap=\"round\" opacity=\"0.8\" />\n  <!-- Right Ribbon Leg -->\n  <path d=\"M128 18 L148 82 L124 82 L110 28 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M142 38 L132 76\" stroke=\"#FFFFFF\" stroke-width=\"3\" stroke-linecap=\"round\" opacity=\"0.8\" />\n  <!-- Center Ribbon Fold Tab -->\n  <polygon points=\"84,72 116,72 108,90 92,90\" fill=\"#C2410C\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n\n  <!-- Metallic Connection Buckle Link -->\n  <rect x=\"86\" y=\"86\" width=\"28\" height=\"10\" rx=\"3\" fill=\"#FDE68A\" stroke=\"#141416\" stroke-width=\"3\" />\n\n  <!-- Drop Shadow for Medallion -->\n  <circle cx=\"102\" cy=\"138\" r=\"44\" fill=\"#141416\" opacity=\"0.12\" />\n\n  <!-- Scalloped 12-Petal Flower Rosette Base -->\n  <path d=\"M100 94 \n           Q107 94 112 98 Q118 97 122 102 Q128 104 130 110 Q135 114 136 120 Q139 126 137 132 Q139 138 135 143 Q135 149 130 153 Q127 158 121 160 Q117 165 111 165 Q106 168 100 168 Q94 168 89 165 Q83 165 79 160 Q73 158 70 153 Q65 149 65 143 Q61 138 63 132 Q61 126 64 120 Q65 114 70 110 Q72 104 78 102 Q82 97 88 98 Q93 94 100 94 Z\" \n        fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n\n  <!-- Inner Concentric Ring -->\n  <circle cx=\"100\" cy=\"131\" r=\"32\" fill=\"#FFD166\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"100\" cy=\"131\" r=\"27\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.8\" stroke-dasharray=\"3 3\" />\n\n  <!-- Center Champion 5-Point Star -->\n  <path d=\"M100 112 L105 123 L117 124 L108 132 L111 144 L100 137 L89 144 L92 132 L83 124 L95 123 Z\" \n        fill=\"#FFFFFF\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n\n  <!-- Metallic Gleam Flare -->\n  <path d=\"M84 116 Q88 112 96 110\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n\n  <!-- Victory Sparkles -->\n  <path d=\"M156 100 Q156 106 162 106 Q156 106 156 112 Q156 106 150 106 Q156 106 156 100 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <path d=\"M42 120 L42 128 M38 124 L46 124\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n  <circle cx=\"152\" cy=\"148\" r=\"2.5\" fill=\"#141416\" />"
+  },
+  {
+    "id": "badge-minimal-ink-medal",
+    "name": "Monochrome Minimal Ink Star Medal",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "minimal",
+      "ink",
+      "monochrome",
+      "retro",
+      "black-and-white",
+      "star",
+      "hand-drawn"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#141416",
+    "description": "High-contrast black-and-white ink rosette medal with striped ribbon tails, pinned clasp, and center star.",
+    "rawSvg": "<!-- ScribbleKit: Minimal Ink Monochrome Medal Badge -->\n  <defs>\n    <filter id=\"soft-shadow-ink\" x=\"-10%\" y=\"-10%\" width=\"125%\" height=\"125%\">\n      <feDropShadow dx=\"0\" dy=\"4\" stdDeviation=\"3\" flood-color=\"#141416\" flood-opacity=\"0.12\" />\n    </filter>\n  </defs>\n\n  <!-- Pinned Metal Top Clasp (Monochrome Ink) -->\n  <g filter=\"url(#soft-shadow-ink)\">\n    <rect x=\"54\" y=\"20\" width=\"92\" height=\"18\" rx=\"4\" fill=\"#FFFFFF\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n    <rect x=\"60\" y=\"24\" width=\"80\" height=\"4\" fill=\"#141416\" rx=\"2\" />\n    <!-- Hanging Wire Loops -->\n    <path d=\"M 80 38 L 88 56 M 120 38 L 112 56\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  </g>\n\n  <!-- Hanging Twin Ribbon Tails (Black & White Striped) -->\n  <g stroke=\"#141416\" stroke-linecap=\"round\" stroke-linejoin=\"round\" filter=\"url(#soft-shadow-ink)\">\n    <!-- Left Ribbon -->\n    <polygon points=\"76,120 50,184 74,172 94,184 90,120\" fill=\"#FFFFFF\" stroke-width=\"3\" />\n    <polygon points=\"62,130 50,184 74,172 70,130\" fill=\"#141416\" stroke=\"none\" />\n    <line x1=\"82\" y1=\"126\" x2=\"84\" y2=\"174\" stroke=\"#141416\" stroke-width=\"2\" stroke-dasharray=\"4 3\" />\n\n    <!-- Right Ribbon -->\n    <polygon points=\"110,120 106,184 126,172 150,184 124,120\" fill=\"#FFFFFF\" stroke-width=\"3\" />\n    <polygon points=\"130,130 126,172 150,184 138,130\" fill=\"#141416\" stroke=\"none\" />\n    <line x1=\"118\" y1=\"126\" x2=\"116\" y2=\"174\" stroke=\"#141416\" stroke-width=\"2\" stroke-dasharray=\"4 3\" />\n  </g>\n\n  <!-- Central Rosette Medallion -->\n  <g filter=\"url(#soft-shadow-ink)\">\n    <!-- Shadow Disc -->\n    <circle cx=\"100\" cy=\"98\" r=\"54\" fill=\"#141416\" opacity=\"0.12\" />\n\n    <!-- 16-Fluted Rosette Petal Silhouette -->\n    <path d=\"\n      M 100 44\n      L 106 50 L 116 48 L 120 56 L 130 57 L 131 67 L 141 71 L 138 81 L 146 88 L 140 98 L 146 108 L 138 115 L 141 125 L 131 129 L 130 139 L 120 140 L 116 148 L 106 146 L 100 152\n      L 94 146 L 84 148 L 80 140 L 70 139 L 69 129 L 59 125 L 62 115 L 54 108 L 60 98 L 54 88 L 62 81 L 59 71 L 69 67 L 70 57 L 80 56 L 84 48 L 94 50 Z\"\n      fill=\"#141416\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n\n    <!-- Crisp White Outer Ring Inside Rosette -->\n    <circle cx=\"100\" cy=\"98\" r=\"42\" fill=\"#FFFFFF\" stroke=\"#141416\" stroke-width=\"3\" />\n\n    <!-- Dotted Linework Track -->\n    <circle cx=\"100\" cy=\"98\" r=\"35\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2\" stroke-dasharray=\"3 3\" />\n\n    <!-- Center Black Core Disc -->\n    <circle cx=\"100\" cy=\"98\" r=\"28\" fill=\"#141416\" stroke=\"#141416\" stroke-width=\"2\" />\n\n    <!-- Gleaming White 5-Point Star in Center -->\n    <polygon points=\"100,78 105,89 117,91 108,99 110,111 100,105 90,111 92,99 83,91 95,89\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" stroke-width=\"1.5\" stroke-linejoin=\"round\" />\n  </g>\n\n  <!-- Hand-drawn Crosshatch Sparkles & Doodles -->\n  <g stroke=\"#141416\" stroke-linecap=\"round\">\n    <!-- Top-left sparkle -->\n    <line x1=\"36\" y1=\"64\" x2=\"48\" y2=\"64\" stroke-width=\"2.5\" />\n    <line x1=\"42\" y1=\"58\" x2=\"42\" y2=\"70\" stroke-width=\"2.5\" />\n    <!-- Bottom-right sparkle -->\n    <line x1=\"156\" y1=\"136\" x2=\"168\" y2=\"136\" stroke-width=\"2.5\" />\n    <line x1=\"162\" y1=\"130\" x2=\"162\" y2=\"142\" stroke-width=\"2.5\" />\n    <!-- Dots -->\n    <circle cx=\"166\" cy=\"62\" r=\"3\" fill=\"#141416\" />\n    <circle cx=\"34\" cy=\"132\" r=\"2.5\" fill=\"#141416\" />\n    <circle cx=\"100\" cy=\"188\" r=\"2.5\" fill=\"#141416\" />\n  </g>"
+  },
+  {
+    "id": "badge-quiz-master-star",
+    "name": "Quiz Master Star Rosette",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "rosette",
+      "quiz",
+      "master",
+      "star",
+      "ribbon",
+      "trivia",
+      "genius"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Vibrant persimmon orange rosette ribbon badge centered with an ink star for top trivia and quiz scorers.",
+    "rawSvg": "<!-- Top Horizontal Pinned Ribbon Bar -->\n  <rect x=\"45\" y=\"24\" width=\"110\" height=\"28\" rx=\"6\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3.5\" />\n  <line x1=\"55\" y1=\"38\" x2=\"145\" y2=\"38\" stroke=\"#FFFFFF\" stroke-width=\"2.5\" stroke-dasharray=\"4 4\" stroke-linecap=\"round\" />\n  <!-- Ribbon Bar Pin Clasps -->\n  <rect x=\"40\" y=\"22\" width=\"8\" height=\"32\" rx=\"3\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <rect x=\"152\" y=\"22\" width=\"8\" height=\"32\" rx=\"3\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n  <!-- Hanging Neck / Clasp Ring -->\n  <path d=\"M88 52 L88 74 L112 74 L112 52\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n  <circle cx=\"100\" cy=\"74\" r=\"7\" fill=\"#FDE68A\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n  <!-- Medallion Shadow & Base -->\n  <circle cx=\"102\" cy=\"128\" r=\"48\" fill=\"#141416\" opacity=\"0.12\" />\n  <circle cx=\"100\" cy=\"125\" r=\"48\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3.5\" />\n\n  <!-- Inner Textured Stepped Rim -->\n  <circle cx=\"100\" cy=\"125\" r=\"40\" fill=\"#FBE8DE\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"100\" cy=\"125\" r=\"34\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2\" stroke-dasharray=\"3 3\" />\n\n  <!-- Center 3-Star Mastery Tier (★ ★ ★) -->\n  <!-- Middle Big Star -->\n  <path d=\"M100 102 L104 113 L115 114 L106 122 L109 133 L100 127 L91 133 L94 122 L85 114 L96 113 Z\" \n        fill=\"#FFFFFF\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n  <!-- Left Flanking Star -->\n  <path d=\"M80 125 L82 131 L88 132 L83 136 L85 142 L80 138 L75 142 L77 136 L72 132 L78 131 Z\" \n        fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2\" stroke-linejoin=\"round\" />\n  <!-- Right Flanking Star -->\n  <path d=\"M120 125 L122 131 L128 132 L123 136 L125 142 L120 138 L115 142 L117 136 L112 132 L118 131 Z\" \n        fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2\" stroke-linejoin=\"round\" />\n\n  <!-- Mastery Label Arc -->\n  <path d=\"M82 153 Q100 159 118 153\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n\n  <!-- Twinkles -->\n  <path d=\"M162 90 Q162 96 168 96 Q162 96 162 102 Q162 96 156 96 Q162 96 162 90 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <circle cx=\"36\" cy=\"116\" r=\"2.5\" fill=\"#141416\" />"
+  },
+  {
+    "id": "badge-shield-level-up",
+    "name": "Heraldic Shield Level Up",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "shield",
+      "crest",
+      "level-up",
+      "xp",
+      "rank",
+      "security",
+      "defense"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#55BBDA",
+    "description": "Stout heraldic knight shield badge in sky blue and parchment with center victory star and dual ribbon tails.",
+    "rawSvg": "<!-- Ribbon Sashes (Behind bottom of shield) -->\n  <path d=\"M74 135 L54 182 L72 172 L86 182 L84 145 Z\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M126 135 L146 182 L128 172 L114 182 L116 145 Z\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n\n  <!-- Shield Drop Shadow -->\n  <path d=\"M62 34 L142 34 C142 34 146 96 102 144 C58 96 62 34 62 34 Z\" fill=\"#141416\" opacity=\"0.12\" />\n\n  <!-- Regal Shield Crest Body (Rich Royal Purple) -->\n  <path d=\"M60 30 L140 30 C140 30 144 94 100 140 C56 94 60 30 60 30 Z\" \n        fill=\"#8B5CF6\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n\n  <!-- Inner Shield Trim (Lilac / White) -->\n  <path d=\"M68 38 L132 38 C132 38 135 90 100 128 C65 90 68 38 68 38 Z\" \n        fill=\"#C4B5FD\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n\n  <!-- Central Star Rosette (Warm Orange / Gold) -->\n  <circle cx=\"100\" cy=\"78\" r=\"28\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" />\n  <circle cx=\"100\" cy=\"78\" r=\"22\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2\" />\n\n  <!-- Center Level-Up Star -->\n  <path d=\"M100 64 L103 72 L112 73 L105 79 L107 88 L100 83 L93 88 L95 79 L88 73 L97 72 Z\" \n        fill=\"#FFFFFF\" stroke=\"#141416\" stroke-width=\"2.2\" stroke-linejoin=\"round\" />\n\n  <!-- Upward Level Chevron / Rank Arrow -->\n  <path d=\"M92 114 L100 106 L108 114\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n\n  <!-- Achievement Sparkles -->\n  <path d=\"M156 50 Q156 56 162 56 Q156 56 156 62 Q156 56 150 56 Q156 56 156 50 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <path d=\"M42 60 L42 68 M38 64 L46 64\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n  <circle cx=\"152\" cy=\"110\" r=\"2.5\" fill=\"#141416\" />"
+  },
+  {
+    "id": "badge-silver-runner-up",
+    "name": "Silver Runner-Up 2nd Place Medal",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "silver",
+      "second-place",
+      "runner-up",
+      "medal",
+      "ribbon",
+      "contest"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#E2E8F0",
+    "description": "Cool metallic silver medal with bold numeral 2, laurel branch garland, and twin cobalt ribbon tails.",
+    "rawSvg": "<!-- Blue & White Striped Neck Ribbon -->\n  <path d=\"M72 16 L52 78 L76 78 L90 26 Z\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M60 34 L70 72\" stroke=\"#FFFFFF\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <path d=\"M128 16 L148 78 L124 78 L110 26 Z\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M140 34 L130 72\" stroke=\"#FFFFFF\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <polygon points=\"84,68 116,68 106,86 94,86\" fill=\"#0284C7\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n\n  <!-- Silver Buckle Link -->\n  <rect x=\"88\" y=\"82\" width=\"24\" height=\"9\" rx=\"3\" fill=\"#E2E8F0\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n  <!-- Silver Medallion Base & Shadow -->\n  <circle cx=\"102\" cy=\"136\" r=\"46\" fill=\"#141416\" opacity=\"0.12\" />\n  <circle cx=\"100\" cy=\"133\" r=\"46\" fill=\"#E2E8F0\" stroke=\"#141416\" stroke-width=\"3.5\" />\n\n  <!-- Inner Cool Slate Rim with Laurel Leaf Dots -->\n  <circle cx=\"100\" cy=\"133\" r=\"38\" fill=\"#F8FAFC\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"100\" cy=\"133\" r=\"32\" fill=\"#E2E8F0\" stroke=\"#141416\" stroke-width=\"1.8\" stroke-dasharray=\"3 3\" />\n\n  <!-- Stylized Numeral \"2\" (Silver Champion) -->\n  <path d=\"M90 120 C90 114 96 110 101 110 C107 110 112 114 112 120 C112 128 92 136 90 148 L113 148\" \n        fill=\"none\" stroke=\"#141416\" stroke-width=\"5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n\n  <!-- Silver Shine Flare -->\n  <path d=\"M84 116 Q88 112 94 112\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <path d=\"M110 140 Q114 144 116 148\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n\n  <!-- Sparkles -->\n  <path d=\"M156 102 Q156 108 162 108 Q156 108 156 114 Q156 108 150 108 Q156 108 156 102 Z\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <circle cx=\"44\" cy=\"120\" r=\"2.5\" fill=\"#141416\" />"
+  },
+  {
+    "id": "badge-speedy-stopwatch",
+    "name": "Speedy Chrono Lightning Badge",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "speed",
+      "stopwatch",
+      "timer",
+      "fast",
+      "lightning",
+      "quick",
+      "quiz"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#0BDC85",
+    "description": "High-velocity stopwatch chronometer with ticking hand, motion speed lines, and lightning bolt for fast completion.",
+    "rawSvg": "<!-- ScribbleKit: Speedy Stopwatch Quiz Badge -->\n  <defs>\n    <filter id=\"soft-shadow-stopwatch\" x=\"-10%\" y=\"-10%\" width=\"125%\" height=\"125%\">\n      <feDropShadow dx=\"0\" dy=\"4\" stdDeviation=\"3\" flood-color=\"#141416\" flood-opacity=\"0.12\" />\n    </filter>\n  </defs>\n\n  <!-- Motion Speed Streaks (Background Left) -->\n  <g stroke=\"#141416\" stroke-linecap=\"round\" opacity=\"0.8\">\n    <path d=\"M 20 86 Q 32 86 46 88\" fill=\"none\" stroke-width=\"3\" stroke-dasharray=\"8 4\" />\n    <path d=\"M 14 104 Q 30 104 42 106\" fill=\"none\" stroke-width=\"3\" stroke-dasharray=\"10 5\" />\n    <path d=\"M 24 122 Q 36 122 50 124\" fill=\"none\" stroke-width=\"2.5\" />\n  </g>\n\n  <!-- Ribbon Tails (Hanging below) -->\n  <g stroke=\"#141416\" stroke-linecap=\"round\" stroke-linejoin=\"round\" filter=\"url(#soft-shadow-stopwatch)\">\n    <!-- Left Ribbon -->\n    <polygon points=\"86,130 62,182 82,172 98,184 94,130\" fill=\"#0BDC85\" stroke-width=\"3\" />\n    <line x1=\"78\" y1=\"136\" x2=\"80\" y2=\"170\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-dasharray=\"3 3\" opacity=\"0.8\" />\n    \n    <!-- Right Ribbon -->\n    <polygon points=\"106,130 102,184 118,172 138,182 114,130\" fill=\"#55BBDA\" stroke-width=\"3\" />\n    <line x1=\"122\" y1=\"136\" x2=\"120\" y2=\"170\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-dasharray=\"3 3\" opacity=\"0.8\" />\n  </g>\n\n  <!-- Stopwatch Body -->\n  <g filter=\"url(#soft-shadow-stopwatch)\">\n    <!-- Top Plunger / Crown Mechanism -->\n    <rect x=\"94\" y=\"24\" width=\"12\" height=\"10\" rx=\"3\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2.8\" />\n    <path d=\"M 86 28 C 86 16 114 16 114 28\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n    <!-- Secondary Lap Button at 45 deg -->\n    <rect x=\"132\" y=\"38\" width=\"8\" height=\"10\" rx=\"2\" transform=\"rotate(45 136 43)\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n    <!-- Outer Stopwatch Ring Shadow -->\n    <circle cx=\"100\" cy=\"98\" r=\"50\" fill=\"#141416\" opacity=\"0.12\" />\n\n    <!-- Outer Chrome Casing -->\n    <circle cx=\"100\" cy=\"96\" r=\"48\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3.5\" />\n    \n    <!-- Inner Bezel -->\n    <circle cx=\"100\" cy=\"96\" r=\"40\" fill=\"#FFFFFF\" stroke=\"#141416\" stroke-width=\"3\" />\n\n    <!-- Clock Face Dial Markers -->\n    <line x1=\"100\" y1=\"60\" x2=\"100\" y2=\"67\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n    <line x1=\"100\" y1=\"125\" x2=\"100\" y2=\"132\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n    <line x1=\"64\" y1=\"96\" x2=\"71\" y2=\"96\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n    <line x1=\"129\" y1=\"96\" x2=\"136\" y2=\"96\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n    <!-- Minor ticks -->\n    <line x1=\"123\" y1=\"73\" x2=\"119\" y2=\"77\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n    <line x1=\"77\" y1=\"73\" x2=\"81\" y2=\"77\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n    <line x1=\"123\" y1=\"119\" x2=\"119\" y2=\"115\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n    <line x1=\"77\" y1=\"119\" x2=\"81\" y2=\"115\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n\n    <!-- Rapid Stopwatch Sweeper Hand (pointing to ~2 o'clock) -->\n    <line x1=\"100\" y1=\"96\" x2=\"124\" y2=\"72\" stroke=\"#EA552B\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n    <!-- Hand counterweight -->\n    <line x1=\"100\" y1=\"96\" x2=\"90\" y2=\"106\" stroke=\"#EA552B\" stroke-width=\"3\" stroke-linecap=\"round\" />\n    <!-- Center Pivot Pin -->\n    <circle cx=\"100\" cy=\"96\" r=\"4.5\" fill=\"#141416\" />\n\n    <!-- Lightning Bolt Icon inside Dial (lower quadrant) -->\n    <polygon points=\"98,105 106,105 102,114 108,114 96,126 99,117 93,117\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.8\" stroke-linejoin=\"round\" />\n\n    <!-- Glass Reflection Highlights -->\n    <path d=\"M 72 78 A 34 34 0 0 1 122 66\" fill=\"none\" stroke=\"#55BBDA\" stroke-width=\"2.5\" stroke-linecap=\"round\" opacity=\"0.6\" />\n  </g>\n\n  <!-- Sparkles & Energy Stars -->\n  <g stroke=\"#141416\" stroke-width=\"1.8\" stroke-linejoin=\"round\">\n    <path d=\"M 162 70 Q 166 74 170 74 Q 166 74 162 78 Q 166 74 162 70\" fill=\"#F7D046\" />\n    <circle cx=\"170\" cy=\"116\" r=\"3\" fill=\"#EA552B\" />\n    <path d=\"M 40 46 Q 44 50 48 50 Q 44 50 40 54 Q 44 50 40 46\" fill=\"#0BDC85\" />\n  </g>"
+  },
+  {
+    "id": "badge-streak-flame-medal",
+    "name": "Daily Streak Flame Badge",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "streak",
+      "flame",
+      "fire",
+      "daily",
+      "combo",
+      "hot",
+      "quiz"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Blazing retro fire flame medallion commemorating continuous quiz streaks and hot win combos.",
+    "rawSvg": "<!-- Fiery Ribbon Strap (V-Neck) -->\n  <path d=\"M72 16 L52 78 L76 78 L90 26 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M60 34 L70 72\" stroke=\"#F7D046\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <path d=\"M128 16 L148 78 L124 78 L110 26 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M140 34 L130 72\" stroke=\"#F7D046\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <polygon points=\"84,68 116,68 106,86 94,86\" fill=\"#C2410C\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n\n  <!-- Metallic Connection Ring -->\n  <circle cx=\"100\" cy=\"90\" r=\"8\" fill=\"#FDE68A\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n  <!-- Medallion Base & Shadow -->\n  <circle cx=\"102\" cy=\"138\" r=\"46\" fill=\"#141416\" opacity=\"0.12\" />\n  <circle cx=\"100\" cy=\"135\" r=\"46\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3.5\" />\n\n  <!-- Inner Crimson Rim -->\n  <circle cx=\"100\" cy=\"135\" r=\"37\" fill=\"#FFFBEB\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n  <!-- Hand-Drawn Energetic Fire Streak Flame Doodle -->\n  <path d=\"M100 106 \n           C105 116 116 122 116 132 \n           C116 142 108 149 100 149 \n           C92 149 84 142 84 132 \n           C84 125 90 120 94 116 \n           C96 122 100 125 104 125 \n           C102 118 99 113 100 106 Z\" \n        fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n\n  <!-- Inner Golden Core Flame -->\n  <path d=\"M100 122 \n           C103 128 109 132 109 137 \n           C109 143 105 146 100 146 \n           C95 146 91 143 91 137 \n           C91 133 95 130 97 128 \n           C98 131 100 133 102 133 \n           C101 129 100 126 100 122 Z\" \n        fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.8\" stroke-linejoin=\"round\" />\n\n  <!-- Fire Spark Accents -->\n  <circle cx=\"118\" cy=\"116\" r=\"3\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <circle cx=\"82\" cy=\"122\" r=\"2.5\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <path d=\"M156 126 Q156 132 162 132 Q156 132 156 138 Q156 132 150 132 Q156 132 156 126 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <path d=\"M42 140 L42 148 M38 144 L46 144\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "badge-trophy-cup-honor",
+    "name": "Victory Trophy Cup Rosette",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "trophy",
+      "cup",
+      "victory",
+      "winner",
+      "tournament",
+      "champion",
+      "gold"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Regal golden victory goblet framed within a scalloped rosette disc with emerald green hanging sashes.",
+    "rawSvg": "<!-- Ribbon Loop (Deep Navy / Sky Blue Stitching) -->\n  <path d=\"M74 18 L54 78 L78 78 L90 28 Z\" fill=\"#1E1B4B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M60 36 L70 72\" stroke=\"#55BBDA\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <path d=\"M126 18 L146 78 L122 78 L110 28 Z\" fill=\"#1E1B4B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M140 36 L130 72\" stroke=\"#55BBDA\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <polygon points=\"84,68 116,68 106,86 94,86\" fill=\"#141416\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n\n  <!-- Metal Buckle Ring -->\n  <rect x=\"86\" y=\"82\" width=\"28\" height=\"9\" rx=\"3\" fill=\"#FDE68A\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n  <!-- Medallion Base & Shadow -->\n  <circle cx=\"102\" cy=\"136\" r=\"46\" fill=\"#141416\" opacity=\"0.12\" />\n  <circle cx=\"100\" cy=\"133\" r=\"46\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3.5\" />\n\n  <!-- Inner Recessed White Rim -->\n  <circle cx=\"100\" cy=\"133\" r=\"38\" fill=\"#FFFBEB\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n  <!-- Champion Trophy Cup Doodle -->\n  <!-- Trophy Cup Body -->\n  <path d=\"M84 112 L116 112 C116 112 118 132 100 134 C82 132 84 112 84 112 Z\" \n        fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n  <!-- Left Handle -->\n  <path d=\"M84 115 C76 115 74 125 84 127\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n  <!-- Right Handle -->\n  <path d=\"M116 115 C124 115 126 125 116 127\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n  <!-- Stem & Base Pedestal -->\n  <path d=\"M97 134 L97 142 L92 142 L90 148 L110 148 L108 142 L103 142 L103 134 Z\" \n        fill=\"#D97706\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n\n  <!-- Star on Trophy Belly -->\n  <path d=\"M100 118 L101.5 122 L105 122.5 L102.5 125 L103 128.5 L100 126.5 L97 128.5 L97.5 125 L95 122.5 L98.5 122 Z\" \n        fill=\"#FFFFFF\" stroke=\"#141416\" stroke-width=\"1.2\" stroke-linejoin=\"round\" />\n\n  <!-- Twinkles -->\n  <path d=\"M156 102 Q156 108 162 108 Q156 108 156 114 Q156 108 150 108 Q156 108 156 102 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <circle cx=\"44\" cy=\"120\" r=\"2.5\" fill=\"#141416\" />"
+  },
+  {
+    "id": "badge-vip-crown-ribbon",
+    "name": "VIP Crown Sovereign Ribbon",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "vip",
+      "crown",
+      "royal",
+      "king",
+      "queen",
+      "leaderboard",
+      "prestige"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#8B5CF6",
+    "description": "12-fluted royal violet rosette badge with triple-jeweled gold crown emblem and flowing satin ribbon tails.",
+    "rawSvg": "<!-- ScribbleKit: VIP Crown Royal Ribbon Badge -->\n  <defs>\n    <filter id=\"soft-shadow-crown\" x=\"-10%\" y=\"-10%\" width=\"125%\" height=\"125%\">\n      <feDropShadow dx=\"0\" dy=\"4\" stdDeviation=\"3\" flood-color=\"#141416\" flood-opacity=\"0.12\" />\n    </filter>\n  </defs>\n\n  <!-- Flowing Royal Ribbon Tails -->\n  <g stroke=\"#141416\" stroke-linecap=\"round\" stroke-linejoin=\"round\" filter=\"url(#soft-shadow-crown)\">\n    <!-- Left Tail -->\n    <path d=\"M 76 112 L 48 178 L 70 166 L 90 178 L 86 112 Z\" fill=\"#8B5CF6\" stroke-width=\"3\" />\n    <path d=\"M 68 122 L 58 166\" stroke=\"#FBE8DE\" stroke-width=\"2\" stroke-dasharray=\"4 3\" opacity=\"0.8\" />\n    \n    <!-- Right Tail -->\n    <path d=\"M 114 112 L 110 178 L 130 166 L 152 178 L 124 112 Z\" fill=\"#EE8DB9\" stroke-width=\"3\" />\n    <path d=\"M 132 122 L 142 166\" stroke=\"#FBE8DE\" stroke-width=\"2\" stroke-dasharray=\"4 3\" opacity=\"0.8\" />\n  </g>\n\n  <!-- Scalloped Outer Rosette -->\n  <g filter=\"url(#soft-shadow-crown)\">\n    <!-- Shadow Disc -->\n    <circle cx=\"100\" cy=\"86\" r=\"54\" fill=\"#141416\" opacity=\"0.12\" />\n\n    <!-- 12-Fluted Rosette Petal Background -->\n    <path d=\"\n      M 100 30\n      C 108 30 114 36 122 38\n      C 129 40 137 38 143 44\n      C 149 50 148 58 152 66\n      C 156 73 162 78 162 86\n      C 162 94 156 99 152 106\n      C 148 114 149 122 143 128\n      C 137 134 129 132 122 134\n      C 114 136 108 142 100 142\n      C 92 142 86 136 78 134\n      C 71 132 63 134 57 128\n      C 51 122 52 114 48 106\n      C 44 99 38 94 38 86\n      C 38 78 44 73 48 66\n      C 52 58 51 50 57 44\n      C 63 38 71 40 78 38\n      C 86 36 92 30 100 30 Z\"\n      fill=\"#8B5CF6\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n\n    <!-- Secondary Scalloped Inner Disc -->\n    <circle cx=\"100\" cy=\"86\" r=\"44\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" />\n    \n    <!-- White Inner Core Circle -->\n    <circle cx=\"100\" cy=\"86\" r=\"34\" fill=\"#FFFFFF\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n    <!-- Dotted Circular Stitching -->\n    <circle cx=\"100\" cy=\"86\" r=\"30\" fill=\"none\" stroke=\"#141416\" stroke-width=\"1.8\" stroke-dasharray=\"3 3\" opacity=\"0.5\" />\n\n    <!-- 3-Peak Regal Gold Crown Emblem -->\n    <polygon points=\"76,102 74,74 88,86 100,68 112,86 126,74 124,102\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n    <!-- Crown Base Band -->\n    <rect x=\"76\" y=\"98\" width=\"48\" height=\"6\" rx=\"2\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2\" />\n\n    <!-- Crown Jewels on Peaks -->\n    <circle cx=\"74\" cy=\"73\" r=\"3.5\" fill=\"#EE8DB9\" stroke=\"#141416\" stroke-width=\"1.8\" />\n    <circle cx=\"100\" cy=\"67\" r=\"4.5\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"2\" />\n    <circle cx=\"126\" cy=\"73\" r=\"3.5\" fill=\"#0BDC85\" stroke=\"#141416\" stroke-width=\"1.8\" />\n    \n    <!-- Center Jewel on Crown Base -->\n    <circle cx=\"100\" cy=\"101\" r=\"2\" fill=\"#FFFFFF\" />\n  </g>\n\n  <!-- Sparkles & Regal Shimmer -->\n  <g stroke=\"#141416\" stroke-width=\"1.8\" stroke-linejoin=\"round\">\n    <path d=\"M 30 52 Q 34 56 38 56 Q 34 56 30 60 Q 34 56 30 52\" fill=\"#F7D046\" />\n    <path d=\"M 166 44 Q 170 48 174 48 Q 170 48 166 52 Q 170 48 166 44\" fill=\"#EE8DB9\" />\n    <circle cx=\"172\" cy=\"98\" r=\"3\" fill=\"#F7D046\" />\n    <circle cx=\"28\" cy=\"110\" r=\"2.5\" fill=\"#55BBDA\" />\n  </g>"
+  },
+  {
+    "id": "planet-kawaii-saturn",
+    "name": "Kawaii Smiling Saturn",
+    "category": "planets-astro",
+    "tags": [
+      "planet",
+      "saturn",
+      "kawaii",
+      "cute",
+      "rings",
+      "space",
+      "astro",
+      "moon",
+      "stars",
+      "sparkles"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Adorable retro cartoon ringed planet with happy smiling face, blushing pink cheeks, sweet satellite moon, and floating sparkle stars.",
+    "rawSvg": "<!-- Celestial Sparkles & Stardust -->\n  <path d=\"M166 40 Q166 48 174 48 Q166 48 166 56 Q166 48 158 48 Q166 48 166 40 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2\" stroke-linejoin=\"round\" />\n  <path d=\"M34 140 L34 152 M28 146 L40 146\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n  <circle cx=\"45\" cy=\"55\" r=\"3.5\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2\" />\n  <circle cx=\"155\" cy=\"145\" r=\"2.5\" fill=\"#141416\" />\n  <circle cx=\"95\" cy=\"32\" r=\"2\" fill=\"#141416\" />\n\n  <!-- Planetary Ring (Back Segment - behind planet) -->\n  <path d=\"M40 96 C40 68 160 68 160 96\" fill=\"none\" stroke=\"#FBE8DE\" stroke-width=\"12\" stroke-linecap=\"round\" />\n  <path d=\"M40 96 C40 68 160 68 160 96\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n\n  <!-- Planet Body Shadow & Base -->\n  <circle cx=\"103\" cy=\"103\" r=\"46\" fill=\"#141416\" opacity=\"0.12\" />\n  <circle cx=\"100\" cy=\"100\" r=\"46\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3.5\" />\n\n  <!-- Atmospheric Belly Stripes -->\n  <path d=\"M57 90 C72 95 128 95 143 90\" fill=\"none\" stroke=\"#F59E0B\" stroke-width=\"4\" stroke-linecap=\"round\" opacity=\"0.6\" />\n  <path d=\"M59 112 C74 117 126 117 141 112\" fill=\"none\" stroke=\"#F59E0B\" stroke-width=\"4\" stroke-linecap=\"round\" opacity=\"0.6\" />\n\n  <!-- Cute Kawaii Smiling Face -->\n  <circle cx=\"86\" cy=\"98\" r=\"4\" fill=\"#141416\" />\n  <circle cx=\"87.5\" cy=\"96.5\" r=\"1.3\" fill=\"#FFFFFF\" />\n  <circle cx=\"114\" cy=\"98\" r=\"4\" fill=\"#141416\" />\n  <circle cx=\"115.5\" cy=\"96.5\" r=\"1.3\" fill=\"#FFFFFF\" />\n  <path d=\"M96 103 Q100 109 104 103\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <ellipse cx=\"78\" cy=\"104\" rx=\"5.5\" ry=\"3.5\" fill=\"#EE8DB9\" opacity=\"0.85\" />\n  <ellipse cx=\"122\" cy=\"104\" rx=\"5.5\" ry=\"3.5\" fill=\"#EE8DB9\" opacity=\"0.85\" />\n\n  <!-- Planetary Ring (Front Segment - sweeps across front) -->\n  <path d=\"M30 100 C30 130 170 130 170 100\" fill=\"none\" stroke=\"#FBE8DE\" stroke-width=\"12\" stroke-linecap=\"round\" />\n  <path d=\"M30 100 C30 130 170 130 170 100\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n  <path d=\"M54 105 C64 122 136 122 146 105\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n\n  <!-- Satellite Companion Moons -->\n  <circle cx=\"160\" cy=\"134\" r=\"13\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3\" />\n  <circle cx=\"156\" cy=\"131\" r=\"3\" fill=\"#38BDF8\" opacity=\"0.8\" />\n  <circle cx=\"44\" cy=\"72\" r=\"8\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2.5\" />"
+  },
+  {
+    "id": "planet-deep-space-portal",
+    "name": "Deep Midnight Cosmic Badge",
+    "category": "planets-astro",
+    "tags": [
+      "planet",
+      "space",
+      "portal",
+      "badge",
+      "midnight",
+      "galaxy",
+      "stars",
+      "constellation",
+      "astro"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Circular midnight navy cosmic portal badge featuring a glowing coral striped gas giant, emerald ringed orb, and twinkling gold starfield.",
+    "rawSvg": "<!-- Midnight Cosmic Badge Frame -->\n  <circle cx=\"100\" cy=\"100\" r=\"88\" fill=\"#161A30\" stroke=\"#141416\" stroke-width=\"4\" />\n\n  <!-- Constellation & Stardust Field -->\n  <path d=\"M145 42 Q145 52 155 52 Q145 52 145 62 Q145 52 135 52 Q145 52 145 42 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" stroke-linejoin=\"round\" />\n  <path d=\"M50 120 Q50 125 55 125 Q50 125 50 130 Q50 125 45 125 Q50 125 50 120 Z\" fill=\"#FFFFFF\" />\n  <circle cx=\"78\" cy=\"38\" r=\"2.5\" fill=\"#F7D046\" />\n  <circle cx=\"132\" cy=\"85\" r=\"2\" fill=\"#FFFFFF\" />\n  <circle cx=\"118\" cy=\"162\" r=\"2.5\" fill=\"#F7D046\" />\n  <circle cx=\"42\" cy=\"72\" r=\"2\" fill=\"#FFFFFF\" />\n\n  <!-- Coral Striped Gas Giant -->\n  <circle cx=\"78\" cy=\"78\" r=\"38\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3.5\" />\n  <path d=\"M44 70 C58 75 98 75 112 70\" fill=\"none\" stroke=\"#F97316\" stroke-width=\"4.5\" stroke-linecap=\"round\" />\n  <path d=\"M46 86 C62 91 94 91 110 86\" fill=\"none\" stroke=\"#C2410C\" stroke-width=\"4.5\" stroke-linecap=\"round\" />\n\n  <!-- Mint Green Terrestrial World -->\n  <circle cx=\"138\" cy=\"124\" r=\"23\" fill=\"#0BDC85\" stroke=\"#141416\" stroke-width=\"3\" />\n  <circle cx=\"132\" cy=\"119\" r=\"4\" fill=\"#059669\" />\n  <circle cx=\"145\" cy=\"131\" r=\"3\" fill=\"#059669\" />\n\n  <!-- Golden Ringed Mini Planet -->\n  <g transform=\"rotate(-15 72 142)\">\n    <ellipse cx=\"72\" cy=\"142\" rx=\"24\" ry=\"7\" fill=\"none\" stroke=\"#FDE68A\" stroke-width=\"4.5\" />\n    <ellipse cx=\"72\" cy=\"142\" rx=\"24\" ry=\"7\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2.5\" />\n    <circle cx=\"72\" cy=\"142\" r=\"15\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" />\n    <path d=\"M52 143 C56 150 88 150 92 143\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n  </g>"
+  },
+  {
+    "id": "planet-solar-system-trio",
+    "name": "Solar System Trio & Orbits",
+    "category": "planets-astro",
+    "tags": [
+      "planet",
+      "solar-system",
+      "earth",
+      "saturn",
+      "moon",
+      "orbit",
+      "trajectory",
+      "space",
+      "astro"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Harmonious cosmic trio featuring a ringed Saturn gas giant, blue Earth with continents, cratered moon, and dotted orbit tracks.",
+    "rawSvg": "<!-- Dotted Orbit Trajectory Tracks -->\n  <path d=\"M25 150 C45 80 145 40 180 80\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2\" stroke-dasharray=\"4 6\" stroke-linecap=\"round\" opacity=\"0.35\" />\n\n  <!-- Twinkling Stars & Cross Sparkles -->\n  <path d=\"M38 52 Q38 58 44 58 Q38 58 38 64 Q38 58 32 58 Q38 58 38 52 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <path d=\"M168 112 L168 122 M163 117 L173 117\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n  <path d=\"M48 85 L48 93 M44 89 L52 89\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n  <circle cx=\"95\" cy=\"38\" r=\"2.5\" fill=\"#141416\" />\n  <circle cx=\"112\" cy=\"102\" r=\"2\" fill=\"#141416\" />\n\n  <!-- Ringed Gas Giant (Top Right) -->\n  <!-- Ring Back -->\n  <path d=\"M102 54 C102 38 174 38 174 54\" fill=\"none\" stroke=\"#FBE8DE\" stroke-width=\"8\" stroke-linecap=\"round\" />\n  <path d=\"M102 54 C102 38 174 38 174 54\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <!-- Body -->\n  <circle cx=\"138\" cy=\"54\" r=\"28\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3.5\" />\n  <path d=\"M114 54 C122 58 154 58 162 54\" fill=\"none\" stroke=\"#D97706\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n  <!-- Ring Front -->\n  <path d=\"M96 56 C96 74 180 74 180 56\" fill=\"none\" stroke=\"#FBE8DE\" stroke-width=\"8\" stroke-linecap=\"round\" />\n  <path d=\"M96 56 C96 74 180 74 180 56\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n\n  <!-- Terrestrial Planet Earth (Bottom Left) -->\n  <circle cx=\"68\" cy=\"126\" r=\"34\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3.5\" />\n  <!-- Continents -->\n  <path d=\"M48 116 C54 108 66 108 70 116 C72 122 64 126 56 124 Z\" fill=\"#4CA96D\" stroke=\"#141416\" stroke-width=\"2\" stroke-linejoin=\"round\" />\n  <path d=\"M68 132 C76 128 86 134 84 144 C78 150 68 148 64 142 Z\" fill=\"#4CA96D\" stroke=\"#141416\" stroke-width=\"2\" stroke-linejoin=\"round\" />\n\n  <!-- Crimson Cratered Satellite Moon (Bottom Right) -->\n  <circle cx=\"145\" cy=\"142\" r=\"18\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" />\n  <circle cx=\"140\" cy=\"138\" r=\"4\" fill=\"#991B1B\" />\n  <circle cx=\"150\" cy=\"148\" r=\"3\" fill=\"#991B1B\" />"
+  },
+  {
+    "id": "planet-split-day-night",
+    "name": "Day & Night Celestial Globe",
+    "category": "planets-astro",
+    "tags": [
+      "planet",
+      "earth",
+      "day-night",
+      "duality",
+      "constellation",
+      "space",
+      "globe",
+      "astro",
+      "celestial"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#55BBDA",
+    "description": "Duality sphere divided between sunlit tropical daylight ocean with lush continents and midnight cosmos starry sky.",
+    "rawSvg": "<!-- Outer Twinkles & Accents -->\n  <path d=\"M158 38 Q158 44 164 44 Q158 44 158 50 Q158 44 152 44 Q158 44 158 38 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <path d=\"M36 78 L36 86 M32 82 L40 82\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n  <circle cx=\"34\" cy=\"144\" r=\"9\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"166\" cy=\"138\" r=\"13\" fill=\"#C4B5FD\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"163\" cy=\"135\" r=\"3\" fill=\"#8B5CF6\" opacity=\"0.6\" />\n\n  <!-- Base Day-Side Sphere (Sky Blue Ocean) -->\n  <circle cx=\"100\" cy=\"100\" r=\"54\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3.5\" />\n\n  <!-- Lush Green Day Continents -->\n  <path d=\"M68 68 C80 64 84 78 76 88 C70 94 60 88 64 78 Z\" fill=\"0BDC85\" stroke=\"#141416\" stroke-width=\"2\" stroke-linejoin=\"round\" />\n  <path d=\"M58 112 C68 106 78 116 76 128 C72 136 62 140 56 130 Z\" fill=\"#0BDC85\" stroke=\"#141416\" stroke-width=\"2\" stroke-linejoin=\"round\" />\n\n  <!-- Night-Side Shadow Arc (Deep Midnight Indigo) -->\n  <path d=\"M100 46 C129.8 46 154 70.2 154 100 C154 129.8 129.8 154 100 154 C94 130 106 70 100 46 Z\" fill=\"#1E1B4B\" stroke=\"#141416\" stroke-width=\"3\" />\n\n  <!-- Night-Side Constellation & Stars -->\n  <path d=\"M126 68 C122 72 122 80 126 84 C121 82 118 76 122 70 Z\" fill=\"#F7D046\" />\n  <path d=\"M116 106 L130 98 L138 112 L126 122\" fill=\"none\" stroke=\"#FDE68A\" stroke-width=\"1.5\" stroke-dasharray=\"2 3\" opacity=\"0.75\" />\n  <circle cx=\"116\" cy=\"106\" r=\"2.5\" fill=\"#F7D046\" />\n  <circle cx=\"130\" cy=\"98\" r=\"2.5\" fill=\"#F7D046\" />\n  <circle cx=\"138\" cy=\"112\" r=\"2.5\" fill=\"#F7D046\" />\n  <circle cx=\"126\" cy=\"122\" r=\"2.5\" fill=\"#F7D046\" />\n\n  <!-- Planet Outer Outline Rim -->\n  <circle cx=\"100\" cy=\"100\" r=\"54\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3.5\" />"
+  },
+  {
+    "id": "planet-snuggling-duo",
+    "name": "Snuggling Kawaii Planet Besties",
+    "category": "planets-astro",
+    "tags": [
+      "planet",
+      "kawaii",
+      "cute",
+      "friends",
+      "love",
+      "pink",
+      "snuggle",
+      "space",
+      "astro",
+      "happy"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#EE8DB9",
+    "description": "Two affectionate smiling kawaii celestial buddies snuggling together with blushing rosy cheeks and happy expressions.",
+    "rawSvg": "<!-- Love & Sparkles -->\n  <path d=\"M96 46 C96 40 90 36 85 39 C80 36 74 40 74 46 C74 54 85 62 85 62 C85 62 96 54 96 46 Z\" fill=\"#EE8DB9\" stroke=\"#141416\" stroke-width=\"2\" stroke-linejoin=\"round\" />\n  <path d=\"M166 42 Q166 48 172 48 Q166 48 166 54 Q166 48 160 48 Q166 48 166 42 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <circle cx=\"36\" cy=\"74\" r=\"2.5\" fill=\"#141416\" />\n  <circle cx=\"160\" cy=\"148\" r=\"8\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n  <!-- Big Pink Planet Buddy (Right) -->\n  <circle cx=\"122\" cy=\"98\" r=\"44\" fill=\"#EE8DB9\" stroke=\"#141416\" stroke-width=\"3.5\" />\n  <!-- Belly Stripes -->\n  <path d=\"M86 86 C105 91 144 91 160 86\" fill=\"none\" stroke=\"#DB2777\" stroke-width=\"3.5\" stroke-linecap=\"round\" opacity=\"0.5\" />\n  <path d=\"M88 116 C106 122 142 122 158 116\" fill=\"none\" stroke=\"#DB2777\" stroke-width=\"3.5\" stroke-linecap=\"round\" opacity=\"0.5\" />\n  <!-- Big Buddy Face -->\n  <circle cx=\"118\" cy=\"94\" r=\"3.5\" fill=\"#141416\" />\n  <circle cx=\"140\" cy=\"94\" r=\"3.5\" fill=\"#141416\" />\n  <path d=\"M125 100 Q129 105 133 100\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n  <ellipse cx=\"111\" cy=\"98\" rx=\"4.5\" ry=\"2.5\" fill=\"#F43F5E\" opacity=\"0.65\" />\n  <ellipse cx=\"147\" cy=\"98\" rx=\"4.5\" ry=\"2.5\" fill=\"#F43F5E\" opacity=\"0.65\" />\n\n  <!-- Little Sky-Blue Planet Buddy (Nestled at Bottom Left) -->\n  <circle cx=\"68\" cy=\"120\" r=\"28\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3.5\" />\n  <path d=\"M48 122 C58 126 78 126 88 122\" fill=\"none\" stroke=\"#0284C7\" stroke-width=\"3\" stroke-linecap=\"round\" opacity=\"0.5\" />\n  <!-- Little Buddy Face -->\n  <circle cx=\"60\" cy=\"116\" r=\"3\" fill=\"#141416\" />\n  <circle cx=\"76\" cy=\"116\" r=\"3\" fill=\"#141416\" />\n  <path d=\"M65 122 Q68 127 71 122\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n  <ellipse cx=\"53\" cy=\"120\" rx=\"3.5\" ry=\"2\" fill=\"#EE8DB9\" />\n  <ellipse cx=\"83\" cy=\"120\" rx=\"3.5\" ry=\"2\" fill=\"#EE8DB9\" />"
+  },
+  {
+    "id": "planet-multi-orbit-vortex",
+    "name": "Triple Halo Cosmic Vortex",
+    "category": "planets-astro",
+    "tags": [
+      "planet",
+      "orbit",
+      "rings",
+      "halo",
+      "vortex",
+      "purple",
+      "space",
+      "cosmic",
+      "energy",
+      "astro"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#8B5CF6",
+    "description": "Radiant deep violet planet encircled by three dynamic tilted racetrack orbit halos with orbiting energy beads.",
+    "rawSvg": "<!-- Orbit Halos (Back Section) -->\n  <g transform=\"rotate(-30 100 100)\">\n    <path d=\"M22 100 C22 75 178 75 178 100\" fill=\"none\" stroke=\"#F7D046\" stroke-width=\"5\" stroke-linecap=\"round\" />\n    <path d=\"M22 100 C22 75 178 75 178 100\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n  </g>\n  <g transform=\"rotate(35 100 100)\">\n    <path d=\"M26 100 C26 78 174 78 174 100\" fill=\"none\" stroke=\"#EE8DB9\" stroke-width=\"4.5\" stroke-linecap=\"round\" />\n    <path d=\"M26 100 C26 78 174 78 174 100\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n  </g>\n\n  <!-- Central Planet Body (Vibrant Violet / Ultraviolet) -->\n  <circle cx=\"102\" cy=\"102\" r=\"42\" fill=\"#141416\" opacity=\"0.12\" />\n  <circle cx=\"100\" cy=\"100\" r=\"42\" fill=\"#8B5CF6\" stroke=\"#141416\" stroke-width=\"3.5\" />\n  <path d=\"M66 90 C82 96 118 96 134 90\" fill=\"none\" stroke=\"#C4B5FD\" stroke-width=\"4\" stroke-linecap=\"round\" />\n  <path d=\"M68 110 C84 116 116 116 132 110\" fill=\"none\" stroke=\"#6D28D9\" stroke-width=\"4\" stroke-linecap=\"round\" />\n\n  <!-- Orbit Halos (Front Section - sweeping cleanly across front) -->\n  <g transform=\"rotate(-30 100 100)\">\n    <path d=\"M22 100 C22 125 178 125 178 100\" fill=\"none\" stroke=\"#F7D046\" stroke-width=\"5\" stroke-linecap=\"round\" />\n    <path d=\"M22 100 C22 125 178 125 178 100\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n  </g>\n  <g transform=\"rotate(35 100 100)\">\n    <path d=\"M26 100 C26 122 174 122 174 100\" fill=\"none\" stroke=\"#EE8DB9\" stroke-width=\"4.5\" stroke-linecap=\"round\" />\n    <path d=\"M26 100 C26 122 174 122 174 100\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n  </g>\n  <ellipse cx=\"100\" cy=\"100\" rx=\"66\" ry=\"18\" fill=\"none\" stroke=\"#55BBDA\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n  <ellipse cx=\"100\" cy=\"100\" rx=\"66\" ry=\"18\" fill=\"none\" stroke=\"#141416\" stroke-width=\"1.8\" stroke-linecap=\"round\" />\n\n  <!-- Orbiting Satellite Beads & Energy Particles -->\n  <circle cx=\"158\" cy=\"74\" r=\"7\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2\" />\n  <circle cx=\"44\" cy=\"76\" r=\"6\" fill=\"#0BDC85\" stroke=\"#141416\" stroke-width=\"2\" />\n  <circle cx=\"68\" cy=\"148\" r=\"7\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2\" />\n\n  <!-- Sparkles -->\n  <path d=\"M164 42 Q164 48 170 48 Q164 48 164 54 Q164 48 158 48 Q164 48 164 42 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <circle cx=\"36\" cy=\"120\" r=\"2\" fill=\"#141416\" />"
+  },
+  {
+    "id": "planet-earth-atmosphere",
+    "name": "Terrestrial Earth & Orbiting Moon",
+    "category": "planets-astro",
+    "tags": [
+      "planet",
+      "earth",
+      "continents",
+      "ocean",
+      "clouds",
+      "atmosphere",
+      "moon",
+      "space",
+      "astro"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#55BBDA",
+    "description": "Living terrestrial blue orb with lush emerald continents, white atmospheric cloud swirls, and a cratered moon in orbit.",
+    "rawSvg": "<!-- Curved Dashed Orbit Trajectory -->\n  <path d=\"M42 70 C62 26 160 36 170 120\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-dasharray=\"5 6\" stroke-linecap=\"round\" opacity=\"0.4\" />\n\n  <!-- Orbiting Cratered Moon (Top Right) -->\n  <circle cx=\"156\" cy=\"46\" r=\"16\" fill=\"#E2E8F0\" stroke=\"#141416\" stroke-width=\"3\" />\n  <circle cx=\"150\" cy=\"42\" r=\"3.5\" fill=\"#94A3B8\" />\n  <circle cx=\"160\" cy=\"49\" r=\"2.5\" fill=\"#94A3B8\" />\n\n  <!-- Living Terrestrial Earth (Center Left) -->\n  <circle cx=\"95\" cy=\"108\" r=\"48\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3.5\" />\n\n  <!-- Continents (Hand-Drawn Organic Landmasses) -->\n  <path d=\"M72 82 C82 74 96 78 98 88 C94 98 84 96 76 94 Z\" fill=\"#4CA96D\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n  <path d=\"M106 86 C120 84 132 94 130 104 C122 108 114 100 108 96 Z\" fill=\"#4CA96D\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n  <path d=\"M76 114 C84 108 94 116 92 128 C86 142 74 136 72 124 Z\" fill=\"#4CA96D\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n  <path d=\"M108 118 C118 114 130 124 126 136 C116 144 104 136 104 126 Z\" fill=\"#4CA96D\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n\n  <!-- Atmospheric Cloud Swirls -->\n  <path d=\"M64 98 Q80 92 92 98\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"4\" stroke-linecap=\"round\" />\n  <path d=\"M104 140 Q120 134 134 140\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"4\" stroke-linecap=\"round\" />\n\n  <!-- Outer Outlines & Sparkles -->\n  <circle cx=\"95\" cy=\"108\" r=\"48\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3.5\" />\n  <path d=\"M38 126 L38 134 M34 130 L42 130\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n  <path d=\"M46 54 Q46 60 52 60 Q46 60 46 66 Q46 60 40 60 Q46 60 46 54 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <circle cx=\"166\" cy=\"148\" r=\"7\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2\" />"
+  },
+  {
+    "id": "planet-striped-jupiter",
+    "name": "Banded Jupiter & Red Spot",
+    "category": "planets-astro",
+    "tags": [
+      "planet",
+      "jupiter",
+      "gas-giant",
+      "stripes",
+      "bands",
+      "red-spot",
+      "storm",
+      "space",
+      "astro"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Dynamic banded gas giant with rich wavy retro-pop atmospheric stripes, iconic swirling storm spot, and orbiting moons.",
+    "rawSvg": "<!-- Gas Giant Body Base -->\n  <circle cx=\"101\" cy=\"103\" r=\"48\" fill=\"#141416\" opacity=\"0.12\" />\n  <circle cx=\"98\" cy=\"100\" r=\"48\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3.5\" />\n\n  <!-- Wavy Retro Atmospheric Bands -->\n  <path d=\"M53 78 C70 85 125 72 143 78\" fill=\"none\" stroke=\"#EA552B\" stroke-width=\"6\" stroke-linecap=\"round\" />\n  <path d=\"M51 92 C68 98 128 86 145 92\" fill=\"none\" stroke=\"#FBE8DE\" stroke-width=\"5\" stroke-linecap=\"round\" />\n  <path d=\"M50 108 C72 116 124 102 146 108\" fill=\"none\" stroke=\"#EA552B\" stroke-width=\"7\" stroke-linecap=\"round\" />\n  <path d=\"M53 124 C72 130 124 120 143 124\" fill=\"none\" stroke=\"#D97706\" stroke-width=\"5\" stroke-linecap=\"round\" />\n\n  <!-- Great Red Spot Storm Vortex -->\n  <ellipse cx=\"120\" cy=\"108\" rx=\"10\" ry=\"6\" fill=\"#C2410C\" stroke=\"#141416\" stroke-width=\"2\" />\n  <path d=\"M115 108 Q120 104 125 108\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"1.5\" stroke-linecap=\"round\" />\n\n  <!-- Rim Reinforcement -->\n  <circle cx=\"98\" cy=\"100\" r=\"48\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3.5\" />\n\n  <!-- Satellite Moons & Sparkles -->\n  <circle cx=\"162\" cy=\"58\" r=\"12\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"38\" cy=\"142\" r=\"9\" fill=\"#C4B5FD\" stroke=\"#141416\" stroke-width=\"2\" />\n  <circle cx=\"36\" cy=\"140\" r=\"2\" fill=\"#8B5CF6\" />\n  <path d=\"M156 126 L156 134 M152 130 L160 130\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n  <path d=\"M46 52 Q46 58 52 58 Q46 58 46 64 Q46 58 40 58 Q46 58 46 52 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <circle cx=\"105\" cy=\"34\" r=\"2\" fill=\"#141416\" />"
+  },
+  {
+    "id": "planet-crater-moon-cluster",
+    "name": "Cratered Moon & Asteroids",
+    "category": "planets-astro",
+    "tags": [
+      "moon",
+      "craters",
+      "asteroid",
+      "saturn",
+      "rocky",
+      "lunar",
+      "space",
+      "astro",
+      "cluster"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#E2E8F0",
+    "description": "Textured celestial moon with hand-drawn crater rings, accompanied by a mini ringed planet and orbiting asteroids.",
+    "rawSvg": "<!-- Large Cratered Celestial Moon (Center Left) -->\n  <circle cx=\"91\" cy=\"107\" r=\"46\" fill=\"#141416\" opacity=\"0.12\" />\n  <circle cx=\"88\" cy=\"104\" r=\"46\" fill=\"#E2E8F0\" stroke=\"#141416\" stroke-width=\"3.5\" />\n\n  <!-- Moon Craters with Hand-Drawn Inner Shadow Arcs -->\n  <circle cx=\"70\" cy=\"88\" r=\"9\" fill=\"#CBD5E1\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <path d=\"M64 88 A6 6 0 0 0 76 88\" fill=\"none\" stroke=\"#64748B\" stroke-width=\"2\" />\n  <circle cx=\"106\" cy=\"94\" r=\"12\" fill=\"#CBD5E1\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <path d=\"M98 94 A8 8 0 0 0 114 94\" fill=\"none\" stroke=\"#64748B\" stroke-width=\"2\" />\n  <circle cx=\"78\" cy=\"122\" r=\"7\" fill=\"#CBD5E1\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"112\" cy=\"126\" r=\"6\" fill=\"#CBD5E1\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n  <!-- Companion Mini Saturn (Top Right) -->\n  <g transform=\"rotate(-20 150 54)\">\n    <ellipse cx=\"150\" cy=\"54\" rx=\"22\" ry=\"7\" fill=\"none\" stroke=\"#FBE8DE\" stroke-width=\"4.5\" />\n    <ellipse cx=\"150\" cy=\"54\" rx=\"22\" ry=\"7\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2\" />\n    <circle cx=\"150\" cy=\"54\" r=\"14\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2.5\" />\n    <path d=\"M132 55 C136 60 164 60 168 55\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n  </g>\n\n  <!-- Orbiting Asteroids & Motion Trails -->\n  <polygon points=\"38,62 44,58 48,64 42,70 36,66\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2\" stroke-linejoin=\"round\" />\n  <path d=\"M28 56 L34 60\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n  <polygon points=\"152,142 158,138 162,144 156,148 150,146\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"2\" stroke-linejoin=\"round\" />\n\n  <!-- Sparkles -->\n  <path d=\"M166 94 Q166 100 172 100 Q166 100 166 106 Q166 100 160 100 Q166 100 166 94 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <circle cx=\"48\" cy=\"146\" r=\"2.5\" fill=\"#141416\" />"
+  },
+  {
+    "id": "planet-cosmic-eclipse",
+    "name": "Solar Flare Eclipse & Crescent",
+    "category": "planets-astro",
+    "tags": [
+      "sun",
+      "eclipse",
+      "flare",
+      "corona",
+      "crescent",
+      "moon",
+      "solar",
+      "space",
+      "astro"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Radiant golden sun with organic wavy solar flare corona, aligned with a crescent moon and a ringed celestial orb.",
+    "rawSvg": "<!-- Radiant Golden Sun with Wavy Flare Corona -->\n  <path d=\"M60 76 Q60 62 70 66 Q74 54 86 60 Q96 50 104 60 Q116 54 120 66 Q130 62 130 76 Q140 82 136 94 Q144 104 136 114 Q140 126 130 132 Q120 142 110 136 Q98 144 90 136 Q78 142 74 130 Q62 126 66 114 Q58 104 66 94 Q60 82 60 76 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <circle cx=\"98\" cy=\"98\" r=\"26\" fill=\"#FFFBEB\" stroke=\"#141416\" stroke-width=\"3\" />\n\n  <!-- Orbiting Ringed Planet (Top Left) -->\n  <g transform=\"rotate(-25 46 48)\">\n    <ellipse cx=\"46\" cy=\"48\" rx=\"18\" ry=\"6\" fill=\"none\" stroke=\"#55BBDA\" stroke-width=\"3.5\" />\n    <ellipse cx=\"46\" cy=\"48\" rx=\"18\" ry=\"6\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2\" />\n    <circle cx=\"46\" cy=\"48\" r=\"11\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"2.5\" />\n    <path d=\"M32 49 C36 54 56 54 60 49\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n  </g>\n\n  <!-- Cratered Companion Moon (Top Right) -->\n  <circle cx=\"152\" cy=\"52\" r=\"15\" fill=\"#E2E8F0\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"148\" cy=\"50\" r=\"3\" fill=\"#94A3B8\" />\n  <circle cx=\"156\" cy=\"56\" r=\"2.5\" fill=\"#94A3B8\" />\n\n  <!-- Crimson Satellite (Bottom Right) -->\n  <circle cx=\"152\" cy=\"146\" r=\"12\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"149\" cy=\"144\" r=\"2.5\" fill=\"#B91C1C\" />\n\n  <!-- Sparkles & Dust -->\n  <path d=\"M168 100 L168 108 M164 104 L172 104\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n  <circle cx=\"34\" cy=\"116\" r=\"2\" fill=\"#141416\" />"
+  },
+  {
+    "id": "planet-alien-biosphere",
+    "name": "Mint Alien World & Rings",
+    "category": "planets-astro",
+    "tags": [
+      "planet",
+      "alien",
+      "mint",
+      "green",
+      "rings",
+      "contours",
+      "exoplanet",
+      "space",
+      "astro"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#0BDC85",
+    "description": "Hypnotic alien exoplanet with mint and turquoise wavy atmospheric contours, encircled by a bright cyan halo ring.",
+    "rawSvg": "<!-- Ring Back Segment -->\n  <path d=\"M48 94 C48 76 152 76 152 94\" fill=\"none\" stroke=\"#55BBDA\" stroke-width=\"8\" stroke-linecap=\"round\" />\n  <path d=\"M48 94 C48 76 152 76 152 94\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n\n  <!-- Alien Planet Body -->\n  <circle cx=\"102\" cy=\"102\" r=\"44\" fill=\"#141416\" opacity=\"0.12\" />\n  <circle cx=\"100\" cy=\"100\" r=\"44\" fill=\"#0BDC85\" stroke=\"#141416\" stroke-width=\"3.5\" />\n\n  <!-- Layered Atmospheric Contour Bands -->\n  <path d=\"M59 86 C75 92 125 92 141 86\" fill=\"none\" stroke=\"#059669\" stroke-width=\"4\" stroke-linecap=\"round\" />\n  <path d=\"M60 100 C75 106 125 106 140 100\" fill=\"none\" stroke=\"#6EE7B7\" stroke-width=\"4.5\" stroke-linecap=\"round\" />\n  <path d=\"M63 114 C78 120 122 120 137 114\" fill=\"none\" stroke=\"#047857\" stroke-width=\"4\" stroke-linecap=\"round\" />\n\n  <!-- Ring Front Segment -->\n  <path d=\"M42 98 C42 122 158 122 158 98\" fill=\"none\" stroke=\"#55BBDA\" stroke-width=\"8\" stroke-linecap=\"round\" />\n  <path d=\"M42 98 C42 122 158 122 158 98\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n\n  <!-- Companion Satellites -->\n  <g transform=\"rotate(-25 50 46)\">\n    <ellipse cx=\"50\" cy=\"46\" rx=\"20\" ry=\"6\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2\" />\n    <circle cx=\"50\" cy=\"46\" r=\"13\" fill=\"#2DD4BF\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  </g>\n  <circle cx=\"154\" cy=\"148\" r=\"12\" fill=\"#A7F3D0\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"151\" cy=\"145\" r=\"2.5\" fill=\"#047857\" />\n\n  <!-- Accents -->\n  <path d=\"M166 42 Q166 48 172 48 Q166 48 166 54 Q166 48 160 48 Q166 48 166 42 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <circle cx=\"44\" cy=\"140\" r=\"2.5\" fill=\"#141416\" />"
+  },
+  {
+    "id": "planet-minimal-ink-rings",
+    "name": "Minimalist Ink Saturn & Dust",
+    "category": "planets-astro",
+    "tags": [
+      "planet",
+      "saturn",
+      "rings",
+      "minimalist",
+      "monochrome",
+      "ink",
+      "lineart",
+      "space",
+      "astro"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "stroke",
+    "defaultColor": "#141416",
+    "description": "Crisp monochrome hand-drawn ink planet with tilted ring, horizontal negative space bands, companion moon, and celestial dust.",
+    "rawSvg": "<!-- Minimalist Ink Ring (Back Arc) -->\n  <path d=\"M42 92 C42 66 150 66 150 92\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n\n  <!-- Planet Body -->\n  <circle cx=\"96\" cy=\"98\" r=\"44\" fill=\"#FFFFFF\" stroke=\"currentColor\" stroke-width=\"3.5\" />\n\n  <!-- Bold Graphic Negative Space Bands -->\n  <path d=\"M56 86 C70 92 122 92 136 86\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4.5\" stroke-linecap=\"round\" />\n  <path d=\"M53 100 C70 106 122 106 139 100\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4.5\" stroke-linecap=\"round\" />\n  <path d=\"M57 114 C72 120 120 120 135 114\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4.5\" stroke-linecap=\"round\" />\n\n  <!-- Minimalist Ink Ring (Front Arc) -->\n  <path d=\"M34 98 C34 128 158 128 158 98\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n  <path d=\"M54 104 C64 120 128 120 138 104\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n\n  <!-- Accompanying Celestial Bodies -->\n  <circle cx=\"156\" cy=\"144\" r=\"12\" fill=\"currentColor\" />\n  <circle cx=\"48\" cy=\"52\" r=\"10\" fill=\"#FFFFFF\" stroke=\"currentColor\" stroke-width=\"2.5\" />\n  <circle cx=\"46\" cy=\"50\" r=\"2.5\" fill=\"currentColor\" />\n\n  <!-- Sparkles & Dust -->\n  <path d=\"M154 50 L154 60 M149 55 L159 55\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" />\n  <circle cx=\"34\" cy=\"112\" r=\"2.5\" fill=\"currentColor\" />\n  <circle cx=\"168\" cy=\"95\" r=\"2\" fill=\"currentColor\" />\n  <circle cx=\"96\" cy=\"34\" r=\"2.5\" fill=\"currentColor\" />"
+  },
+  {
+    "id": "astro-cute-cosmonaut",
+    "name": "Kawaii Space Explorer Helmet",
+    "category": "planets-astro",
+    "tags": [
+      "astronaut",
+      "cosmonaut",
+      "helmet",
+      "visor",
+      "kawaii",
+      "cute",
+      "space",
+      "astro",
+      "explorer"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#55BBDA",
+    "description": "Charming retro space astronaut helmet with reflective golden bubble visor, antenna star, cute face, and orbiting mini planet.",
+    "rawSvg": "<!-- Looping Oxygen Hose -->\n  <path d=\"M78 140 C66 156 58 168 80 172 C94 174 104 162 92 150 C88 144 84 140 84 140\" fill=\"none\" stroke=\"#55BBDA\" stroke-width=\"6\" stroke-linecap=\"round\" />\n  <path d=\"M78 140 C66 156 58 168 80 172 C94 174 104 162 92 150 C88 144 84 140 84 140\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n\n  <!-- Side Ear Communication Modules -->\n  <rect x=\"42\" y=\"86\" width=\"12\" height=\"26\" rx=\"5\" fill=\"#E2E8F0\" stroke=\"#141416\" stroke-width=\"3\" />\n  <rect x=\"146\" y=\"86\" width=\"12\" height=\"26\" rx=\"5\" fill=\"#E2E8F0\" stroke=\"#141416\" stroke-width=\"3\" />\n\n  <!-- Outer Helmet Dome -->\n  <path d=\"M58 120 C50 110 50 64 100 58 C150 64 150 110 142 120 C136 134 120 142 100 142 C80 142 64 134 58 120 Z\" fill=\"#F8FAFC\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n\n  <!-- Antenna with Star Tip -->\n  <path d=\"M100 58 L100 36\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <path d=\"M100 24 Q100 30 106 30 Q100 30 100 36 Q100 30 94 30 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2\" />\n\n  <!-- Deep Cosmic Bubble Visor -->\n  <path d=\"M68 84 C68 72 132 72 132 84 C132 116 68 116 68 84 Z\" fill=\"#1E1B4B\" stroke=\"#141416\" stroke-width=\"3.5\" />\n\n  <!-- Visor Golden Highlight Curve -->\n  <path d=\"M76 78 C86 74 96 74 102 76 C94 82 86 86 78 86 Z\" fill=\"#F7D046\" opacity=\"0.8\" />\n\n  <!-- Cute Face Inside Helmet -->\n  <circle cx=\"88\" cy=\"94\" r=\"3.5\" fill=\"#FFFFFF\" />\n  <circle cx=\"112\" cy=\"94\" r=\"3.5\" fill=\"#FFFFFF\" />\n  <path d=\"M96 100 Q100 104 104 100\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-linecap=\"round\" />\n  <ellipse cx=\"82\" cy=\"97\" rx=\"3.5\" ry=\"2\" fill=\"#EE8DB9\" />\n  <ellipse cx=\"118\" cy=\"97\" rx=\"3.5\" ry=\"2\" fill=\"#EE8DB9\" />\n\n  <!-- Orbiting Mini Planet -->\n  <circle cx=\"164\" cy=\"56\" r=\"11\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <ellipse cx=\"164\" cy=\"56\" rx=\"16\" ry=\"5\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2\" transform=\"rotate(-20 164 56)\" />\n\n  <!-- Accents -->\n  <path d=\"M34 50 L34 58 M30 54 L38 54\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n  <circle cx=\"168\" cy=\"136\" r=\"2.5\" fill=\"#141416\" />"
+  },
+  {
+    "id": "astro-retro-rocket-voyage",
+    "name": "Retro Cosmic Rocket Slingshot",
+    "category": "planets-astro",
+    "tags": [
+      "rocket",
+      "spaceship",
+      "slingshot",
+      "smoke",
+      "exhaust",
+      "planet",
+      "retro",
+      "space",
+      "astro"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "1950s atomic-age streamlined rocket ship slingshotting past a ringed planet through a starry galaxy field.",
+    "rawSvg": "<!-- Distant Celestial Planet in Starfield -->\n  <g transform=\"rotate(-30 52 70)\">\n    <ellipse cx=\"52\" cy=\"70\" rx=\"36\" ry=\"10\" fill=\"none\" stroke=\"#FBE8DE\" stroke-width=\"4.5\" />\n    <ellipse cx=\"52\" cy=\"70\" rx=\"36\" ry=\"10\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2\" />\n    <circle cx=\"52\" cy=\"70\" r=\"22\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" />\n    <path d=\"M30 71 C34 76 70 76 74 71\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n  </g>\n\n  <!-- Distant Stars & Speed Dashes -->\n  <path d=\"M164 36 Q164 42 170 42 Q164 42 164 48 Q164 42 158 42 Q164 42 164 36 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <circle cx=\"160\" cy=\"154\" r=\"10\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"2\" />\n  <circle cx=\"120\" cy=\"30\" r=\"2\" fill=\"#141416\" />\n  <circle cx=\"34\" cy=\"132\" r=\"2\" fill=\"#141416\" />\n\n  <!-- Billowing Smoke Exhaust Puffs -->\n  <path d=\"M38 168 C30 162 32 152 40 148 C38 140 48 138 54 144 C60 138 70 142 68 150 C74 156 70 166 60 166 Z\" fill=\"#FBE8DE\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n\n  <!-- Rocket Exhaust Flame -->\n  <polygon points=\"56,142 66,130 76,144\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2\" stroke-linejoin=\"round\" />\n  <polygon points=\"60,140 66,133 72,142\" fill=\"#F7D046\" />\n\n  <!-- Rocket Wings / Fins -->\n  <path d=\"M72 138 C60 144 56 154 56 154 C68 150 76 142 76 142 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n  <path d=\"M86 124 C92 136 100 138 100 138 C96 128 88 120 88 120 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n\n  <!-- Rocket Fuselage Body -->\n  <path d=\"M68 134 C80 118 116 82 148 50 C128 88 92 124 76 136 Z\" fill=\"#FFFFFF\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n\n  <!-- Rocket Nose Cone (Red Cap) -->\n  <path d=\"M126 72 C134 64 148 50 148 50 C148 50 134 64 126 72 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n\n  <!-- Circular Porthole Window -->\n  <circle cx=\"106\" cy=\"92\" r=\"9\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <path d=\"M103 89 A4 4 0 0 1 109 89\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"1.5\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "planet-galaxy-badge",
+    "name": "Midnight Nebula & Constellation Badge",
+    "category": "planets-astro",
+    "tags": [
+      "badge",
+      "space",
+      "galaxy",
+      "nebula",
+      "constellation",
+      "pink",
+      "planet",
+      "stars",
+      "astro"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#EE8DB9",
+    "description": "Circular midnight medallion with bubblegum pink striped planet, golden ringed orb, and glowing constellation stars.",
+    "rawSvg": "<!-- Midnight Space Badge Medallion -->\n  <circle cx=\"100\" cy=\"100\" r=\"88\" fill=\"#14142B\" stroke=\"#141416\" stroke-width=\"4\" />\n\n  <!-- Constellation Line & Sparkles -->\n  <path d=\"M140 50 L160 70 L145 92 L125 80\" fill=\"none\" stroke=\"#FDE68A\" stroke-width=\"1.5\" stroke-dasharray=\"3 3\" opacity=\"0.85\" />\n  <path d=\"M140 45 Q140 50 145 50 Q140 50 140 55 Q140 50 135 50 Z\" fill=\"#F7D046\" />\n  <path d=\"M160 65 Q160 70 165 70 Q160 70 160 75 Q160 70 155 70 Z\" fill=\"#F7D046\" />\n  <path d=\"M145 87 Q145 92 150 92 Q145 92 145 97 Q145 92 140 92 Z\" fill=\"#F7D046\" />\n  <path d=\"M125 75 Q125 80 130 80 Q125 80 125 85 Q125 80 120 80 Z\" fill=\"#F7D046\" />\n\n  <!-- Pink Striped Gas Giant -->\n  <circle cx=\"82\" cy=\"80\" r=\"38\" fill=\"#EE8DB9\" stroke=\"#141416\" stroke-width=\"3.5\" />\n  <path d=\"M48 72 C62 76 102 76 116 72\" fill=\"none\" stroke=\"#DB2777\" stroke-width=\"4.5\" stroke-linecap=\"round\" />\n  <path d=\"M50 88 C65 92 98 92 114 88\" fill=\"none\" stroke=\"#F472B6\" stroke-width=\"4.5\" stroke-linecap=\"round\" />\n\n  <!-- Turquoise Ringed Satellite Planet -->\n  <g transform=\"rotate(-15 138 130)\">\n    <ellipse cx=\"138\" cy=\"130\" rx=\"28\" ry=\"8\" fill=\"none\" stroke=\"#FBE8DE\" stroke-width=\"4\" />\n    <ellipse cx=\"138\" cy=\"130\" rx=\"28\" ry=\"8\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2.5\" />\n    <circle cx=\"138\" cy=\"130\" r=\"18\" fill=\"#2DD4BF\" stroke=\"#141416\" stroke-width=\"3\" />\n    <path d=\"M114 131 C120 138 156 138 162 131\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n  </g>\n\n  <!-- Golden Mini Sun/Moon -->\n  <circle cx=\"56\" cy=\"142\" r=\"12\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n  <!-- Stardust Particles -->\n  <circle cx=\"40\" cy=\"100\" r=\"2\" fill=\"#FFFFFF\" />\n  <circle cx=\"95\" cy=\"160\" r=\"2.5\" fill=\"#F7D046\" />"
+  },
+  {
+    "id": "planet-orbital-parade",
+    "name": "Cosmic Orbit Parade & Trails",
+    "category": "planets-astro",
+    "tags": [
+      "planet",
+      "orbit",
+      "parade",
+      "solar-system",
+      "saturn",
+      "earth",
+      "moon",
+      "sun",
+      "trails",
+      "astro"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Sweeping cosmic orbit tracks carrying a procession of celestial worlds: ringed gas giant, Earth, cratered moon, and sun.",
+    "rawSvg": "<!-- Sweeping Cosmic Orbit Tracks -->\n  <path d=\"M22 65 C50 145 150 165 182 95\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-dasharray=\"5 7\" stroke-linecap=\"round\" opacity=\"0.4\" />\n  <path d=\"M30 45 C60 125 160 145 190 75\" fill=\"none\" stroke=\"#141416\" stroke-width=\"1.5\" stroke-dasharray=\"3 5\" stroke-linecap=\"round\" opacity=\"0.25\" />\n\n  <!-- Planet 1: Ringed Saturn (Top Left) -->\n  <g transform=\"rotate(-15 60 56)\">\n    <ellipse cx=\"60\" cy=\"56\" rx=\"26\" ry=\"8\" fill=\"none\" stroke=\"#FBE8DE\" stroke-width=\"4.5\" />\n    <ellipse cx=\"60\" cy=\"56\" rx=\"26\" ry=\"8\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2\" />\n    <circle cx=\"60\" cy=\"56\" r=\"18\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" />\n    <path d=\"M38 57 C44 64 76 64 82 57\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n  </g>\n\n  <!-- Planet 2: Terrestrial Earth (Center) -->\n  <circle cx=\"106\" cy=\"120\" r=\"26\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3\" />\n  <path d=\"M92 112 C98 106 110 110 112 118 C108 126 96 124 92 112 Z\" fill=\"#4CA96D\" stroke=\"#141416\" stroke-width=\"2\" stroke-linejoin=\"round\" />\n  <path d=\"M102 128 C110 124 120 130 116 138 C108 142 100 136 102 128 Z\" fill=\"#4CA96D\" stroke=\"#141416\" stroke-width=\"2\" stroke-linejoin=\"round\" />\n\n  <!-- Planet 3: Cratered Coral Moon (Right) -->\n  <circle cx=\"158\" cy=\"124\" r=\"16\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"154\" cy=\"120\" r=\"3.5\" fill=\"#991B1B\" />\n  <circle cx=\"162\" cy=\"128\" r=\"2.5\" fill=\"#991B1B\" />\n\n  <!-- Planet 4: Radiant Golden Baby Sun (Top Right) -->\n  <circle cx=\"168\" cy=\"56\" r=\"11\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2\" />\n\n  <!-- Sparkles & Space Dust -->\n  <path d=\"M34 116 L34 124 M30 120 L38 120\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n  <path d=\"M120 40 Q120 46 126 46 Q120 46 120 52 Q120 46 114 46 Q120 46 120 40 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <circle cx=\"130\" cy=\"80\" r=\"2\" fill=\"#141416\" />\n  <circle cx=\"78\" cy=\"158\" r=\"2.5\" fill=\"#141416\" />"
+  },
   {
     "id": "funky-cactus-spotted",
     "name": "Cactus Spotted Hand",
@@ -337,7 +1020,7 @@ export const SCRIBBLES_ASSETS: ScribbleAsset[] = [
     "type": "mixed",
     "defaultColor": "#141416",
     "description": "Crisp hand-drawn 4-point diamond sparkle star with tapered curved flares in rich ink black.",
-    "rawSvg": "<path d=\"M55 8 C56 32 67 43 92 45 C67 47 56 58 55 82 C54 58 43 47 18 45 C43 43 54 32 55 8 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n  <circle cx=\"84\" cy=\"22\" r=\"3\" fill=\"currentColor\" />\n  <circle cx=\"26\" cy=\"68\" r=\"2.5\" fill=\"currentColor\" />"
+    "rawSvg": "<path d=\"M55 5 C56 32 68 44 95 45 C68 46 56 58 55 85 C54 58 42 46 15 45 C42 44 54 32 55 5 Z\" fill=\"currentColor\" />\n  <circle cx=\"85\" cy=\"20\" r=\"3.5\" fill=\"currentColor\" />\n  <circle cx=\"25\" cy=\"72\" r=\"2.5\" fill=\"currentColor\" />"
   },
   {
     "id": "funky-striped-globe-ball",
@@ -877,6 +1560,818 @@ export const SCRIBBLES_ASSETS: ScribbleAsset[] = [
     "defaultColor": "#EE8DB9",
     "description": "12 vibrant rounded daisy petals radiating around a happy cartoon smiling face center with wink eye and ink outlines.",
     "rawSvg": "<g stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\">\n  <circle cx=\"95\" cy=\"24\" r=\"18\" fill=\"#EA552B\" />\n  <circle cx=\"130\" cy=\"34\" r=\"18\" fill=\"#F7D046\" />\n  <circle cx=\"156\" cy=\"60\" r=\"18\" fill=\"#4CA96D\" />\n  <circle cx=\"166\" cy=\"95\" r=\"18\" fill=\"#55BBDA\" />\n  <circle cx=\"156\" cy=\"130\" r=\"18\" fill=\"#0BDC85\" />\n  <circle cx=\"130\" cy=\"156\" r=\"18\" fill=\"#EE8DB9\" />\n  <circle cx=\"95\" cy=\"166\" r=\"18\" fill=\"currentColor\" />\n  <circle cx=\"60\" cy=\"156\" r=\"18\" fill=\"#EA552B\" />\n  <circle cx=\"34\" cy=\"130\" r=\"18\" fill=\"#F7D046\" />\n  <circle cx=\"24\" cy=\"95\" r=\"18\" fill=\"#4CA96D\" />\n  <circle cx=\"34\" cy=\"60\" r=\"18\" fill=\"#55BBDA\" />\n  <circle cx=\"60\" cy=\"34\" r=\"18\" fill=\"#0BDC85\" />\n  <circle cx=\"95\" cy=\"95\" r=\"46\" fill=\"#F7D046\" />\n</g>\n<ellipse cx=\"78\" cy=\"86\" rx=\"4\" ry=\"7\" fill=\"#141416\" />\n<path d=\"M106 86 C112 80 118 86 120 90\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n<path d=\"M80 106 C86 122 104 122 112 106\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n<circle cx=\"68\" cy=\"100\" r=\"4\" fill=\"#EE8DB9\" />\n<circle cx=\"122\" cy=\"100\" r=\"4\" fill=\"#EE8DB9\" />"
+  },
+  {
+    "id": "funky-retro-skate-board",
+    "name": "Retro Street Skateboard",
+    "category": "funky-complex",
+    "tags": [
+      "skateboard",
+      "skate",
+      "retro",
+      "street",
+      "90s",
+      "wheels",
+      "urban",
+      "cool"
+    ],
+    "viewBox": "0 0 220 120",
+    "type": "mixed",
+    "defaultColor": "#55BBDA",
+    "description": "Chunky 90s street skateboard with dual kicktails, grip tape stripe, two pairs of fat wheels, and 3D shadow.",
+    "rawSvg": "<path d=\"M16 66 C28 54 192 54 204 66 C210 72 206 82 196 82 C184 82 36 82 24 82 C14 82 10 72 16 66 Z\" transform=\"translate(6, 6)\" fill=\"#141416\" />\n  <path d=\"M16 64 C28 50 192 50 204 64 C210 70 206 80 196 80 C184 80 36 80 24 80 C14 80 10 70 16 64 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M38 66 C70 58 150 58 182 66\" fill=\"none\" stroke=\"#FAF6F0\" stroke-width=\"3\" stroke-dasharray=\"6 4\" stroke-linecap=\"round\" />\n  <rect x=\"42\" y=\"80\" width=\"14\" height=\"24\" rx=\"6\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" />\n  <rect x=\"66\" y=\"80\" width=\"14\" height=\"24\" rx=\"6\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" />\n  <rect x=\"140\" y=\"80\" width=\"14\" height=\"24\" rx=\"6\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" />\n  <rect x=\"164\" y=\"80\" width=\"14\" height=\"24\" rx=\"6\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" />\n  <circle cx=\"49\" cy=\"92\" r=\"3\" fill=\"#141416\" />\n  <circle cx=\"73\" cy=\"92\" r=\"3\" fill=\"#141416\" />\n  <circle cx=\"147\" cy=\"92\" r=\"3\" fill=\"#141416\" />\n  <circle cx=\"171\" cy=\"92\" r=\"3\" fill=\"#141416\" />\n  <path d=\"M28 36 L18 42 M202 36 L212 42\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "funky-vinyl-record-spin",
+    "name": "Groovy Vinyl LP Record",
+    "category": "funky-complex",
+    "tags": [
+      "vinyl",
+      "record",
+      "music",
+      "lp",
+      "album",
+      "audio",
+      "dj",
+      "spin"
+    ],
+    "viewBox": "0 0 190 190",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Spinning classic vinyl LP record with concentric sound grooves, vibrant center label sticker, spindle hole, and musical sparkle accents.",
+    "rawSvg": "<circle cx=\"98\" cy=\"98\" r=\"82\" fill=\"#141416\" opacity=\"0.3\" />\n  <circle cx=\"94\" cy=\"94\" r=\"82\" fill=\"#141416\" stroke=\"#141416\" stroke-width=\"3\" />\n  <circle cx=\"94\" cy=\"94\" r=\"70\" fill=\"none\" stroke=\"#2A2A2E\" stroke-width=\"2\" />\n  <circle cx=\"94\" cy=\"94\" r=\"58\" fill=\"none\" stroke=\"#2A2A2E\" stroke-width=\"2\" />\n  <circle cx=\"94\" cy=\"94\" r=\"46\" fill=\"none\" stroke=\"#2A2A2E\" stroke-width=\"2\" />\n  <circle cx=\"94\" cy=\"94\" r=\"32\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3\" />\n  <circle cx=\"94\" cy=\"94\" r=\"18\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2\" />\n  <circle cx=\"94\" cy=\"94\" r=\"6\" fill=\"#141416\" />\n  <path d=\"M60 40 C70 30 118 30 128 40\" fill=\"none\" stroke=\"#FAF6F0\" stroke-width=\"3\" stroke-linecap=\"round\" opacity=\"0.4\" />\n  <path d=\"M60 148 C70 158 118 158 128 148\" fill=\"none\" stroke=\"#FAF6F0\" stroke-width=\"3\" stroke-linecap=\"round\" opacity=\"0.4\" />\n  <path d=\"M158 24 C162 34 166 38 176 40 C166 42 162 46 158 56 C154 46 150 42 140 40 C150 38 154 34 158 24 Z\" fill=\"#F7D046\" />"
+  },
+  {
+    "id": "funky-roller-skate-quad",
+    "name": "Vintage Disco Roller Skate",
+    "category": "funky-complex",
+    "tags": [
+      "roller-skate",
+      "disco",
+      "70s",
+      "80s",
+      "skate",
+      "quads",
+      "retro",
+      "pop"
+    ],
+    "viewBox": "0 0 190 200",
+    "type": "mixed",
+    "defaultColor": "#EE8DB9",
+    "description": "High-top 70s quad roller skate boot with front toe stopper, criss-cross laces, and dual pop-colored rolling wheels.",
+    "rawSvg": "<path d=\"M54 22 L98 22 C108 22 114 30 114 42 L110 82 L148 94 C158 98 164 108 162 120 L158 142 C158 148 152 152 146 152 L42 152 C32 152 26 144 26 134 L32 42 C32 30 42 22 54 22 Z\" transform=\"translate(6, 6)\" fill=\"#141416\" />\n  <path d=\"M54 18 L98 18 C108 18 114 26 114 38 L110 78 L148 90 C158 94 164 104 162 116 L158 138 C158 144 152 148 146 148 L42 148 C32 148 26 140 26 130 L32 38 C32 26 42 18 54 18 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M54 36 L104 36 M56 54 L102 54 M60 72 L100 72 M68 90 L110 90 M80 106 L124 106\" stroke=\"#FAF6F0\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n  <circle cx=\"48\" cy=\"172\" r=\"18\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" />\n  <circle cx=\"48\" cy=\"172\" r=\"6\" fill=\"#141416\" />\n  <circle cx=\"132\" cy=\"172\" r=\"18\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" />\n  <circle cx=\"132\" cy=\"172\" r=\"6\" fill=\"#141416\" />\n  <path d=\"M158 136 L174 144 C178 146 178 152 174 154 L160 160 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2.5\" />"
+  },
+  {
+    "id": "funky-alien-ufo-beam",
+    "name": "Funky UFO Tractor Beam",
+    "category": "funky-complex",
+    "tags": [
+      "ufo",
+      "alien",
+      "space",
+      "sci-fi",
+      "beam",
+      "saucer",
+      "retro",
+      "cosmic"
+    ],
+    "viewBox": "0 0 200 210",
+    "type": "mixed",
+    "defaultColor": "#0BDC85",
+    "description": "Retro sci-fi flying saucer with clear bubble dome, cockpit alien eyes, and a cone tractor beam beaming up a smiling star.",
+    "rawSvg": "<polygon points=\"80,102 120,102 168,198 32,198\" fill=\"#F7D046\" opacity=\"0.35\" />\n  <path d=\"M80 102 L32 198 M120 102 L168 198\" stroke=\"#F7D046\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-dasharray=\"6 4\" />\n  <ellipse cx=\"100\" cy=\"80\" rx=\"78\" ry=\"24\" fill=\"#141416\" transform=\"translate(4, 6)\" />\n  <ellipse cx=\"100\" cy=\"76\" rx=\"78\" ry=\"24\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" />\n  <ellipse cx=\"100\" cy=\"62\" rx=\"42\" ry=\"26\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3\" />\n  <circle cx=\"90\" cy=\"58\" r=\"4\" fill=\"#141416\" />\n  <circle cx=\"110\" cy=\"58\" r=\"4\" fill=\"#141416\" />\n  <circle cx=\"44\" cy=\"78\" r=\"5\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2\" />\n  <circle cx=\"72\" cy=\"84\" r=\"5\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2\" />\n  <circle cx=\"100\" cy=\"86\" r=\"5\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2\" />\n  <circle cx=\"128\" cy=\"84\" r=\"5\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2\" />\n  <circle cx=\"156\" cy=\"78\" r=\"5\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2\" />\n  <path d=\"M100 156 L103 166 L113 166 L105 172 L108 182 L100 176 L92 182 L95 172 L87 166 L97 166 Z\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2\" />"
+  },
+  {
+    "id": "funky-boombox-stereo",
+    "name": "Chunky 80s Boombox",
+    "category": "funky-complex",
+    "tags": [
+      "boombox",
+      "stereo",
+      "80s",
+      "music",
+      "ghettoblaster",
+      "audio",
+      "radio",
+      "tapes"
+    ],
+    "viewBox": "0 0 220 160",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Iconic 1980s street boombox with arched carry handle, twin circular speaker woofers, tape cassette deck, and tuner knobs.",
+    "rawSvg": "<path d=\"M60 18 H160 V34 H60 Z\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"3\" />\n  <rect x=\"24\" y=\"38\" width=\"176\" height=\"110\" rx=\"12\" fill=\"#141416\" transform=\"translate(6, 6)\" />\n  <rect x=\"20\" y=\"34\" width=\"176\" height=\"110\" rx=\"12\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" />\n  <circle cx=\"62\" cy=\"94\" r=\"28\" fill=\"#141416\" stroke=\"#FAF6F0\" stroke-width=\"3\" />\n  <circle cx=\"62\" cy=\"94\" r=\"14\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2\" />\n  <circle cx=\"154\" cy=\"94\" r=\"28\" fill=\"#141416\" stroke=\"#FAF6F0\" stroke-width=\"3\" />\n  <circle cx=\"154\" cy=\"94\" r=\"14\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2\" />\n  <rect x=\"96\" y=\"74\" width=\"24\" height=\"40\" rx=\"4\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"102\" cy=\"90\" r=\"3\" fill=\"#141416\" />\n  <circle cx=\"114\" cy=\"90\" r=\"3\" fill=\"#141416\" />\n  <rect x=\"36\" y=\"46\" width=\"144\" height=\"14\" rx=\"3\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2\" />\n  <circle cx=\"48\" cy=\"53\" r=\"3\" fill=\"#EA552B\" />\n  <circle cx=\"60\" cy=\"53\" r=\"3\" fill=\"#4CA96D\" />\n  <circle cx=\"72\" cy=\"53\" r=\"3\" fill=\"#55BBDA\" />"
+  },
+  {
+    "id": "funky-gameboy-handheld",
+    "name": "90s Handheld Game Console",
+    "category": "funky-complex",
+    "tags": [
+      "gameboy",
+      "gaming",
+      "console",
+      "90s",
+      "retro",
+      "pixel",
+      "arcade",
+      "play"
+    ],
+    "viewBox": "0 0 160 210",
+    "type": "mixed",
+    "defaultColor": "#55BBDA",
+    "description": "Nostalgic 90s handheld 8-bit gaming device with square LCD screen, cross D-pad, slanted action buttons, and speaker vents.",
+    "rawSvg": "<path d=\"M26 18 H134 C140 18 144 22 144 28 V168 C144 186 130 198 114 198 H36 C24 198 16 188 16 174 V28 C16 22 20 18 26 18 Z\" transform=\"translate(6, 6)\" fill=\"#141416\" />\n  <path d=\"M26 14 H134 C140 14 144 18 144 24 V164 C144 182 130 194 114 194 H36 C24 194 16 184 16 170 V24 C16 18 20 14 26 14 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <rect x=\"32\" y=\"30\" width=\"96\" height=\"74\" rx=\"8\" fill=\"#141416\" />\n  <rect x=\"42\" y=\"40\" width=\"76\" height=\"54\" rx=\"4\" fill=\"#0BDC85\" stroke=\"#141416\" stroke-width=\"2\" />\n  <circle cx=\"36\" cy=\"46\" r=\"2.5\" fill=\"#EA552B\" />\n  <path d=\"M42 136 H52 V126 H62 V136 H72 V146 H62 V156 H52 V146 H42 Z\" fill=\"#141416\" />\n  <circle cx=\"118\" cy=\"136\" r=\"9\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2\" />\n  <circle cx=\"102\" cy=\"150\" r=\"9\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2\" />\n  <rect x=\"52\" y=\"172\" width=\"16\" height=\"5\" rx=\"2.5\" transform=\"rotate(-25 52 172)\" fill=\"#141416\" />\n  <rect x=\"76\" y=\"172\" width=\"16\" height=\"5\" rx=\"2.5\" transform=\"rotate(-25 76 172)\" fill=\"#141416\" />"
+  },
+  {
+    "id": "funky-lava-lamp-flow",
+    "name": "Psychedelic Retro Lava Lamp",
+    "category": "funky-complex",
+    "tags": [
+      "lava-lamp",
+      "psychedelic",
+      "60s",
+      "70s",
+      "lamp",
+      "fluid",
+      "blobs",
+      "trippy"
+    ],
+    "viewBox": "0 0 140 210",
+    "type": "mixed",
+    "defaultColor": "#EE8DB9",
+    "description": "Curved 60s psychedelic lava lamp with floating fluid magma blobs, conical metal base, and warm top cap.",
+    "rawSvg": "<polygon points=\"56,12 84,12 78,34 62,34\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M62 34 C44 74 38 126 44 156 H96 C102 126 96 74 78 34 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <polygon points=\"44,156 96,156 112 198 28 198\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M54 136 C50 114 62 108 72 118 C82 128 78 142 66 142 C58 142 56 140 54 136 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2\" />\n  <ellipse cx=\"78\" cy=\"86\" rx=\"14\" ry=\"18\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2\" />\n  <circle cx=\"60\" cy=\"56\" r=\"8\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2\" />\n  <circle cx=\"76\" cy=\"184\" r=\"5\" fill=\"#EA552B\" />"
+  },
+  {
+    "id": "funky-disco-mirror-ball",
+    "name": "Glittering Disco Mirror Ball",
+    "category": "funky-complex",
+    "tags": [
+      "disco",
+      "mirror-ball",
+      "glitter",
+      "party",
+      "club",
+      "dance",
+      "night",
+      "sparkle"
+    ],
+    "viewBox": "0 0 180 200",
+    "type": "mixed",
+    "defaultColor": "#55BBDA",
+    "description": "Hanging reflective disco mirror ball with curved grid facet tiles, ceiling chain, and sparkling light star flares.",
+    "rawSvg": "<path d=\"M90 6 V36\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n  <circle cx=\"94\" cy=\"118\" r=\"68\" fill=\"#141416\" />\n  <circle cx=\"90\" cy=\"114\" r=\"68\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" />\n  <g stroke=\"#141416\" stroke-width=\"2\" fill=\"none\">\n    <path d=\"M22 114 H158\" />\n    <path d=\"M26 94 C50 98 130 98 154 94\" />\n    <path d=\"M26 134 C50 130 130 130 154 134\" />\n    <path d=\"M38 76 C60 82 120 82 142 76\" />\n    <path d=\"M38 152 C60 146 120 146 142 152\" />\n    <path d=\"M90 46 V182\" />\n    <path d=\"M70 48 C64 80 64 148 70 180\" />\n    <path d=\"M110 48 C116 80 116 148 110 180\" />\n    <path d=\"M50 56 C42 86 42 142 50 172\" />\n    <path d=\"M130 56 C138 86 138 142 130 172\" />\n  </g>\n  <path d=\"M148 48 C150 60 154 64 166 66 C154 68 150 72 148 84 C146 72 142 68 130 66 C142 64 146 60 148 48 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2\" />\n  <path d=\"M32 140 C33 148 36 151 44 152 C36 153 33 156 32 164 C31 156 28 153 20 152 C28 151 31 148 32 140 Z\" fill=\"#FAF6F0\" />"
+  },
+  {
+    "id": "funky-melting-smiley-face",
+    "name": "Dripping Psychedelic Smiley",
+    "category": "funky-complex",
+    "tags": [
+      "melting",
+      "smiley",
+      "drip",
+      "psychedelic",
+      "acid",
+      "yellow",
+      "liquid",
+      "trippy"
+    ],
+    "viewBox": "0 0 180 200",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Melting psychedelic cartoon smiley face with liquid droplet drips flowing down from the jawline.",
+    "rawSvg": "<path d=\"M90 20 C130 20 162 50 162 90 C162 120 148 134 144 154 C140 174 130 178 126 156 C122 138 116 138 112 166 C108 190 98 194 94 166 C90 140 84 140 80 174 C76 198 66 196 64 164 C62 138 56 138 52 152 C48 166 38 162 38 142 C38 126 18 116 18 90 C18 50 50 20 90 20 Z\" transform=\"translate(6, 6)\" fill=\"#141416\" />\n  <path d=\"M90 14 C130 14 162 44 162 84 C162 114 148 128 144 148 C140 168 130 172 126 150 C122 132 116 132 112 160 C108 184 98 188 94 160 C90 134 84 134 80 168 C76 192 66 190 64 158 C62 132 56 132 52 146 C48 160 38 156 38 136 C38 120 18 110 18 84 C18 44 50 14 90 14 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <ellipse cx=\"64\" cy=\"74\" rx=\"8\" ry=\"16\" fill=\"#141416\" />\n  <ellipse cx=\"116\" cy=\"74\" rx=\"8\" ry=\"16\" fill=\"#141416\" />\n  <path d=\"M54 104 C74 126 106 126 126 104\" fill=\"none\" stroke=\"#141416\" stroke-width=\"4.5\" stroke-linecap=\"round\" />\n  <circle cx=\"80\" cy=\"188\" r=\"4\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"2\" />\n  <circle cx=\"106\" cy=\"182\" r=\"3\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"2\" />"
+  },
+  {
+    "id": "funky-flame-fire-pop",
+    "name": "Hot-Rod Comic Flame",
+    "category": "funky-complex",
+    "tags": [
+      "flame",
+      "fire",
+      "hotrod",
+      "comic",
+      "energy",
+      "burn",
+      "warmth",
+      "pop"
+    ],
+    "viewBox": "0 0 160 210",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Multi-tier vintage hot-rod campfire flame with warm persimmon outer tongue, inner golden fire core, and comic ink contours.",
+    "rawSvg": "<path d=\"M80 18 C98 56 128 78 128 114 C128 148 108 186 80 196 C52 186 32 148 32 114 C32 88 50 68 56 46 C60 64 68 76 74 76 C76 76 78 54 80 18 Z\" transform=\"translate(6, 6)\" fill=\"#141416\" />\n  <path d=\"M80 12 C98 50 128 72 128 108 C128 142 108 180 80 190 C52 180 32 142 32 108 C32 82 50 62 56 40 C60 58 68 70 74 70 C76 70 78 48 80 12 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <path d=\"M80 72 C90 94 108 108 108 130 C108 152 96 172 80 178 C64 172 52 152 52 130 C52 114 62 102 66 88 C68 98 72 106 76 106 C78 106 79 92 80 72 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n  <circle cx=\"80\" cy=\"148\" r=\"8\" fill=\"#FAF6F0\" />"
+  },
+  {
+    "id": "funky-sliced-watermelon",
+    "name": "Pop-Art Watermelon Slice",
+    "category": "funky-complex",
+    "tags": [
+      "watermelon",
+      "fruit",
+      "summer",
+      "slice",
+      "seeds",
+      "refresh",
+      "food",
+      "pop"
+    ],
+    "viewBox": "0 0 200 170",
+    "type": "mixed",
+    "defaultColor": "#EE8DB9",
+    "description": "Juicy cartoon watermelon wedge with curved green rind, sweet pink center, glossy black teardrop seeds, and a 3D drop shadow.",
+    "rawSvg": "<path d=\"M24 44 C84 148 148 148 178 44 C120 72 60 72 24 44 Z\" transform=\"translate(6, 6)\" fill=\"#141416\" />\n  <path d=\"M20 40 C80 144 144 144 174 40 C116 68 56 68 20 40 Z\" fill=\"#4CA96D\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <path d=\"M30 46 C80 134 136 134 164 46 C114 66 60 66 30 46 Z\" fill=\"currentColor\" stroke=\"#FAF6F0\" stroke-width=\"3\" />\n  <path d=\"M72 80 C72 74 76 68 78 64 C80 68 84 74 84 80 C84 84 80 87 78 87 C76 87 72 84 72 80 Z\" fill=\"#141416\" />\n  <path d=\"M102 86 C102 80 106 74 108 70 C110 74 114 80 114 86 C114 90 110 93 108 93 C106 93 102 90 102 86 Z\" fill=\"#141416\" />\n  <path d=\"M124 74 C124 68 128 62 130 58 C132 62 136 68 136 74 C136 78 132 81 130 81 C128 81 124 78 124 74 Z\" fill=\"#141416\" />\n  <path d=\"M90 106 C90 100 94 94 96 90 C98 94 102 100 102 106 C102 110 98 113 96 113 C94 113 90 110 90 106 Z\" fill=\"#141416\" />"
+  },
+  {
+    "id": "funky-chunky-sneaker-kick",
+    "name": "90s Streetwear High-Top Sneaker",
+    "category": "funky-complex",
+    "tags": [
+      "sneaker",
+      "shoe",
+      "streetwear",
+      "kicks",
+      "90s",
+      "fashion",
+      "high-top",
+      "cool"
+    ],
+    "viewBox": "0 0 220 160",
+    "type": "mixed",
+    "defaultColor": "#55BBDA",
+    "description": "Retro 90s streetwear high-top basketball sneaker with chunky platform tread sole, eyelet laces, and dynamic speed motion streaks.",
+    "rawSvg": "<path d=\"M34 26 L76 26 C84 26 90 32 92 44 L96 74 L158 84 C178 88 196 102 196 122 L196 134 L26 134 L26 44 C26 34 30 26 34 26 Z\" transform=\"translate(6, 6)\" fill=\"#141416\" />\n  <path d=\"M34 22 L76 22 C84 22 90 28 92 40 L96 70 L158 80 C178 84 196 98 196 118 L196 130 L26 130 L26 40 C26 30 30 22 34 22 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <rect x=\"22\" y=\"128\" width=\"178\" height=\"20\" rx=\"4\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"3\" />\n  <path d=\"M50 134 H180\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-dasharray=\"8 6\" />\n  <path d=\"M48 40 L84 40 M54 58 L88 58 M60 76 L94 76 M68 94 L114 94\" stroke=\"#FAF6F0\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n  <circle cx=\"160\" cy=\"108\" r=\"10\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2\" />\n  <path d=\"M160 102 L163 108 L169 108 L164 112 L166 118 L160 114 L154 118 L156 112 L151 108 L157 108 Z\" fill=\"#FAF6F0\" />"
+  },
+  {
+    "id": "funky-neon-mocktail-glass",
+    "name": "Retro Tiki Mocktail Coupe",
+    "category": "funky-complex",
+    "tags": [
+      "mocktail",
+      "drink",
+      "tiki",
+      "party",
+      "summer",
+      "martini",
+      "bar",
+      "vacation"
+    ],
+    "viewBox": "0 0 170 210",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Vibrant party mocktail glass with wide V-bowl, curvy neon straw, skewered olive garnish, and festive star sparkles.",
+    "rawSvg": "<path d=\"M36 28 L85 106 V176 H56 V192 H114 V176 H85 V106 L134 28 Z\" transform=\"translate(6, 6)\" fill=\"#141416\" />\n  <path d=\"M36 24 L85 102 V172 H56 V188 H114 V172 H85 V102 L134 24 Z\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n  <polygon points=\"46,38 85,100 124,38\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"2\" />\n  <path d=\"M102 14 L80 62 L94 92\" fill=\"none\" stroke=\"#EA552B\" stroke-width=\"4.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n  <circle cx=\"118\" cy=\"22\" r=\"10\" fill=\"#4CA96D\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"118\" cy=\"22\" r=\"4\" fill=\"#EA552B\" />\n  <path d=\"M142 56 C144 64 148 67 154 68 C148 69 144 72 142 80 C140 72 136 69 130 68 C136 67 140 64 142 56 Z\" fill=\"#EE8DB9\" />"
+  },
+  {
+    "id": "funky-cloud-lightning-storm",
+    "name": "Pop-Art Stormy Cloud",
+    "category": "funky-complex",
+    "tags": [
+      "cloud",
+      "lightning",
+      "storm",
+      "rain",
+      "weather",
+      "comic",
+      "energy",
+      "thunder"
+    ],
+    "viewBox": "0 0 190 190",
+    "type": "mixed",
+    "defaultColor": "#55BBDA",
+    "description": "Chubby comic cloud pouring stylized teardrop raindrops and struck through by an energetic zigzag lightning bolt.",
+    "rawSvg": "<path d=\"M48 94 C34 94 22 82 22 68 C22 56 30 46 42 44 C46 28 62 16 82 16 C104 16 122 30 126 48 C138 46 154 54 158 68 C166 72 172 82 170 92 C168 104 156 112 144 112 H48 Z\" transform=\"translate(6, 6)\" fill=\"#141416\" />\n  <path d=\"M48 90 C34 90 22 78 22 64 C22 52 30 42 42 40 C46 24 62 12 82 12 C104 12 122 26 126 44 C138 42 154 50 158 64 C166 68 172 78 170 88 C168 100 156 108 144 108 H48 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <polygon points=\"104,78 78,124 98,124 84,172 124,114 104,114 118,78\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n  <path d=\"M44 136 C44 144 48 148 52 148 C56 148 60 144 60 136 C60 128 52 120 52 120 C52 120 44 128 44 136 Z\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2\" />\n  <path d=\"M136 136 C136 144 140 148 144 148 C148 148 152 144 152 136 C152 128 144 120 144 120 C144 120 136 128 136 136 Z\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2\" />"
+  },
+  {
+    "id": "funky-ghost-pac-doodle",
+    "name": "Arcade 8-Bit Ghost Doodle",
+    "category": "funky-complex",
+    "tags": [
+      "ghost",
+      "arcade",
+      "pacman",
+      "80s",
+      "retro",
+      "pixel",
+      "cute",
+      "spooky"
+    ],
+    "viewBox": "0 0 170 190",
+    "type": "mixed",
+    "defaultColor": "#EE8DB9",
+    "description": "Playful 80s arcade cartoon ghost with arching bell body, rippling bottom skirt tentacles, and big peering cartoon eyes.",
+    "rawSvg": "<path d=\"M34 84 C34 44 60 18 90 18 C120 18 146 44 146 84 V160 L128 146 L110 160 L90 146 L70 160 L52 146 L34 160 Z\" transform=\"translate(6, 6)\" fill=\"#141416\" />\n  <path d=\"M34 80 C34 40 60 14 90 14 C120 14 146 40 146 80 V156 L128 142 L110 156 L90 142 L70 156 L52 142 L34 156 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <ellipse cx=\"68\" cy=\"74\" rx=\"12\" ry=\"16\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <ellipse cx=\"112\" cy=\"74\" rx=\"12\" ry=\"16\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"64\" cy=\"74\" r=\"6\" fill=\"#141416\" />\n  <circle cx=\"108\" cy=\"74\" r=\"6\" fill=\"#141416\" />\n  <circle cx=\"90\" cy=\"178\" r=\"5\" fill=\"#F7D046\" />"
+  },
+  {
+    "id": "funky-retro-tv-antenna",
+    "name": "Vintage CRT Bubble TV",
+    "category": "funky-complex",
+    "tags": [
+      "tv",
+      "television",
+      "crt",
+      "retro",
+      "antenna",
+      "vintage",
+      "broadcast",
+      "screen"
+    ],
+    "viewBox": "0 0 190 190",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Mid-century bubble CRT TV set with V-shaped rabbit ear antennas, rounded screen frame, and twin analog tuning knobs.",
+    "rawSvg": "<path d=\"M64 18 L94 58 M124 18 L94 58\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n  <circle cx=\"64\" cy=\"18\" r=\"4\" fill=\"#EA552B\" />\n  <circle cx=\"124\" cy=\"18\" r=\"4\" fill=\"#EA552B\" />\n  <rect x=\"24\" y=\"60\" width=\"144\" height=\"110\" rx=\"18\" fill=\"#141416\" transform=\"translate(6, 6)\" />\n  <rect x=\"20\" y=\"56\" width=\"144\" height=\"110\" rx=\"18\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" />\n  <rect x=\"34\" y=\"70\" width=\"92\" height=\"82\" rx=\"12\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3\" />\n  <path d=\"M48 84 C68 80 92 84 104 88\" stroke=\"#FAF6F0\" stroke-width=\"3\" stroke-linecap=\"round\" opacity=\"0.6\" />\n  <circle cx=\"144\" cy=\"88\" r=\"8\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"144\" cy=\"116\" r=\"8\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <line x1=\"138\" y1=\"140\" x2=\"150\" y2=\"140\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n  <line x1=\"138\" y1=\"146\" x2=\"150\" y2=\"146\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "funky-lucky-horseshoe-stars",
+    "name": "Pop Horseshoe",
+    "category": "funky-complex",
+    "tags": [
+      "horseshoe",
+      "lucky",
+      "fortune",
+      "stars",
+      "clover",
+      "western",
+      "gold",
+      "charm"
+    ],
+    "viewBox": "0 0 180 180",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Good-luck western horseshoe adorned with punched nail insets, stamped 4-point star sparkles, and a 3D comic shadow.",
+    "rawSvg": "<path d=\"M38 24 V74 C38 106 62 134 94 134 C126 134 150 106 150 74 V24 H120 V72 C120 88 108 104 94 104 C80 104 68 88 68 72 V24 Z\" transform=\"translate(6, 6)\" fill=\"#141416\" />\n  <path d=\"M38 20 V70 C38 102 62 130 94 130 C126 130 150 102 150 70 V20 H120 V68 C120 84 108 100 94 100 C80 100 68 84 68 68 V20 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <circle cx=\"53\" cy=\"40\" r=\"3.5\" fill=\"#141416\" />\n  <circle cx=\"53\" cy=\"62\" r=\"3.5\" fill=\"#141416\" />\n  <circle cx=\"58\" cy=\"84\" r=\"3.5\" fill=\"#141416\" />\n  <circle cx=\"135\" cy=\"40\" r=\"3.5\" fill=\"#141416\" />\n  <circle cx=\"135\" cy=\"62\" r=\"3.5\" fill=\"#141416\" />\n  <circle cx=\"130\" cy=\"84\" r=\"3.5\" fill=\"#141416\" />\n  <path d=\"M94 138 C95 146 98 149 106 150 C98 151 95 154 94 162 C93 154 90 151 82 150 C90 149 93 146 94 138 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"1.5\" />"
+  },
+  {
+    "id": "funky-cherries-double-drop",
+    "name": "Glossy Twin Pop Cherries",
+    "category": "funky-complex",
+    "tags": [
+      "cherries",
+      "fruit",
+      "berries",
+      "sweet",
+      "popart",
+      "gloss",
+      "cute",
+      "vintage"
+    ],
+    "viewBox": "0 0 180 190",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Double pop-art red cherries joined by an arched twig stem with an organic green leaf and reflective white highlight crescents.",
+    "rawSvg": "<path d=\"M96 18 C90 48 58 84 56 116 M96 18 C104 52 128 84 134 116\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n  <path d=\"M96 18 C120 14 138 26 142 38 C124 44 104 36 96 18 Z\" fill=\"#4CA96D\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n  <circle cx=\"58\" cy=\"138\" r=\"34\" fill=\"#141416\" />\n  <circle cx=\"54\" cy=\"134\" r=\"34\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" />\n  <path d=\"M42 118 A 18 18 0 0 1 68 118\" fill=\"none\" stroke=\"#FAF6F0\" stroke-width=\"4\" stroke-linecap=\"round\" />\n  <circle cx=\"130\" cy=\"138\" r=\"34\" fill=\"#141416\" />\n  <circle cx=\"126\" cy=\"134\" r=\"34\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" />\n  <path d=\"M114 118 A 18 18 0 0 1 140 118\" fill=\"none\" stroke=\"#FAF6F0\" stroke-width=\"4\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "funky-planet-saturn-rings",
+    "name": "Cosmic Saturn & Halo Ring",
+    "category": "funky-complex",
+    "tags": [
+      "saturn",
+      "planet",
+      "rings",
+      "space",
+      "galaxy",
+      "orbit",
+      "cosmic",
+      "retro"
+    ],
+    "viewBox": "0 0 210 170",
+    "type": "mixed",
+    "defaultColor": "#55BBDA",
+    "description": "Retro cartoon celestial planet encircled by a sweeping inclined elliptical halo ring with surface crater doodles.",
+    "rawSvg": "<circle cx=\"109\" cy=\"89\" r=\"48\" fill=\"#141416\" />\n  <circle cx=\"105\" cy=\"85\" r=\"48\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" />\n  <path d=\"M68 64 C84 68 126 68 142 64 M62 92 C82 98 128 98 148 92 M74 114 C90 118 120 118 136 114\" stroke=\"#FAF6F0\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <path d=\"M18 105 C38 60 172 60 192 105 C172 150 38 150 18 105 Z\" fill=\"none\" stroke=\"#F7D046\" stroke-width=\"8\" stroke-linecap=\"round\" />\n  <path d=\"M18 105 C38 60 172 60 192 105 C172 150 38 150 18 105 Z\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n  <circle cx=\"28\" cy=\"38\" r=\"3.5\" fill=\"#EE8DB9\" />\n  <circle cx=\"178\" cy=\"138\" r=\"4\" fill=\"#0BDC85\" />"
+  },
+  {
+    "id": "funky-retro-polaroid-camera",
+    "name": "Vintage Instant Film Camera",
+    "category": "funky-complex",
+    "tags": [
+      "camera",
+      "polaroid",
+      "photo",
+      "film",
+      "vintage",
+      "lens",
+      "snapshot",
+      "retro"
+    ],
+    "viewBox": "0 0 190 190",
+    "type": "mixed",
+    "defaultColor": "#FAF6F0",
+    "description": "Iconic vintage instant camera with large multi-ring glass lens, rainbow accent stripe, red shutter button, and photo film slot.",
+    "rawSvg": "<rect x=\"28\" y=\"38\" width=\"134\" height=\"126\" rx=\"16\" fill=\"#141416\" transform=\"translate(6, 6)\" />\n  <rect x=\"24\" y=\"34\" width=\"134\" height=\"126\" rx=\"16\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" />\n  <path d=\"M24 84 H158\" stroke=\"#EA552B\" stroke-width=\"4\" />\n  <path d=\"M24 88 H158\" stroke=\"#F7D046\" stroke-width=\"4\" />\n  <path d=\"M24 92 H158\" stroke=\"#55BBDA\" stroke-width=\"4\" />\n  <circle cx=\"91\" cy=\"106\" r=\"34\" fill=\"#141416\" stroke=\"#FAF6F0\" stroke-width=\"3\" />\n  <circle cx=\"91\" cy=\"106\" r=\"20\" fill=\"#55BBDA\" stroke=\"#FAF6F0\" stroke-width=\"2\" />\n  <circle cx=\"91\" cy=\"106\" r=\"8\" fill=\"#141416\" />\n  <circle cx=\"94\" cy=\"103\" r=\"3\" fill=\"#FFFFFF\" />\n  <rect x=\"38\" y=\"48\" width=\"18\" height=\"14\" rx=\"3\" fill=\"#141416\" />\n  <circle cx=\"134\" cy=\"54\" r=\"8\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2\" />\n  <rect x=\"48\" y=\"146\" width=\"86\" height=\"6\" rx=\"3\" fill=\"#141416\" />"
+  },
+  {
+    "id": "funky-retro-joystick-arcade",
+    "name": "Classic Arcade Joystick",
+    "category": "funky-complex",
+    "tags": [
+      "arcade",
+      "joystick",
+      "gaming",
+      "retro",
+      "80s",
+      "atari",
+      "buttons",
+      "controller"
+    ],
+    "viewBox": "0 0 180 200",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Vintage 80s arcade cabinet joystick with ball-top lever, dual action buttons, and chunky woodgrain base.",
+    "rawSvg": "<polygon points=\"34,106 146,106 164,178 16,178\" fill=\"#141416\" transform=\"translate(6, 6)\" />\n  <polygon points=\"34,102 146,102 164,174 16,174\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <ellipse cx=\"90\" cy=\"102\" rx=\"28\" ry=\"10\" fill=\"#141416\" />\n  <path d=\"M90 102 L90 42\" stroke=\"#141416\" stroke-width=\"8\" stroke-linecap=\"round\" />\n  <circle cx=\"94\" cy=\"38\" r=\"24\" fill=\"#141416\" />\n  <circle cx=\"90\" cy=\"34\" r=\"24\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" />\n  <circle cx=\"82\" cy=\"26\" r=\"6\" fill=\"#FAF6F0\" />\n  <circle cx=\"56\" cy=\"142\" r=\"14\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" />\n  <circle cx=\"124\" cy=\"142\" r=\"14\" fill=\"#0BDC85\" stroke=\"#141416\" stroke-width=\"3\" />"
+  },
+  {
+    "id": "funky-melting-ice-cream",
+    "name": "Triple-Scoop Melting Ice Cream",
+    "category": "funky-complex",
+    "tags": [
+      "ice-cream",
+      "cone",
+      "dessert",
+      "sweet",
+      "melting",
+      "summer",
+      "scoop",
+      "cherry"
+    ],
+    "viewBox": "0 0 160 220",
+    "type": "mixed",
+    "defaultColor": "#EE8DB9",
+    "description": "Playful triple-scoop ice cream cone with crosshatch waffle cone, dripping vanilla fudge, and a glossy red cherry.",
+    "rawSvg": "<polygon points=\"80,214 36,112 124,112\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <path d=\"M50 128 L104 186 M70 128 L94 154 M110 128 L56 186 M90 128 L66 154\" stroke=\"#141416\" stroke-width=\"2\" />\n  <path d=\"M32 112 C26 94 40 76 60 76 C64 60 84 56 96 66 C108 56 126 66 124 84 C136 94 132 112 120 112 C116 122 106 122 100 114 C94 124 86 124 80 114 C74 124 66 124 60 114 C54 122 40 122 32 112 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <circle cx=\"80\" cy=\"52\" r=\"16\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" />\n  <circle cx=\"76\" cy=\"48\" r=\"4\" fill=\"#FAF6F0\" />\n  <path d=\"M86 40 C98 22 112 26 116 30\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "funky-hot-dog-mustard",
+    "name": "Diner Comic Hot Dog",
+    "category": "funky-complex",
+    "tags": [
+      "hot-dog",
+      "fast-food",
+      "diner",
+      "mustard",
+      "snack",
+      "sausage",
+      "bun",
+      "comic"
+    ],
+    "viewBox": "0 0 210 140",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Retro diner sausage hot dog in a soft bun with dynamic neon yellow mustard squiggles and 3D shadow.",
+    "rawSvg": "<path d=\"M26 60 C12 74 18 104 46 108 L164 108 C192 104 198 74 184 60 C176 52 164 54 152 60 L58 60 C46 54 34 52 26 60 Z\" transform=\"translate(6, 6)\" fill=\"#141416\" />\n  <path d=\"M26 56 C12 70 18 100 46 104 L164 104 C192 100 198 70 184 56 C176 48 164 50 152 56 L58 56 C46 50 34 48 26 56 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <path d=\"M14 62 C8 48 28 42 48 44 L162 44 C182 42 202 48 196 62 C190 76 170 80 150 78 L60 78 C40 80 20 76 14 62 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M34 60 C44 50 50 72 64 60 C78 48 84 72 98 60 C112 48 118 72 132 60 C146 48 152 72 166 60 C174 52 178 64 182 60\" fill=\"none\" stroke=\"#FAF6F0\" stroke-width=\"4.5\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "funky-cupid-heart-arrow",
+    "name": "Cupid Pierced Heart",
+    "category": "funky-complex",
+    "tags": [
+      "heart",
+      "love",
+      "cupid",
+      "arrow",
+      "valentine",
+      "romance",
+      "wings",
+      "sweet"
+    ],
+    "viewBox": "0 0 200 170",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Chunky cartoon pop-art heart pierced diagonally by an arrow with fletching feathers and gloss glints.",
+    "rawSvg": "<path d=\"M100 52 C84 22 46 22 34 48 C20 78 48 112 100 146 C152 112 180 78 166 48 C154 22 116 22 100 52 Z\" transform=\"translate(6, 6)\" fill=\"#141416\" />\n  <path d=\"M100 48 C84 18 46 18 34 44 C20 74 48 108 100 142 C152 108 180 74 166 44 C154 18 116 18 100 48 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <path d=\"M44 46 A 16 16 0 0 1 70 38\" fill=\"none\" stroke=\"#FAF6F0\" stroke-width=\"4.5\" stroke-linecap=\"round\" />\n  <path d=\"M16 138 L68 96 M132 44 L184 2\" stroke=\"#141416\" stroke-width=\"4\" stroke-linecap=\"round\" />\n  <polygon points=\"184,2 170,4 182,16\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2\" />\n  <polygon points=\"16,138 28,142 22,126\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2\" />"
+  },
+  {
+    "id": "funky-neon-lightning-cloud",
+    "name": "Neon Thunder Cloud",
+    "category": "funky-complex",
+    "tags": [
+      "cloud",
+      "thunder",
+      "neon",
+      "lightning",
+      "storm",
+      "flash",
+      "weather",
+      "energy"
+    ],
+    "viewBox": "0 0 190 180",
+    "type": "mixed",
+    "defaultColor": "#55BBDA",
+    "description": "Billowing comic cloud flashing a layered dual-tone neon yellow and persimmon lightning strike bolt.",
+    "rawSvg": "<path d=\"M52 86 C36 86 24 74 24 58 C24 44 34 34 46 32 C50 16 68 4 90 4 C114 4 134 18 138 36 C152 34 168 44 172 60 C180 64 186 74 184 86 C182 98 170 106 156 106 H52 Z\" transform=\"translate(6, 6)\" fill=\"#141416\" />\n  <path d=\"M52 82 C36 82 24 70 24 54 C24 40 34 30 46 28 C50 12 68 0 90 0 C114 0 134 14 138 32 C152 30 168 40 172 56 C180 60 186 70 184 82 C182 94 170 102 156 102 H52 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <polygon points=\"98,64 68,116 94,116 78,172 128,104 102,104 118,64\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <polygon points=\"96,78 78,112 94,112 84,150 114,106 100,106 110,78\" fill=\"#EA552B\" />"
+  },
+  {
+    "id": "funky-cool-cat-sunglasses",
+    "name": "Cool Cat in Shades",
+    "category": "funky-complex",
+    "tags": [
+      "cat",
+      "sunglasses",
+      "shades",
+      "cool",
+      "kitty",
+      "feline",
+      "pet",
+      "groovy"
+    ],
+    "viewBox": "0 0 190 180",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Groovy feline cartoon mascot wearing thick black retro wayfarer sunglasses with perky ears.",
+    "rawSvg": "<polygon points=\"40,24 64,68 28,76\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <polygon points=\"150,24 162,76 126,68\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M95 44 C45 44 26 76 26 116 C26 156 55 168 95 168 C135 168 164 156 164 116 C164 76 145 44 95 44 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <g fill=\"#141416\">\n    <path d=\"M38 90 L88 90 C90 102 84 118 64 120 C44 122 36 108 38 90 Z\" />\n    <path d=\"M102 90 L152 90 C154 108 146 122 126 120 C106 118 100 102 102 90 Z\" />\n    <rect x=\"84\" y=\"94\" width=\"22\" height=\"6\" rx=\"2\" fill=\"#141416\" />\n  </g>\n  <path d=\"M46 96 L62 96 M110 96 L126 96\" stroke=\"#FFFFFF\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n  <polygon points=\"90,132 100,132 95,138\" fill=\"#EE8DB9\" />\n  <path d=\"M95 138 Q85 146 76 142 M95 138 Q105 146 114 142\" stroke=\"#141416\" stroke-width=\"2.5\" fill=\"none\" stroke-linecap=\"round\" />\n  <path d=\"M20 120 L4 116 M20 128 L2 130 M170 120 L186 116 M170 128 L188 130\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "funky-retro-film-strip",
+    "name": "Cinema 35mm Film Strip",
+    "category": "funky-complex",
+    "tags": [
+      "film",
+      "cinema",
+      "movie",
+      "35mm",
+      "hollywood",
+      "video",
+      "strip",
+      "retro"
+    ],
+    "viewBox": "0 0 200 150",
+    "type": "mixed",
+    "defaultColor": "#141416",
+    "description": "Curving vintage celluloid filmstrip ribbon with perforated border sprockets and movie frames.",
+    "rawSvg": "<path d=\"M16 48 C60 18 140 18 184 48 L184 108 C140 78 60 78 16 108 Z\" fill=\"#141416\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M34 50 H64 V86 H34 Z M84 44 H116 V80 H84 Z M136 50 H166 V86 H136 Z\" fill=\"#FAF6F0\" />\n  <circle cx=\"26\" cy=\"42\" r=\"3\" fill=\"#FAF6F0\" />\n  <circle cx=\"50\" cy=\"38\" r=\"3\" fill=\"#FAF6F0\" />\n  <circle cx=\"76\" cy=\"34\" r=\"3\" fill=\"#FAF6F0\" />\n  <circle cx=\"102\" cy=\"34\" r=\"3\" fill=\"#FAF6F0\" />\n  <circle cx=\"128\" cy=\"36\" r=\"3\" fill=\"#FAF6F0\" />\n  <circle cx=\"154\" cy=\"40\" r=\"3\" fill=\"#FAF6F0\" />\n  <circle cx=\"176\" cy=\"44\" r=\"3\" fill=\"#FAF6F0\" />\n  <circle cx=\"26\" cy=\"98\" r=\"3\" fill=\"#FAF6F0\" />\n  <circle cx=\"50\" cy=\"94\" r=\"3\" fill=\"#FAF6F0\" />\n  <circle cx=\"76\" cy=\"90\" r=\"3\" fill=\"#FAF6F0\" />\n  <circle cx=\"102\" cy=\"90\" r=\"3\" fill=\"#FAF6F0\" />\n  <circle cx=\"128\" cy=\"92\" r=\"3\" fill=\"#FAF6F0\" />\n  <circle cx=\"154\" cy=\"96\" r=\"3\" fill=\"#FAF6F0\" />\n  <circle cx=\"176\" cy=\"100\" r=\"3\" fill=\"#FAF6F0\" />\n  <path d=\"M100 52 L103 60 L111 60 L105 64 L107 72 L100 68 L93 72 L95 64 L89 60 L97 60 Z\" fill=\"#F7D046\" />"
+  },
+  {
+    "id": "funky-coffee-takeaway-cup",
+    "name": "Takeaway Coffee Cup Doodle",
+    "category": "funky-complex",
+    "tags": [
+      "coffee",
+      "cup",
+      "takeaway",
+      "latte",
+      "cafe",
+      "espresso",
+      "morning",
+      "barista"
+    ],
+    "viewBox": "0 0 150 200",
+    "type": "mixed",
+    "defaultColor": "#FAF6F0",
+    "description": "Cafe takeaway paper coffee cup with ribbed cardboard heat sleeve, drink lid, and heart doodle sticker.",
+    "rawSvg": "<polygon points=\"34,44 116,44 104,184 46,184\" fill=\"#141416\" transform=\"translate(6, 6)\" />\n  <polygon points=\"34,40 116,40 104,180 46,180\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <polygon points=\"38,82 112,82 108,136 42,136\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"75\" cy=\"109\" r=\"16\" fill=\"#FAF6F0\" />\n  <path d=\"M75 106 C71 100 64 100 61 104 C57 109 63 116 75 122 C87 116 93 109 89 104 C86 100 79 100 75 106 Z\" fill=\"#EA552B\" />\n  <rect x=\"28\" y=\"24\" width=\"94\" height=\"18\" rx=\"6\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"3\" />\n  <rect x=\"62\" y=\"14\" width=\"26\" height=\"12\" rx=\"3\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2.5\" />"
+  },
+  {
+    "id": "funky-smiley-flower-pot",
+    "name": "Potted Happy Daisy Bloom",
+    "category": "funky-complex",
+    "tags": [
+      "flower",
+      "plant",
+      "pot",
+      "daisy",
+      "happy",
+      "smile",
+      "spring",
+      "bloom"
+    ],
+    "viewBox": "0 0 160 210",
+    "type": "mixed",
+    "defaultColor": "#EE8DB9",
+    "description": "Clay flower pot housing a perky daisy bloom with green leaves and a cheerful winking smiley center.",
+    "rawSvg": "<polygon points=\"40,116 120,116 108,194 52,194\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <rect x=\"34\" y=\"104\" width=\"92\" height=\"16\" rx=\"4\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" />\n  <path d=\"M80 104 V48\" stroke=\"#4CA96D\" stroke-width=\"5\" stroke-linecap=\"round\" />\n  <path d=\"M80 82 C64 74 54 84 54 84 C54 84 64 96 80 88\" fill=\"#4CA96D\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n  <path d=\"M80 72 C96 64 106 74 106 74 C106 74 96 86 80 78\" fill=\"#4CA96D\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n  <circle cx=\"80\" cy=\"48\" r=\"38\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3\" />\n  <circle cx=\"80\" cy=\"48\" r=\"20\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"74\" cy=\"44\" r=\"2.5\" fill=\"#141416\" />\n  <circle cx=\"86\" cy=\"44\" r=\"2.5\" fill=\"#141416\" />\n  <path d=\"M74 52 Q80 58 86 52\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "funky-magic-potion-flask",
+    "name": "Bubbling Magic Potion Flask",
+    "category": "funky-complex",
+    "tags": [
+      "potion",
+      "magic",
+      "flask",
+      "alchemy",
+      "witch",
+      "science",
+      "chemistry",
+      "brew"
+    ],
+    "viewBox": "0 0 160 200",
+    "type": "mixed",
+    "defaultColor": "#0BDC85",
+    "description": "Spherical alchemy glass flask holding bubbling mystical elixir with floating sparkles and wooden cork.",
+    "rawSvg": "<circle cx=\"84\" cy=\"128\" r=\"54\" fill=\"#141416\" />\n  <path d=\"M70 28 H90 V76 L118 116 C128 130 120 152 102 162 C84 172 62 168 50 152 C40 136 44 116 58 102 L70 76 Z\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <path d=\"M52 120 C64 112 96 112 108 120 C118 132 114 150 98 158 C82 166 64 162 54 148 C46 138 46 128 52 120 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"2\" />\n  <rect x=\"66\" y=\"14\" width=\"28\" height=\"16\" rx=\"4\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"72\" cy=\"136\" r=\"4\" fill=\"#FAF6F0\" />\n  <circle cx=\"86\" cy=\"144\" r=\"3\" fill=\"#FAF6F0\" />\n  <circle cx=\"92\" cy=\"130\" r=\"5\" fill=\"#FAF6F0\" />\n  <path d=\"M124 50 C125 58 128 61 136 62 C128 63 125 66 124 74 C123 66 120 63 112 62 C120 61 123 58 124 50 Z\" fill=\"#F7D046\" />"
+  },
+  {
+    "id": "funky-retro-computer-floppy",
+    "name": "3.5-Inch Vintage Floppy Disk",
+    "category": "funky-complex",
+    "tags": [
+      "floppy",
+      "disk",
+      "retro",
+      "90s",
+      "computer",
+      "save",
+      "tech",
+      "vintage"
+    ],
+    "viewBox": "0 0 170 170",
+    "type": "mixed",
+    "defaultColor": "#55BBDA",
+    "description": "Nostalgic 1990s 3.5-inch magnetic floppy disk with metal shutter slide, paper label, and write-protect tab.",
+    "rawSvg": "<polygon points=\"26,18 136,18 154,36 154,152 26,152\" fill=\"#141416\" transform=\"translate(6, 6)\" />\n  <polygon points=\"26,14 136,14 154,32 154,148 26,148\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n  <rect x=\"48\" y=\"14\" width=\"72\" height=\"48\" rx=\"4\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <rect x=\"62\" y=\"22\" width=\"16\" height=\"30\" rx=\"3\" fill=\"#141416\" />\n  <rect x=\"42\" y=\"80\" width=\"86\" height=\"60\" rx=\"6\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <path d=\"M52 94 H118 M52 108 H118 M52 122 H98\" stroke=\"#EA552B\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n  <rect x=\"34\" y=\"134\" width=\"8\" height=\"8\" fill=\"#141416\" />"
+  },
+  {
+    "id": "funky-peace-sign-flower",
+    "name": "Floral Peace Symbol",
+    "category": "funky-complex",
+    "tags": [
+      "peace",
+      "flower",
+      "hippie",
+      "60s",
+      "love",
+      "bloom",
+      "retro",
+      "harmony"
+    ],
+    "viewBox": "0 0 180 180",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Psychedelic 60s peace symbol blossoming outward into rounded daisy flower petals with bold ink lines.",
+    "rawSvg": "<circle cx=\"94\" cy=\"94\" r=\"70\" fill=\"#141416\" />\n  <circle cx=\"90\" cy=\"90\" r=\"70\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" />\n  <circle cx=\"90\" cy=\"90\" r=\"50\" fill=\"#EE8DB9\" stroke=\"#141416\" stroke-width=\"3\" />\n  <line x1=\"90\" y1=\"40\" x2=\"90\" y2=\"140\" stroke=\"#141416\" stroke-width=\"5\" stroke-linecap=\"round\" />\n  <line x1=\"90\" y1=\"90\" x2=\"56\" y2=\"124\" stroke=\"#141416\" stroke-width=\"5\" stroke-linecap=\"round\" />\n  <line x1=\"90\" y1=\"90\" x2=\"124\" y2=\"124\" stroke=\"#141416\" stroke-width=\"5\" stroke-linecap=\"round\" />\n  <circle cx=\"90\" cy=\"90\" r=\"12\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"2.5\" />"
+  },
+  {
+    "id": "funky-retro-alarm-clock",
+    "name": "Twin-Bell Vintage Alarm Clock",
+    "category": "funky-complex",
+    "tags": [
+      "alarm-clock",
+      "clock",
+      "time",
+      "wake-up",
+      "morning",
+      "vintage",
+      "retro",
+      "bell"
+    ],
+    "viewBox": "0 0 180 190",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Classic mechanical twin-bell alarm clock with ringing vibration arcs, peg legs, and 10:10 hands.",
+    "rawSvg": "<circle cx=\"48\" cy=\"38\" r=\"18\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" />\n  <circle cx=\"132\" cy=\"38\" r=\"18\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" />\n  <path d=\"M76 34 H104 V44 H76 Z\" fill=\"#141416\" />\n  <circle cx=\"94\" cy=\"112\" r=\"58\" fill=\"#141416\" />\n  <circle cx=\"90\" cy=\"108\" r=\"58\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" />\n  <circle cx=\"90\" cy=\"108\" r=\"44\" fill=\"#FAF6F0\" stroke=\"#141416\" stroke-width=\"3\" />\n  <line x1=\"90\" y1=\"108\" x2=\"90\" y2=\"78\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n  <line x1=\"90\" y1=\"108\" x2=\"114\" y2=\"108\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n  <circle cx=\"90\" cy=\"108\" r=\"5\" fill=\"#EA552B\" />\n  <line x1=\"56\" y1=\"162\" x2=\"42\" y2=\"182\" stroke=\"#141416\" stroke-width=\"4\" stroke-linecap=\"round\" />\n  <line x1=\"124\" y1=\"162\" x2=\"138\" y2=\"182\" stroke=\"#141416\" stroke-width=\"4\" stroke-linecap=\"round\" />\n  <path d=\"M20 54 C12 66 12 84 20 96 M160 54 C168 66 168 84 160 96\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" fill=\"none\" />"
+  },
+  {
+    "id": "funky-chisel-marker-zigzag",
+    "name": "Chisel Marker Pop Zigzag",
+    "category": "funky-complex",
+    "tags": [
+      "zigzag",
+      "marker",
+      "chisel",
+      "pop",
+      "bold",
+      "dynamic",
+      "speed"
+    ],
+    "viewBox": "0 0 150 180",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Chunky chisel marker stroke zig-zagging dynamically with offset dark drop shadow and speed ticks.",
+    "rawSvg": "<path d=\"M30 18 L126 18 L44 72 L132 72 L36 130 L118 130 L48 168\" fill=\"none\" stroke=\"#141416\" stroke-width=\"14\" stroke-linecap=\"round\" stroke-linejoin=\"round\" transform=\"translate(6, 6)\" />\n<path d=\"M30 18 L126 18 L44 72 L132 72 L36 130 L118 130 L48 168\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"14\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n<path d=\"M36 18 L118 18 M50 72 L124 72 M42 130 L110 130\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n<path d=\"M136 38 L146 34 M140 96 L148 92\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "funky-ink-brush-marker-pen",
+    "name": "Retro Fineliner Marker Pen",
+    "category": "funky-complex",
+    "tags": [
+      "pen",
+      "marker",
+      "fineliner",
+      "stylus",
+      "art",
+      "drawing",
+      "tool"
+    ],
+    "viewBox": "0 0 100 200",
+    "type": "mixed",
+    "defaultColor": "#55BBDA",
+    "description": "Detailed angled artist marker pen with cap clip, ribbed grip, barrel body, and chisel nib.",
+    "rawSvg": "<g transform=\"rotate(22 50 100)\">\n  <rect x=\"42\" y=\"14\" width=\"18\" height=\"26\" rx=\"4\" fill=\"#141416\" />\n  <rect x=\"56\" y=\"20\" width=\"4\" height=\"22\" rx=\"2\" fill=\"#F7D046\" />\n  <rect x=\"40\" y=\"44\" width=\"22\" height=\"74\" rx=\"3\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3\" />\n  <path d=\"M46 54 H56 M46 64 H56 M46 74 H56\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n  <rect x=\"42\" y=\"122\" width=\"18\" height=\"42\" rx=\"2\" fill=\"#141416\" />\n  <path d=\"M45 166 L57 166 L53 182 L49 182 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2\" />\n</g>\n<circle cx=\"78\" cy=\"180\" r=\"4.5\" fill=\"#141416\" />"
+  },
+  {
+    "id": "funky-cheetah-spot-pebble",
+    "name": "Cheetah Spot Texture Pebble",
+    "category": "funky-complex",
+    "tags": [
+      "cheetah",
+      "leopard",
+      "spots",
+      "pebble",
+      "organic",
+      "pattern",
+      "animal"
+    ],
+    "viewBox": "0 0 140 150",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Organic pebble filled with high-contrast hand-drawn cheetah/leopard spots and comic outline.",
+    "rawSvg": "<path d=\"M42 16 C84 10 118 26 124 64 C130 102 110 134 72 138 C34 142 14 116 16 78 C18 40 24 20 42 16 Z\" transform=\"translate(4, 4)\" fill=\"#141416\" />\n<path d=\"M42 16 C84 10 118 26 124 64 C130 102 110 134 72 138 C34 142 14 116 16 78 C18 40 24 20 42 16 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n<g fill=\"#141416\">\n  <ellipse cx=\"44\" cy=\"38\" rx=\"6\" ry=\"4\" transform=\"rotate(20 44 38)\" />\n  <ellipse cx=\"78\" cy=\"34\" rx=\"7\" ry=\"5\" transform=\"rotate(-15 78 34)\" />\n  <ellipse cx=\"104\" cy=\"54\" rx=\"6\" ry=\"5\" />\n  <ellipse cx=\"56\" cy=\"62\" rx=\"7\" ry=\"5\" transform=\"rotate(40 56 62)\" />\n  <ellipse cx=\"88\" cy=\"66\" rx=\"8\" ry=\"6\" transform=\"rotate(-25 88 66)\" />\n  <ellipse cx=\"34\" cy=\"78\" rx=\"6\" ry=\"4\" transform=\"rotate(-10 34 78)\" />\n  <ellipse cx=\"64\" cy=\"94\" rx=\"7\" ry=\"5\" transform=\"rotate(15 64 94)\" />\n  <ellipse cx=\"98\" cy=\"98\" rx=\"6\" ry=\"5\" transform=\"rotate(30 98 98)\" />\n  <ellipse cx=\"42\" cy=\"114\" rx=\"6\" ry=\"4\" transform=\"rotate(-20 42 114)\" />\n  <ellipse cx=\"74\" cy=\"120\" rx=\"5\" ry=\"4\" />\n</g>"
+  },
+  {
+    "id": "funky-golden-grain-field",
+    "name": "Falling Grain Rain Field",
+    "category": "funky-complex",
+    "tags": [
+      "grain",
+      "rain",
+      "field",
+      "seeds",
+      "vertical",
+      "dashes",
+      "texture"
+    ],
+    "viewBox": "0 0 140 150",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Duo-tone vertical falling golden grain / dash rain field with rhythmic staggered spacing.",
+    "rawSvg": "<g fill=\"currentColor\">\n  <rect x=\"22\" y=\"16\" width=\"6\" height=\"18\" rx=\"3\" />\n  <rect x=\"52\" y=\"12\" width=\"6\" height=\"20\" rx=\"3\" />\n  <rect x=\"82\" y=\"20\" width=\"6\" height=\"16\" rx=\"3\" />\n  <rect x=\"112\" y=\"14\" width=\"6\" height=\"20\" rx=\"3\" />\n  <rect x=\"36\" y=\"44\" width=\"6\" height=\"18\" rx=\"3\" />\n  <rect x=\"68\" y=\"42\" width=\"6\" height=\"22\" rx=\"3\" />\n  <rect x=\"98\" y=\"46\" width=\"6\" height=\"16\" rx=\"3\" />\n  <rect x=\"22\" y=\"74\" width=\"6\" height=\"20\" rx=\"3\" />\n  <rect x=\"52\" y=\"72\" width=\"6\" height=\"18\" rx=\"3\" />\n  <rect x=\"82\" y=\"78\" width=\"6\" height=\"18\" rx=\"3\" />\n  <rect x=\"112\" y=\"70\" width=\"6\" height=\"22\" rx=\"3\" />\n  <rect x=\"36\" y=\"104\" width=\"6\" height=\"18\" rx=\"3\" />\n  <rect x=\"68\" y=\"102\" width=\"6\" height=\"20\" rx=\"3\" />\n  <rect x=\"98\" y=\"106\" width=\"6\" height=\"18\" rx=\"3\" />\n</g>\n<g fill=\"#141416\">\n  <rect x=\"36\" y=\"14\" width=\"5\" height=\"14\" rx=\"2.5\" />\n  <rect x=\"68\" y=\"16\" width=\"5\" height=\"16\" rx=\"2.5\" />\n  <rect x=\"98\" y=\"12\" width=\"5\" height=\"18\" rx=\"2.5\" />\n  <rect x=\"22\" y=\"46\" width=\"5\" height=\"16\" rx=\"2.5\" />\n  <rect x=\"52\" y=\"44\" width=\"5\" height=\"18\" rx=\"2.5\" />\n  <rect x=\"82\" y=\"48\" width=\"5\" height=\"14\" rx=\"2.5\" />\n  <rect x=\"112\" y=\"42\" width=\"5\" height=\"16\" rx=\"2.5\" />\n  <rect x=\"36\" y=\"76\" width=\"5\" height=\"16\" rx=\"2.5\" />\n  <rect x=\"68\" y=\"74\" width=\"5\" height=\"18\" rx=\"2.5\" />\n  <rect x=\"98\" y=\"78\" width=\"5\" height=\"14\" rx=\"2.5\" />\n  <rect x=\"22\" y=\"106\" width=\"5\" height=\"16\" rx=\"2.5\" />\n  <rect x=\"52\" y=\"104\" width=\"5\" height=\"16\" rx=\"2.5\" />\n  <rect x=\"82\" y=\"108\" width=\"5\" height=\"16\" rx=\"2.5\" />\n  <rect x=\"112\" y=\"102\" width=\"5\" height=\"18\" rx=\"2.5\" />\n</g>"
+  },
+  {
+    "id": "funky-fluid-lava-puddle",
+    "name": "Retro Glossy Fluid Spill",
+    "category": "funky-complex",
+    "tags": [
+      "puddle",
+      "lava",
+      "fluid",
+      "spill",
+      "glossy",
+      "liquid",
+      "retro"
+    ],
+    "viewBox": "0 0 180 130",
+    "type": "mixed",
+    "defaultColor": "#EE8DB9",
+    "description": "Fluid pop liquid spill with dimensional 3D drop shadow, ink contour, and glossy reflections.",
+    "rawSvg": "<path d=\"M42 24 C82 14 122 18 152 38 C172 52 176 78 158 98 C140 118 96 124 64 118 C32 112 12 96 14 68 C16 46 22 30 42 24 Z\" transform=\"translate(6, 6)\" fill=\"#141416\" />\n<path d=\"M42 24 C82 14 122 18 152 38 C172 52 176 78 158 98 C140 118 96 124 64 118 C32 112 12 96 14 68 C16 46 22 30 42 24 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n<path d=\"M56 36 C78 28 114 30 138 42\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"5\" stroke-linecap=\"round\" />\n<path d=\"M148 58 C154 66 154 78 146 88\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"4\" stroke-linecap=\"round\" />\n<circle cx=\"28\" cy=\"98\" r=\"4\" fill=\"#141416\" />\n<circle cx=\"166\" cy=\"34\" r=\"3.5\" fill=\"#141416\" />"
+  },
+  {
+    "id": "funky-retro-wavy-ribbon",
+    "name": "Groovy Undulating Ribbon",
+    "category": "funky-complex",
+    "tags": [
+      "ribbon",
+      "banner",
+      "groovy",
+      "wavy",
+      "flowing",
+      "wave",
+      "retro"
+    ],
+    "viewBox": "0 0 180 90",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Flowing horizontal undulating ribbon banner with comic border, color fill, and accent waves.",
+    "rawSvg": "<path d=\"M16 42 C44 18 78 62 108 38 C136 16 158 48 168 34 L168 56 C158 70 136 38 108 60 C78 84 44 40 16 64 Z\" transform=\"translate(5, 5)\" fill=\"#141416\" />\n<path d=\"M16 42 C44 18 78 62 108 38 C136 16 158 48 168 34 L168 56 C158 70 136 38 108 60 C78 84 44 40 16 64 Z\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n<path d=\"M22 50 C48 30 78 68 108 48 C136 28 154 52 162 44\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"3\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "funky-spiral-nebula-vortex",
+    "name": "Swirling Ink Spiral Nebula",
+    "category": "funky-complex",
+    "tags": [
+      "spiral",
+      "nebula",
+      "vortex",
+      "swirl",
+      "galaxy",
+      "orbit",
+      "stipple"
+    ],
+    "viewBox": "0 0 160 160",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Dense concentric swirl vortex with surrounding orbiting stipple sparkles and energy rings.",
+    "rawSvg": "<circle cx=\"80\" cy=\"80\" r=\"70\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2\" stroke-dasharray=\"4 8\" />\n<path d=\"M80 80 C80 65 95 65 95 80 C95 100 65 100 65 80 C65 50 110 50 110 80 C110 115 50 115 50 80 C50 35 125 35 125 80 C125 130 35 130 35 80 C35 20 140 20 140 80\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4.5\" stroke-linecap=\"round\" />\n<circle cx=\"80\" cy=\"80\" r=\"6\" fill=\"#141416\" />\n<path d=\"M22 36 L24 44 L32 46 L24 48 L22 56 L20 48 L12 46 L20 44 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n<path d=\"M136 118 L138 124 L144 126 L138 128 L136 134 L134 128 L128 126 L134 124 Z\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"1.5\" />\n<circle cx=\"138\" cy=\"42\" r=\"3.5\" fill=\"#141416\" />\n<circle cx=\"28\" cy=\"126\" r=\"3.5\" fill=\"#141416\" />"
+  },
+  {
+    "id": "funky-scandi-accent-cluster",
+    "name": "Scandinavian Retro Doodle Trio",
+    "category": "funky-complex",
+    "tags": [
+      "scandi",
+      "cluster",
+      "trio",
+      "memphis",
+      "sun",
+      "zigzag",
+      "dots"
+    ],
+    "viewBox": "0 0 170 130",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Trio composition featuring a radiant yellow Scandinavian sun, slate stepped zigzag, and scattering dots.",
+    "rawSvg": "<g transform=\"translate(18, 16)\">\n  <circle cx=\"36\" cy=\"36\" r=\"16\" fill=\"currentColor\" stroke=\"#141416\" stroke-width=\"3\" />\n  <circle cx=\"36\" cy=\"36\" r=\"5\" fill=\"#141416\" />\n  <path d=\"M36 8 V16 M36 56 V64 M8 36 H16 M56 36 H64 M16 16 L22 22 M50 50 L56 56 M16 56 L22 50 M50 22 L56 16\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n</g>\n<path d=\"M130 18 L104 46 H126 L98 84 H120 L92 112\" fill=\"none\" stroke=\"#141416\" stroke-width=\"6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n<g fill=\"#141416\">\n  <circle cx=\"24\" cy=\"98\" r=\"5\" />\n  <circle cx=\"48\" cy=\"110\" r=\"6\" />\n  <circle cx=\"70\" cy=\"96\" r=\"4.5\" />\n  <circle cx=\"58\" cy=\"80\" r=\"3.5\" />\n</g>\n<circle cx=\"152\" cy=\"72\" r=\"4\" fill=\"currentColor\" />"
   },
   {
     "id": "underline-wave-single",
@@ -2357,6 +3852,234 @@ export const SCRIBBLES_ASSETS: ScribbleAsset[] = [
     "path": "d=\"M10 60C10 32 32 10 60 10C88 10 110 32 110 60C110 88 88 110 60 110C36 110 18 92 18 68C18 48 34 32 54 32C70 32 84 46 84 62C84 76 72 88 58 88C46 88 38 78 38 66C38 56 46 48 56 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
   },
   {
+    "id": "doodle-fingerprint-whorl",
+    "name": "Hand-Drawn Fingerprint Whorl",
+    "category": "abstract-doodles",
+    "tags": [
+      "fingerprint",
+      "whorl",
+      "contour",
+      "texture",
+      "lines",
+      "rings",
+      "organic"
+    ],
+    "viewBox": "0 0 140 140",
+    "type": "stroke",
+    "defaultColor": "#141416",
+    "description": "Concentric hand-drawn organic fingerprint whorl loops with an elliptical center eye.",
+    "rawSvg": "<path d=\"M70 12 C102 12 128 36 128 70 C128 104 102 128 70 128 C38 128 12 104 12 70 C12 40 34 16 64 12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n  <path d=\"M70 24 C95 24 116 44 116 70 C116 96 95 116 70 116 C45 116 24 96 24 70 C24 48 42 28 66 25\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n  <path d=\"M70 36 C89 36 104 51 104 70 C104 89 89 104 70 104 C51 104 36 89 36 70 C36 54 49 39 67 37\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n  <path d=\"M70 48 C83 48 92 58 92 70 C92 82 83 92 70 92 C57 92 48 82 48 70 C48 60 56 50 68 49\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n  <path d=\"M70 60 C76 60 80 64 80 70 C80 76 76 80 70 80 C64 80 60 76 60 70 C60 66 64 61 69 61\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "doodle-tangle-scribble-knot",
+    "name": "Dense Tangle Scribble Knot",
+    "category": "abstract-doodles",
+    "tags": [
+      "tangle",
+      "scribble",
+      "knot",
+      "yarn",
+      "messy",
+      "chaotic",
+      "abstract"
+    ],
+    "viewBox": "0 0 160 140",
+    "type": "stroke",
+    "defaultColor": "#141416",
+    "description": "Continuous chaotic scribble tangle knot mimicking ball of yarn or pencil scribbles.",
+    "path": "d=\"M32 70 C24 38 48 22 76 26 C104 30 134 18 142 46 C150 74 130 96 114 114 C98 132 54 134 34 116 C14 98 18 64 44 48 C70 32 118 42 128 72 C138 102 96 122 70 118 C44 114 36 88 50 64 C64 40 102 44 118 62 C134 80 124 104 98 108 C72 112 56 94 62 76 C68 58 92 56 104 68 C116 80 108 94 92 94 C76 94 74 80 84 74 C94 68 100 78 94 84 M28 92 C40 110 82 126 122 108 C144 98 146 64 126 48 C106 32 60 36 38 60 C16 84 34 122 66 126 C98 130 136 106 138 78\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "doodle-stipple-spray-cluster",
+    "name": "Textured Stipple Dot Spray",
+    "category": "abstract-doodles",
+    "tags": [
+      "stipple",
+      "spray",
+      "texture",
+      "dots",
+      "speckles",
+      "ink",
+      "shading"
+    ],
+    "viewBox": "0 0 140 140",
+    "type": "fill",
+    "defaultColor": "#141416",
+    "description": "Dense-to-sparse organic stippling dot spray texture for retro comic ink shading.",
+    "rawSvg": "<g fill=\"currentColor\">\n  <circle cx=\"70\" cy=\"70\" r=\"4\" />\n  <circle cx=\"64\" cy=\"66\" r=\"3.5\" />\n  <circle cx=\"76\" cy=\"68\" r=\"3.5\" />\n  <circle cx=\"72\" cy=\"76\" r=\"3.5\" />\n  <circle cx=\"62\" cy=\"74\" r=\"3.5\" />\n  <circle cx=\"68\" cy=\"60\" r=\"3.2\" />\n  <circle cx=\"80\" cy=\"62\" r=\"3\" />\n  <circle cx=\"58\" cy=\"62\" r=\"3\" />\n  <circle cx=\"82\" cy=\"74\" r=\"3\" />\n  <circle cx=\"74\" cy=\"84\" r=\"3\" />\n  <circle cx=\"60\" cy=\"82\" r=\"3\" />\n  <circle cx=\"54\" cy=\"70\" r=\"3\" />\n  <circle cx=\"86\" cy=\"68\" r=\"2.8\" />\n  <circle cx=\"52\" cy=\"56\" r=\"2.5\" />\n  <circle cx=\"70\" cy=\"50\" r=\"2.5\" />\n  <circle cx=\"88\" cy=\"56\" r=\"2.5\" />\n  <circle cx=\"94\" cy=\"72\" r=\"2.5\" />\n  <circle cx=\"86\" cy=\"84\" r=\"2.5\" />\n  <circle cx=\"68\" cy=\"92\" r=\"2.5\" />\n  <circle cx=\"50\" cy=\"84\" r=\"2.5\" />\n  <circle cx=\"44\" cy=\"68\" r=\"2.5\" />\n  <circle cx=\"42\" cy=\"54\" r=\"2\" />\n  <circle cx=\"60\" cy=\"44\" r=\"2\" />\n  <circle cx=\"80\" cy=\"44\" r=\"2\" />\n  <circle cx=\"98\" cy=\"58\" r=\"2\" />\n  <circle cx=\"102\" cy=\"76\" r=\"2\" />\n  <circle cx=\"94\" cy=\"94\" r=\"2\" />\n  <circle cx=\"76\" cy=\"100\" r=\"2\" />\n  <circle cx=\"56\" cy=\"98\" r=\"2\" />\n  <circle cx=\"38\" cy=\"82\" r=\"2\" />\n  <circle cx=\"34\" cy=\"64\" r=\"1.8\" />\n  <circle cx=\"46\" cy=\"40\" r=\"1.8\" />\n  <circle cx=\"92\" cy=\"42\" r=\"1.8\" />\n  <circle cx=\"106\" cy=\"66\" r=\"1.8\" />\n  <circle cx=\"84\" cy=\"106\" r=\"1.8\" />\n  <circle cx=\"44\" cy=\"96\" r=\"1.8\" />\n  <circle cx=\"28\" cy=\"72\" r=\"1.5\" />\n  <circle cx=\"112\" cy=\"72\" r=\"1.5\" />\n  <circle cx=\"70\" cy=\"34\" r=\"1.5\" />\n  <circle cx=\"70\" cy=\"108\" r=\"1.5\" />\n</g>"
+  },
+  {
+    "id": "doodle-diagonal-hatch-block",
+    "name": "Diagonal Shading Hatch Block",
+    "category": "abstract-doodles",
+    "tags": [
+      "hatch",
+      "shading",
+      "diagonal",
+      "texture",
+      "sketch",
+      "pencil",
+      "crosshatch"
+    ],
+    "viewBox": "0 0 150 120",
+    "type": "stroke",
+    "defaultColor": "#141416",
+    "description": "Parallel diagonal hand-drawn shading strokes creating an architectural sketch texture.",
+    "path": "d=\"M18 104 L58 16 M32 106 L72 18 M46 108 L86 20 M60 110 L100 22 M74 112 L114 24 M88 114 L128 26 M102 116 L142 28 M12 70 L42 14 M116 118 L146 62\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\""
+  },
+  {
+    "id": "doodle-vertical-wavy-strands",
+    "name": "Vertical Flowing Wave Strands",
+    "category": "abstract-doodles",
+    "tags": [
+      "waves",
+      "strands",
+      "vertical",
+      "flowing",
+      "river",
+      "lines",
+      "organic"
+    ],
+    "viewBox": "0 0 120 160",
+    "type": "stroke",
+    "defaultColor": "#141416",
+    "description": "Quadruple undulating vertical flowing wave lines with organic hand-drawn variation.",
+    "path": "d=\"M20 12 C34 40 10 74 24 104 C38 134 16 148 22 152 M46 8 C60 38 36 70 50 102 C64 134 42 146 48 152 M74 14 C88 44 64 76 78 108 C92 138 70 148 76 154 M100 10 C114 40 90 72 104 104 C118 136 96 148 102 152\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\""
+  },
+  {
+    "id": "doodle-zebra-contour-stripes",
+    "name": "Zebra Organic Hatch Stripes",
+    "category": "abstract-doodles",
+    "tags": [
+      "zebra",
+      "stripes",
+      "tiger",
+      "contour",
+      "organic",
+      "pattern",
+      "animal"
+    ],
+    "viewBox": "0 0 150 120",
+    "type": "fill",
+    "defaultColor": "#141416",
+    "description": "Organic curved rhythmic zebra/tiger contour hatching bands with natural tapered tips.",
+    "rawSvg": "<g fill=\"currentColor\">\n  <path d=\"M12 20 C28 20 45 28 60 40 C75 52 94 62 110 60 C88 56 68 44 54 30 C40 18 24 14 12 20 Z\" />\n  <path d=\"M24 45 C42 46 62 56 80 72 C98 88 120 96 138 92 C116 88 94 74 78 58 C62 44 42 38 24 45 Z\" />\n  <path d=\"M16 75 C36 76 56 86 74 100 C86 110 102 114 118 112 C98 108 82 98 68 86 C54 74 34 68 16 75 Z\" />\n  <path d=\"M68 12 C82 12 102 20 118 32 C134 44 144 54 146 62 C142 54 130 42 114 30 C98 20 82 14 68 12 Z\" />\n  <path d=\"M10 100 C24 100 38 106 50 114 C40 112 28 108 10 100 Z\" />\n</g>"
+  },
+  {
+    "id": "doodle-shaded-sphere-ball",
+    "name": "Hand-Sketched Shaded Sphere",
+    "category": "abstract-doodles",
+    "tags": [
+      "sphere",
+      "ball",
+      "shaded",
+      "hatching",
+      "3d",
+      "circle",
+      "sketch"
+    ],
+    "viewBox": "0 0 130 130",
+    "type": "stroke",
+    "defaultColor": "#141416",
+    "description": "Hand-sketched spherical orb with internal curved horizontal contour shading lines.",
+    "rawSvg": "<circle cx=\"65\" cy=\"65\" r=\"54\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4.5\" />\n<path d=\"M26 45 C38 48 92 48 104 45 M20 58 C35 62 95 62 110 58 M18 72 C35 77 95 77 112 72 M22 86 C38 92 92 92 108 86 M32 100 C45 105 85 105 98 100 M46 112 C55 115 75 115 84 112\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "doodle-concentric-ripple-target",
+    "name": "Organic Concentric Ripples",
+    "category": "abstract-doodles",
+    "tags": [
+      "ripples",
+      "concentric",
+      "rings",
+      "target",
+      "bullseye",
+      "waves",
+      "water"
+    ],
+    "viewBox": "0 0 150 150",
+    "type": "stroke",
+    "defaultColor": "#141416",
+    "description": "Four loose, hand-drawn concentric circular ripple rings radiating outward.",
+    "rawSvg": "<circle cx=\"75\" cy=\"75\" r=\"64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-dasharray=\"190 12\" />\n<circle cx=\"75\" cy=\"75\" r=\"48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-dasharray=\"140 10\" />\n<circle cx=\"75\" cy=\"75\" r=\"32\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-dasharray=\"90 8\" />\n<circle cx=\"75\" cy=\"75\" r=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" />\n<circle cx=\"75\" cy=\"75\" r=\"5\" fill=\"currentColor\" />"
+  },
+  {
+    "id": "doodle-flourish-ribbon-swoosh",
+    "name": "Calligraphic Wind Swooshes",
+    "category": "abstract-doodles",
+    "tags": [
+      "swoosh",
+      "wind",
+      "calligraphy",
+      "speed",
+      "ribbon",
+      "flourish",
+      "strokes"
+    ],
+    "viewBox": "0 0 160 100",
+    "type": "fill",
+    "defaultColor": "#141416",
+    "description": "Trio of dynamic tapered calligraphic air swooshes conveying motion and flow.",
+    "rawSvg": "<g fill=\"currentColor\">\n  <path d=\"M12 28 C45 18 95 18 148 24 C120 28 85 30 52 32 C34 34 20 32 12 28 Z\" />\n  <path d=\"M18 52 C55 42 105 44 152 50 C125 54 88 56 56 58 C36 60 25 58 18 52 Z\" />\n  <path d=\"M26 78 C60 68 102 70 144 76 C118 80 84 82 58 84 C42 86 32 84 26 78 Z\" />\n</g>"
+  },
+  {
+    "id": "doodle-dense-vertical-hatch",
+    "name": "Dense Vertical Pen Hatch",
+    "category": "abstract-doodles",
+    "tags": [
+      "hatch",
+      "pen",
+      "texture",
+      "vertical",
+      "sketch",
+      "shading",
+      "ink"
+    ],
+    "viewBox": "0 0 130 120",
+    "type": "stroke",
+    "defaultColor": "#141416",
+    "description": "Dense rectangular swatch of rapid vertical pen hatch strokes for dark texture shading.",
+    "path": "d=\"M14 12 L12 108 M24 14 L22 106 M34 10 L32 110 M44 12 L42 108 M54 10 L52 110 M64 14 L62 106 M74 12 L72 108 M84 10 L82 110 M94 14 L92 106 M104 12 L102 108 M114 10 L112 110\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4.5\" stroke-linecap=\"round\""
+  },
+  {
+    "id": "doodle-feather-palm-frond",
+    "name": "Inked Botanical Palm Frond",
+    "category": "abstract-doodles",
+    "tags": [
+      "palm",
+      "frond",
+      "leaf",
+      "feather",
+      "botanical",
+      "ink",
+      "nature"
+    ],
+    "viewBox": "0 0 130 150",
+    "type": "stroke",
+    "defaultColor": "#4CA96D",
+    "description": "Hand-inked botanical feather palm frond with delicate angled rib lines.",
+    "rawSvg": "<path d=\"M65 142 C64 105 65 58 66 12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4\" stroke-linecap=\"round\" />\n<path d=\"M66 22 C52 18 36 24 24 34 M66 22 C80 18 96 24 108 34 M65 42 C48 38 32 46 18 58 M65 42 C82 38 98 46 112 58 M65 64 C46 60 28 70 14 84 M65 64 C84 60 102 70 116 84 M65 86 C46 82 28 94 16 110 M65 86 C84 82 102 94 114 110 M65 110 C50 108 34 118 24 132 M65 110 C80 108 96 118 106 132\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "doodle-fluid-puddle-blob",
+    "name": "Organic Splash Puddle Blob",
+    "category": "abstract-doodles",
+    "tags": [
+      "puddle",
+      "blob",
+      "splash",
+      "fluid",
+      "liquid",
+      "organic",
+      "slime"
+    ],
+    "viewBox": "0 0 160 110",
+    "type": "fill",
+    "defaultColor": "#141416",
+    "description": "Fluid liquid puddle splash with cut-out gloss highlights and organic lobes.",
+    "rawSvg": "<path d=\"M38 18 C64 8 98 12 124 24 C148 36 156 62 144 82 C132 102 96 106 68 102 C40 98 12 92 14 66 C16 42 22 24 38 18 Z\" fill=\"currentColor\" />\n<path d=\"M52 32 C68 24 92 26 108 34\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"4.5\" stroke-linecap=\"round\" />\n<path d=\"M120 48 C128 56 128 68 120 76\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"3.5\" stroke-linecap=\"round\" />"
+  },
+  {
     "id": "accent-double-exclamation",
     "name": "Double Exclamation!!",
     "category": "accents-emphasis",
@@ -2581,6 +4304,196 @@ export const SCRIBBLES_ASSETS: ScribbleAsset[] = [
     "path": "d=\"M45 6C52 24 64 36 78 48C88 56 90 70 86 82C80 102 62 114 45 114C28 114 10 102 4 82C0 66 10 48 24 40C28 54 36 62 46 66C40 50 40 28 45 6Z\" fill=\"currentColor\""
   },
   {
+    "id": "accent-scandi-sun-dot",
+    "name": "Scandinavian Radiant Mini Sun",
+    "category": "accents-emphasis",
+    "tags": [
+      "sun",
+      "scandinavian",
+      "minimal",
+      "radiant",
+      "burst",
+      "retro",
+      "warm"
+    ],
+    "viewBox": "0 0 100 100",
+    "type": "stroke",
+    "defaultColor": "#F7D046",
+    "description": "Retro Scandinavian accent sun with central ring, core dot, and 8 radiating tick rays.",
+    "rawSvg": "<circle cx=\"50\" cy=\"50\" r=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"4.5\" />\n<circle cx=\"50\" cy=\"50\" r=\"6\" fill=\"currentColor\" />\n<path d=\"M50 12 V22 M50 78 V88 M12 50 H22 M78 50 H88 M23 23 L30 30 M70 70 L77 77 M23 77 L30 70 M70 30 L77 23\" stroke=\"currentColor\" stroke-width=\"4.5\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "accent-rising-half-sun",
+    "name": "Radiant Horizon Half-Sun",
+    "category": "accents-emphasis",
+    "tags": [
+      "sun",
+      "half-sun",
+      "sunrise",
+      "horizon",
+      "dawn",
+      "rays",
+      "scandi"
+    ],
+    "viewBox": "0 0 120 80",
+    "type": "stroke",
+    "defaultColor": "#F7D046",
+    "description": "Semicircular rising sun over horizon with 6 radiating tick rays.",
+    "rawSvg": "<path d=\"M30 68 C30 46 43 28 60 28 C77 28 90 46 90 68 Z\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n<path d=\"M12 68 H108 M32 26 L22 16 M60 18 V6 M88 26 L98 16 M18 46 L8 42 M102 46 L112 42\" stroke=\"currentColor\" stroke-width=\"4.5\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "accent-confetti-pebble-spray",
+    "name": "Confetti Pebble Scatter",
+    "category": "accents-emphasis",
+    "tags": [
+      "confetti",
+      "pebbles",
+      "dots",
+      "scatter",
+      "party",
+      "accent",
+      "speckles"
+    ],
+    "viewBox": "0 0 130 110",
+    "type": "fill",
+    "defaultColor": "#141416",
+    "description": "Organic scattered cluster of playful confetti pebble dots and specks.",
+    "rawSvg": "<g fill=\"currentColor\">\n  <circle cx=\"28\" cy=\"32\" r=\"7\" />\n  <circle cx=\"68\" cy=\"24\" r=\"8\" />\n  <circle cx=\"106\" cy=\"38\" r=\"6\" />\n  <circle cx=\"48\" cy=\"62\" r=\"9\" />\n  <circle cx=\"88\" cy=\"68\" r=\"7\" />\n  <circle cx=\"24\" cy=\"84\" r=\"5\" />\n  <circle cx=\"64\" cy=\"94\" r=\"8\" />\n  <circle cx=\"112\" cy=\"88\" r=\"6\" />\n  <circle cx=\"16\" cy=\"52\" r=\"3.5\" />\n  <circle cx=\"86\" cy=\"42\" r=\"3.5\" />\n</g>"
+  },
+  {
+    "id": "accent-stepped-lightning-z",
+    "name": "Angular Stepped Z-Strike",
+    "category": "accents-emphasis",
+    "tags": [
+      "lightning",
+      "z",
+      "zigzag",
+      "stepped",
+      "angle",
+      "electric",
+      "bold"
+    ],
+    "viewBox": "0 0 80 120",
+    "type": "stroke",
+    "defaultColor": "#141416",
+    "description": "Chunky stepped angular Z-lightning strike accent from retro Scandinavian doodle sheets.",
+    "path": "d=\"M60 10 L28 42 H54 L20 82 H48 L14 112\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "accent-chunky-doodle-star",
+    "name": "Chunky Sketch Star",
+    "category": "accents-emphasis",
+    "tags": [
+      "star",
+      "chunky",
+      "doodle",
+      "sketch",
+      "retro",
+      "favorite",
+      "award"
+    ],
+    "viewBox": "0 0 100 100",
+    "type": "fill",
+    "defaultColor": "#141416",
+    "description": "Chunky, organic hand-drawn 5-point sketch star with rounded tips and warm asymmetry.",
+    "path": "d=\"M50 8 L61 36 L92 38 L68 57 L77 88 L50 70 L23 88 L32 57 L8 38 L39 36 Z\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "accent-wavy-caterpillar-stroke",
+    "name": "Wavy Caterpillar Undulation",
+    "category": "accents-emphasis",
+    "tags": [
+      "wavy",
+      "caterpillar",
+      "worm",
+      "squiggle",
+      "organic",
+      "stroke",
+      "undulation"
+    ],
+    "viewBox": "0 0 70 130",
+    "type": "stroke",
+    "defaultColor": "#141416",
+    "description": "Vertical organic undulating worm / caterpillar stroke with rounded bulb ends.",
+    "path": "d=\"M36 12 C18 28 16 50 36 66 C56 82 54 104 34 120\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"9\" stroke-linecap=\"round\""
+  },
+  {
+    "id": "accent-rounded-asterisk-burst",
+    "name": "Rounded Asterisk Starburst",
+    "category": "accents-emphasis",
+    "tags": [
+      "asterisk",
+      "starburst",
+      "burst",
+      "retro",
+      "flower",
+      "minimal",
+      "spark"
+    ],
+    "viewBox": "0 0 100 100",
+    "type": "fill",
+    "defaultColor": "#141416",
+    "description": "8-point rounded asterisk starburst doodle with negative circular center cutout.",
+    "rawSvg": "<g fill=\"currentColor\">\n  <path d=\"M44 8 C44 4 56 4 56 8 L56 92 C56 96 44 96 44 92 Z\" rx=\"6\" />\n  <path d=\"M8 44 C4 44 4 56 8 56 L92 56 C96 56 96 44 92 44 Z\" rx=\"6\" />\n  <path d=\"M19 19 C16 16 25 7 28 10 L81 63 C84 66 75 75 72 72 Z\" rx=\"6\" />\n  <path d=\"M72 19 C75 16 84 25 81 28 L28 81 C25 84 16 75 19 72 Z\" rx=\"6\" />\n  <circle cx=\"50\" cy=\"50\" r=\"14\" fill=\"currentColor\" />\n</g>\n<circle cx=\"50\" cy=\"50\" r=\"7\" fill=\"#FAF6F0\" />"
+  },
+  {
+    "id": "accent-corner-chevron-angle",
+    "name": "Hand-Drawn Boomerang Chevron",
+    "category": "accents-emphasis",
+    "tags": [
+      "chevron",
+      "boomerang",
+      "angle",
+      "corner",
+      "bracket",
+      "tick",
+      "pointer"
+    ],
+    "viewBox": "0 0 90 90",
+    "type": "stroke",
+    "defaultColor": "#141416",
+    "description": "Bold hand-drawn corner chevron / boomerang angle accent.",
+    "path": "d=\"M16 28 L64 28 L64 76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "accent-marker-highlight-block",
+    "name": "Rounded Marker Highlight Bar",
+    "category": "accents-emphasis",
+    "tags": [
+      "marker",
+      "highlight",
+      "bar",
+      "block",
+      "pill",
+      "tape",
+      "emphasis"
+    ],
+    "viewBox": "0 0 140 50",
+    "type": "fill",
+    "defaultColor": "#141416",
+    "description": "Bold rounded marker bar with playful negative pill highlight notch cutout.",
+    "rawSvg": "<rect x=\"6\" y=\"8\" width=\"128\" height=\"34\" rx=\"14\" fill=\"currentColor\" />\n<rect x=\"104\" y=\"16\" width=\"16\" height=\"6\" rx=\"3\" fill=\"#FAF6F0\" />"
+  },
+  {
+    "id": "accent-radiant-spoke-sun",
+    "name": "Radiant Spoke Sunburst",
+    "category": "accents-emphasis",
+    "tags": [
+      "sun",
+      "sunburst",
+      "spokes",
+      "radiant",
+      "rays",
+      "energy",
+      "hot"
+    ],
+    "viewBox": "0 0 120 120",
+    "type": "mixed",
+    "defaultColor": "#141416",
+    "description": "Solid circular sun core surrounded by 12 radiating perpendicular spoke tick rays.",
+    "rawSvg": "<circle cx=\"60\" cy=\"60\" r=\"28\" fill=\"currentColor\" />\n<path d=\"M60 12 V24 M60 96 V108 M12 60 H24 M96 60 H108 M26 26 L35 35 M85 85 L94 94 M26 94 L35 85 M85 35 L94 26 M42 16 L46 27 M74 93 L78 104 M16 42 L27 46 M93 74 L104 78\" stroke=\"currentColor\" stroke-width=\"4.5\" stroke-linecap=\"round\" />"
+  },
+  {
     "id": "signature-hero-badge",
     "name": "Signature Starburst Badge",
     "category": "signature-shapes",
@@ -2741,6 +4654,1093 @@ export const SCRIBBLES_ASSETS: ScribbleAsset[] = [
     "defaultColor": "#141416",
     "description": "Hand-drawn pen hatching texture for shading and backgrounds.",
     "path": "d=\"M24 16C42 16 68 32 82 50C98 72 108 98 116 124C120 138 112 152 98 152C82 152 74 138 70 124C62 98 52 72 38 50C30 38 18 28 24 16Z\" fill=\"currentColor\""
+  },
+  {
+    "id": "algo-binary-tree",
+    "name": "Binary Search Tree",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "tree",
+      "binary-tree",
+      "bst",
+      "nodes",
+      "hierarchy",
+      "search"
+    ],
+    "viewBox": "0 0 180 150",
+    "type": "stroke",
+    "defaultColor": "#EA552B",
+    "description": "Hand-drawn binary search tree with root node, branch edges, and child leaves.",
+    "path": "d=\"M90 14 C98 14 105 20 105 28 C105 36 98 42 90 42 C82 42 75 36 75 28 C75 20 82 14 90 14 Z M50 64 C58 64 64 70 64 78 C64 86 58 92 50 92 C42 92 36 86 36 78 C36 70 42 64 50 64 Z M130 64 C138 64 144 70 144 78 C144 86 138 92 130 92 C122 92 116 86 116 78 C116 70 122 64 130 64 Z M26 114 C33 114 38 119 38 126 C38 133 33 138 26 138 C19 138 14 133 14 126 C14 119 19 114 26 114 Z M74 114 C81 114 86 119 86 126 C86 133 81 138 74 138 C67 138 62 133 62 126 C62 119 67 114 74 114 Z M106 114 C113 114 118 119 118 126 C118 133 113 138 106 138 C99 138 94 133 94 126 C94 119 99 114 106 114 Z M154 114 C161 114 166 119 166 126 C166 133 161 138 154 138 C147 138 142 133 142 126 C142 119 147 114 154 114 Z M79 38 C68 48 59 56 56 65 M101 38 C112 48 121 56 124 65 M42 90 C36 98 32 106 29 115 M58 90 C64 98 68 106 71 115 M122 90 C116 98 112 106 109 115 M138 90 C144 98 148 106 151 115\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-linked-list",
+    "name": "Singly Linked List",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "linked-list",
+      "pointers",
+      "nodes",
+      "chain",
+      "linear",
+      "data-structures"
+    ],
+    "viewBox": "0 0 210 90",
+    "type": "stroke",
+    "defaultColor": "#55BBDA",
+    "description": "Chained linked list nodes with data compartments, pointer arrows, and null terminator.",
+    "path": "d=\"M12 28 C12 23 16 20 22 20 H58 C64 20 68 23 68 28 V62 C68 67 64 70 58 70 H22 C16 70 12 67 12 62 Z M46 20 V70 M29 45 H31 M57 45 H78 M72 39 L78 45 L72 51 M80 28 C80 23 84 20 90 20 H126 C132 20 136 23 136 28 V62 C136 67 132 70 126 70 H90 C84 70 80 67 80 62 Z M114 20 V70 M97 45 H99 M125 45 H146 M140 39 L146 45 L140 51 M148 28 C148 23 152 20 158 20 H194 C200 20 204 23 204 28 V62 C204 67 200 70 194 70 H158 C152 70 148 67 148 62 Z M182 20 V70 M165 45 H167 M191 36 L197 54 M188 54 H200\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-doubly-linked-list",
+    "name": "Doubly Linked List",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "doubly-linked-list",
+      "bidirectional",
+      "pointers",
+      "nodes",
+      "chains"
+    ],
+    "viewBox": "0 0 220 100",
+    "type": "stroke",
+    "defaultColor": "#4CA96D",
+    "description": "Bidirectional linked list nodes with forward and backward hand-drawn pointer arrows.",
+    "path": "d=\"M14 24 C14 20 18 18 24 18 H90 C96 18 100 20 100 24 V76 C100 80 96 82 90 82 H24 C18 82 14 80 14 76 Z M38 18 V82 M76 18 V82 M57 50 H59 M120 24 C120 20 124 18 130 18 H196 C202 18 206 20 206 24 V76 C206 80 202 82 196 82 H130 C124 82 120 80 120 76 Z M144 18 V82 M182 18 V82 M163 50 H165 M88 38 C98 36 109 36 118 38 M112 32 L119 38 L112 44 M132 62 C122 64 111 64 102 62 M108 56 L101 62 L108 68 M26 50 H32 M194 50 H200\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-array-buffer",
+    "name": "Indexed Array Buffer",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "array",
+      "buffer",
+      "indices",
+      "memory",
+      "linear",
+      "pointers"
+    ],
+    "viewBox": "0 0 200 110",
+    "type": "stroke",
+    "defaultColor": "#F7D046",
+    "description": "Contiguous array cells with index markers and a hand-drawn pointer cursor.",
+    "path": "d=\"M16 40 C16 35 20 32 26 32 H174 C180 32 184 35 184 40 V74 C184 79 180 82 174 82 H26 C20 82 16 79 16 74 Z M50 32 V82 M84 32 V82 M118 32 V82 M152 32 V82 M33 57 H35 M67 57 H69 M101 57 H103 M135 57 H137 M168 57 H170 M33 96 C33 92 37 92 37 96 C37 100 33 100 33 96 Z M67 92 V100 M99 93 C101 93 104 94 104 96 C104 99 98 100 98 101 H105 M132 93 H138 L134 97 C138 97 138 101 133 101 M168 93 L166 97 H172 M170 93 V101 M101 8 L101 24 M95 18 L101 25 L107 18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-stack-lifo",
+    "name": "LIFO Stack Container",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "stack",
+      "lifo",
+      "push",
+      "pop",
+      "container",
+      "depth"
+    ],
+    "viewBox": "0 0 160 160",
+    "type": "stroke",
+    "defaultColor": "#EA552B",
+    "description": "Vertical stack container with nested data plates and curved push/pop trajectory arrows.",
+    "path": "d=\"M38 46 L40 134 C40 144 50 148 80 148 C110 148 120 144 120 134 L122 46 M50 128 C56 123 72 121 80 121 C88 121 104 123 110 128 C110 133 98 136 80 136 C62 136 50 133 50 128 Z M50 100 C56 95 72 93 80 93 C88 93 104 95 110 100 C110 105 98 108 80 108 C62 108 50 105 50 100 Z M50 72 C56 67 72 65 80 65 C88 65 104 67 110 72 C110 77 98 80 80 80 C62 80 50 77 50 72 Z M26 22 C44 14 68 20 74 38 M66 36 L75 39 L79 30 M86 38 C92 20 116 14 134 22 M126 16 L135 22 L131 31\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-queue-fifo",
+    "name": "FIFO Queue Pipeline",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "queue",
+      "fifo",
+      "enqueue",
+      "dequeue",
+      "pipeline",
+      "buffer"
+    ],
+    "viewBox": "0 0 210 100",
+    "type": "stroke",
+    "defaultColor": "#0BDC85",
+    "description": "Horizontal queue pipeline with items enqueuing at the rear and dequeuing from the front.",
+    "path": "d=\"M44 26 C80 24 130 24 166 26 M44 74 C80 76 130 76 166 74 M58 35 C56 35 54 38 54 50 C54 62 56 65 58 65 H78 C80 65 82 62 82 50 C82 38 80 35 78 35 Z M92 35 C90 35 88 38 88 50 C88 62 90 65 92 65 H112 C114 65 116 62 116 50 C116 38 114 35 112 35 Z M126 35 C124 35 122 38 122 50 C122 62 124 65 126 65 H146 C148 65 150 62 150 50 C150 38 148 35 146 35 Z M12 50 H34 M26 43 L34 50 L26 57 M176 50 H198 M190 43 L198 50 L190 57\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-hash-table",
+    "name": "Hash Table & Buckets",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "hash-table",
+      "hash-map",
+      "buckets",
+      "collision",
+      "key-value",
+      "dictionary"
+    ],
+    "viewBox": "0 0 190 150",
+    "type": "stroke",
+    "defaultColor": "#EE8DB9",
+    "description": "Key hashing into an array of buckets with an attached collision resolution chain.",
+    "path": "d=\"M14 42 C14 35 18 32 26 32 H54 C62 32 66 35 66 42 V62 C66 69 62 72 54 72 H26 C18 72 14 69 14 62 Z M28 52 H32 M37 46 V58 M43 48 C46 48 48 50 48 53 C48 58 43 58 43 58 M66 52 C72 52 78 52 82 52 M88 44 C84 47 84 57 88 60 M82 52 H92 M100 18 C100 15 103 14 108 14 H134 C139 14 142 15 142 18 V132 C142 135 139 136 134 136 H108 C103 136 100 135 100 132 Z M100 44 H142 M100 74 H142 M100 104 H142 M92 52 C95 52 97 52 100 52 M134 89 H156 M150 83 L157 89 L150 95 M158 78 C158 75 160 74 164 74 H182 C186 74 188 75 188 78 V100 C188 103 186 104 182 104 H164 C160 104 158 103 158 100 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-graph-network",
+    "name": "Graph Network Topology",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "graph",
+      "nodes",
+      "edges",
+      "network",
+      "mesh",
+      "topology"
+    ],
+    "viewBox": "0 0 170 160",
+    "type": "stroke",
+    "defaultColor": "#55BBDA",
+    "description": "Multi-node undirected graph with organic interconnecting edge paths.",
+    "path": "d=\"M85 16 C93 16 100 22 100 30 C100 38 93 44 85 44 C77 44 70 38 70 30 C70 22 77 16 85 16 Z M32 58 C40 58 46 64 46 72 C46 80 40 86 32 86 C24 86 18 80 18 72 C18 64 24 58 32 58 Z M138 58 C146 58 152 64 152 72 C152 80 146 86 138 86 C130 86 124 80 124 72 C124 64 130 58 138 58 Z M50 118 C58 118 64 124 64 132 C64 140 58 146 50 146 C42 146 36 140 36 132 C36 124 42 118 50 118 Z M120 118 C128 118 134 124 134 132 C134 140 128 146 120 146 C112 146 106 140 106 132 C106 124 112 118 120 118 Z M74 38 C62 48 52 58 43 65 M96 38 C108 48 118 58 127 65 M46 73 C68 73 102 73 124 73 M36 86 C40 96 44 107 47 118 M134 86 C130 96 126 107 123 118 M64 132 C80 132 94 132 106 132\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-dag-topological",
+    "name": "Directed Acyclic Graph (DAG)",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "dag",
+      "directed-graph",
+      "topological",
+      "dependencies",
+      "workflow",
+      "sort"
+    ],
+    "viewBox": "0 0 190 130",
+    "type": "stroke",
+    "defaultColor": "#EA552B",
+    "description": "Directed acyclic graph with flow arrows demonstrating task dependencies and topological sorting.",
+    "path": "d=\"M26 52 C33 52 38 57 38 65 C38 73 33 78 26 78 C19 78 14 73 14 65 C14 57 19 52 26 52 Z M80 20 C87 20 92 25 92 32 C92 39 87 44 80 44 C73 44 68 39 68 32 C68 25 73 20 80 20 Z M80 86 C87 86 92 91 92 98 C92 105 87 110 80 110 C73 110 68 105 68 98 C68 91 73 86 80 86 Z M138 34 C145 34 150 39 150 46 C150 53 145 58 138 58 C131 58 126 53 126 46 C126 39 131 34 138 34 Z M166 74 C173 74 178 79 178 86 C178 93 173 98 166 98 C159 98 154 93 154 86 C154 79 159 74 166 74 Z M36 58 C47 49 57 41 68 35 M60 34 L69 34 L66 42 M36 72 C47 81 57 89 68 95 M66 88 L69 96 L60 96 M92 34 C104 37 114 40 126 43 M118 38 L126 43 L119 47 M92 98 C104 95 116 90 128 84 M90 42 C102 56 122 72 154 83 M145 77 L154 83 L146 86 M148 52 C153 58 157 65 161 74 M154 68 L161 74 L163 66\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-heap-tree",
+    "name": "Min/Max Priority Heap",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "heap",
+      "priority-queue",
+      "binary-heap",
+      "min-heap",
+      "max-heap",
+      "pyramid"
+    ],
+    "viewBox": "0 0 180 150",
+    "type": "stroke",
+    "defaultColor": "#F7D046",
+    "description": "Triangular hierarchical heap with root priority element highlighted at the summit.",
+    "path": "d=\"M90 12 L164 136 C166 140 162 144 154 144 H26 C18 144 14 140 16 136 Z M90 32 C97 32 103 37 103 44 C103 51 97 56 90 56 C83 56 77 51 77 44 C77 37 83 32 90 32 Z M60 76 C66 76 71 81 71 87 C71 93 66 98 60 98 C54 98 49 93 49 87 C49 81 54 76 60 76 Z M120 76 C126 76 131 81 131 87 C131 93 126 98 120 98 C114 98 109 93 109 87 C109 81 114 76 120 76 Z M82 52 L68 76 M98 52 L112 76 M52 96 L42 120 M68 96 L74 120 M112 96 L106 120 M128 96 L138 120 M42 124 H44 M74 124 H76 M106 124 H108 M138 124 H140 M90 18 L90 24 M85 21 H95\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-recursion-spiral",
+    "name": "Recursive Call Stack",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "recursion",
+      "call-stack",
+      "spiral",
+      "fractal",
+      "depth",
+      "base-case"
+    ],
+    "viewBox": "0 0 160 160",
+    "type": "stroke",
+    "defaultColor": "#4CA96D",
+    "description": "Descending recursive spiral frames zooming into the base case and unwinding back.",
+    "path": "d=\"M142 80 C142 114 114 142 80 142 C46 142 18 114 18 80 C18 46 46 18 80 18 C108 18 130 40 130 68 C130 94 108 116 82 116 C58 116 40 98 40 74 C40 52 58 36 78 36 C96 36 110 50 110 68 C110 82 98 94 84 94 C72 94 62 84 62 72 C62 62 70 54 80 54 C88 54 94 60 94 68 C94 74 88 80 82 80 C78 80 74 76 74 72 M144 72 L142 82 L132 80 M76 72 A 2 2 0 1 1 76 71.9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-binary-search",
+    "name": "Binary Search Split",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "binary-search",
+      "divide-and-conquer",
+      "log-n",
+      "array-split",
+      "search"
+    ],
+    "viewBox": "0 0 200 110",
+    "type": "stroke",
+    "defaultColor": "#55BBDA",
+    "description": "Sorted array partitioned down the middle with discarded half and target pointer.",
+    "path": "d=\"M16 40 H184 V78 H16 Z M40 40 V78 M64 40 V78 M88 40 V78 M112 40 V78 M136 40 V78 M160 40 V78 M18 43 L38 75 M42 43 L62 75 M66 43 L86 75 M100 32 C108 32 114 36 114 59 C114 82 108 86 100 86 C92 86 86 82 86 59 C86 36 92 32 100 32 Z M100 10 L100 24 M94 18 L100 25 L106 18 M116 90 C130 96 160 96 180 90 M148 94 V102\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-two-pointers",
+    "name": "Two Pointers Convergence",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "two-pointers",
+      "left-right",
+      "indices",
+      "sliding",
+      "algorithm",
+      "pointers"
+    ],
+    "viewBox": "0 0 200 110",
+    "type": "stroke",
+    "defaultColor": "#EA552B",
+    "description": "Left and right pointer arrows stepping toward each other over an array segment.",
+    "path": "d=\"M16 34 H184 V70 H16 Z M44 34 V70 M72 34 V70 M100 34 V70 M128 34 V70 M156 34 V70 M30 52 H32 M58 52 H60 M86 52 H88 M114 52 H116 M142 52 H144 M170 52 H172 M30 96 V80 M24 86 L30 79 L36 86 M18 102 H26 M170 96 V80 M164 86 L170 79 L176 86 M164 102 H172 M30 22 C64 10 136 10 170 22 M96 16 L100 20 L104 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-big-o-complexity",
+    "name": "Big-O Complexity Curves",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "big-o",
+      "complexity",
+      "asymptotic",
+      "o-n",
+      "time-complexity",
+      "chart"
+    ],
+    "viewBox": "0 0 160 160",
+    "type": "stroke",
+    "defaultColor": "#EE8DB9",
+    "description": "Hand-sketched time complexity axes with O(1), O(log n), O(n), and O(n\u00b2) growth curves.",
+    "path": "d=\"M22 140 L22 18 M16 26 L22 16 L28 26 M22 140 L144 140 M136 134 L146 140 L136 146 M22 120 C50 120 100 120 138 120 M22 138 C54 122 92 104 138 96 M22 138 C58 102 96 66 138 30 M22 138 C52 134 76 86 86 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-matrix-grid",
+    "name": "2D Matrix & Traversal",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "matrix",
+      "2d-grid",
+      "dynamic-programming",
+      "traversal",
+      "pathfinding",
+      "grid"
+    ],
+    "viewBox": "0 0 160 160",
+    "type": "stroke",
+    "defaultColor": "#0BDC85",
+    "description": "Hand-drawn 2D matrix grid with a meandering dynamic programming traversal path from start to goal.",
+    "path": "d=\"M20 20 H140 V140 H20 Z M60 20 V140 M100 20 V140 M20 60 H140 M20 100 H140 M40 40 C44 40 46 36 46 40 C46 44 36 44 40 40 Z M38 40 C50 40 70 40 80 40 C80 50 80 70 80 80 C90 80 110 80 120 80 C120 90 120 110 120 120 M114 114 L120 122 L126 114 M120 120 L124 124 M116 124 L124 116\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-trie-tree",
+    "name": "Prefix Trie Tree",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "trie",
+      "prefix-tree",
+      "autocomplete",
+      "strings",
+      "search-tree",
+      "dictionary"
+    ],
+    "viewBox": "0 0 180 150",
+    "type": "stroke",
+    "defaultColor": "#F7D046",
+    "description": "Prefix trie branching from a central root node into characters spelling dictionary words.",
+    "path": "d=\"M90 16 C96 16 102 21 102 28 C102 35 96 40 90 40 C84 40 78 35 78 28 C78 21 84 16 90 16 Z M52 64 C58 64 64 69 64 76 C64 83 58 88 52 88 C46 88 40 83 40 76 C40 69 46 64 52 64 Z M128 64 C134 64 140 69 140 76 C140 83 134 88 128 88 C122 88 116 83 116 76 C116 69 122 64 128 64 Z M32 114 C38 114 44 119 44 126 C44 133 38 138 32 138 C26 138 20 133 20 126 C20 119 26 114 32 114 Z M72 114 C78 114 84 119 84 126 C84 133 78 138 72 138 C66 138 60 133 60 126 C60 119 66 114 72 114 Z M108 114 C114 114 120 119 120 126 C120 133 114 138 108 138 C102 138 96 133 96 126 C96 119 102 114 108 114 Z M148 114 C154 114 160 119 160 126 C160 133 154 138 148 138 C142 138 136 133 136 126 C136 119 142 114 148 114 Z M80 36 L62 64 M100 36 L118 64 M44 86 L36 114 M60 86 L68 114 M120 86 L112 114 M136 86 L144 114\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-sliding-window",
+    "name": "Sliding Window Frame",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "sliding-window",
+      "subarray",
+      "range",
+      "pointers",
+      "window",
+      "algorithm"
+    ],
+    "viewBox": "0 0 200 110",
+    "type": "stroke",
+    "defaultColor": "#55BBDA",
+    "description": "Highlighted sliding bracket window framing contiguous elements with a directional shift arrow.",
+    "path": "d=\"M16 38 H184 V74 H16 Z M44 38 V74 M72 38 V74 M100 38 V74 M128 38 V74 M156 38 V74 M42 30 H130 C134 30 136 32 136 36 V76 C136 80 134 82 130 82 H42 C38 82 36 80 36 76 V36 C36 32 38 30 42 30 Z M56 16 C84 8 118 8 144 18 M136 12 L146 18 L140 26 M86 96 C80 96 76 98 76 102 C76 106 86 106 86 102 M92 98 V104\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-quicksort-partition",
+    "name": "Quicksort Partition",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "quicksort",
+      "partition",
+      "pivot",
+      "sorting",
+      "divide-and-conquer"
+    ],
+    "viewBox": "0 0 200 120",
+    "type": "stroke",
+    "defaultColor": "#EA552B",
+    "description": "Array elements divided around a circled pivot element with left/right partitioning brackets.",
+    "path": "d=\"M100 36 C114 36 124 46 124 60 C124 74 114 84 100 84 C86 84 76 74 76 60 C76 46 86 36 100 36 Z M95 50 V70 M95 50 H103 C107 50 109 52 109 56 C109 60 107 62 103 62 H95 M64 38 C48 38 40 48 40 60 C40 72 48 82 64 82 M136 38 C152 38 160 48 160 60 C160 72 152 82 136 82 M60 98 H24 M30 92 L22 98 L30 104 M140 98 H176 M170 92 L178 98 L170 104\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-red-black-tree",
+    "name": "Red-Black Balanced Tree",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "red-black-tree",
+      "bst",
+      "balanced",
+      "tree",
+      "rotation",
+      "search"
+    ],
+    "viewBox": "0 0 180 150",
+    "type": "stroke",
+    "defaultColor": "#EA552B",
+    "description": "Self-balancing Red-Black binary search tree with distinct red accent nodes and rotation arc arrow.",
+    "path": "d=\"M90 16 C98 16 104 22 104 30 C104 38 98 44 90 44 C82 44 76 38 76 30 C76 22 82 16 90 16 Z M50 64 C58 64 64 70 64 78 C64 86 58 92 50 92 C42 92 36 86 36 78 C36 70 42 64 50 64 Z M130 64 C138 64 144 70 144 78 C144 86 138 92 130 92 C122 92 116 86 116 78 C116 70 122 64 130 64 Z M28 114 C35 114 40 119 40 126 C40 133 35 138 28 138 C21 138 16 133 16 126 C16 119 21 114 28 114 Z M72 114 C79 114 84 119 84 126 C84 133 79 138 72 138 C65 138 60 133 60 126 C60 119 65 114 72 114 Z M110 114 C117 114 122 119 122 126 C122 133 117 138 110 138 C103 138 98 133 98 126 C98 119 103 114 110 114 Z M152 114 C159 114 164 119 164 126 C164 133 159 138 152 138 C145 138 140 133 140 126 C140 119 145 114 152 114 Z M80 38 L58 66 M100 38 L122 66 M42 90 L32 115 M58 90 L68 115 M122 90 L114 115 M138 90 L148 115 M50 78 H52 M152 126 H154 M28 126 H30 M98 48 C108 52 114 58 116 64 M110 66 L118 64 L118 56\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-b-tree-node",
+    "name": "B-Tree Multi-Key Node",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "b-tree",
+      "database-index",
+      "multiway",
+      "keys",
+      "pointers",
+      "storage"
+    ],
+    "viewBox": "0 0 200 130",
+    "type": "stroke",
+    "defaultColor": "#55BBDA",
+    "description": "Multi-key B-Tree root node branching downward into partitioned sub-range child leaves.",
+    "path": "d=\"M32 20 H168 C174 20 178 24 178 30 V56 C178 62 174 66 168 66 H32 C26 66 22 62 22 56 V30 C22 24 26 20 32 20 Z M74 20 V66 M126 20 V66 M53 44 H55 M100 44 H102 M147 44 H149 M48 66 L30 96 M100 66 L100 96 M152 66 L170 96 M24 94 L30 98 L36 94 M94 94 L100 98 L106 94 M164 94 L170 98 L176 94 M14 98 H50 V122 H14 Z M84 98 H116 V122 H84 Z M150 98 H186 V122 H150 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-bloom-filter",
+    "name": "Bloom Filter Hash Bitset",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "bloom-filter",
+      "probabilistic",
+      "hashing",
+      "bits",
+      "membership",
+      "cache"
+    ],
+    "viewBox": "0 0 210 110",
+    "type": "stroke",
+    "defaultColor": "#0BDC85",
+    "description": "Probabilistic Bloom filter bitset array with 3 hash function mapping arrows pinning bit positions.",
+    "path": "d=\"M16 64 H194 V98 H16 Z M41 64 V98 M66 64 V98 M91 64 V98 M116 64 V98 M141 64 V98 M166 64 V98 M28 82 H30 M53 74 V90 M78 82 H80 M103 82 H105 M128 74 V90 M153 74 V90 M178 82 H180 M24 24 C24 18 28 14 36 14 H64 C72 14 76 18 76 24 V36 C76 42 72 46 64 46 H36 C28 46 24 42 24 36 Z M42 30 H58 M54 46 C54 54 54 56 54 62 M50 56 L54 62 L58 56 M64 46 C76 56 102 56 126 62 M120 58 L127 62 L125 54 M72 46 C92 56 122 56 150 62 M144 58 L151 62 L149 54\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-lru-cache",
+    "name": "LRU Cache Memory Buffer",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "lru",
+      "cache",
+      "eviction",
+      "doubly-linked",
+      "hashmap",
+      "queue"
+    ],
+    "viewBox": "0 0 200 120",
+    "type": "stroke",
+    "defaultColor": "#F7D046",
+    "description": "Least Recently Used (LRU) cache buffer showing most recent promotion and least recent eviction.",
+    "path": "d=\"M20 40 H180 V80 H20 Z M60 40 V80 M100 40 V80 M140 40 V80 M40 60 H42 M80 60 H82 M120 60 H122 M160 60 H162 M40 24 V34 M34 28 L40 34 L46 28 M24 18 H56 M160 86 V96 M154 90 L160 96 L166 90 M144 104 H176 M72 32 C86 24 114 24 128 32 M120 28 L128 32 L124 38 M128 88 C114 96 86 96 72 88 M80 92 L72 88 L76 82\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-union-find-dsu",
+    "name": "Disjoint Set Union (DSU)",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "dsu",
+      "union-find",
+      "disjoint-set",
+      "components",
+      "graph",
+      "forest"
+    ],
+    "viewBox": "0 0 190 140",
+    "type": "stroke",
+    "defaultColor": "#EE8DB9",
+    "description": "Disjoint Set Union forest with representative roots merging subsets through path compression.",
+    "path": "d=\"M48 24 C56 24 62 30 62 38 C62 46 56 52 48 52 C40 52 34 46 34 38 C34 30 40 24 48 24 Z M26 84 C33 84 38 89 38 96 C38 103 33 108 26 108 C19 108 14 103 14 96 C14 89 19 84 26 84 Z M70 84 C77 84 82 89 82 96 C82 103 77 108 70 108 C63 108 58 103 58 96 C58 89 63 84 70 84 Z M42 50 L30 84 M54 50 L66 84 M142 24 C150 24 156 30 156 38 C156 46 150 52 142 52 C134 52 128 46 128 38 C128 30 134 24 142 24 Z M142 84 C149 84 154 89 154 96 C154 103 149 108 142 108 C135 108 130 103 130 96 C130 89 135 84 142 84 Z M142 52 V84 M64 36 C86 20 108 20 126 34 M120 28 L127 34 L120 38\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-segment-tree",
+    "name": "Interval Segment Tree",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "segment-tree",
+      "intervals",
+      "range-query",
+      "divide-conquer",
+      "tree"
+    ],
+    "viewBox": "0 0 190 140",
+    "type": "stroke",
+    "defaultColor": "#4CA96D",
+    "description": "Binary segment tree partitioning interval bounds with highlighted active range query nodes.",
+    "path": "d=\"M95 16 H105 C116 16 122 20 122 28 C122 36 116 40 105 40 H95 C84 40 78 36 78 28 C78 20 84 16 95 16 Z M50 64 H60 C70 64 74 68 74 74 C74 80 70 84 60 84 H50 C40 84 36 80 36 74 C36 68 40 64 50 64 Z M130 64 H140 C150 64 154 68 154 74 C154 80 150 84 140 84 H130 C120 84 116 80 116 74 C116 68 120 64 130 64 Z M24 108 H32 V124 H24 Z M64 108 H72 V124 H64 Z M104 108 H112 V124 H104 Z M144 108 H152 V124 H144 Z M86 38 L62 64 M114 38 L138 64 M48 84 L32 108 M62 84 L68 108 M128 84 L112 108 M142 84 L148 108 M55 74 H57 M135 74 H137\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-huffman-encoding",
+    "name": "Huffman Coding Tree",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "huffman",
+      "compression",
+      "binary-code",
+      "prefix-tree",
+      "greedy",
+      "entropy"
+    ],
+    "viewBox": "0 0 180 150",
+    "type": "stroke",
+    "defaultColor": "#EA552B",
+    "description": "Optimal prefix Huffman coding tree with binary 0 and 1 branch weights leading to leaf symbols.",
+    "path": "d=\"M90 18 C97 18 102 23 102 30 C102 37 97 42 90 42 C83 42 78 37 78 30 C78 23 83 18 90 18 Z M50 68 C57 68 62 73 62 80 C62 87 57 92 50 92 C43 92 38 87 38 80 C38 73 43 68 50 68 Z M130 68 C137 68 142 73 142 80 C142 87 137 92 130 92 C123 92 118 87 118 80 C118 73 123 68 130 68 Z M30 118 H46 V134 H30 Z M70 118 H86 V134 H70 Z M82 40 L58 68 M98 40 L122 68 M44 92 L38 118 M56 92 L78 118 M64 48 C68 48 70 50 70 53 M114 48 V56 M34 100 C38 100 40 102 40 105 M72 100 V108 M124 92 L128 118 M130 120 H142 V134 H130 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-shortest-path-dijkstra",
+    "name": "Dijkstra Shortest Path",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "dijkstra",
+      "shortest-path",
+      "graph",
+      "weights",
+      "greedy",
+      "relaxation"
+    ],
+    "viewBox": "0 0 190 150",
+    "type": "stroke",
+    "defaultColor": "#55BBDA",
+    "description": "Weighted graph showing edge cost relaxation and the optimal shortest path route highlighted.",
+    "path": "d=\"M28 75 C36 75 42 81 42 89 C42 97 36 103 28 103 C20 103 14 97 14 89 C14 81 20 75 28 75 Z M85 24 C93 24 99 30 99 38 C99 46 93 52 85 52 C77 52 71 46 71 38 C71 30 77 24 85 24 Z M85 106 C93 106 99 112 99 120 C99 128 93 134 85 134 C77 134 71 128 71 120 C71 112 77 106 85 106 Z M158 64 C166 64 172 70 172 78 C172 86 166 92 158 92 C150 92 144 86 144 78 C144 70 150 64 158 64 Z M38 78 L74 44 M38 98 L74 114 M98 42 L146 70 M98 114 L146 86 M85 52 V106 M50 56 H54 M52 110 H56 M122 52 H126 M122 104 H126 M40 88 C60 88 120 74 144 78\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-min-spanning-tree",
+    "name": "Minimum Spanning Tree (MST)",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "mst",
+      "spanning-tree",
+      "kruskal",
+      "prim",
+      "graph",
+      "greedy"
+    ],
+    "viewBox": "0 0 180 150",
+    "type": "stroke",
+    "defaultColor": "#F7D046",
+    "description": "Minimum weight acyclic tree spanning all network vertices with discarded cycle edges dashed.",
+    "path": "d=\"M32 36 C39 36 44 41 44 48 C44 55 39 60 32 60 C25 60 20 55 20 48 C20 41 25 36 32 36 Z M90 18 C97 18 102 23 102 30 C102 37 97 42 90 42 C83 42 78 37 78 30 C78 23 83 18 90 18 Z M148 36 C155 36 160 41 160 48 C160 55 155 60 148 60 C141 60 136 55 136 48 C136 41 141 36 148 36 Z M48 114 C55 114 60 119 60 126 C60 133 55 138 48 138 C41 138 36 133 36 126 C36 119 41 114 48 114 Z M132 114 C139 114 144 119 144 126 C144 133 139 138 132 138 C125 138 120 133 120 126 C120 119 125 114 132 114 Z M42 44 L80 32 M98 32 L138 44 M34 58 L46 114 M146 58 L134 114 M44 54 C74 84 104 84 136 54 M60 126 H120\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-consistent-hash-ring",
+    "name": "Consistent Hashing Ring",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "consistent-hashing",
+      "distributed",
+      "hash-ring",
+      "sharding",
+      "nodes",
+      "replication"
+    ],
+    "viewBox": "0 0 180 180",
+    "type": "stroke",
+    "defaultColor": "#EE8DB9",
+    "description": "Circular hash ring partitioning continuous keyspace clockwise into distributed cluster nodes.",
+    "path": "d=\"M90 24 C126 24 156 54 156 90 C156 126 126 156 90 156 C54 156 24 126 24 90 C24 54 54 24 90 24 Z M90 18 V30 M156 90 H168 M90 156 V168 M24 90 H12 M136 44 C142 44 146 48 146 54 C146 60 142 64 136 64 C130 64 126 60 126 54 C126 48 130 44 136 44 Z M136 116 C142 116 146 120 146 126 C146 132 142 136 136 136 C130 136 126 132 126 126 C126 120 130 116 136 116 Z M44 116 C50 116 54 120 54 126 C54 132 50 136 44 136 C38 136 34 132 34 126 C34 120 38 116 44 116 Z M44 44 C50 44 54 48 54 54 C54 60 50 64 44 64 C38 64 34 60 34 54 C34 48 38 44 44 44 Z M90 60 C106 60 120 74 120 90 M116 82 L120 90 L112 90\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-fenwick-bit-tree",
+    "name": "Fenwick Tree Prefix Array",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "fenwick-tree",
+      "binary-indexed-tree",
+      "bit",
+      "prefix-sums",
+      "cumulative",
+      "array"
+    ],
+    "viewBox": "0 0 200 120",
+    "type": "stroke",
+    "defaultColor": "#0BDC85",
+    "description": "Binary Indexed Tree (BIT) with hierarchical power-of-two prefix sum coverage brackets.",
+    "path": "d=\"M16 70 H184 V102 H16 Z M37 70 V102 M58 70 V102 M79 70 V102 M100 70 V102 M121 70 V102 M142 70 V102 M163 70 V102 M26 86 H28 M47 86 H49 M68 86 H70 M89 86 H91 M110 86 H112 M131 86 H133 M152 86 H154 M173 86 H175 M22 56 C28 50 46 50 52 56 M64 56 C70 50 88 50 94 56 M106 56 C112 50 130 50 136 56 M148 56 C154 50 172 50 178 56 M22 40 C32 30 84 30 94 40 M106 40 C116 30 168 30 178 40 M22 22 C42 10 158 10 178 22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "algo-backtracking-nqueens",
+    "name": "Backtracking Search Tree",
+    "category": "algorithms-data-structures",
+    "tags": [
+      "backtracking",
+      "dfs",
+      "pruning",
+      "n-queens",
+      "recursion",
+      "decision-tree"
+    ],
+    "viewBox": "0 0 180 150",
+    "type": "stroke",
+    "defaultColor": "#EA552B",
+    "description": "State-space decision tree exploring candidate solutions with pruned dead-ends and backtrack arrows.",
+    "path": "d=\"M90 16 C97 16 102 21 102 28 C102 35 97 40 90 40 C83 40 78 35 78 28 C78 21 83 16 90 16 Z M48 64 C55 64 60 69 60 76 C60 83 55 88 48 88 C41 88 36 83 36 76 C36 69 41 64 48 64 Z M132 64 C139 64 144 69 144 76 C144 83 139 88 132 88 C125 88 120 83 120 76 C120 69 125 64 132 64 Z M26 114 C33 114 38 119 38 126 C38 133 33 138 26 138 C19 138 14 133 14 126 C14 119 19 114 26 114 Z M70 114 C77 114 82 119 82 126 C82 133 77 138 70 138 C63 138 58 133 58 126 C58 119 63 114 70 114 Z M80 36 L56 64 M100 36 L124 64 M40 86 L30 114 M56 86 L66 114 M126 86 L118 106 M138 86 L146 106 M112 118 L124 130 M124 118 L112 130 M120 102 C116 94 114 88 116 80 M110 86 L116 80 L122 84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-load-balancer",
+    "name": "Load Balancer Router",
+    "category": "system-design",
+    "tags": [
+      "load-balancer",
+      "reverse-proxy",
+      "nginx",
+      "routing",
+      "traffic-distribution"
+    ],
+    "viewBox": "0 0 180 150",
+    "type": "stroke",
+    "defaultColor": "#55BBDA",
+    "description": "Reverse proxy load balancer splitting an incoming traffic stream across multiple backend servers.",
+    "path": "d=\"M14 75 H52 M44 68 L52 75 L44 82 M56 46 C56 40 60 36 66 36 H98 C104 36 108 40 108 46 V104 C108 110 104 114 98 114 H66 C60 114 56 110 56 104 Z M72 58 L92 58 M72 75 L92 75 M72 92 L92 92 M108 56 C120 48 132 40 144 36 M136 32 L146 36 L140 44 M108 75 H144 M136 68 L144 75 L136 82 M108 94 C120 102 132 110 144 114 M140 106 L146 114 L136 118 M150 26 H170 V46 H150 Z M150 65 H170 V85 H150 Z M150 104 H170 V124 H150 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-database-cylinder",
+    "name": "Database Storage Drum",
+    "category": "system-design",
+    "tags": [
+      "database",
+      "rdbms",
+      "sql",
+      "storage",
+      "postgres",
+      "data-persistence"
+    ],
+    "viewBox": "0 0 150 160",
+    "type": "stroke",
+    "defaultColor": "#4CA96D",
+    "description": "Hand-drawn database storage cylinder with distinct disc platters and read/write arrows.",
+    "path": "d=\"M26 36 C26 22 48 16 75 16 C102 16 124 22 124 36 C124 50 102 56 75 56 C48 56 26 50 26 36 Z M26 36 V124 C26 138 48 144 75 144 C102 144 124 138 124 124 V36 M26 66 C26 80 48 86 75 86 C102 86 124 80 124 66 M26 96 C26 110 48 116 75 116 C102 116 124 110 124 96 M134 46 C144 54 144 80 134 90 M142 86 L134 92 L132 82\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-db-replication-cluster",
+    "name": "Primary & Read Replicas",
+    "category": "system-design",
+    "tags": [
+      "replication",
+      "cluster",
+      "primary-replica",
+      "sharding",
+      "high-availability",
+      "database"
+    ],
+    "viewBox": "0 0 200 150",
+    "type": "stroke",
+    "defaultColor": "#EA552B",
+    "description": "Primary leader database synchronizing data streams down to two follower read replicas.",
+    "path": "d=\"M74 22 C74 14 86 10 100 10 C114 10 126 14 126 22 C126 30 114 34 100 34 C86 34 74 30 74 22 Z M74 22 V48 C74 56 86 60 100 60 C114 60 126 56 126 48 V22 M74 35 C74 43 86 47 100 47 C114 47 126 43 126 35 M84 62 C68 76 54 90 44 102 M42 94 L42 104 L52 104 M116 62 C132 76 146 90 156 102 M148 104 L158 104 L158 94 M22 112 C22 106 32 102 44 102 C56 102 66 106 66 112 C66 118 56 122 44 122 C32 122 22 118 22 112 Z M22 112 V132 C22 138 32 142 44 142 C56 142 66 138 66 132 V112 M134 112 C134 106 144 102 156 102 C168 102 178 106 178 112 C178 118 168 122 156 122 C144 122 134 118 134 112 Z M134 112 V132 C134 138 144 142 156 142 C168 142 178 138 178 132 V112\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-microservice-node",
+    "name": "Microservice Container Pod",
+    "category": "system-design",
+    "tags": [
+      "microservice",
+      "service",
+      "container",
+      "pod",
+      "kubernetes",
+      "api",
+      "architecture"
+    ],
+    "viewBox": "0 0 150 150",
+    "type": "stroke",
+    "defaultColor": "#0BDC85",
+    "description": "Organic hexagonal microservice container pod with internal core logic and communication ports.",
+    "path": "d=\"M75 14 L128 44 L128 106 L75 136 L22 106 L22 44 Z M75 38 L106 56 L106 94 L75 112 L44 94 L44 56 Z M75 62 L87 69 V83 L75 90 L63 83 V69 Z M75 6 V14 M128 44 L136 39 M128 106 L136 111 M75 136 V144 M22 106 L14 111 M22 44 L14 39\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-api-gateway",
+    "name": "API Gateway Portal",
+    "category": "system-design",
+    "tags": [
+      "api-gateway",
+      "gateway",
+      "entry-point",
+      "routing",
+      "auth",
+      "proxy",
+      "security"
+    ],
+    "viewBox": "0 0 180 150",
+    "type": "stroke",
+    "defaultColor": "#F7D046",
+    "description": "Front-door API gateway arch filtering incoming client traffic into decoupled backend services.",
+    "path": "d=\"M48 136 V58 C48 30 66 18 90 18 C114 18 132 30 132 58 V136 M64 136 V66 C64 44 76 34 90 34 C104 34 116 44 116 66 V136 M90 10 L90 54 M82 46 L90 54 L98 46 M72 90 C62 98 48 108 36 120 M44 122 L36 122 L36 114 M90 90 V124 M84 116 L90 124 L96 116 M108 90 C118 98 132 108 144 120 M136 122 L144 122 L144 114\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-cache-redis",
+    "name": "In-Memory Flash Cache",
+    "category": "system-design",
+    "tags": [
+      "cache",
+      "redis",
+      "memcached",
+      "in-memory",
+      "fast",
+      "low-latency",
+      "ram"
+    ],
+    "viewBox": "0 0 160 150",
+    "type": "stroke",
+    "defaultColor": "#EE8DB9",
+    "description": "High-speed RAM cache block accented with a signature lightning bolt doodle representing sub-millisecond lookups.",
+    "path": "d=\"M80 18 L136 46 L80 74 L24 46 Z M24 46 V94 L80 122 V74 M136 46 V94 L80 122 M24 70 L80 98 L136 70 M86 36 L68 70 H84 L72 104 L102 64 H84 L96 36 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-message-queue",
+    "name": "Kafka Message Pipe",
+    "category": "system-design",
+    "tags": [
+      "message-queue",
+      "kafka",
+      "rabbitmq",
+      "streaming",
+      "buffer",
+      "async",
+      "pubsub"
+    ],
+    "viewBox": "0 0 210 100",
+    "type": "stroke",
+    "defaultColor": "#EA552B",
+    "description": "Serialized message broker queue pipe transporting event payloads between decoupled producers and consumers.",
+    "path": "d=\"M32 26 C24 26 20 36 20 50 C20 64 24 74 32 74 M32 26 H178 C186 26 190 36 190 50 C190 64 186 74 178 74 H32 M178 26 C170 26 166 36 166 50 C166 64 170 74 178 74 M50 36 H76 V64 H50 Z M50 36 L63 50 L76 36 M92 36 H118 V64 H92 Z M92 36 L105 50 L118 36 M134 36 H160 V64 H134 Z M134 36 L147 50 L160 36 M6 50 H16 M194 50 H204 M198 44 L204 50 L198 56\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-cdn-edge",
+    "name": "CDN Global Edge Network",
+    "category": "system-design",
+    "tags": [
+      "cdn",
+      "edge",
+      "cloudflare",
+      "global",
+      "caching",
+      "network",
+      "latency"
+    ],
+    "viewBox": "0 0 170 160",
+    "type": "stroke",
+    "defaultColor": "#55BBDA",
+    "description": "Hand-drawn globe with distributed edge cache point markers delivering assets with minimal latency.",
+    "path": "d=\"M85 24 C118 24 144 50 144 83 C144 116 118 142 85 142 C52 142 26 116 26 83 C26 50 52 24 85 24 Z M26 83 C48 95 122 95 144 83 M28 60 C52 70 118 70 142 60 M28 106 C52 96 118 96 142 106 M85 24 C62 52 62 114 85 142 M85 24 C108 52 108 114 85 142 M85 10 V18 M85 148 V156 M12 83 H20 M150 83 H158 M82 14 H88 M154 80 V86\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-cloud-vpc",
+    "name": "Cloud Infrastructure VPC",
+    "category": "system-design",
+    "tags": [
+      "cloud",
+      "aws",
+      "vpc",
+      "infrastructure",
+      "network",
+      "private-cloud"
+    ],
+    "viewBox": "0 0 180 130",
+    "type": "stroke",
+    "defaultColor": "#55BBDA",
+    "description": "Billowing organic cloud boundary encapsulating secure backend cloud infrastructure.",
+    "path": "d=\"M44 104 C26 104 16 92 16 78 C16 64 26 54 40 54 C44 38 60 24 82 24 C104 24 120 38 124 54 C138 52 154 60 158 74 C168 78 174 88 172 98 C170 108 160 116 146 116 H44 Z M74 68 H106 V100 H74 Z M74 84 H106 M82 76 H84 M82 92 H84 M90 54 C90 48 94 44 100 44 C106 44 110 48 110 54\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-event-pubsub",
+    "name": "Event Bus & Pub-Sub",
+    "category": "system-design",
+    "tags": [
+      "pub-sub",
+      "event-bus",
+      "broadcast",
+      "fan-out",
+      "sns",
+      "events",
+      "broker"
+    ],
+    "viewBox": "0 0 200 140",
+    "type": "stroke",
+    "defaultColor": "#F7D046",
+    "description": "Central event topic bus broadcasting events out to multiple subscriber queues and handlers.",
+    "path": "d=\"M14 70 H52 M44 64 L52 70 L44 76 M74 70 C74 56 86 44 100 44 C114 44 126 56 126 70 C126 84 114 96 100 96 C86 96 74 84 74 70 Z M92 70 C92 66 96 62 100 62 C104 62 108 66 108 70 C108 74 104 78 100 78 M126 58 C138 50 152 42 164 36 M156 32 L166 36 L160 44 M126 70 H164 M156 64 L164 70 L156 76 M126 82 C138 90 152 98 164 104 M160 96 L166 104 L156 108 M168 26 H188 V44 H168 Z M168 61 H188 V79 H168 Z M168 96 H188 V114 H168 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-rate-limiter",
+    "name": "Rate Limiter Token Funnel",
+    "category": "system-design",
+    "tags": [
+      "rate-limiter",
+      "token-bucket",
+      "throttling",
+      "ddos-protection",
+      "traffic-control",
+      "gateway"
+    ],
+    "viewBox": "0 0 160 160",
+    "type": "stroke",
+    "defaultColor": "#EA552B",
+    "description": "Traffic funnel and token bucket metering incoming request bursts to prevent server overloads.",
+    "path": "d=\"M26 28 C62 20 98 20 134 28 M26 28 L64 86 V112 C64 116 68 120 72 120 H88 C92 120 96 116 96 112 V86 L134 28 M52 44 H54 M80 38 H82 M108 44 H110 M66 60 H68 M94 60 H96 M80 72 H82 M56 102 H104 M80 132 V136 M80 148 V152 M76 134 H84 M76 150 H84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-circuit-breaker",
+    "name": "Fault Circuit Breaker",
+    "category": "system-design",
+    "tags": [
+      "circuit-breaker",
+      "resilience",
+      "fault-tolerance",
+      "switch",
+      "failover",
+      "stability"
+    ],
+    "viewBox": "0 0 180 120",
+    "type": "stroke",
+    "defaultColor": "#EE8DB9",
+    "description": "Resilient circuit breaker switch toggling open to protect downstream systems from cascading outages.",
+    "path": "d=\"M16 68 H54 M54 62 C58 62 61 65 61 68 C61 71 58 74 54 74 C50 74 47 71 47 68 C47 65 50 62 54 62 Z M126 62 C130 62 133 65 133 68 C133 71 130 74 126 74 C122 74 119 71 119 68 C119 65 122 62 126 62 Z M126 68 H164 M58 64 L114 26 M116 40 L122 48 L114 52 L120 60 M32 94 C70 106 110 106 148 94 M140 88 L150 94 L142 102\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-server-rack",
+    "name": "Bare Metal Server Rack",
+    "category": "system-design",
+    "tags": [
+      "server",
+      "rack",
+      "hardware",
+      "host",
+      "datacenter",
+      "compute",
+      "blade"
+    ],
+    "viewBox": "0 0 150 170",
+    "type": "stroke",
+    "defaultColor": "#4CA96D",
+    "description": "Multi-chassis server blade rack with ventilated faceplates, activity LEDs, and uplink cabling.",
+    "path": "d=\"M30 18 H120 V152 H30 Z M40 28 H110 V58 H40 Z M48 43 H50 M56 43 H58 M64 43 H66 M82 38 H102 M82 48 H102 M40 68 H110 V98 H40 Z M48 83 H50 M56 83 H58 M64 83 H66 M82 78 H102 M82 88 H102 M40 108 H110 V138 H40 Z M48 123 H50 M56 123 H58 M64 123 H66 M82 118 H102 M82 128 H102 M75 152 C75 162 90 162 100 162 C110 162 124 162 128 156\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-client-devices",
+    "name": "Client Multi-Device Cluster",
+    "category": "system-design",
+    "tags": [
+      "clients",
+      "devices",
+      "browser",
+      "mobile",
+      "frontend",
+      "traffic",
+      "screen"
+    ],
+    "viewBox": "0 0 190 140",
+    "type": "stroke",
+    "defaultColor": "#55BBDA",
+    "description": "Hand-sketched desktop monitor and companion smartphone client emitting HTTP/REST requests.",
+    "path": "d=\"M16 24 H112 V92 H16 Z M26 78 H102 M54 92 L46 118 H82 L74 92 M36 118 H92 M126 48 H172 V126 H126 Z M134 58 H164 V112 H134 Z M149 119 H151 M116 36 C124 32 134 32 142 36 M112 26 C126 18 142 18 156 26\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-object-storage",
+    "name": "S3 Blob Storage Bucket",
+    "category": "system-design",
+    "tags": [
+      "s3",
+      "blob-storage",
+      "object-storage",
+      "bucket",
+      "media",
+      "files",
+      "cloud"
+    ],
+    "viewBox": "0 0 150 160",
+    "type": "stroke",
+    "defaultColor": "#F7D046",
+    "description": "Hand-drawn storage bucket filled with binary file objects and asset upload/download arrows.",
+    "path": "d=\"M26 36 C26 24 50 18 75 18 C100 18 124 24 124 36 C124 48 100 54 75 54 C50 54 26 48 26 36 Z M26 36 L40 138 C40 148 54 154 75 154 C96 154 110 148 110 138 L124 36 M24 36 C24 8 126 8 126 36 M56 64 H84 V92 H56 Z M56 64 L70 76 L84 64 M72 74 H100 V102 H72 Z M72 74 L86 86 L100 74 M75 106 V126 M69 120 L75 126 L81 120\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-websocket-duplex",
+    "name": "WebSocket Full-Duplex Stream",
+    "category": "system-design",
+    "tags": [
+      "websocket",
+      "realtime",
+      "bi-directional",
+      "streaming",
+      "full-duplex",
+      "socket"
+    ],
+    "viewBox": "0 0 190 110",
+    "type": "stroke",
+    "defaultColor": "#0BDC85",
+    "description": "Persistent bidirectional streaming channel exchanging real-time packets between client and server.",
+    "path": "d=\"M34 20 H156 C172 20 182 34 182 55 C182 76 172 90 156 90 H34 C18 90 8 76 8 55 C8 34 18 20 34 20 Z M36 42 C60 30 84 54 108 42 C132 30 148 42 160 42 M152 36 L162 42 L152 48 M154 68 C130 80 106 56 82 68 C58 80 42 68 30 68 M38 62 L28 68 L38 74\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-leader-election",
+    "name": "Distributed Leader Election",
+    "category": "system-design",
+    "tags": [
+      "consensus",
+      "leader-election",
+      "raft",
+      "paxos",
+      "quorum",
+      "distributed",
+      "voting"
+    ],
+    "viewBox": "0 0 180 160",
+    "type": "stroke",
+    "defaultColor": "#EA552B",
+    "description": "Ring of distributed voting nodes with the elected cluster leader crowned at the center.",
+    "path": "d=\"M90 76 C102 76 112 86 112 98 C112 110 102 120 90 120 C78 120 68 110 68 98 C68 86 78 76 90 76 Z M76 68 L78 52 L85 62 L90 48 L95 62 L102 52 L104 68 Z M32 40 C38 40 44 46 44 52 C44 58 38 64 32 64 C26 64 20 58 20 52 C20 46 26 40 32 40 Z M148 40 C154 40 160 46 160 52 C160 58 154 64 148 64 C142 64 136 58 136 52 C136 46 142 40 148 40 Z M40 124 C46 124 52 130 52 136 C52 142 46 148 40 148 C34 148 28 142 28 136 C28 130 34 124 40 124 Z M140 124 C146 124 152 130 152 136 C152 142 146 148 140 148 C134 148 128 142 128 136 C128 130 134 124 140 124 Z M44 58 C56 68 66 78 72 84 M136 58 C124 68 114 78 108 84 M50 128 C62 120 70 114 76 108 M130 128 C118 120 110 114 104 108\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-firewall-shield",
+    "name": "Security WAF Firewall",
+    "category": "system-design",
+    "tags": [
+      "firewall",
+      "waf",
+      "security",
+      "protection",
+      "shield",
+      "defense",
+      "ddos"
+    ],
+    "viewBox": "0 0 160 160",
+    "type": "stroke",
+    "defaultColor": "#4CA96D",
+    "description": "Hand-drawn security shield with a brick barrier texture bouncing back malicious attacks.",
+    "path": "d=\"M80 18 C114 18 136 30 136 62 C136 106 104 138 80 148 C56 138 24 106 24 62 C24 30 46 18 80 18 Z M40 50 H120 M32 76 H128 M38 102 H122 M52 124 H108 M66 50 V76 M94 50 V76 M52 76 V102 M80 76 V102 M108 76 V102 M66 102 V124 M94 102 V124 M12 40 L26 56 L16 66 L28 80 M18 80 L28 80 L28 70\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-dns-lookup",
+    "name": "DNS Resolver Hierarchy",
+    "category": "system-design",
+    "tags": [
+      "dns",
+      "domain",
+      "resolver",
+      "ip",
+      "networking",
+      "routing",
+      "internet"
+    ],
+    "viewBox": "0 0 190 140",
+    "type": "stroke",
+    "defaultColor": "#55BBDA",
+    "description": "Recursive DNS resolution dispatching domain queries through root, TLD, and authoritative nameservers.",
+    "path": "d=\"M20 60 H48 V90 H20 Z M28 75 H40 M48 70 C70 50 90 40 108 34 M100 32 L108 34 L104 42 M48 80 H108 M100 74 L108 80 L100 86 M48 90 C70 106 90 114 108 120 M104 112 L108 120 L100 122 M112 18 H168 V46 H112 Z M112 66 H168 V94 H112 Z M112 108 H168 V136 H112 Z M124 32 H156 M124 80 H156 M124 122 H156\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-write-ahead-log",
+    "name": "Write-Ahead Log (WAL)",
+    "category": "system-design",
+    "tags": [
+      "wal",
+      "write-ahead-log",
+      "acid",
+      "durability",
+      "database",
+      "storage",
+      "append-only"
+    ],
+    "viewBox": "0 0 200 110",
+    "type": "stroke",
+    "defaultColor": "#EA552B",
+    "description": "Append-only Write-Ahead Log ribbon ensuring transaction crash recovery before disk page commit.",
+    "path": "d=\"M16 38 H184 V74 H16 Z M44 38 V74 M72 38 V74 M100 38 V74 M128 38 V74 M156 38 V74 M28 56 H32 M56 56 H60 M84 56 H88 M112 56 H116 M140 56 H144 M168 56 H172 M168 18 V28 M162 22 L168 28 L174 22 M150 14 H186 M14 90 C50 96 150 96 186 90 M178 84 L186 90 L180 96\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-consistent-hashing",
+    "name": "Cluster Node Partition Ring",
+    "category": "system-design",
+    "tags": [
+      "consistent-hashing",
+      "virtual-nodes",
+      "partition",
+      "sharding",
+      "rebalance"
+    ],
+    "viewBox": "0 0 170 170",
+    "type": "stroke",
+    "defaultColor": "#4CA96D",
+    "description": "Distributed node hashing ring with virtual partition arcs rebalancing shards with zero downtime.",
+    "path": "d=\"M85 24 C118 24 146 52 146 85 C146 118 118 146 85 146 C52 146 24 118 24 85 C24 52 52 24 85 24 Z M85 14 V24 M146 85 H156 M85 146 V156 M24 85 H14 M75 32 H95 V48 H75 Z M122 75 H138 V95 H122 Z M75 122 H95 V138 H75 Z M32 75 H48 V95 H32 Z M116 44 L128 56 M116 126 L128 114 M54 126 L42 114 M54 44 L42 56 M70 85 A 15 15 0 1 1 100 85\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-change-data-capture",
+    "name": "Change Data Capture (CDC)",
+    "category": "system-design",
+    "tags": [
+      "cdc",
+      "debezium",
+      "streaming",
+      "events",
+      "replication",
+      "sync"
+    ],
+    "viewBox": "0 0 200 130",
+    "type": "stroke",
+    "defaultColor": "#F7D046",
+    "description": "CDC pipeline reading database commit transaction logs into a decoupled streaming event consumer.",
+    "path": "d=\"M26 30 C26 22 40 18 56 18 C72 18 86 22 86 30 V82 C86 90 72 94 56 94 C40 94 26 90 26 82 Z M26 50 C26 58 40 62 56 62 C72 62 86 58 86 50 M86 56 C102 56 114 56 126 56 M120 50 L126 56 L120 62 M130 38 H176 V74 H130 Z M130 38 L153 56 L176 38 M153 74 V98 M147 92 L153 98 L159 92 M136 102 H170 V124 H136 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-distributed-lock",
+    "name": "Distributed Lock Token",
+    "category": "system-design",
+    "tags": [
+      "distributed-lock",
+      "mutex",
+      "zookeeper",
+      "redis",
+      "concurrency",
+      "lease"
+    ],
+    "viewBox": "0 0 170 160",
+    "type": "stroke",
+    "defaultColor": "#EE8DB9",
+    "description": "Mutual exclusion distributed lock token with lease expiration and access guard shield.",
+    "path": "d=\"M85 18 C116 18 138 28 138 58 C138 98 108 132 85 142 C62 132 32 98 32 58 C32 28 54 18 85 18 Z M62 76 H108 V110 H62 Z M72 76 V62 C72 52 78 46 85 46 C92 46 98 52 98 62 V76 M85 88 V98 M85 98 A 4 4 0 1 1 85 97.9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-reverse-index-search",
+    "name": "Search Inverted Index",
+    "category": "system-design",
+    "tags": [
+      "inverted-index",
+      "search",
+      "elasticsearch",
+      "lucene",
+      "tokens",
+      "documents"
+    ],
+    "viewBox": "0 0 190 140",
+    "type": "stroke",
+    "defaultColor": "#0BDC85",
+    "description": "Search engine inverted index mapping query keyword tokens into document ID posting lists.",
+    "path": "d=\"M20 20 H68 V46 H20 Z M20 56 H68 V82 H20 Z M20 92 H68 V118 H20 Z M30 33 H58 M30 69 H58 M30 105 H58 M68 33 H98 M92 27 L98 33 L92 39 M68 69 H98 M92 63 L98 69 L92 75 M68 105 H98 M92 99 L98 105 L92 111 M106 20 H126 V46 H106 Z M136 20 H156 V46 H136 Z M166 20 H186 V46 H166 Z M106 56 H126 V82 H106 Z M136 56 H156 V82 H136 Z M106 92 H126 V118 H106 Z M136 92 H156 V118 H136 Z M166 92 H186 V118 H166 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-data-lake-warehouse",
+    "name": "Data Lakehouse Pipeline",
+    "category": "system-design",
+    "tags": [
+      "data-lake",
+      "warehouse",
+      "lakehouse",
+      "etl",
+      "analytics",
+      "big-data"
+    ],
+    "viewBox": "0 0 200 130",
+    "type": "stroke",
+    "defaultColor": "#55BBDA",
+    "description": "Multi-hop medallion architecture flowing raw blob lake data into an analytical gold warehouse.",
+    "path": "d=\"M16 64 C16 46 28 34 46 34 C58 34 68 40 72 50 C80 48 90 54 92 64 C98 68 100 76 98 84 C96 92 88 96 78 96 H36 C24 96 16 86 16 74 Z M96 66 H126 M120 60 L126 66 L120 72 M132 38 L160 22 L188 38 L160 54 Z M132 38 V82 L160 98 V54 M188 38 V82 L160 98 M132 60 L160 76 L188 60\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-webhook-push",
+    "name": "Event Webhook Dispatcher",
+    "category": "system-design",
+    "tags": [
+      "webhook",
+      "push",
+      "http",
+      "callback",
+      "integration",
+      "realtime",
+      "event"
+    ],
+    "viewBox": "0 0 190 120",
+    "type": "stroke",
+    "defaultColor": "#EA552B",
+    "description": "Real-time webhook notification delivering event payloads to client target endpoints with retry logic.",
+    "path": "d=\"M20 36 H64 V84 H20 Z M32 50 H52 M32 62 H52 M32 70 H44 M64 60 C88 40 114 40 134 56 M126 56 L134 56 L134 48 M138 36 H176 V84 H138 Z M148 54 L157 62 L166 54 M138 78 C114 96 88 96 68 80 M76 80 L68 80 L68 88\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-read-write-split",
+    "name": "Read/Write Replica Split",
+    "category": "system-design",
+    "tags": [
+      "read-write-split",
+      "replication",
+      "primary",
+      "secondary",
+      "database",
+      "scaling"
+    ],
+    "viewBox": "0 0 200 140",
+    "type": "stroke",
+    "defaultColor": "#F7D046",
+    "description": "Database read/write query splitting routing mutative writes to leader and reads to replicas.",
+    "path": "d=\"M20 70 H52 M44 64 L52 70 L44 76 M56 46 H88 V94 H56 Z M64 60 H80 M64 72 H80 M88 56 C104 46 118 36 132 32 M124 30 L132 32 L128 38 M88 84 C104 94 118 104 132 108 M128 102 L132 108 L124 110 M136 18 C136 12 148 8 162 8 C176 8 188 12 188 18 V42 C188 48 176 52 162 52 C148 52 136 48 136 42 Z M136 28 C136 34 148 38 162 38 C176 38 188 34 188 28 M136 94 C136 88 148 84 162 84 C176 84 188 88 188 94 V118 C188 124 176 128 162 128 C148 128 136 124 136 118 Z M136 104 C136 110 148 114 162 114 C176 114 188 110 188 104 M162 54 V82 M156 76 L162 82 L168 76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-chaos-monkey",
+    "name": "Chaos Engineering Fault Injection",
+    "category": "system-design",
+    "tags": [
+      "chaos-engineering",
+      "fault-injection",
+      "resilience",
+      "testing",
+      "stability"
+    ],
+    "viewBox": "0 0 170 160",
+    "type": "stroke",
+    "defaultColor": "#EE8DB9",
+    "description": "Chaos engineering tool intentionally taking down services to validate self-healing architecture.",
+    "path": "d=\"M36 46 H80 V90 H36 Z M48 60 H68 M48 72 H68 M94 46 H138 V90 H94 Z M106 60 H126 M106 72 H126 M65 98 H109 V142 H65 Z M77 112 H97 M77 124 H97 M116 24 L86 70 H106 L80 114 L126 62 H102 L128 24 Z M100 48 L132 88 M132 48 L100 88\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-saga-orchestrator",
+    "name": "Distributed Saga Orchestrator",
+    "category": "system-design",
+    "tags": [
+      "saga",
+      "orchestrator",
+      "distributed-transactions",
+      "compensating",
+      "microservices"
+    ],
+    "viewBox": "0 0 200 140",
+    "type": "stroke",
+    "defaultColor": "#0BDC85",
+    "description": "Saga pattern orchestrator coordinating multi-service transactions with compensating rollback flows.",
+    "path": "d=\"M85 70 C85 58 92 48 100 48 C108 48 115 58 115 70 C115 82 108 92 100 92 C92 92 85 82 85 70 Z M100 58 V70 L108 76 M85 60 C66 48 48 40 36 34 M44 32 L36 34 L38 42 M115 60 C134 48 152 40 164 34 M162 42 L164 34 L156 32 M100 92 V112 M94 106 L100 112 L106 106 M16 20 H48 V44 H16 Z M152 20 H184 V44 H152 Z M84 114 H116 V138 H84 Z M36 46 C48 76 68 84 84 82\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
+  },
+  {
+    "id": "sys-geo-anycast-routing",
+    "name": "Anycast Geo-Routing",
+    "category": "system-design",
+    "tags": [
+      "anycast",
+      "geo-routing",
+      "dns",
+      "latency",
+      "edge",
+      "global",
+      "bgp"
+    ],
+    "viewBox": "0 0 190 150",
+    "type": "stroke",
+    "defaultColor": "#4CA96D",
+    "description": "BGP Anycast routing directing client traffic to the nearest regional edge datacenter POP.",
+    "path": "d=\"M24 75 C24 68 30 62 38 62 C46 62 52 68 52 75 C52 82 46 88 38 88 C30 88 24 82 24 75 Z M38 48 V56 M38 94 V102 M16 75 H24 M52 75 H60 M52 70 C82 50 112 40 134 32 M126 32 L134 32 L132 40 M52 80 C82 100 112 110 134 118 M132 110 L134 118 L126 118 M138 20 H174 V48 H138 Z M138 102 H174 V130 H138 Z M148 34 H164 M148 116 H164 M138 75 C124 75 108 75 92 75 M120 38 C120 75 120 80 134 100\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\""
   }
 ];
 

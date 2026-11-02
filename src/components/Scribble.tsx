@@ -1,5 +1,5 @@
 import React from 'react';
-import { getScribbleById } from '../lib/scribbles-data';
+import { getScribbleById, SCRIBBLES_ASSETS } from '../lib/scribbles-data';
 
 export type ScribbleAnimation =
   | boolean
@@ -20,13 +20,29 @@ export function getOriginalAnimation(
   type?: 'stroke' | 'fill' | 'mixed' | 'raw'
 ): ScribbleAnimation {
   const n = name.toLowerCase();
-  if (n.includes('star') || n.includes('sparkle') || n.includes('diamond')) return 'sparkle';
-  if (n.includes('orbit') || n.includes('globe') || n.includes('sun') || n.includes('spiral') || n.includes('circle-double')) return 'rotate';
-  if (n.includes('spring') || n.includes('coil') || n.includes('blob') || n.includes('wire') || n.includes('ribbon')) return 'float';
-  if (n.includes('badge') || n.includes('stamp') || n.includes('wave') || n.includes('boom') || n.includes('shades')) return 'wobble';
-  if (n.includes('bolt') || n.includes('peace') || n.includes('heart') || n.includes('hand')) return 'bounce';
-  if (type === 'stroke' || n.includes('arrow') || n.includes('underline') || n.includes('circle') || n.includes('box')) return 'draw';
-  if (type === 'fill') return 'pop';
+  const asset = getScribbleById(name) || SCRIBBLES_ASSETS.find((a) => a.name.toLowerCase() === n);
+  if (
+    asset?.category === 'planets-astro' ||
+    n.startsWith('planet') ||
+    n.startsWith('astro') ||
+    n.includes('planet') ||
+    n.includes('astro') ||
+    n.includes('cosmonaut') ||
+    n.includes('astronaut') ||
+    n.includes('saturn') ||
+    n.includes('jupiter') ||
+    n.includes('exoplanet')
+  ) {
+    return 'float';
+  }
+  if (n.includes('star') || n.includes('sparkle') || n.includes('diamond') || n.includes('cache') || n.includes('crystal') || n.includes('gem') || n.includes('spark') || n.includes('disco') || n.includes('camera') || n.includes('potion') || n.includes('confetti') || n.includes('spray') || n.includes('grain') || n.includes('stipple') || n.includes('asterisk')) return 'sparkle';
+  if (n.includes('orbit') || n.includes('globe') || n.includes('sun') || n.includes('spiral') || n.includes('circle-double') || n.includes('cdn') || n.includes('yin-yang') || n.includes('yinyang') || n.includes('vinyl') || n.includes('spin') || n.includes('clock') || n.includes('stopwatch') || n.includes('ring')) return 'rotate';
+  if (n.includes('spring') || n.includes('coil') || n.includes('blob') || n.includes('wire') || n.includes('ribbon') || n.includes('cloud') || n.includes('stream') || n.includes('steam') || n.includes('cylinder') || n.includes('ufo') || n.includes('ghost') || n.includes('lamp') || n.includes('cocktail') || n.includes('cup') || n.includes('puddle') || n.includes('wavy') || n.includes('strands')) return 'float';
+  if (n.includes('badge') || n.includes('medal') || n.includes('rosette') || n.includes('shield') || n.includes('stamp') || n.includes('wave') || n.includes('boom') || n.includes('shades') || n.includes('breaker') || n.includes('cassette') || n.includes('boombox') || n.includes('tv') || n.includes('melting') || n.includes('flame') || n.includes('chaos') || n.includes('ice-cream') || n.includes('hot-dog') || n.includes('zigzag') || n.includes('bullseye')) return 'wobble';
+  if (n.includes('bolt') || n.includes('peace') || n.includes('heart') || n.includes('hand') || n.includes('rocket') || n.includes('flower') || n.includes('skate') || n.includes('gameboy') || n.includes('controller') || n.includes('trophy') || n.includes('crown') || n.includes('sneaker') || n.includes('cherries') || n.includes('horseshoe') || n.includes('joystick') || n.includes('cat') || n.includes('cupid') || n.includes('pen') || n.includes('marker') || n.includes('chevron') || n.includes('caterpillar')) return 'bounce';
+  if (n.includes('gateway') || n.includes('server') || n.includes('database') || n.includes('leader') || n.includes('eye') || n.includes('lock') || n.includes('dns') || n.includes('saga')) return 'pulse';
+  if (type === 'stroke' || n.includes('arrow') || n.includes('underline') || n.includes('circle') || n.includes('box') || n.includes('algo') || n.includes('sys') || n.includes('hatch') || n.includes('whorl') || n.includes('knot') || n.includes('frond')) return 'draw';
+  if (type === 'fill' || n.includes('watermelon') || n.includes('cookie') || n.includes('floppy') || n.includes('pebble')) return 'pop';
   return 'float';
 }
 

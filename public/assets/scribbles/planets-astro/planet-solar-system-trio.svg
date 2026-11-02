@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Dotted Orbit Trajectory Tracks -->
+  <path d="M25 150 C45 80 145 40 180 80" fill="none" stroke="#141416" stroke-width="2" stroke-dasharray="4 6" stroke-linecap="round" opacity="0.35" />
+
+  <!-- Twinkling Stars & Cross Sparkles -->
+  <path d="M38 52 Q38 58 44 58 Q38 58 38 64 Q38 58 32 58 Q38 58 38 52 Z" fill="#F7D046" stroke="#141416" stroke-width="1.5" />
+  <path d="M168 112 L168 122 M163 117 L173 117" stroke="#141416" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M48 85 L48 93 M44 89 L52 89" stroke="#141416" stroke-width="2" stroke-linecap="round" />
+  <circle cx="95" cy="38" r="2.5" fill="#141416" />
+  <circle cx="112" cy="102" r="2" fill="#141416" />
+
+  <!-- Ringed Gas Giant (Top Right) -->
+  <!-- Ring Back -->
+  <path d="M102 54 C102 38 174 38 174 54" fill="none" stroke="#FBE8DE" stroke-width="8" stroke-linecap="round" />
+  <path d="M102 54 C102 38 174 38 174 54" fill="none" stroke="#141416" stroke-width="3" stroke-linecap="round" />
+  <!-- Body -->
+  <circle cx="138" cy="54" r="28" fill="#F7D046" stroke="#141416" stroke-width="3.5" />
+  <path d="M114 54 C122 58 154 58 162 54" fill="none" stroke="#D97706" stroke-width="3.5" stroke-linecap="round" />
+  <!-- Ring Front -->
+  <path d="M96 56 C96 74 180 74 180 56" fill="none" stroke="#FBE8DE" stroke-width="8" stroke-linecap="round" />
+  <path d="M96 56 C96 74 180 74 180 56" fill="none" stroke="#141416" stroke-width="3.5" stroke-linecap="round" />
+
+  <!-- Terrestrial Planet Earth (Bottom Left) -->
+  <circle cx="68" cy="126" r="34" fill="#55BBDA" stroke="#141416" stroke-width="3.5" />
+  <!-- Continents -->
+  <path d="M48 116 C54 108 66 108 70 116 C72 122 64 126 56 124 Z" fill="#4CA96D" stroke="#141416" stroke-width="2" stroke-linejoin="round" />
+  <path d="M68 132 C76 128 86 134 84 144 C78 150 68 148 64 142 Z" fill="#4CA96D" stroke="#141416" stroke-width="2" stroke-linejoin="round" />
+
+  <!-- Crimson Cratered Satellite Moon (Bottom Right) -->
+  <circle cx="145" cy="142" r="18" fill="#EA552B" stroke="#141416" stroke-width="3" />
+  <circle cx="140" cy="138" r="4" fill="#991B1B" />
+  <circle cx="150" cy="148" r="3" fill="#991B1B" />
+</svg>

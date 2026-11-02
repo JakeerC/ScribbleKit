@@ -13,16 +13,17 @@
 
 ## ⚡ Features
 
-* **150+ Clean Vector SVGs**: 100% resolution-independent, hand-crafted vector graphics organized across 9 categories.
+* **275+ Clean Vector SVGs**: 100% resolution-independent, hand-crafted vector graphics organized across 11 categories (including 30 Algorithms & Data Structures and 30 System Design assets).
 * **Production-Grade NPM Package**: Dual ESM + CommonJS bundles, complete TypeScript types, zero runtime overhead.
 * **React Component System**: Includes `<Scribble name="..." />` and `<ScribbleHighlight styleType="..." />` for effortless inline headline wrapping with zero layout shift.
 * **Embedded Vector Editor**: Exported `<SvgEditor />` component for full in-browser SVG manipulation and stamp drawing.
-* **Funky Multi-Layer Collection (24 items)**:
-  * **Cactus Spotted Hand**: Green 3-pronged organic shape with black freckle thorns.
-  * **Blue Wireframe Scribble Blob**: Asymmetric sky-blue pebble with chaotic, energetic loopy wire scribbles.
-  * **Sunny Spring Oval**: Tilted yellow oval pill with continuous black coil loops.
-  * **Retro Comic 3D Lightning**: Warm coral bolt with bold solid black 3D block extrusion shadow.
-  * **Carved Striped Pebble, Groovy Daisy, Wavy Rainbow Arch, Confetti Blast, Warped Checkers**, and more!
+* **Funky Multi-Layer Collection (72 items)**:
+  * **Retro 80s Cassette Tape & Street Skateboard**: Pop art retro cassettes, arcade joysticks, and 90s skateboards.
+  * **Groovy Vinyl LP Record & Chunky 80s Boombox**: Spinning records, dual woofers, and audio vibes.
+  * **90s Game Console, Disco Mirror Ball, Dripping Psychedelic Smiley & Hot-Rod Flame**.
+  * **Pop Horseshoe, Melting Ice Cream, Diner Hot Dog, Cupid Pierced Heart, Magic Potion**.
+  * **Holographic Starburst Seal, Groovy Peace Hand, Sunny Cool Shades Sun & Pop Watermelon**.
+  * **Memphis 3D Checker Cylinder, Yin-Yang Doodle, Mid-Century Atomic Orbit, Comic 3D Boom**, and more!
 * **Built-in Animations**: Path stroke draw-on, wobble, sparkle, rotate, float, pulse, and bounce.
 * **Live Interactive Studio**: Local and deployed web app to test, style, and copy SVGs or React JSX on the fly.
 
@@ -165,7 +166,7 @@ const arrow = getScribbleById('arrow-curved-down-right');
 // Get all scribbles in a category
 const underlines = getScribblesByCategory('underlines');
 
-// List of all 9 categories
+// List of all categories
 console.log(CATEGORIES);
 ```
 

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <!-- ScribbleKit: Checklist Perfection 100% Badge -->
+  <defs>
+    <filter id="soft-shadow-perfect" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#141416" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  <!-- Neck Ribbon Loop at Top -->
+  <g stroke="#141416" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 68 20 L 86 64 L 114 64 L 132 20 Z" fill="#4CA96D" stroke-width="3" />
+    <path d="M 84 20 L 96 64 L 104 64 L 116 20 Z" fill="#0BDC85" stroke-width="2.5" />
+    <!-- White stitching accents -->
+    <line x1="74" y1="22" x2="89" y2="60" stroke="#FFFFFF" stroke-width="1.8" stroke-dasharray="3 3" opacity="0.8" />
+    <line x1="126" y1="22" x2="111" y2="60" stroke="#FFFFFF" stroke-width="1.8" stroke-dasharray="3 3" opacity="0.8" />
+  </g>
+
+  <!-- Hanging Twin Ribbon Tails Below -->
+  <g stroke="#141416" stroke-linecap="round" stroke-linejoin="round" filter="url(#soft-shadow-perfect)">
+    <!-- Left Ribbon Tail -->
+    <polygon points="78,140 52,186 76,176 96,186 92,140" fill="#0BDC85" stroke-width="3" />
+    <line x1="72" y1="146" x2="74" y2="176" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="3 3" opacity="0.8" />
+    <!-- Right Ribbon Tail -->
+    <polygon points="108,140 104,186 124,176 148,186 122,140" fill="#F7D046" stroke-width="3" />
+    <line x1="126" y1="146" x2="126" y2="176" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="3 3" opacity="0.8" />
+  </g>
+
+  <!-- Central Circular Rosette Medal -->
+  <g filter="url(#soft-shadow-perfect)">
+    <!-- Drop Shadow Disc -->
+    <circle cx="100" cy="106" r="54" fill="#141416" opacity="0.12" />
+
+    <!-- Scalloped Outer Floral Border (16 scallops) -->
+    <path d="
+      M 100 52
+      A 7 7 0 0 1 114 54
+      A 7 7 0 0 1 127 61
+      A 7 7 0 0 1 138 72
+      A 7 7 0 0 1 146 85
+      A 7 7 0 0 1 150 99
+      A 7 7 0 0 1 148 114
+      A 7 7 0 0 1 141 127
+      A 7 7 0 0 1 130 137
+      A 7 7 0 0 1 117 145
+      A 7 7 0 0 1 102 148
+      A 7 7 0 0 1 87 146
+      A 7 7 0 0 1 73 139
+      A 7 7 0 0 1 63 129
+      A 7 7 0 0 1 55 116
+      A 7 7 0 0 1 52 101
+      A 7 7 0 0 1 54 87
+      A 7 7 0 0 1 62 74
+      A 7 7 0 0 1 73 63
+      A 7 7 0 0 1 86 55
+      A 7 7 0 0 1 100 52 Z"
+      fill="#4CA96D" stroke="#141416" stroke-width="3.5" stroke-linejoin="round" />
+
+    <!-- Sunny Gold Inner Disc -->
+    <circle cx="100" cy="106" r="44" fill="#F7D046" stroke="#141416" stroke-width="3" />
+    
+    <!-- Crisp White Center Emblem Disc -->
+    <circle cx="100" cy="106" r="35" fill="#FFFFFF" stroke="#141416" stroke-width="2.5" />
+
+    <!-- Dotted Ring -->
+    <circle cx="100" cy="106" r="30" fill="none" stroke="#0BDC85" stroke-width="2" stroke-dasharray="3 3" />
+
+    <!-- Prominent Hand-drawn Green Checkmark ✓ -->
+    <path d="M 80 106 L 94 120 L 122 88" fill="none" stroke="#0BDC85" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M 80 106 L 94 120 L 122 88" fill="none" stroke="#141416" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- 100% Star Accents around Check -->
+    <polygon points="100,77 102,81 106,81 103,83 104,87 100,85 96,87 97,83 94,81 98,81" fill="#F7D046" stroke="#141416" stroke-width="1.2" stroke-linejoin="round" />
+  </g>
+
+  <!-- Celebration Confetti / Sparkles -->
+  <path d="M 32 86 Q 36 90 40 90 Q 36 90 32 94 Q 36 90 32 86" fill="#0BDC85" stroke="#141416" stroke-width="1.8" />
+  <path d="M 166 76 Q 170 80 174 80 Q 170 80 166 84 Q 170 80 166 76" fill="#F7D046" stroke="#141416" stroke-width="1.8" />
+  <circle cx="168" cy="136" r="3" fill="#4CA96D" stroke="#141416" stroke-width="1.8" />
+  <circle cx="34" cy="136" r="2.5" fill="#55BBDA" stroke="#141416" stroke-width="1.5" />
+</svg>
