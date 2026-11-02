@@ -66,6 +66,14 @@ console.log(`✓ getScribbleById('funky-lucky-horseshoe-stars') returned: "${hor
 const anim = getOriginalAnimation('arrow-curved-down-right', scribble.type);
 console.log(`✓ getOriginalAnimation returned: ${anim}`);
 
+for (const p of planetItems) {
+  const pAnim = getOriginalAnimation(p.id, p.type);
+  if (pAnim !== 'float') {
+    throw new Error(`Expected 'float' animation for planet/astro item ${p.id}, got '${pAnim}'`);
+  }
+}
+console.log(`✓ Verified getOriginalAnimation returns 'float' for all ${planetItems.length} planets-astro items`);
+
 // Test 3: Render <Scribble /> to static HTML markup
 const scribbleHtml = renderToStaticMarkup(
   React.createElement(Scribble, {
