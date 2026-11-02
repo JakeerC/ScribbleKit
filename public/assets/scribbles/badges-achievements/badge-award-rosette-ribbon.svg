@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Cascading Rosette Tail Ribbons (Back Layer) -->
+  <!-- Left Tail Ribbon -->
+  <path d="M82 120 L66 182 L86 172 L98 182 L96 122 Z" fill="#EA552B" stroke="#141416" stroke-width="3" stroke-linejoin="round" />
+  <path d="M78 132 L72 165" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" opacity="0.6" />
+
+  <!-- Right Tail Ribbon -->
+  <path d="M118 120 L134 182 L114 172 L102 182 L104 122 Z" fill="#EA552B" stroke="#141416" stroke-width="3" stroke-linejoin="round" />
+  <path d="M122 132 L128 165" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" opacity="0.6" />
+
+  <!-- Drop Shadow for Rosette Disc -->
+  <circle cx="102" cy="85" r="48" fill="#141416" opacity="0.12" />
+
+  <!-- Scalloped 16-Petal Award Rosette (Sky Blue) -->
+  <path d="M100 35 
+           Q106 35 110 38 Q116 38 120 42 Q125 44 128 49 Q133 53 135 58 Q139 63 140 69 Q143 75 142 81 Q144 87 141 93 Q142 99 138 104 Q137 110 132 114 Q129 119 123 122 Q119 126 113 127 Q108 130 102 131 Q96 131 90 129 Q85 128 80 124 Q75 122 71 117 Q66 114 64 109 Q60 105 60 99 Q58 93 60 87 Q59 81 62 75 Q63 69 67 64 Q69 58 74 54 Q77 49 82 46 Q86 42 92 40 Q95 35 100 35 Z" 
+        fill="#55BBDA" stroke="#141416" stroke-width="3.5" stroke-linejoin="round" />
+
+  <!-- Inner Concentric Navy Accent Ring -->
+  <circle cx="100" cy="83" r="36" fill="#1E1B4B" stroke="#141416" stroke-width="2.5" />
+
+  <!-- Center Gold Coin Disc -->
+  <circle cx="100" cy="83" r="28" fill="#F7D046" stroke="#141416" stroke-width="2.5" />
+
+  <!-- Embossed 3D Gold Bars / Ingots Doodle -->
+  <!-- Top Bar -->
+  <polygon points="86,84 104,74 114,79 96,89" fill="#FDE68A" stroke="#141416" stroke-width="2" stroke-linejoin="round" />
+  <polygon points="96,89 114,79 114,84 96,94" fill="#D97706" stroke="#141416" stroke-width="2" stroke-linejoin="round" />
+  <!-- Bottom Bar -->
+  <polygon points="90,92 108,82 118,87 100,97" fill="#FFFBEB" stroke="#141416" stroke-width="2" stroke-linejoin="round" />
+  <polygon points="100,97 118,87 118,92 100,102" fill="#D97706" stroke="#141416" stroke-width="2" stroke-linejoin="round" />
+
+  <!-- Winner Sparkles -->
+  <path d="M158 52 Q158 58 164 58 Q158 58 158 64 Q158 58 152 58 Q158 58 158 52 Z" fill="#F7D046" stroke="#141416" stroke-width="1.5" />
+  <path d="M42 68 L42 76 M38 72 L46 72" stroke="#141416" stroke-width="2" stroke-linecap="round" />
+  <circle cx="152" cy="116" r="2.5" fill="#141416" />
+</svg>

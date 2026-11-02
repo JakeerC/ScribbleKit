@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Neck Ribbon (V-Fold Striped Ribbon) -->
+  <!-- Left Ribbon Leg -->
+  <path d="M72 18 L52 82 L76 82 L90 28 Z" fill="#EA552B" stroke="#141416" stroke-width="3" stroke-linejoin="round" />
+  <path d="M58 38 L68 76" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.8" />
+  <!-- Right Ribbon Leg -->
+  <path d="M128 18 L148 82 L124 82 L110 28 Z" fill="#EA552B" stroke="#141416" stroke-width="3" stroke-linejoin="round" />
+  <path d="M142 38 L132 76" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.8" />
+  <!-- Center Ribbon Fold Tab -->
+  <polygon points="84,72 116,72 108,90 92,90" fill="#C2410C" stroke="#141416" stroke-width="3" stroke-linejoin="round" />
+
+  <!-- Metallic Connection Buckle Link -->
+  <rect x="86" y="86" width="28" height="10" rx="3" fill="#FDE68A" stroke="#141416" stroke-width="3" />
+
+  <!-- Drop Shadow for Medallion -->
+  <circle cx="102" cy="138" r="44" fill="#141416" opacity="0.12" />
+
+  <!-- Scalloped 12-Petal Flower Rosette Base -->
+  <path d="M100 94 
+           Q107 94 112 98 Q118 97 122 102 Q128 104 130 110 Q135 114 136 120 Q139 126 137 132 Q139 138 135 143 Q135 149 130 153 Q127 158 121 160 Q117 165 111 165 Q106 168 100 168 Q94 168 89 165 Q83 165 79 160 Q73 158 70 153 Q65 149 65 143 Q61 138 63 132 Q61 126 64 120 Q65 114 70 110 Q72 104 78 102 Q82 97 88 98 Q93 94 100 94 Z" 
+        fill="#F7D046" stroke="#141416" stroke-width="3.5" stroke-linejoin="round" />
+
+  <!-- Inner Concentric Ring -->
+  <circle cx="100" cy="131" r="32" fill="#FFD166" stroke="#141416" stroke-width="2.5" />
+  <circle cx="100" cy="131" r="27" fill="#F7D046" stroke="#141416" stroke-width="1.8" stroke-dasharray="3 3" />
+
+  <!-- Center Champion 5-Point Star -->
+  <path d="M100 112 L105 123 L117 124 L108 132 L111 144 L100 137 L89 144 L92 132 L83 124 L95 123 Z" 
+        fill="#FFFFFF" stroke="#141416" stroke-width="2.5" stroke-linejoin="round" />
+
+  <!-- Metallic Gleam Flare -->
+  <path d="M84 116 Q88 112 96 110" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" />
+
+  <!-- Victory Sparkles -->
+  <path d="M156 100 Q156 106 162 106 Q156 106 156 112 Q156 106 150 106 Q156 106 156 100 Z" fill="#F7D046" stroke="#141416" stroke-width="1.5" />
+  <path d="M42 120 L42 128 M38 124 L46 124" stroke="#141416" stroke-width="2" stroke-linecap="round" />
+  <circle cx="152" cy="148" r="2.5" fill="#141416" />
+</svg>

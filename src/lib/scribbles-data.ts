@@ -70,7 +70,13 @@ export const CATEGORIES = [
     "id": "all",
     "name": "All Scribbles",
     "icon": "Sparkles",
-    "count": 294
+    "count": 310
+  },
+  {
+    "id": "badges-achievements",
+    "name": "Badges & Achievements",
+    "icon": "Award",
+    "count": 16
   },
   {
     "id": "planets-astro",
@@ -147,6 +153,325 @@ export const CATEGORIES = [
 ];
 
 export const SCRIBBLES_ASSETS: ScribbleAsset[] = [
+  {
+    "id": "badge-award-rosette-ribbon",
+    "name": "Grand Honor Award Rosette",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "rosette",
+      "award",
+      "honor",
+      "ribbon",
+      "contest",
+      "medal",
+      "prestige"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#EE8DB9",
+    "description": "Double-layered bubblegum pink and mint green fluted rosette with hanging notched tails for academic and gaming honors.",
+    "rawSvg": "<!-- Cascading Rosette Tail Ribbons (Back Layer) -->\n  <!-- Left Tail Ribbon -->\n  <path d=\"M82 120 L66 182 L86 172 L98 182 L96 122 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M78 132 L72 165\" stroke=\"#FFFFFF\" stroke-width=\"2.5\" stroke-linecap=\"round\" opacity=\"0.6\" />\n\n  <!-- Right Tail Ribbon -->\n  <path d=\"M118 120 L134 182 L114 172 L102 182 L104 122 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M122 132 L128 165\" stroke=\"#FFFFFF\" stroke-width=\"2.5\" stroke-linecap=\"round\" opacity=\"0.6\" />\n\n  <!-- Drop Shadow for Rosette Disc -->\n  <circle cx=\"102\" cy=\"85\" r=\"48\" fill=\"#141416\" opacity=\"0.12\" />\n\n  <!-- Scalloped 16-Petal Award Rosette (Sky Blue) -->\n  <path d=\"M100 35 \n           Q106 35 110 38 Q116 38 120 42 Q125 44 128 49 Q133 53 135 58 Q139 63 140 69 Q143 75 142 81 Q144 87 141 93 Q142 99 138 104 Q137 110 132 114 Q129 119 123 122 Q119 126 113 127 Q108 130 102 131 Q96 131 90 129 Q85 128 80 124 Q75 122 71 117 Q66 114 64 109 Q60 105 60 99 Q58 93 60 87 Q59 81 62 75 Q63 69 67 64 Q69 58 74 54 Q77 49 82 46 Q86 42 92 40 Q95 35 100 35 Z\" \n        fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n\n  <!-- Inner Concentric Navy Accent Ring -->\n  <circle cx=\"100\" cy=\"83\" r=\"36\" fill=\"#1E1B4B\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n  <!-- Center Gold Coin Disc -->\n  <circle cx=\"100\" cy=\"83\" r=\"28\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n  <!-- Embossed 3D Gold Bars / Ingots Doodle -->\n  <!-- Top Bar -->\n  <polygon points=\"86,84 104,74 114,79 96,89\" fill=\"#FDE68A\" stroke=\"#141416\" stroke-width=\"2\" stroke-linejoin=\"round\" />\n  <polygon points=\"96,89 114,79 114,84 96,94\" fill=\"#D97706\" stroke=\"#141416\" stroke-width=\"2\" stroke-linejoin=\"round\" />\n  <!-- Bottom Bar -->\n  <polygon points=\"90,92 108,82 118,87 100,97\" fill=\"#FFFBEB\" stroke=\"#141416\" stroke-width=\"2\" stroke-linejoin=\"round\" />\n  <polygon points=\"100,97 118,87 118,92 100,102\" fill=\"#D97706\" stroke=\"#141416\" stroke-width=\"2\" stroke-linejoin=\"round\" />\n\n  <!-- Winner Sparkles -->\n  <path d=\"M158 52 Q158 58 164 58 Q158 58 158 64 Q158 58 152 58 Q158 58 158 52 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <path d=\"M42 68 L42 76 M38 72 L46 72\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n  <circle cx=\"152\" cy=\"116\" r=\"2.5\" fill=\"#141416\" />"
+  },
+  {
+    "id": "badge-brain-quiz-genius",
+    "name": "Brainiac Quiz Genius Badge",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "brain",
+      "genius",
+      "iq",
+      "trivia",
+      "smart",
+      "quiz",
+      "knowledge"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#8B5CF6",
+    "description": "Cerebral violet and pink rosette badge showcasing an energetic glowing brain icon for puzzle mastery.",
+    "rawSvg": "<!-- Cascading Tail Ribbons -->\n  <path d=\"M82 120 L66 182 L86 172 L98 182 L96 122 Z\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M118 120 L134 182 L114 172 L102 182 L104 122 Z\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n\n  <!-- Drop Shadow -->\n  <circle cx=\"102\" cy=\"85\" r=\"46\" fill=\"#141416\" opacity=\"0.12\" />\n\n  <!-- Scalloped 12-Petal Flower Rosette (ScribbleKit Mint) -->\n  <path d=\"M100 36 \n           Q108 36 114 41 Q122 40 126 47 Q134 49 136 57 Q142 62 142 70 Q146 78 143 85 Q145 93 140 99 Q140 107 133 112 Q130 119 122 122 Q117 128 109 129 Q103 133 96 133 Q88 132 82 127 Q75 126 70 120 Q64 117 62 110 Q57 105 58 97 Q55 90 58 83 Q56 75 61 69 Q62 61 69 57 Q72 49 80 47 Q84 40 92 41 Q97 36 100 36 Z\" \n        fill=\"#0BDC85\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n\n  <!-- Inner Dark Blue Contrast Coin -->\n  <circle cx=\"100\" cy=\"84\" r=\"35\" fill=\"#14142B\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"100\" cy=\"84\" r=\"30\" fill=\"#FFFBEB\" stroke=\"#141416\" stroke-width=\"2\" />\n\n  <!-- Genius Lightbulb / Idea Doodle -->\n  <!-- Bulb Glass Outline -->\n  <path d=\"M92 88 C88 84 86 78 88 72 C91 66 97 62 103 62 C109 62 115 66 117 72 C119 78 117 84 113 88 L111 93 L94 93 Z\" \n        fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n  <!-- Bulb Screw Base -->\n  <rect x=\"94\" y=\"93\" width=\"17\" height=\"4\" rx=\"1.5\" fill=\"#E2E8F0\" stroke=\"#141416\" stroke-width=\"1.8\" />\n  <rect x=\"96\" y=\"97\" width=\"13\" height=\"3\" rx=\"1\" fill=\"#94A3B8\" stroke=\"#141416\" stroke-width=\"1.5\" />\n\n  <!-- Filament / Glow Doodle Inside Bulb -->\n  <path d=\"M98 76 Q102 70 107 76\" fill=\"none\" stroke=\"#EA552B\" stroke-width=\"2\" stroke-linecap=\"round\" />\n\n  <!-- Genius Radiating Idea Rays -->\n  <line x1=\"102\" y1=\"53\" x2=\"102\" y2=\"57\" stroke=\"#EA552B\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n  <line x1=\"82\" y1=\"62\" x2=\"85\" y2=\"65\" stroke=\"#EA552B\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n  <line x1=\"123\" y1=\"62\" x2=\"120\" y2=\"65\" stroke=\"#EA552B\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n\n  <!-- Confetti Sparkles -->\n  <path d=\"M156 50 Q156 56 162 56 Q156 56 156 62 Q156 56 150 56 Q156 56 156 50 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <circle cx=\"44\" cy=\"62\" r=\"2.5\" fill=\"#141416\" />"
+  },
+  {
+    "id": "badge-bronze-third-place",
+    "name": "Bronze Podium 3rd Place Medal",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "bronze",
+      "third-place",
+      "podium",
+      "medal",
+      "award",
+      "ribbon"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#D97706",
+    "description": "Warm metallic bronze medallion with numeral 3 and tri-star crown, hung from a pinned suspension clasp.",
+    "rawSvg": "<!-- Warm Tri-Fold Ribbon -->\n  <path d=\"M72 16 L52 78 L76 78 L90 26 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M60 34 L70 72\" stroke=\"#FBE8DE\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <path d=\"M128 16 L148 78 L124 78 L110 26 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M140 34 L130 72\" stroke=\"#FBE8DE\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <polygon points=\"84,68 116,68 106,86 94,86\" fill=\"#B91C1C\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n\n  <!-- Bronze Buckle Loop -->\n  <rect x=\"88\" y=\"82\" width=\"24\" height=\"9\" rx=\"3\" fill=\"#D97706\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n  <!-- Bronze Medallion Base & Shadow -->\n  <circle cx=\"102\" cy=\"136\" r=\"46\" fill=\"#141416\" opacity=\"0.12\" />\n  <circle cx=\"100\" cy=\"133\" r=\"46\" fill=\"#D97706\" stroke=\"#141416\" stroke-width=\"3.5\" />\n\n  <!-- Inner Warm Amber Recessed Rim -->\n  <circle cx=\"100\" cy=\"133\" r=\"38\" fill=\"#FDE68A\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"100\" cy=\"133\" r=\"32\" fill=\"#D97706\" stroke=\"#141416\" stroke-width=\"1.8\" stroke-dasharray=\"3 3\" />\n\n  <!-- Stylized Numeral \"3\" (Bronze Podium) -->\n  <path d=\"M89 113 H111 L99 126 C105 126 112 130 112 138 C112 145 106 149 99 149 C93 149 87 145 87 141\" \n        fill=\"none\" stroke=\"#141416\" stroke-width=\"5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n\n  <!-- Bronze Metallic Highlight -->\n  <path d=\"M82 120 Q86 114 92 112\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n\n  <!-- Sparkles -->\n  <path d=\"M156 102 Q156 108 162 108 Q156 108 156 114 Q156 108 150 108 Q156 108 156 102 Z\" fill=\"#D97706\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <circle cx=\"44\" cy=\"120\" r=\"2.5\" fill=\"#141416\" />"
+  },
+  {
+    "id": "badge-bullseye-accuracy",
+    "name": "Bullseye Accuracy 100% Badge",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "bullseye",
+      "target",
+      "accuracy",
+      "precision",
+      "arrow",
+      "quiz",
+      "perfect"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Concentric red-and-white archery target medal with pierced arrow and reticle crosshairs for pin-point quiz accuracy.",
+    "rawSvg": "<!-- ScribbleKit: Bullseye Accuracy Badge -->\n  <defs>\n    <filter id=\"soft-shadow-bullseye\" x=\"-10%\" y=\"-10%\" width=\"125%\" height=\"125%\">\n      <feDropShadow dx=\"0\" dy=\"4\" stdDeviation=\"3\" flood-color=\"#141416\" flood-opacity=\"0.12\" />\n    </filter>\n  </defs>\n\n  <!-- Pinned Bar / Clasp at Top -->\n  <g filter=\"url(#soft-shadow-bullseye)\">\n    <!-- Clasp shadow -->\n    <rect x=\"52\" y=\"22\" width=\"96\" height=\"20\" rx=\"6\" fill=\"#141416\" opacity=\"0.1\" />\n    <!-- Clasp body -->\n    <rect x=\"50\" y=\"20\" width=\"100\" height=\"20\" rx=\"6\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n    <!-- Clasp pin highlight & detail -->\n    <rect x=\"56\" y=\"25\" width=\"88\" height=\"4\" rx=\"2\" fill=\"#FFFFFF\" opacity=\"0.6\" />\n    <line x1=\"100\" y1=\"20\" x2=\"100\" y2=\"40\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-dasharray=\"3 3\" />\n  </g>\n\n  <!-- Hanging Ribbon Straps -->\n  <g stroke=\"#141416\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n    <!-- Left Ribbon Tail -->\n    <polygon points=\"68,38 52,106 68,98 84,106 80,38\" fill=\"#EA552B\" stroke-width=\"3\" />\n    <line x1=\"68\" y1=\"42\" x2=\"68\" y2=\"92\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-dasharray=\"4 3\" opacity=\"0.8\" />\n    <!-- Right Ribbon Tail -->\n    <polygon points=\"120,38 116,106 132,98 148,106 132,38\" fill=\"#F7D046\" stroke-width=\"3\" />\n    <line x1=\"132\" y1=\"42\" x2=\"132\" y2=\"92\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-dasharray=\"4 3\" opacity=\"0.8\" />\n  </g>\n\n  <!-- Circular Target Medallion -->\n  <g filter=\"url(#soft-shadow-bullseye)\">\n    <!-- Outer Medallion Bezel Shadow -->\n    <circle cx=\"100\" cy=\"118\" r=\"54\" fill=\"#141416\" opacity=\"0.12\" />\n    \n    <!-- Scalloped Outer Disc -->\n    <circle cx=\"100\" cy=\"116\" r=\"52\" fill=\"#FBE8DE\" stroke=\"#141416\" stroke-width=\"3.5\" />\n    \n    <!-- Outer Red Ring -->\n    <circle cx=\"100\" cy=\"116\" r=\"42\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" />\n    \n    <!-- White Middle Ring -->\n    <circle cx=\"100\" cy=\"116\" r=\"30\" fill=\"#FFFFFF\" stroke=\"#141416\" stroke-width=\"2.5\" />\n    \n    <!-- Bullseye Center Circle -->\n    <circle cx=\"100\" cy=\"116\" r=\"18\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2.5\" />\n    \n    <!-- Center Hit Sparkle / Star Core -->\n    <polygon points=\"100,106 103,113 110,116 103,119 100,126 97,119 90,116 97,113\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2\" />\n    \n    <!-- Crosshairs Reticle Lines -->\n    <line x1=\"100\" y1=\"70\" x2=\"100\" y2=\"78\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n    <line x1=\"100\" y1=\"154\" x2=\"100\" y2=\"162\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n    <line x1=\"54\" y1=\"116\" x2=\"62\" y2=\"116\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n    <line x1=\"138\" y1=\"116\" x2=\"146\" y2=\"116\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n    \n    <!-- Target Reflection / Highlight Arc -->\n    <path d=\"M 72 94 A 38 38 0 0 1 128 94\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"3\" stroke-linecap=\"round\" opacity=\"0.5\" />\n  </g>\n\n  <!-- Accuracy Arrow Feather Feathering into Bullseye -->\n  <g stroke=\"#141416\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n    <!-- Arrow Shaft from top-right -->\n    <line x1=\"146\" y1=\"70\" x2=\"106\" y2=\"110\" stroke=\"#141416\" stroke-width=\"3.5\" />\n    <line x1=\"145\" y1=\"71\" x2=\"108\" y2=\"108\" stroke=\"#FFFFFF\" stroke-width=\"1.5\" />\n    <!-- Arrow Fletching Fins -->\n    <polygon points=\"146,70 156,66 150,78 140,76\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"2\" />\n    <polygon points=\"146,70 148,58 136,64 140,76\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2\" />\n  </g>\n\n  <!-- Retro Sparkles & Pop Dots -->\n  <path d=\"M 36 78 Q 40 82 44 82 Q 40 82 36 86 Q 40 82 36 78\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.8\" />\n  <circle cx=\"166\" cy=\"132\" r=\"3\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"1.8\" />\n  <circle cx=\"34\" cy=\"142\" r=\"2.5\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <path d=\"M 160 48 Q 163 52 167 52 Q 163 52 160 56 Q 163 52 160 48\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"1.8\" />"
+  },
+  {
+    "id": "badge-checklist-perfection",
+    "name": "Checklist Perfection 100% Medal",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "check",
+      "perfection",
+      "100%",
+      "quiz",
+      "complete",
+      "score",
+      "verified"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#4CA96D",
+    "description": "Mint floral scalloped award medal with bold hand-drawn verification checkmark and celebration confetti.",
+    "rawSvg": "<!-- ScribbleKit: Checklist Perfection 100% Badge -->\n  <defs>\n    <filter id=\"soft-shadow-perfect\" x=\"-10%\" y=\"-10%\" width=\"125%\" height=\"125%\">\n      <feDropShadow dx=\"0\" dy=\"4\" stdDeviation=\"3\" flood-color=\"#141416\" flood-opacity=\"0.12\" />\n    </filter>\n  </defs>\n\n  <!-- Neck Ribbon Loop at Top -->\n  <g stroke=\"#141416\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n    <path d=\"M 68 20 L 86 64 L 114 64 L 132 20 Z\" fill=\"#4CA96D\" stroke-width=\"3\" />\n    <path d=\"M 84 20 L 96 64 L 104 64 L 116 20 Z\" fill=\"#0BDC85\" stroke-width=\"2.5\" />\n    <!-- White stitching accents -->\n    <line x1=\"74\" y1=\"22\" x2=\"89\" y2=\"60\" stroke=\"#FFFFFF\" stroke-width=\"1.8\" stroke-dasharray=\"3 3\" opacity=\"0.8\" />\n    <line x1=\"126\" y1=\"22\" x2=\"111\" y2=\"60\" stroke=\"#FFFFFF\" stroke-width=\"1.8\" stroke-dasharray=\"3 3\" opacity=\"0.8\" />\n  </g>\n\n  <!-- Hanging Twin Ribbon Tails Below -->\n  <g stroke=\"#141416\" stroke-linecap=\"round\" stroke-linejoin=\"round\" filter=\"url(#soft-shadow-perfect)\">\n    <!-- Left Ribbon Tail -->\n    <polygon points=\"78,140 52,186 76,176 96,186 92,140\" fill=\"#0BDC85\" stroke-width=\"3\" />\n    <line x1=\"72\" y1=\"146\" x2=\"74\" y2=\"176\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-dasharray=\"3 3\" opacity=\"0.8\" />\n    <!-- Right Ribbon Tail -->\n    <polygon points=\"108,140 104,186 124,176 148,186 122,140\" fill=\"#F7D046\" stroke-width=\"3\" />\n    <line x1=\"126\" y1=\"146\" x2=\"126\" y2=\"176\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-dasharray=\"3 3\" opacity=\"0.8\" />\n  </g>\n\n  <!-- Central Circular Rosette Medal -->\n  <g filter=\"url(#soft-shadow-perfect)\">\n    <!-- Drop Shadow Disc -->\n    <circle cx=\"100\" cy=\"106\" r=\"54\" fill=\"#141416\" opacity=\"0.12\" />\n\n    <!-- Scalloped Outer Floral Border (16 scallops) -->\n    <path d=\"\n      M 100 52\n      A 7 7 0 0 1 114 54\n      A 7 7 0 0 1 127 61\n      A 7 7 0 0 1 138 72\n      A 7 7 0 0 1 146 85\n      A 7 7 0 0 1 150 99\n      A 7 7 0 0 1 148 114\n      A 7 7 0 0 1 141 127\n      A 7 7 0 0 1 130 137\n      A 7 7 0 0 1 117 145\n      A 7 7 0 0 1 102 148\n      A 7 7 0 0 1 87 146\n      A 7 7 0 0 1 73 139\n      A 7 7 0 0 1 63 129\n      A 7 7 0 0 1 55 116\n      A 7 7 0 0 1 52 101\n      A 7 7 0 0 1 54 87\n      A 7 7 0 0 1 62 74\n      A 7 7 0 0 1 73 63\n      A 7 7 0 0 1 86 55\n      A 7 7 0 0 1 100 52 Z\"\n      fill=\"#4CA96D\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n\n    <!-- Sunny Gold Inner Disc -->\n    <circle cx=\"100\" cy=\"106\" r=\"44\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" />\n    \n    <!-- Crisp White Center Emblem Disc -->\n    <circle cx=\"100\" cy=\"106\" r=\"35\" fill=\"#FFFFFF\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n    <!-- Dotted Ring -->\n    <circle cx=\"100\" cy=\"106\" r=\"30\" fill=\"none\" stroke=\"#0BDC85\" stroke-width=\"2\" stroke-dasharray=\"3 3\" />\n\n    <!-- Prominent Hand-drawn Green Checkmark ✓ -->\n    <path d=\"M 80 106 L 94 120 L 122 88\" fill=\"none\" stroke=\"#0BDC85\" stroke-width=\"7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n    <path d=\"M 80 106 L 94 120 L 122 88\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n\n    <!-- 100% Star Accents around Check -->\n    <polygon points=\"100,77 102,81 106,81 103,83 104,87 100,85 96,87 97,83 94,81 98,81\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.2\" stroke-linejoin=\"round\" />\n  </g>\n\n  <!-- Celebration Confetti / Sparkles -->\n  <path d=\"M 32 86 Q 36 90 40 90 Q 36 90 32 94 Q 36 90 32 86\" fill=\"#0BDC85\" stroke=\"#141416\" stroke-width=\"1.8\" />\n  <path d=\"M 166 76 Q 170 80 174 80 Q 170 80 166 84 Q 170 80 166 76\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.8\" />\n  <circle cx=\"168\" cy=\"136\" r=\"3\" fill=\"#4CA96D\" stroke=\"#141416\" stroke-width=\"1.8\" />\n  <circle cx=\"34\" cy=\"136\" r=\"2.5\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"1.5\" />"
+  },
+  {
+    "id": "badge-diamond-gem-rank",
+    "name": "Prestige Diamond Gem Rank",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "diamond",
+      "gem",
+      "rank",
+      "prestige",
+      "crystal",
+      "tier",
+      "elite"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#55BBDA",
+    "description": "Octagonal gold-framed brooch medal displaying a multi-faceted brilliant diamond gemstone on midnight velvet.",
+    "rawSvg": "<!-- ScribbleKit: Diamond Gem Rank Badge -->\n  <defs>\n    <filter id=\"soft-shadow-diamond\" x=\"-10%\" y=\"-10%\" width=\"125%\" height=\"125%\">\n      <feDropShadow dx=\"0\" dy=\"4\" stdDeviation=\"3\" flood-color=\"#141416\" flood-opacity=\"0.12\" />\n    </filter>\n  </defs>\n\n  <!-- Pinned Metal Brooch Bar at Top -->\n  <g filter=\"url(#soft-shadow-diamond)\">\n    <polygon points=\"56,22 144,22 152,38 48,38\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n    <line x1=\"64\" y1=\"30\" x2=\"136\" y2=\"30\" stroke=\"#FFFFFF\" stroke-width=\"2.5\" stroke-linecap=\"round\" opacity=\"0.7\" />\n    <!-- Center gem stud on bar -->\n    <rect x=\"94\" y=\"25\" width=\"12\" height=\"10\" rx=\"3\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"2\" />\n  </g>\n\n  <!-- Hanging Twin Ribbon Tails -->\n  <g stroke=\"#141416\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n    <!-- Left Ribbon -->\n    <polygon points=\"72,38 52,120 74,108 92,120 86,38\" fill=\"#55BBDA\" stroke-width=\"3\" />\n    <line x1=\"72\" y1=\"44\" x2=\"72\" y2=\"104\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-dasharray=\"4 3\" opacity=\"0.8\" />\n    <!-- Right Ribbon -->\n    <polygon points=\"114,38 108,120 126,108 148,120 128,38\" fill=\"#0BDC85\" stroke-width=\"3\" />\n    <line x1=\"128\" y1=\"44\" x2=\"128\" y2=\"104\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-dasharray=\"4 3\" opacity=\"0.8\" />\n  </g>\n\n  <!-- Central Diamond Gem Crest Medallion -->\n  <g filter=\"url(#soft-shadow-diamond)\">\n    <!-- Outer Shield / Disc Frame Shadow -->\n    <circle cx=\"100\" cy=\"116\" r=\"54\" fill=\"#141416\" opacity=\"0.12\" />\n\n    <!-- Outer Octagonal Medallion Frame -->\n    <polygon points=\"80,66 120,66 150,86 154,126 130,158 100,168 70,158 46,126 50,86\" fill=\"#FBE8DE\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n    \n    <!-- Inner Dark Circle Backplate for Contrast -->\n    <circle cx=\"100\" cy=\"116\" r=\"42\" fill=\"#1E1B4B\" stroke=\"#141416\" stroke-width=\"2.8\" />\n\n    <!-- Faceted Brilliant Diamond Gem -->\n    <g stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\">\n      <!-- Gem Top Crown Facets -->\n      <polygon points=\"78,98 88,84 100,84 94,98\" fill=\"#BAE6FD\" />\n      <polygon points=\"94,98 100,84 112,84 106,98\" fill=\"#E0F2FE\" />\n      <polygon points=\"106,98 112,84 122,98\" fill=\"#7DD3FC\" />\n      <polygon points=\"78,98 88,84 82,98\" fill=\"#38BDF8\" />\n      <polygon points=\"112,84 122,98 118,98\" fill=\"#0284C7\" />\n      \n      <!-- Top Table / Center -->\n      <polygon points=\"88,84 112,84 106,98 94,98\" fill=\"#FFFFFF\" />\n\n      <!-- Gem Bottom Pavilion Facets -->\n      <polygon points=\"78,98 94,98 100,144\" fill=\"#38BDF8\" />\n      <polygon points=\"94,98 106,98 100,144\" fill=\"#BAE6FD\" />\n      <polygon points=\"106,98 122,98 100,144\" fill=\"#0284C7\" />\n    </g>\n\n    <!-- Diamond Gleam / Sparkle on Corner -->\n    <polygon points=\"88,84 86,76 90,80 96,78 92,84 96,88 90,86 86,92\" fill=\"#FFFFFF\" stroke=\"#141416\" stroke-width=\"1.5\" />\n    \n    <!-- Small Level Rank Indicator Stars at Medallion Top -->\n    <polygon points=\"100,69 102,73 106,73 103,75 104,79 100,77 96,79 97,75 94,73 98,73\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.2\" />\n  </g>\n\n  <!-- Ambient Glint & Doodles -->\n  <path d=\"M 32 64 Q 36 68 40 68 Q 36 68 32 72 Q 36 68 32 64\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"1.8\" />\n  <path d=\"M 166 66 Q 170 70 174 70 Q 170 70 166 74 Q 170 70 166 66\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.8\" />\n  <circle cx=\"166\" cy=\"144\" r=\"3\" fill=\"#0BDC85\" stroke=\"#141416\" stroke-width=\"1.8\" />\n  <circle cx=\"34\" cy=\"148\" r=\"2.5\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />"
+  },
+  {
+    "id": "badge-game-controller-xp",
+    "name": "Gamer Controller +100 XP Badge",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "game",
+      "controller",
+      "gamepad",
+      "xp",
+      "arcade",
+      "retro",
+      "level-up"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "16-point golden starburst arcade badge featuring a retro game controller emblem and +100 XP score tag.",
+    "rawSvg": "<!-- ScribbleKit: Game Controller XP Badge -->\n  <defs>\n    <filter id=\"soft-shadow-gamer\" x=\"-10%\" y=\"-10%\" width=\"125%\" height=\"125%\">\n      <feDropShadow dx=\"0\" dy=\"4\" stdDeviation=\"3\" flood-color=\"#141416\" flood-opacity=\"0.12\" />\n    </filter>\n  </defs>\n\n  <!-- Hanging Twin Notched Ribbons -->\n  <g stroke=\"#141416\" stroke-linecap=\"round\" stroke-linejoin=\"round\" filter=\"url(#soft-shadow-gamer)\">\n    <!-- Left Ribbon -->\n    <polygon points=\"76,118 48,180 72,168 92,180 88,118\" fill=\"#EA552B\" stroke-width=\"3\" />\n    <line x1=\"68\" y1=\"126\" x2=\"68\" y2=\"168\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-dasharray=\"4 3\" opacity=\"0.8\" />\n    <!-- Right Ribbon -->\n    <polygon points=\"112,118 108,180 128,168 152,180 124,118\" fill=\"#8B5CF6\" stroke-width=\"3\" />\n    <line x1=\"132\" y1=\"126\" x2=\"132\" y2=\"168\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-dasharray=\"4 3\" opacity=\"0.8\" />\n  </g>\n\n  <!-- Starburst Gamer Medallion -->\n  <g filter=\"url(#soft-shadow-gamer)\">\n    <!-- Medallion Shadow Disc -->\n    <circle cx=\"100\" cy=\"88\" r=\"54\" fill=\"#141416\" opacity=\"0.12\" />\n\n    <!-- 16-point Starburst Medallion Rim -->\n    <path d=\"\n      M 100 32 L 108 42 L 122 36 L 126 48 L 140 46 L 140 60 L 154 62 L 148 76 L 160 82 L 152 94 L 160 104 L 148 112 L 152 126 L 138 128 L 136 142 L 122 138 L 116 150 L 104 144 L 96 150 L 90 138 L 76 142 L 74 128 L 60 126 L 64 112 L 52 104 L 60 94 L 52 82 L 64 76 L 58 62 L 72 60 L 72 46 L 86 48 L 90 36 Z\"\n      fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n\n    <!-- Inner Circle Backing -->\n    <circle cx=\"100\" cy=\"88\" r=\"44\" fill=\"#1E1B4B\" stroke=\"#141416\" stroke-width=\"3\" />\n\n    <!-- Retro Gamepad Silhouette -->\n    <!-- Controller Body -->\n    <path d=\"\n      M 74 74\n      C 62 74 58 92 62 104\n      C 64 110 72 112 78 106\n      L 86 98\n      L 114 98\n      L 122 106\n      C 128 112 136 110 138 104\n      C 142 92 138 74 126 74\n      Z\"\n      fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"2.8\" stroke-linejoin=\"round\" />\n\n    <!-- Directional Pad (D-pad Cross) -->\n    <g fill=\"#141416\">\n      <rect x=\"74\" y=\"82\" width=\"6\" height=\"16\" rx=\"1.5\" />\n      <rect x=\"69\" y=\"87\" width=\"16\" height=\"6\" rx=\"1.5\" />\n    </g>\n\n    <!-- Action Buttons (A & B) -->\n    <circle cx=\"120\" cy=\"94\" r=\"3.5\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"1.5\" />\n    <circle cx=\"128\" cy=\"85\" r=\"3.5\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n\n    <!-- Start / Select Slits -->\n    <line x1=\"94\" y1=\"92\" x2=\"98\" y2=\"92\" stroke=\"#141416\" stroke-width=\"1.8\" stroke-linecap=\"round\" />\n    <line x1=\"102\" y1=\"92\" x2=\"106\" y2=\"92\" stroke=\"#141416\" stroke-width=\"1.8\" stroke-linecap=\"round\" />\n\n    <!-- XP / Floating Score Pill at Top -->\n    <rect x=\"80\" y=\"58\" width=\"40\" height=\"14\" rx=\"7\" fill=\"#0BDC85\" stroke=\"#141416\" stroke-width=\"2\" />\n    <text x=\"100\" y=\"69\" font-family=\"'Space Grotesk', system-ui, sans-serif\" font-size=\"10\" font-weight=\"900\" fill=\"#141416\" text-anchor=\"middle\">+100</text>\n  </g>\n\n  <!-- Sparkles & Energy Burst Doodles -->\n  <g stroke=\"#141416\" stroke-width=\"1.8\" stroke-linejoin=\"round\">\n    <path d=\"M 34 50 Q 38 54 42 54 Q 38 54 34 58 Q 38 54 34 50\" fill=\"#F7D046\" />\n    <path d=\"M 164 54 Q 168 58 172 58 Q 168 58 164 62 Q 168 58 164 54\" fill=\"#0BDC85\" />\n    <circle cx=\"170\" cy=\"120\" r=\"3\" fill=\"#EA552B\" />\n    <circle cx=\"30\" cy=\"116\" r=\"2.5\" fill=\"#8B5CF6\" />\n  </g>"
+  },
+  {
+    "id": "badge-gold-champion-medal",
+    "name": "Gold Champion 1st Place Medal",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "medal",
+      "champion",
+      "gold",
+      "first-place",
+      "winner",
+      "quiz",
+      "trophy",
+      "star"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Prestigious gold champion medal with bold number 1, radiant starburst rosette, and striped victory ribbons.",
+    "rawSvg": "<!-- Neck Ribbon (V-Fold Striped Ribbon) -->\n  <!-- Left Ribbon Leg -->\n  <path d=\"M72 18 L52 82 L76 82 L90 28 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M58 38 L68 76\" stroke=\"#FFFFFF\" stroke-width=\"3\" stroke-linecap=\"round\" opacity=\"0.8\" />\n  <!-- Right Ribbon Leg -->\n  <path d=\"M128 18 L148 82 L124 82 L110 28 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M142 38 L132 76\" stroke=\"#FFFFFF\" stroke-width=\"3\" stroke-linecap=\"round\" opacity=\"0.8\" />\n  <!-- Center Ribbon Fold Tab -->\n  <polygon points=\"84,72 116,72 108,90 92,90\" fill=\"#C2410C\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n\n  <!-- Metallic Connection Buckle Link -->\n  <rect x=\"86\" y=\"86\" width=\"28\" height=\"10\" rx=\"3\" fill=\"#FDE68A\" stroke=\"#141416\" stroke-width=\"3\" />\n\n  <!-- Drop Shadow for Medallion -->\n  <circle cx=\"102\" cy=\"138\" r=\"44\" fill=\"#141416\" opacity=\"0.12\" />\n\n  <!-- Scalloped 12-Petal Flower Rosette Base -->\n  <path d=\"M100 94 \n           Q107 94 112 98 Q118 97 122 102 Q128 104 130 110 Q135 114 136 120 Q139 126 137 132 Q139 138 135 143 Q135 149 130 153 Q127 158 121 160 Q117 165 111 165 Q106 168 100 168 Q94 168 89 165 Q83 165 79 160 Q73 158 70 153 Q65 149 65 143 Q61 138 63 132 Q61 126 64 120 Q65 114 70 110 Q72 104 78 102 Q82 97 88 98 Q93 94 100 94 Z\" \n        fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n\n  <!-- Inner Concentric Ring -->\n  <circle cx=\"100\" cy=\"131\" r=\"32\" fill=\"#FFD166\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"100\" cy=\"131\" r=\"27\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.8\" stroke-dasharray=\"3 3\" />\n\n  <!-- Center Champion 5-Point Star -->\n  <path d=\"M100 112 L105 123 L117 124 L108 132 L111 144 L100 137 L89 144 L92 132 L83 124 L95 123 Z\" \n        fill=\"#FFFFFF\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n\n  <!-- Metallic Gleam Flare -->\n  <path d=\"M84 116 Q88 112 96 110\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n\n  <!-- Victory Sparkles -->\n  <path d=\"M156 100 Q156 106 162 106 Q156 106 156 112 Q156 106 150 106 Q156 106 156 100 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <path d=\"M42 120 L42 128 M38 124 L46 124\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n  <circle cx=\"152\" cy=\"148\" r=\"2.5\" fill=\"#141416\" />"
+  },
+  {
+    "id": "badge-minimal-ink-medal",
+    "name": "Monochrome Minimal Ink Star Medal",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "minimal",
+      "ink",
+      "monochrome",
+      "retro",
+      "black-and-white",
+      "star",
+      "hand-drawn"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#141416",
+    "description": "High-contrast black-and-white ink rosette medal with striped ribbon tails, pinned clasp, and center star.",
+    "rawSvg": "<!-- ScribbleKit: Minimal Ink Monochrome Medal Badge -->\n  <defs>\n    <filter id=\"soft-shadow-ink\" x=\"-10%\" y=\"-10%\" width=\"125%\" height=\"125%\">\n      <feDropShadow dx=\"0\" dy=\"4\" stdDeviation=\"3\" flood-color=\"#141416\" flood-opacity=\"0.12\" />\n    </filter>\n  </defs>\n\n  <!-- Pinned Metal Top Clasp (Monochrome Ink) -->\n  <g filter=\"url(#soft-shadow-ink)\">\n    <rect x=\"54\" y=\"20\" width=\"92\" height=\"18\" rx=\"4\" fill=\"#FFFFFF\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n    <rect x=\"60\" y=\"24\" width=\"80\" height=\"4\" fill=\"#141416\" rx=\"2\" />\n    <!-- Hanging Wire Loops -->\n    <path d=\"M 80 38 L 88 56 M 120 38 L 112 56\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  </g>\n\n  <!-- Hanging Twin Ribbon Tails (Black & White Striped) -->\n  <g stroke=\"#141416\" stroke-linecap=\"round\" stroke-linejoin=\"round\" filter=\"url(#soft-shadow-ink)\">\n    <!-- Left Ribbon -->\n    <polygon points=\"76,120 50,184 74,172 94,184 90,120\" fill=\"#FFFFFF\" stroke-width=\"3\" />\n    <polygon points=\"62,130 50,184 74,172 70,130\" fill=\"#141416\" stroke=\"none\" />\n    <line x1=\"82\" y1=\"126\" x2=\"84\" y2=\"174\" stroke=\"#141416\" stroke-width=\"2\" stroke-dasharray=\"4 3\" />\n\n    <!-- Right Ribbon -->\n    <polygon points=\"110,120 106,184 126,172 150,184 124,120\" fill=\"#FFFFFF\" stroke-width=\"3\" />\n    <polygon points=\"130,130 126,172 150,184 138,130\" fill=\"#141416\" stroke=\"none\" />\n    <line x1=\"118\" y1=\"126\" x2=\"116\" y2=\"174\" stroke=\"#141416\" stroke-width=\"2\" stroke-dasharray=\"4 3\" />\n  </g>\n\n  <!-- Central Rosette Medallion -->\n  <g filter=\"url(#soft-shadow-ink)\">\n    <!-- Shadow Disc -->\n    <circle cx=\"100\" cy=\"98\" r=\"54\" fill=\"#141416\" opacity=\"0.12\" />\n\n    <!-- 16-Fluted Rosette Petal Silhouette -->\n    <path d=\"\n      M 100 44\n      L 106 50 L 116 48 L 120 56 L 130 57 L 131 67 L 141 71 L 138 81 L 146 88 L 140 98 L 146 108 L 138 115 L 141 125 L 131 129 L 130 139 L 120 140 L 116 148 L 106 146 L 100 152\n      L 94 146 L 84 148 L 80 140 L 70 139 L 69 129 L 59 125 L 62 115 L 54 108 L 60 98 L 54 88 L 62 81 L 59 71 L 69 67 L 70 57 L 80 56 L 84 48 L 94 50 Z\"\n      fill=\"#141416\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n\n    <!-- Crisp White Outer Ring Inside Rosette -->\n    <circle cx=\"100\" cy=\"98\" r=\"42\" fill=\"#FFFFFF\" stroke=\"#141416\" stroke-width=\"3\" />\n\n    <!-- Dotted Linework Track -->\n    <circle cx=\"100\" cy=\"98\" r=\"35\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2\" stroke-dasharray=\"3 3\" />\n\n    <!-- Center Black Core Disc -->\n    <circle cx=\"100\" cy=\"98\" r=\"28\" fill=\"#141416\" stroke=\"#141416\" stroke-width=\"2\" />\n\n    <!-- Gleaming White 5-Point Star in Center -->\n    <polygon points=\"100,78 105,89 117,91 108,99 110,111 100,105 90,111 92,99 83,91 95,89\" fill=\"#FFFFFF\" stroke=\"#FFFFFF\" stroke-width=\"1.5\" stroke-linejoin=\"round\" />\n  </g>\n\n  <!-- Hand-drawn Crosshatch Sparkles & Doodles -->\n  <g stroke=\"#141416\" stroke-linecap=\"round\">\n    <!-- Top-left sparkle -->\n    <line x1=\"36\" y1=\"64\" x2=\"48\" y2=\"64\" stroke-width=\"2.5\" />\n    <line x1=\"42\" y1=\"58\" x2=\"42\" y2=\"70\" stroke-width=\"2.5\" />\n    <!-- Bottom-right sparkle -->\n    <line x1=\"156\" y1=\"136\" x2=\"168\" y2=\"136\" stroke-width=\"2.5\" />\n    <line x1=\"162\" y1=\"130\" x2=\"162\" y2=\"142\" stroke-width=\"2.5\" />\n    <!-- Dots -->\n    <circle cx=\"166\" cy=\"62\" r=\"3\" fill=\"#141416\" />\n    <circle cx=\"34\" cy=\"132\" r=\"2.5\" fill=\"#141416\" />\n    <circle cx=\"100\" cy=\"188\" r=\"2.5\" fill=\"#141416\" />\n  </g>"
+  },
+  {
+    "id": "badge-quiz-master-star",
+    "name": "Quiz Master Star Rosette",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "rosette",
+      "quiz",
+      "master",
+      "star",
+      "ribbon",
+      "trivia",
+      "genius"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Vibrant persimmon orange rosette ribbon badge centered with an ink star for top trivia and quiz scorers.",
+    "rawSvg": "<!-- Top Horizontal Pinned Ribbon Bar -->\n  <rect x=\"45\" y=\"24\" width=\"110\" height=\"28\" rx=\"6\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3.5\" />\n  <line x1=\"55\" y1=\"38\" x2=\"145\" y2=\"38\" stroke=\"#FFFFFF\" stroke-width=\"2.5\" stroke-dasharray=\"4 4\" stroke-linecap=\"round\" />\n  <!-- Ribbon Bar Pin Clasps -->\n  <rect x=\"40\" y=\"22\" width=\"8\" height=\"32\" rx=\"3\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <rect x=\"152\" y=\"22\" width=\"8\" height=\"32\" rx=\"3\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n  <!-- Hanging Neck / Clasp Ring -->\n  <path d=\"M88 52 L88 74 L112 74 L112 52\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n  <circle cx=\"100\" cy=\"74\" r=\"7\" fill=\"#FDE68A\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n  <!-- Medallion Shadow & Base -->\n  <circle cx=\"102\" cy=\"128\" r=\"48\" fill=\"#141416\" opacity=\"0.12\" />\n  <circle cx=\"100\" cy=\"125\" r=\"48\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3.5\" />\n\n  <!-- Inner Textured Stepped Rim -->\n  <circle cx=\"100\" cy=\"125\" r=\"40\" fill=\"#FBE8DE\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"100\" cy=\"125\" r=\"34\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2\" stroke-dasharray=\"3 3\" />\n\n  <!-- Center 3-Star Mastery Tier (★ ★ ★) -->\n  <!-- Middle Big Star -->\n  <path d=\"M100 102 L104 113 L115 114 L106 122 L109 133 L100 127 L91 133 L94 122 L85 114 L96 113 Z\" \n        fill=\"#FFFFFF\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n  <!-- Left Flanking Star -->\n  <path d=\"M80 125 L82 131 L88 132 L83 136 L85 142 L80 138 L75 142 L77 136 L72 132 L78 131 Z\" \n        fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2\" stroke-linejoin=\"round\" />\n  <!-- Right Flanking Star -->\n  <path d=\"M120 125 L122 131 L128 132 L123 136 L125 142 L120 138 L115 142 L117 136 L112 132 L118 131 Z\" \n        fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2\" stroke-linejoin=\"round\" />\n\n  <!-- Mastery Label Arc -->\n  <path d=\"M82 153 Q100 159 118 153\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n\n  <!-- Twinkles -->\n  <path d=\"M162 90 Q162 96 168 96 Q162 96 162 102 Q162 96 156 96 Q162 96 162 90 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <circle cx=\"36\" cy=\"116\" r=\"2.5\" fill=\"#141416\" />"
+  },
+  {
+    "id": "badge-shield-level-up",
+    "name": "Heraldic Shield Level Up",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "shield",
+      "crest",
+      "level-up",
+      "xp",
+      "rank",
+      "security",
+      "defense"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#55BBDA",
+    "description": "Stout heraldic knight shield badge in sky blue and parchment with center victory star and dual ribbon tails.",
+    "rawSvg": "<!-- Ribbon Sashes (Behind bottom of shield) -->\n  <path d=\"M74 135 L54 182 L72 172 L86 182 L84 145 Z\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M126 135 L146 182 L128 172 L114 182 L116 145 Z\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n\n  <!-- Shield Drop Shadow -->\n  <path d=\"M62 34 L142 34 C142 34 146 96 102 144 C58 96 62 34 62 34 Z\" fill=\"#141416\" opacity=\"0.12\" />\n\n  <!-- Regal Shield Crest Body (Rich Royal Purple) -->\n  <path d=\"M60 30 L140 30 C140 30 144 94 100 140 C56 94 60 30 60 30 Z\" \n        fill=\"#8B5CF6\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n\n  <!-- Inner Shield Trim (Lilac / White) -->\n  <path d=\"M68 38 L132 38 C132 38 135 90 100 128 C65 90 68 38 68 38 Z\" \n        fill=\"#C4B5FD\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n\n  <!-- Central Star Rosette (Warm Orange / Gold) -->\n  <circle cx=\"100\" cy=\"78\" r=\"28\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" />\n  <circle cx=\"100\" cy=\"78\" r=\"22\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2\" />\n\n  <!-- Center Level-Up Star -->\n  <path d=\"M100 64 L103 72 L112 73 L105 79 L107 88 L100 83 L93 88 L95 79 L88 73 L97 72 Z\" \n        fill=\"#FFFFFF\" stroke=\"#141416\" stroke-width=\"2.2\" stroke-linejoin=\"round\" />\n\n  <!-- Upward Level Chevron / Rank Arrow -->\n  <path d=\"M92 114 L100 106 L108 114\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n\n  <!-- Achievement Sparkles -->\n  <path d=\"M156 50 Q156 56 162 56 Q156 56 156 62 Q156 56 150 56 Q156 56 156 50 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <path d=\"M42 60 L42 68 M38 64 L46 64\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n  <circle cx=\"152\" cy=\"110\" r=\"2.5\" fill=\"#141416\" />"
+  },
+  {
+    "id": "badge-silver-runner-up",
+    "name": "Silver Runner-Up 2nd Place Medal",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "silver",
+      "second-place",
+      "runner-up",
+      "medal",
+      "ribbon",
+      "contest"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#E2E8F0",
+    "description": "Cool metallic silver medal with bold numeral 2, laurel branch garland, and twin cobalt ribbon tails.",
+    "rawSvg": "<!-- Blue & White Striped Neck Ribbon -->\n  <path d=\"M72 16 L52 78 L76 78 L90 26 Z\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M60 34 L70 72\" stroke=\"#FFFFFF\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <path d=\"M128 16 L148 78 L124 78 L110 26 Z\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M140 34 L130 72\" stroke=\"#FFFFFF\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <polygon points=\"84,68 116,68 106,86 94,86\" fill=\"#0284C7\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n\n  <!-- Silver Buckle Link -->\n  <rect x=\"88\" y=\"82\" width=\"24\" height=\"9\" rx=\"3\" fill=\"#E2E8F0\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n  <!-- Silver Medallion Base & Shadow -->\n  <circle cx=\"102\" cy=\"136\" r=\"46\" fill=\"#141416\" opacity=\"0.12\" />\n  <circle cx=\"100\" cy=\"133\" r=\"46\" fill=\"#E2E8F0\" stroke=\"#141416\" stroke-width=\"3.5\" />\n\n  <!-- Inner Cool Slate Rim with Laurel Leaf Dots -->\n  <circle cx=\"100\" cy=\"133\" r=\"38\" fill=\"#F8FAFC\" stroke=\"#141416\" stroke-width=\"2.5\" />\n  <circle cx=\"100\" cy=\"133\" r=\"32\" fill=\"#E2E8F0\" stroke=\"#141416\" stroke-width=\"1.8\" stroke-dasharray=\"3 3\" />\n\n  <!-- Stylized Numeral \"2\" (Silver Champion) -->\n  <path d=\"M90 120 C90 114 96 110 101 110 C107 110 112 114 112 120 C112 128 92 136 90 148 L113 148\" \n        fill=\"none\" stroke=\"#141416\" stroke-width=\"5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n\n  <!-- Silver Shine Flare -->\n  <path d=\"M84 116 Q88 112 94 112\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <path d=\"M110 140 Q114 144 116 148\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n\n  <!-- Sparkles -->\n  <path d=\"M156 102 Q156 108 162 108 Q156 108 156 114 Q156 108 150 108 Q156 108 156 102 Z\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <circle cx=\"44\" cy=\"120\" r=\"2.5\" fill=\"#141416\" />"
+  },
+  {
+    "id": "badge-speedy-stopwatch",
+    "name": "Speedy Chrono Lightning Badge",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "speed",
+      "stopwatch",
+      "timer",
+      "fast",
+      "lightning",
+      "quick",
+      "quiz"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#0BDC85",
+    "description": "High-velocity stopwatch chronometer with ticking hand, motion speed lines, and lightning bolt for fast completion.",
+    "rawSvg": "<!-- ScribbleKit: Speedy Stopwatch Quiz Badge -->\n  <defs>\n    <filter id=\"soft-shadow-stopwatch\" x=\"-10%\" y=\"-10%\" width=\"125%\" height=\"125%\">\n      <feDropShadow dx=\"0\" dy=\"4\" stdDeviation=\"3\" flood-color=\"#141416\" flood-opacity=\"0.12\" />\n    </filter>\n  </defs>\n\n  <!-- Motion Speed Streaks (Background Left) -->\n  <g stroke=\"#141416\" stroke-linecap=\"round\" opacity=\"0.8\">\n    <path d=\"M 20 86 Q 32 86 46 88\" fill=\"none\" stroke-width=\"3\" stroke-dasharray=\"8 4\" />\n    <path d=\"M 14 104 Q 30 104 42 106\" fill=\"none\" stroke-width=\"3\" stroke-dasharray=\"10 5\" />\n    <path d=\"M 24 122 Q 36 122 50 124\" fill=\"none\" stroke-width=\"2.5\" />\n  </g>\n\n  <!-- Ribbon Tails (Hanging below) -->\n  <g stroke=\"#141416\" stroke-linecap=\"round\" stroke-linejoin=\"round\" filter=\"url(#soft-shadow-stopwatch)\">\n    <!-- Left Ribbon -->\n    <polygon points=\"86,130 62,182 82,172 98,184 94,130\" fill=\"#0BDC85\" stroke-width=\"3\" />\n    <line x1=\"78\" y1=\"136\" x2=\"80\" y2=\"170\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-dasharray=\"3 3\" opacity=\"0.8\" />\n    \n    <!-- Right Ribbon -->\n    <polygon points=\"106,130 102,184 118,172 138,182 114,130\" fill=\"#55BBDA\" stroke-width=\"3\" />\n    <line x1=\"122\" y1=\"136\" x2=\"120\" y2=\"170\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-dasharray=\"3 3\" opacity=\"0.8\" />\n  </g>\n\n  <!-- Stopwatch Body -->\n  <g filter=\"url(#soft-shadow-stopwatch)\">\n    <!-- Top Plunger / Crown Mechanism -->\n    <rect x=\"94\" y=\"24\" width=\"12\" height=\"10\" rx=\"3\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2.8\" />\n    <path d=\"M 86 28 C 86 16 114 16 114 28\" fill=\"none\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n    <!-- Secondary Lap Button at 45 deg -->\n    <rect x=\"132\" y=\"38\" width=\"8\" height=\"10\" rx=\"2\" transform=\"rotate(45 136 43)\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n    <!-- Outer Stopwatch Ring Shadow -->\n    <circle cx=\"100\" cy=\"98\" r=\"50\" fill=\"#141416\" opacity=\"0.12\" />\n\n    <!-- Outer Chrome Casing -->\n    <circle cx=\"100\" cy=\"96\" r=\"48\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3.5\" />\n    \n    <!-- Inner Bezel -->\n    <circle cx=\"100\" cy=\"96\" r=\"40\" fill=\"#FFFFFF\" stroke=\"#141416\" stroke-width=\"3\" />\n\n    <!-- Clock Face Dial Markers -->\n    <line x1=\"100\" y1=\"60\" x2=\"100\" y2=\"67\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n    <line x1=\"100\" y1=\"125\" x2=\"100\" y2=\"132\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n    <line x1=\"64\" y1=\"96\" x2=\"71\" y2=\"96\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n    <line x1=\"129\" y1=\"96\" x2=\"136\" y2=\"96\" stroke=\"#141416\" stroke-width=\"3\" stroke-linecap=\"round\" />\n    <!-- Minor ticks -->\n    <line x1=\"123\" y1=\"73\" x2=\"119\" y2=\"77\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n    <line x1=\"77\" y1=\"73\" x2=\"81\" y2=\"77\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n    <line x1=\"123\" y1=\"119\" x2=\"119\" y2=\"115\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n    <line x1=\"77\" y1=\"119\" x2=\"81\" y2=\"115\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />\n\n    <!-- Rapid Stopwatch Sweeper Hand (pointing to ~2 o'clock) -->\n    <line x1=\"100\" y1=\"96\" x2=\"124\" y2=\"72\" stroke=\"#EA552B\" stroke-width=\"3.5\" stroke-linecap=\"round\" />\n    <!-- Hand counterweight -->\n    <line x1=\"100\" y1=\"96\" x2=\"90\" y2=\"106\" stroke=\"#EA552B\" stroke-width=\"3\" stroke-linecap=\"round\" />\n    <!-- Center Pivot Pin -->\n    <circle cx=\"100\" cy=\"96\" r=\"4.5\" fill=\"#141416\" />\n\n    <!-- Lightning Bolt Icon inside Dial (lower quadrant) -->\n    <polygon points=\"98,105 106,105 102,114 108,114 96,126 99,117 93,117\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.8\" stroke-linejoin=\"round\" />\n\n    <!-- Glass Reflection Highlights -->\n    <path d=\"M 72 78 A 34 34 0 0 1 122 66\" fill=\"none\" stroke=\"#55BBDA\" stroke-width=\"2.5\" stroke-linecap=\"round\" opacity=\"0.6\" />\n  </g>\n\n  <!-- Sparkles & Energy Stars -->\n  <g stroke=\"#141416\" stroke-width=\"1.8\" stroke-linejoin=\"round\">\n    <path d=\"M 162 70 Q 166 74 170 74 Q 166 74 162 78 Q 166 74 162 70\" fill=\"#F7D046\" />\n    <circle cx=\"170\" cy=\"116\" r=\"3\" fill=\"#EA552B\" />\n    <path d=\"M 40 46 Q 44 50 48 50 Q 44 50 40 54 Q 44 50 40 46\" fill=\"#0BDC85\" />\n  </g>"
+  },
+  {
+    "id": "badge-streak-flame-medal",
+    "name": "Daily Streak Flame Badge",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "streak",
+      "flame",
+      "fire",
+      "daily",
+      "combo",
+      "hot",
+      "quiz"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#EA552B",
+    "description": "Blazing retro fire flame medallion commemorating continuous quiz streaks and hot win combos.",
+    "rawSvg": "<!-- Fiery Ribbon Strap (V-Neck) -->\n  <path d=\"M72 16 L52 78 L76 78 L90 26 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M60 34 L70 72\" stroke=\"#F7D046\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <path d=\"M128 16 L148 78 L124 78 L110 26 Z\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M140 34 L130 72\" stroke=\"#F7D046\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <polygon points=\"84,68 116,68 106,86 94,86\" fill=\"#C2410C\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n\n  <!-- Metallic Connection Ring -->\n  <circle cx=\"100\" cy=\"90\" r=\"8\" fill=\"#FDE68A\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n  <!-- Medallion Base & Shadow -->\n  <circle cx=\"102\" cy=\"138\" r=\"46\" fill=\"#141416\" opacity=\"0.12\" />\n  <circle cx=\"100\" cy=\"135\" r=\"46\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3.5\" />\n\n  <!-- Inner Crimson Rim -->\n  <circle cx=\"100\" cy=\"135\" r=\"37\" fill=\"#FFFBEB\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n  <!-- Hand-Drawn Energetic Fire Streak Flame Doodle -->\n  <path d=\"M100 106 \n           C105 116 116 122 116 132 \n           C116 142 108 149 100 149 \n           C92 149 84 142 84 132 \n           C84 125 90 120 94 116 \n           C96 122 100 125 104 125 \n           C102 118 99 113 100 106 Z\" \n        fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n\n  <!-- Inner Golden Core Flame -->\n  <path d=\"M100 122 \n           C103 128 109 132 109 137 \n           C109 143 105 146 100 146 \n           C95 146 91 143 91 137 \n           C91 133 95 130 97 128 \n           C98 131 100 133 102 133 \n           C101 129 100 126 100 122 Z\" \n        fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.8\" stroke-linejoin=\"round\" />\n\n  <!-- Fire Spark Accents -->\n  <circle cx=\"118\" cy=\"116\" r=\"3\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <circle cx=\"82\" cy=\"122\" r=\"2.5\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <path d=\"M156 126 Q156 132 162 132 Q156 132 156 138 Q156 132 150 132 Q156 132 156 126 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <path d=\"M42 140 L42 148 M38 144 L46 144\" stroke=\"#141416\" stroke-width=\"2\" stroke-linecap=\"round\" />"
+  },
+  {
+    "id": "badge-trophy-cup-honor",
+    "name": "Victory Trophy Cup Rosette",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "trophy",
+      "cup",
+      "victory",
+      "winner",
+      "tournament",
+      "champion",
+      "gold"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#F7D046",
+    "description": "Regal golden victory goblet framed within a scalloped rosette disc with emerald green hanging sashes.",
+    "rawSvg": "<!-- Ribbon Loop (Deep Navy / Sky Blue Stitching) -->\n  <path d=\"M74 18 L54 78 L78 78 L90 28 Z\" fill=\"#1E1B4B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M60 36 L70 72\" stroke=\"#55BBDA\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <path d=\"M126 18 L146 78 L122 78 L110 28 Z\" fill=\"#1E1B4B\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n  <path d=\"M140 36 L130 72\" stroke=\"#55BBDA\" stroke-width=\"3\" stroke-linecap=\"round\" />\n  <polygon points=\"84,68 116,68 106,86 94,86\" fill=\"#141416\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n\n  <!-- Metal Buckle Ring -->\n  <rect x=\"86\" y=\"82\" width=\"28\" height=\"9\" rx=\"3\" fill=\"#FDE68A\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n  <!-- Medallion Base & Shadow -->\n  <circle cx=\"102\" cy=\"136\" r=\"46\" fill=\"#141416\" opacity=\"0.12\" />\n  <circle cx=\"100\" cy=\"133\" r=\"46\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3.5\" />\n\n  <!-- Inner Recessed White Rim -->\n  <circle cx=\"100\" cy=\"133\" r=\"38\" fill=\"#FFFBEB\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n  <!-- Champion Trophy Cup Doodle -->\n  <!-- Trophy Cup Body -->\n  <path d=\"M84 112 L116 112 C116 112 118 132 100 134 C82 132 84 112 84 112 Z\" \n        fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n  <!-- Left Handle -->\n  <path d=\"M84 115 C76 115 74 125 84 127\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n  <!-- Right Handle -->\n  <path d=\"M116 115 C124 115 126 125 116 127\" fill=\"none\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linecap=\"round\" />\n  <!-- Stem & Base Pedestal -->\n  <path d=\"M97 134 L97 142 L92 142 L90 148 L110 148 L108 142 L103 142 L103 134 Z\" \n        fill=\"#D97706\" stroke=\"#141416\" stroke-width=\"2.5\" stroke-linejoin=\"round\" />\n\n  <!-- Star on Trophy Belly -->\n  <path d=\"M100 118 L101.5 122 L105 122.5 L102.5 125 L103 128.5 L100 126.5 L97 128.5 L97.5 125 L95 122.5 L98.5 122 Z\" \n        fill=\"#FFFFFF\" stroke=\"#141416\" stroke-width=\"1.2\" stroke-linejoin=\"round\" />\n\n  <!-- Twinkles -->\n  <path d=\"M156 102 Q156 108 162 108 Q156 108 156 114 Q156 108 150 108 Q156 108 156 102 Z\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"1.5\" />\n  <circle cx=\"44\" cy=\"120\" r=\"2.5\" fill=\"#141416\" />"
+  },
+  {
+    "id": "badge-vip-crown-ribbon",
+    "name": "VIP Crown Sovereign Ribbon",
+    "category": "badges-achievements",
+    "tags": [
+      "badge",
+      "vip",
+      "crown",
+      "royal",
+      "king",
+      "queen",
+      "leaderboard",
+      "prestige"
+    ],
+    "viewBox": "0 0 200 200",
+    "type": "mixed",
+    "defaultColor": "#8B5CF6",
+    "description": "12-fluted royal violet rosette badge with triple-jeweled gold crown emblem and flowing satin ribbon tails.",
+    "rawSvg": "<!-- ScribbleKit: VIP Crown Royal Ribbon Badge -->\n  <defs>\n    <filter id=\"soft-shadow-crown\" x=\"-10%\" y=\"-10%\" width=\"125%\" height=\"125%\">\n      <feDropShadow dx=\"0\" dy=\"4\" stdDeviation=\"3\" flood-color=\"#141416\" flood-opacity=\"0.12\" />\n    </filter>\n  </defs>\n\n  <!-- Flowing Royal Ribbon Tails -->\n  <g stroke=\"#141416\" stroke-linecap=\"round\" stroke-linejoin=\"round\" filter=\"url(#soft-shadow-crown)\">\n    <!-- Left Tail -->\n    <path d=\"M 76 112 L 48 178 L 70 166 L 90 178 L 86 112 Z\" fill=\"#8B5CF6\" stroke-width=\"3\" />\n    <path d=\"M 68 122 L 58 166\" stroke=\"#FBE8DE\" stroke-width=\"2\" stroke-dasharray=\"4 3\" opacity=\"0.8\" />\n    \n    <!-- Right Tail -->\n    <path d=\"M 114 112 L 110 178 L 130 166 L 152 178 L 124 112 Z\" fill=\"#EE8DB9\" stroke-width=\"3\" />\n    <path d=\"M 132 122 L 142 166\" stroke=\"#FBE8DE\" stroke-width=\"2\" stroke-dasharray=\"4 3\" opacity=\"0.8\" />\n  </g>\n\n  <!-- Scalloped Outer Rosette -->\n  <g filter=\"url(#soft-shadow-crown)\">\n    <!-- Shadow Disc -->\n    <circle cx=\"100\" cy=\"86\" r=\"54\" fill=\"#141416\" opacity=\"0.12\" />\n\n    <!-- 12-Fluted Rosette Petal Background -->\n    <path d=\"\n      M 100 30\n      C 108 30 114 36 122 38\n      C 129 40 137 38 143 44\n      C 149 50 148 58 152 66\n      C 156 73 162 78 162 86\n      C 162 94 156 99 152 106\n      C 148 114 149 122 143 128\n      C 137 134 129 132 122 134\n      C 114 136 108 142 100 142\n      C 92 142 86 136 78 134\n      C 71 132 63 134 57 128\n      C 51 122 52 114 48 106\n      C 44 99 38 94 38 86\n      C 38 78 44 73 48 66\n      C 52 58 51 50 57 44\n      C 63 38 71 40 78 38\n      C 86 36 92 30 100 30 Z\"\n      fill=\"#8B5CF6\" stroke=\"#141416\" stroke-width=\"3.5\" stroke-linejoin=\"round\" />\n\n    <!-- Secondary Scalloped Inner Disc -->\n    <circle cx=\"100\" cy=\"86\" r=\"44\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" />\n    \n    <!-- White Inner Core Circle -->\n    <circle cx=\"100\" cy=\"86\" r=\"34\" fill=\"#FFFFFF\" stroke=\"#141416\" stroke-width=\"2.5\" />\n\n    <!-- Dotted Circular Stitching -->\n    <circle cx=\"100\" cy=\"86\" r=\"30\" fill=\"none\" stroke=\"#141416\" stroke-width=\"1.8\" stroke-dasharray=\"3 3\" opacity=\"0.5\" />\n\n    <!-- 3-Peak Regal Gold Crown Emblem -->\n    <polygon points=\"76,102 74,74 88,86 100,68 112,86 126,74 124,102\" fill=\"#F7D046\" stroke=\"#141416\" stroke-width=\"3\" stroke-linejoin=\"round\" />\n    <!-- Crown Base Band -->\n    <rect x=\"76\" y=\"98\" width=\"48\" height=\"6\" rx=\"2\" fill=\"#EA552B\" stroke=\"#141416\" stroke-width=\"2\" />\n\n    <!-- Crown Jewels on Peaks -->\n    <circle cx=\"74\" cy=\"73\" r=\"3.5\" fill=\"#EE8DB9\" stroke=\"#141416\" stroke-width=\"1.8\" />\n    <circle cx=\"100\" cy=\"67\" r=\"4.5\" fill=\"#55BBDA\" stroke=\"#141416\" stroke-width=\"2\" />\n    <circle cx=\"126\" cy=\"73\" r=\"3.5\" fill=\"#0BDC85\" stroke=\"#141416\" stroke-width=\"1.8\" />\n    \n    <!-- Center Jewel on Crown Base -->\n    <circle cx=\"100\" cy=\"101\" r=\"2\" fill=\"#FFFFFF\" />\n  </g>\n\n  <!-- Sparkles & Regal Shimmer -->\n  <g stroke=\"#141416\" stroke-width=\"1.8\" stroke-linejoin=\"round\">\n    <path d=\"M 30 52 Q 34 56 38 56 Q 34 56 30 60 Q 34 56 30 52\" fill=\"#F7D046\" />\n    <path d=\"M 166 44 Q 170 48 174 48 Q 170 48 166 52 Q 170 48 166 44\" fill=\"#EE8DB9\" />\n    <circle cx=\"172\" cy=\"98\" r=\"3\" fill=\"#F7D046\" />\n    <circle cx=\"28\" cy=\"110\" r=\"2.5\" fill=\"#55BBDA\" />\n  </g>"
+  },
   {
     "id": "planet-kawaii-saturn",
     "name": "Kawaii Smiling Saturn",

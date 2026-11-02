@@ -3483,7 +3483,14 @@ planets_astro = [
     }
 ]
 
-all_scribbles = funky_scribbles + underlines + circles + arrows + stars + badges + doodles + accents + signature_shapes + algorithms_data_structures + system_design + planets_astro
+badges_achievements_file = os.path.join(os.path.dirname(__file__), "badges_achievements_assets.json")
+if os.path.exists(badges_achievements_file):
+    with open(badges_achievements_file, "r") as f:
+        badges_achievements = json.load(f)
+else:
+    badges_achievements = []
+
+all_scribbles = badges_achievements + funky_scribbles + underlines + circles + arrows + stars + badges + doodles + accents + signature_shapes + algorithms_data_structures + system_design + planets_astro
 print(f"Total scribbles defined: {len(all_scribbles)}")
 
 # Save each SVG into public/assets/scribbles/<category>/<id>.svg
@@ -3524,6 +3531,7 @@ for item in all_scribbles:
 
 category_metadata = [
     {"id": "all", "name": "All Scribbles", "icon": "Sparkles", "count": len(all_scribbles)},
+    {"id": "badges-achievements", "name": "Badges & Achievements", "icon": "Award", "count": categories_summary.get("badges-achievements", 0)},
     {"id": "planets-astro", "name": "Planets & Astro", "icon": "Orbit", "count": categories_summary.get("planets-astro", 0)},
     {"id": "algorithms-data-structures", "name": "Algorithms & Data Structures", "icon": "Binary", "count": categories_summary.get("algorithms-data-structures", 0)},
     {"id": "system-design", "name": "System Design", "icon": "Server", "count": categories_summary.get("system-design", 0)},

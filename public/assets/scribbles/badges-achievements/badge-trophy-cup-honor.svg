@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Ribbon Loop (Deep Navy / Sky Blue Stitching) -->
+  <path d="M74 18 L54 78 L78 78 L90 28 Z" fill="#1E1B4B" stroke="#141416" stroke-width="3" stroke-linejoin="round" />
+  <path d="M60 36 L70 72" stroke="#55BBDA" stroke-width="3" stroke-linecap="round" />
+  <path d="M126 18 L146 78 L122 78 L110 28 Z" fill="#1E1B4B" stroke="#141416" stroke-width="3" stroke-linejoin="round" />
+  <path d="M140 36 L130 72" stroke="#55BBDA" stroke-width="3" stroke-linecap="round" />
+  <polygon points="84,68 116,68 106,86 94,86" fill="#141416" stroke="#141416" stroke-width="3" stroke-linejoin="round" />
+
+  <!-- Metal Buckle Ring -->
+  <rect x="86" y="82" width="28" height="9" rx="3" fill="#FDE68A" stroke="#141416" stroke-width="2.5" />
+
+  <!-- Medallion Base & Shadow -->
+  <circle cx="102" cy="136" r="46" fill="#141416" opacity="0.12" />
+  <circle cx="100" cy="133" r="46" fill="#F7D046" stroke="#141416" stroke-width="3.5" />
+
+  <!-- Inner Recessed White Rim -->
+  <circle cx="100" cy="133" r="38" fill="#FFFBEB" stroke="#141416" stroke-width="2.5" />
+
+  <!-- Champion Trophy Cup Doodle -->
+  <!-- Trophy Cup Body -->
+  <path d="M84 112 L116 112 C116 112 118 132 100 134 C82 132 84 112 84 112 Z" 
+        fill="#F7D046" stroke="#141416" stroke-width="2.5" stroke-linejoin="round" />
+  <!-- Left Handle -->
+  <path d="M84 115 C76 115 74 125 84 127" fill="none" stroke="#141416" stroke-width="2.5" stroke-linecap="round" />
+  <!-- Right Handle -->
+  <path d="M116 115 C124 115 126 125 116 127" fill="none" stroke="#141416" stroke-width="2.5" stroke-linecap="round" />
+  <!-- Stem & Base Pedestal -->
+  <path d="M97 134 L97 142 L92 142 L90 148 L110 148 L108 142 L103 142 L103 134 Z" 
+        fill="#D97706" stroke="#141416" stroke-width="2.5" stroke-linejoin="round" />
+
+  <!-- Star on Trophy Belly -->
+  <path d="M100 118 L101.5 122 L105 122.5 L102.5 125 L103 128.5 L100 126.5 L97 128.5 L97.5 125 L95 122.5 L98.5 122 Z" 
+        fill="#FFFFFF" stroke="#141416" stroke-width="1.2" stroke-linejoin="round" />
+
+  <!-- Twinkles -->
+  <path d="M156 102 Q156 108 162 108 Q156 108 156 114 Q156 108 150 108 Q156 108 156 102 Z" fill="#F7D046" stroke="#141416" stroke-width="1.5" />
+  <circle cx="44" cy="120" r="2.5" fill="#141416" />
+</svg>

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Cascading Tail Ribbons -->
+  <path d="M82 120 L66 182 L86 172 L98 182 L96 122 Z" fill="#55BBDA" stroke="#141416" stroke-width="3" stroke-linejoin="round" />
+  <path d="M118 120 L134 182 L114 172 L102 182 L104 122 Z" fill="#55BBDA" stroke="#141416" stroke-width="3" stroke-linejoin="round" />
+
+  <!-- Drop Shadow -->
+  <circle cx="102" cy="85" r="46" fill="#141416" opacity="0.12" />
+
+  <!-- Scalloped 12-Petal Flower Rosette (ScribbleKit Mint) -->
+  <path d="M100 36 
+           Q108 36 114 41 Q122 40 126 47 Q134 49 136 57 Q142 62 142 70 Q146 78 143 85 Q145 93 140 99 Q140 107 133 112 Q130 119 122 122 Q117 128 109 129 Q103 133 96 133 Q88 132 82 127 Q75 126 70 120 Q64 117 62 110 Q57 105 58 97 Q55 90 58 83 Q56 75 61 69 Q62 61 69 57 Q72 49 80 47 Q84 40 92 41 Q97 36 100 36 Z" 
+        fill="#0BDC85" stroke="#141416" stroke-width="3.5" stroke-linejoin="round" />
+
+  <!-- Inner Dark Blue Contrast Coin -->
+  <circle cx="100" cy="84" r="35" fill="#14142B" stroke="#141416" stroke-width="2.5" />
+  <circle cx="100" cy="84" r="30" fill="#FFFBEB" stroke="#141416" stroke-width="2" />
+
+  <!-- Genius Lightbulb / Idea Doodle -->
+  <!-- Bulb Glass Outline -->
+  <path d="M92 88 C88 84 86 78 88 72 C91 66 97 62 103 62 C109 62 115 66 117 72 C119 78 117 84 113 88 L111 93 L94 93 Z" 
+        fill="#F7D046" stroke="#141416" stroke-width="2.5" stroke-linejoin="round" />
+  <!-- Bulb Screw Base -->
+  <rect x="94" y="93" width="17" height="4" rx="1.5" fill="#E2E8F0" stroke="#141416" stroke-width="1.8" />
+  <rect x="96" y="97" width="13" height="3" rx="1" fill="#94A3B8" stroke="#141416" stroke-width="1.5" />
+
+  <!-- Filament / Glow Doodle Inside Bulb -->
+  <path d="M98 76 Q102 70 107 76" fill="none" stroke="#EA552B" stroke-width="2" stroke-linecap="round" />
+
+  <!-- Genius Radiating Idea Rays -->
+  <line x1="102" y1="53" x2="102" y2="57" stroke="#EA552B" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="82" y1="62" x2="85" y2="65" stroke="#EA552B" stroke-width="2.5" stroke-linecap="round" />
+  <line x1="123" y1="62" x2="120" y2="65" stroke="#EA552B" stroke-width="2.5" stroke-linecap="round" />
+
+  <!-- Confetti Sparkles -->
+  <path d="M156 50 Q156 56 162 56 Q156 56 156 62 Q156 56 150 56 Q156 56 156 50 Z" fill="#F7D046" stroke="#141416" stroke-width="1.5" />
+  <circle cx="44" cy="62" r="2.5" fill="#141416" />
+</svg>

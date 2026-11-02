@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Fiery Ribbon Strap (V-Neck) -->
+  <path d="M72 16 L52 78 L76 78 L90 26 Z" fill="#EA552B" stroke="#141416" stroke-width="3" stroke-linejoin="round" />
+  <path d="M60 34 L70 72" stroke="#F7D046" stroke-width="3" stroke-linecap="round" />
+  <path d="M128 16 L148 78 L124 78 L110 26 Z" fill="#EA552B" stroke="#141416" stroke-width="3" stroke-linejoin="round" />
+  <path d="M140 34 L130 72" stroke="#F7D046" stroke-width="3" stroke-linecap="round" />
+  <polygon points="84,68 116,68 106,86 94,86" fill="#C2410C" stroke="#141416" stroke-width="3" stroke-linejoin="round" />
+
+  <!-- Metallic Connection Ring -->
+  <circle cx="100" cy="90" r="8" fill="#FDE68A" stroke="#141416" stroke-width="2.5" />
+
+  <!-- Medallion Base & Shadow -->
+  <circle cx="102" cy="138" r="46" fill="#141416" opacity="0.12" />
+  <circle cx="100" cy="135" r="46" fill="#F7D046" stroke="#141416" stroke-width="3.5" />
+
+  <!-- Inner Crimson Rim -->
+  <circle cx="100" cy="135" r="37" fill="#FFFBEB" stroke="#141416" stroke-width="2.5" />
+
+  <!-- Hand-Drawn Energetic Fire Streak Flame Doodle -->
+  <path d="M100 106 
+           C105 116 116 122 116 132 
+           C116 142 108 149 100 149 
+           C92 149 84 142 84 132 
+           C84 125 90 120 94 116 
+           C96 122 100 125 104 125 
+           C102 118 99 113 100 106 Z" 
+        fill="#EA552B" stroke="#141416" stroke-width="2.5" stroke-linejoin="round" />
+
+  <!-- Inner Golden Core Flame -->
+  <path d="M100 122 
+           C103 128 109 132 109 137 
+           C109 143 105 146 100 146 
+           C95 146 91 143 91 137 
+           C91 133 95 130 97 128 
+           C98 131 100 133 102 133 
+           C101 129 100 126 100 122 Z" 
+        fill="#F7D046" stroke="#141416" stroke-width="1.8" stroke-linejoin="round" />
+
+  <!-- Fire Spark Accents -->
+  <circle cx="118" cy="116" r="3" fill="#EA552B" stroke="#141416" stroke-width="1.5" />
+  <circle cx="82" cy="122" r="2.5" fill="#F7D046" stroke="#141416" stroke-width="1.5" />
+  <path d="M156 126 Q156 132 162 132 Q156 132 156 138 Q156 132 150 132 Q156 132 156 126 Z" fill="#F7D046" stroke="#141416" stroke-width="1.5" />
+  <path d="M42 140 L42 148 M38 144 L46 144" stroke="#141416" stroke-width="2" stroke-linecap="round" />
+</svg>

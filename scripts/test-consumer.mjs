@@ -52,7 +52,11 @@ const planetItems = getScribblesByCategory('planets-astro');
 if (planetItems.length !== 16) throw new Error(`Expected 16 planets-astro items, got ${planetItems.length}`);
 console.log(`✓ getScribblesByCategory('planets-astro') returned: ${planetItems.length} items`);
 
-if (SCRIBBLES_ASSETS.length !== 294) throw new Error(`Expected 294 total assets, got ${SCRIBBLES_ASSETS.length}`);
+const badgeItems = getScribblesByCategory('badges-achievements');
+if (badgeItems.length !== 16) throw new Error(`Expected 16 badges-achievements items, got ${badgeItems.length}`);
+console.log(`✓ getScribblesByCategory('badges-achievements') returned: ${badgeItems.length} items`);
+
+if (SCRIBBLES_ASSETS.length !== 310) throw new Error(`Expected 310 total assets, got ${SCRIBBLES_ASSETS.length}`);
 console.log(`✓ Total assets verified: ${SCRIBBLES_ASSETS.length}`);
 
 const horseshoe = getScribbleById('funky-lucky-horseshoe-stars');
@@ -174,6 +178,18 @@ if (!planetSaturnHtml.includes('<svg') || !planetSaturnHtml.includes('viewBox="0
   throw new Error('planet-kawaii-saturn SVG rendering failed validation');
 }
 console.log('✓ <Scribble name="planet-kawaii-saturn" /> rendered valid SVG successfully');
+
+const badgeChampionHtml = renderToStaticMarkup(
+  React.createElement(Scribble, {
+    name: 'badge-gold-champion-medal',
+    color: '#F7D046',
+    size: 64,
+  })
+);
+if (!badgeChampionHtml.includes('<svg') || !badgeChampionHtml.includes('viewBox="0 0 200 200"')) {
+  throw new Error('badge-gold-champion-medal SVG rendering failed validation');
+}
+console.log('✓ <Scribble name="badge-gold-champion-medal" /> rendered valid SVG successfully');
 
 // Test 4: Render <ScribbleHighlight /> to static HTML markup
 const highlightHtml = renderToStaticMarkup(
